@@ -64,8 +64,7 @@ export class MapComponent {
           layer: L.tileLayer.wms(this.projectshape_wms_url, {
             layers: layer.Name, 
             format: 'image/png', 
-            transparent: true, 
-            enabled: true
+            transparent: true
           })
         })
         this.layersFromWMS[layer.Name] = {
@@ -75,8 +74,7 @@ export class MapComponent {
           layer: L.tileLayer.wms(this.projectshape_wms_url, {
             layers: layer.Name, 
             format: 'image/png', 
-            transparent: true, 
-            enabled: true
+            transparent: true
           })
         }
       }
