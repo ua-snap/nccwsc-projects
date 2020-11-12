@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
 import { NgbModule, NgbActiveModal, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { LeafletModule } from "@asymmetrik/ngx-leaflet";
-import { SelectModule } from 'ng-select';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { HeaderComponent } from './header/header.component'
 import { FooterComponent } from './footer/footer.component'
@@ -49,7 +49,7 @@ import { TitleLinkComponent } from './title-link/title-link.component'
     FormsModule,
     HttpClientModule,
     routing,
-    SelectModule,
+    NgSelectModule,
     Ng2SmartTableModule,
     NgbDropdownModule.forRoot(),
     NgbModule.forRoot(),

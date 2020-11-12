@@ -117,14 +117,14 @@ div .card{
     font-size: 0.8em;
   }
 
-:host /deep/ th {
+:host::ng-deep th {
   text-align: center;
   vertical-align: middle !important;
 }
-:host /deep/ ng2-smart-table  {
+:host::ng-deep ng2-smart-table  {
   font-size:18px;
   border:none;
 }
-:host /deep/ .fa-lg {
+:host::ng-deep .fa-lg {
   color: #666 !important;
 }
