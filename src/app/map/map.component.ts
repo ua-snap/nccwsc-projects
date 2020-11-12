@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { LeafletMapModel } from './map.model';
 import * as L from 'leaflet';
 import * as X2JS from "x2js";
@@ -97,9 +97,9 @@ export class MapComponent {
 
   getWMSCapabilities(mapUrl) {
     var x2js = new X2JS()
-    return this.http.get(mapUrl).toPromise()
+    return this.http.get(mapUrl, { responseType: 'text' }).toPromise()
       .then(response => {
-        var xmlData = response.text()
+        var xmlData = response
         this.xmsCapabilities = x2js.xml2js(xmlData);
         if (this.xmsCapabilities) {
           if (this.xmsCapabilities && this.xmsCapabilities['WMS_Capabilities'] && this.xmsCapabilities['WMS_Capabilities'].Capability && this.xmsCapabilities['WMS_Capabilities'].Capability.Layer) {
@@ -155,7 +155,7 @@ export class MapComponent {
     }
   }
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
   ngOnInit() {

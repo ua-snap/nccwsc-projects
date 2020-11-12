@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http, Response} from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { environment } from '../environments/environment'
@@ -36,16 +36,16 @@ export class SearchService {
   _filteredResultsCountSource = new BehaviorSubject < number > (0);
   filteredResultsCount$ = this._filteredResultsCountSource.asObservable();
   
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getTopics() {
     var topicsUrl = this.serviceURL + '/topics';
-    return this.http.get(topicsUrl).map((res:Response) => res.json());  
+    return this.http.get(topicsUrl);  
   }
 
   getOrganizations() {
     var organizationsUrl = this.serviceURL + '/organizations';
-    return this.http.get(organizationsUrl).map((res:Response) => res.json());  
+    return this.http.get(organizationsUrl);  
   }
 
   updateResults(item) {
@@ -318,7 +318,7 @@ export class SearchService {
     this.results = [];
     this.filteredResults = [];
     return this.http.get(searchUrl).map((res:Response) => {
-      this.results = this.sortProjectsByKey(res.json(), 'title');
+      this.results = this.sortProjectsByKey(res, 'title');
       var tempOrgs = [];
       var tempTypes = [];
       var tempStatus = [];

@@ -1,5 +1,6 @@
 {
-  "compilerOptions": {
+  "angularCompilerOptions": {
+    "preserveWhitespaces": false,
     "baseUrl": "",
     "declaration": false,
     "emitDecoratorMetadata": true,
