@@ -1,3 +1,5 @@
+
+import {catchError} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
@@ -10,7 +12,7 @@ export class SciencebaseService {
   getSciencebaseRecord(sbId) {
     console.log('Getting SB record: ' + sbId)
     var sbURL = environment.sbmainURL + '/catalog/item/' + sbId  + '?format=json'
-    return this.http.get<any[]>(sbURL).catch(this.handleError)
+    return this.http.get<any[]>(sbURL).pipe(catchError(this.handleError))
   }
 
   private handleError(error: any): Promise < any > {

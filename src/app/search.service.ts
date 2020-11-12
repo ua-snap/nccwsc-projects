@@ -1,7 +1,8 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import {Observable,  BehaviorSubject } from 'rxjs';
 import { environment } from '../environments/environment'
 import 'rxjs/Rx';
 
@@ -317,7 +318,7 @@ export class SearchService {
     console.log(queryString);
     this.results = [];
     this.filteredResults = [];
-    return this.http.get(searchUrl).map((res:Response) => {
+    return this.http.get(searchUrl).pipe(map((res:Response) => {
       this.results = this.sortProjectsByKey(res, 'title');
       var tempOrgs = [];
       var tempTypes = [];
@@ -375,6 +376,6 @@ export class SearchService {
       this._resultFY.next(this.resultFY);
       this._resultTypes.next(this.resultTypes);
       this._resultStatus.next(this.resultStatus);
-    });   
+    }));   
   }
 }

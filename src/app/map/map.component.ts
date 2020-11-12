@@ -38,7 +38,6 @@ export class MapComponent {
     this.LAYER_OCM = {
       id: 'opencyclemap',
       name: 'Open Cycle Map',
-      enabled: true,
       layer: L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         maxZoom: 15,
         attribution: 'Open Cycle Map'
@@ -47,7 +46,6 @@ export class MapComponent {
     this.LAYER_OSM = {
       id: 'openstreetmap',
       name: 'Open Street Map',
-      enabled: false,
       layer: L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
         maxZoom: 15,
         attribution: 'Open Street Map'
