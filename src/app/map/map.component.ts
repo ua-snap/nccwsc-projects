@@ -57,16 +57,6 @@ export class MapComponent {
     this.projectshape_wms_url = this.mapUrl.replace(/service=wms&request=getcapabilities&version=1.3.0/, '');
     if (this.xmsCapabilities['WMS_Capabilities'].Capability.Layer.Layer && (this.xmsCapabilities['WMS_Capabilities'].Capability.Layer.Layer.length > 0)) {
       for (var layer of this.xmsCapabilities['WMS_Capabilities'].Capability.Layer.Layer) {
-        this.layersArray.push({
-          id: layer.Name, 
-          name: layer.Name, 
-          enabled: true, 
-          layer: L.tileLayer.wms(this.projectshape_wms_url, {
-            layers: layer.Name, 
-            format: 'image/png', 
-            transparent: true
-          })
-        })
         this.layersFromWMS[layer.Name] = {
           id: layer.Name, 
           name: layer.Name, 
@@ -95,8 +85,7 @@ export class MapComponent {
     var x2js = new X2JS()
     return this.http.get(mapUrl, { responseType: 'text' }).toPromise()
       .then(response => {
-        var xmlData = response
-        this.xmsCapabilities = x2js.xml2js(xmlData);
+        this.xmsCapabilities = x2js.xml2js(response);
         if (this.xmsCapabilities) {
           if (this.xmsCapabilities && this.xmsCapabilities['WMS_Capabilities'] && this.xmsCapabilities['WMS_Capabilities'].Capability && this.xmsCapabilities['WMS_Capabilities'].Capability.Layer) {
             var thisLayer = this.xmsCapabilities['WMS_Capabilities'].Capability.Layer;
@@ -114,13 +103,8 @@ export class MapComponent {
             this.fitBounds = this.parseWMSGeographicBoundingBox(thisLayer.EX_GeographicBoundingBox);
           }            
         }
-      } else {
-
-        console.log("We have no json data. :/");
-
       }
 
-      console.log("Why should this be last?")
       this.defineOverlays()
       this.render = true
 
@@ -129,7 +113,7 @@ export class MapComponent {
   }
 
   defineModel() {
-    var overlayArray = []   
+    var overlayArray = []
     for (var key in this.layersFromWMS) {
       if (this.layersFromWMS.hasOwnProperty(key)) {
         overlayArray.push(this.layersFromWMS[key]);
@@ -177,10 +161,6 @@ export class MapComponent {
     newLayers.unshift(baseLayer.layer)
     this.layers = newLayers
     var overlays = {}
-    for (var thisLayer of this.layersFromWMS) {
-      overlays[thisLayer.name] = thisLayer.layer
-    }
-
     for (var key in this.layersFromWMS) {
       if (this.layersFromWMS.hasOwnProperty(key)) {
         overlays[key] = this.layersFromWMS[key].layer
