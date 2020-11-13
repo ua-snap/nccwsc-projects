@@ -7,7 +7,7 @@
       </div>
       <div class="field" *ngIf="topicsLoaded">
         <ng-select 
-          [options]="topics"
+          [items]="topics"
           (selected)="onTopicsChange($event.value)"
           [(ngModel)]="selectedTopic"
           [ngModelOptions]="{standalone: true}"
@@ -17,7 +17,7 @@
       <div class="field">
         <ng-select
           [multiple]="true"
-          [options]="subtopics"
+          [items]="subtopics"
           (selected)="onSubtopicsChange($event.value)"
           [(ngModel)] = "selectedSubtopics"
           [ngModelOptions]="{standalone: true}"
@@ -27,7 +27,7 @@
       <div class="field" *ngIf="orgsLoaded">
         <ng-select
           [multiple]="true"
-          [options]="orgs"
+          [items]="orgs"
           (selected)="onOrgsChange($event.value)"
           [(ngModel)]="selectedOrgs"
           [ngModelOptions]="{standalone: true}"

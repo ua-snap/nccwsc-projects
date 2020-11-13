@@ -51,8 +51,8 @@ import { TitleLinkComponent } from './title-link/title-link.component'
     routing,
     NgSelectModule,
     Ng2SmartTableModule,
-    NgbDropdownModule.forRoot(),
-    NgbModule.forRoot(),
+    NgbDropdownModule,
+    NgbModule,
   ],
   entryComponents: [
     TitleLinkComponent
