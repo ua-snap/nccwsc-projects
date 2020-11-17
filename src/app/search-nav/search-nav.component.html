@@ -8,7 +8,7 @@
       <div class="field" *ngIf="topicsLoaded">
         <ng-select 
           [items]="topics"
-          (selected)="onTopicsChange($event.value)"
+          (change)="onTopicsChange($event.value)"
           [(ngModel)]="selectedTopic"
           [ngModelOptions]="{standalone: true}"
           placeholder="Topic">
@@ -18,7 +18,7 @@
         <ng-select
           [multiple]="true"
           [items]="subtopics"
-          (selected)="onSubtopicsChange($event.value)"
+          (change)="onSubtopicsChange($event.value)"
           [(ngModel)] = "selectedSubtopics"
           [ngModelOptions]="{standalone: true}"
           placeholder="Subtopics">
@@ -28,7 +28,7 @@
         <ng-select
           [multiple]="true"
           [items]="orgs"
-          (selected)="onOrgsChange($event.value)"
+          (change)="onOrgsChange($event.value)"
           [(ngModel)]="selectedOrgs"
           [ngModelOptions]="{standalone: true}"
           placeholder="CASCs  ">
@@ -46,8 +46,8 @@
     <div class="field">
       <ng-select #orgs  
         [multiple]="true"
-        [options]="resultOrgs" 
-        (selected)="onOrgSourceChange($event.label)" 
+        [items]="resultOrgs" 
+        (change)="onOrgSourceChange($event.label)" 
         [(ngModel)]="filteredOrg"
         [label]="Organizations"         
         (deselected)="onOrgSourceChange($event.label)" 
@@ -57,8 +57,8 @@
     <div class="field">
       <ng-select #types 
         [multiple]="true"
-        [options]="resultTypes" 
-        (selected)="onTypeSourceChange($event.label)"
+        [items]="resultTypes" 
+        (change)="onTypeSourceChange($event.label)"
         [(ngModel)]="filteredType" 
         [label]="Types"
         (deselected)="onTypeSourceChange($event.label)"
@@ -68,8 +68,8 @@
     <div class="field">
       <ng-select #fy 
         [multiple]="true"
-        [options]="resultFY"
-        (selected)="onFYSourceChange($event.label)" 
+        [items]="resultFY"
+        (change)="onFYSourceChange($event.label)" 
         [(ngModel)]="filteredFY" 
         [label]="FiscalYears"
         (deselected)="onFYSourceChange($event.label)"
@@ -79,8 +79,8 @@
     <div class="field">
       <ng-select #statuses 
         [multiple]="true"
-        [options]="resultStatus"
-        (selected)="onStatusSourceChange($event.label)"
+        [items]="resultStatus"
+        (change)="onStatusSourceChange($event.label)"
         [(ngModel)]="filteredStatus"
         [label]="Statuses"        
         (deselected)="onStatusSourceChange($event.label)"
