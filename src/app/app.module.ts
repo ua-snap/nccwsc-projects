@@ -10,6 +10,12 @@ import { NgbModule, NgbActiveModal, NgbDropdownModule } from '@ng-bootstrap/ng-b
 import { LeafletModule } from "@asymmetrik/ngx-leaflet";
 import { NgSelectModule } from '@ng-select/ng-select';
 
+import { LocalJsonService } from './local-json.service'
+import { SciencebaseService } from './sciencebase.service'
+import { SearchService } from './search.service';
+import { AnalyticsService } from './analytics.service';
+import { DataLayerCustomDimensionsService } from './data-layer.service';
+
 import { HeaderComponent } from './header/header.component'
 import { FooterComponent } from './footer/footer.component'
 import { ProjectComponent } from './project/project.component'
@@ -19,9 +25,6 @@ import { CscsComponent } from './cscs/cscs.component'
 import { TopicsComponent } from './topics/topics.component'
 import { MapComponent } from './map/map.component'
 import { SearchNavComponent } from './search-nav/search-nav.component'
-import { LocalJsonService } from './local-json.service'
-import { SciencebaseService } from './sciencebase.service'
-import { SearchService } from './search.service';
 import { CscComponent } from './csc/csc.component'
 import { ProjectResourceComponent } from './project-resource/project-resource.component'
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -57,7 +60,7 @@ import { TitleLinkComponent } from './title-link/title-link.component'
   entryComponents: [
     TitleLinkComponent
   ],
-  providers: [LocalJsonService, SciencebaseService, SearchService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [DataLayerCustomDimensionsService, AnalyticsService, LocalJsonService, SciencebaseService, SearchService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
