@@ -9,6 +9,7 @@ import { routing, appRoutingProviders } from './app.routing';
 import { NgbModule, NgbActiveModal, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { LeafletModule } from "@asymmetrik/ngx-leaflet";
 import { NgSelectModule } from '@ng-select/ng-select';
+import { GoogleAnalyticsService } from './google-analytics.service';
 
 import { HeaderComponent } from './header/header.component'
 import { FooterComponent } from './footer/footer.component'
@@ -57,7 +58,7 @@ import { TitleLinkComponent } from './title-link/title-link.component'
   entryComponents: [
     TitleLinkComponent
   ],
-  providers: [LocalJsonService, SciencebaseService, SearchService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [GoogleAnalyticsService, LocalJsonService, SciencebaseService, SearchService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
