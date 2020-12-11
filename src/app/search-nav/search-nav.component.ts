@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../search.service';
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
+import{ GoogleAnalyticsService } from '../google-analytics.service';
 
 @Component({
   selector: 'search-nav',
@@ -37,7 +38,7 @@ export class SearchNavComponent implements OnInit {
   orgsLoaded = false
   topicsLoaded = false
 
-  constructor(private searchService: SearchService) { }
+  constructor(private googleAnalyticsService: GoogleAnalyticsService, private searchService: SearchService) { }
 
   resetQuery() {
     this.selectedSubtopics = []
@@ -97,6 +98,11 @@ export class SearchNavComponent implements OnInit {
 
 
   onSubmit() {
+
+    this.googleAnalyticsService.eventEmitter(
+      "search", "submit" 
+    );
+
     var queryString = '';
     var query = '?query=';
     var subtopics = '&subtopics=';
