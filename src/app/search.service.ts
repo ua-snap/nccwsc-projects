@@ -168,9 +168,7 @@ export class SearchService {
       var hasStatus = false;
       var hasFY = false;
       var hasType = false;
-      console.log("item");
-      console.log(item);
-
+      
       if (this.orgFilter.length > 0) {
         if (item.organizations != [] && item.organizations != null) {
           for (var orgf of this.orgFilter) {
