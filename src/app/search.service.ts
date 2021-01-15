@@ -36,17 +36,17 @@ export class SearchService {
   totalItem$ = this._totalResultsSource.asObservable();
   _filteredResultsCountSource = new BehaviorSubject < number > (0);
   filteredResultsCount$ = this._filteredResultsCountSource.asObservable();
-  
+
   constructor(private http: HttpClient) { }
 
   getTopics() {
     var topicsUrl = this.serviceURL + '/topics';
-    return this.http.get<any[]>(topicsUrl);  
+    return this.http.get<any[]>(topicsUrl);
   }
 
   getOrganizations() {
     var organizationsUrl = this.serviceURL + '/organizations';
-    return this.http.get<any[]>(organizationsUrl);  
+    return this.http.get<any[]>(organizationsUrl);
   }
 
   updateResults(item) {
@@ -59,7 +59,7 @@ export class SearchService {
         return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
   }
-  
+
   updateTotalResults(number) {
     this._totalResultsSource.next(number);
   }
@@ -72,7 +72,7 @@ export class SearchService {
     this.orgFilter = orgSource;
     this.filterItems();
   }
-  
+
   updateTypeItems(typeSource) {
     this.typeFilter = typeSource;
     this.filterItems();
@@ -98,7 +98,7 @@ export class SearchService {
     var tempStatus = [];
     var tempFY = [];
 
-    for (var item of this.filteredResults) {       
+    for (var item of this.filteredResults) {
       for (var org in item.organizations) {
         if ((tempOrgs.indexOf(item.organizations[org].trim()) < 0) && item.organizations[org] != null) {
           tempOrgs.push(item.organizations[org].trim());
@@ -108,13 +108,13 @@ export class SearchService {
         if ((tempTypes.indexOf(item.types[type]) < 0) && (item.types[type] != null)){
           tempTypes.push(item.types[type])
         }
-      } 
+      }
       if ((tempFY.indexOf(item.fiscal_year) < 0) && (item.fiscal_year != null)) {
         tempFY.push(item.fiscal_year)
-      }      
+      }
       if ((tempStatus.indexOf(item.status) < 0) && (item.status != null)){
         tempStatus.push(item.status)
-      }      
+      }
       this.updateResults(item);
     }
 
@@ -144,7 +144,7 @@ export class SearchService {
       this.resultStatus.push({'value': value, 'label': tempStatus[status]});
       value = value + 1;
     }
-    
+
     this._resultOrgs.next(this.resultOrgs);
     this._resultFY.next(this.resultFY);
     this._resultTypes.next(this.resultTypes);
@@ -168,51 +168,61 @@ export class SearchService {
       var hasStatus = false;
       var hasFY = false;
       var hasType = false;
-      
+      console.log("item");
+      console.log(item);
+
       if (this.orgFilter.length > 0) {
-        if (item.organizations) {
+        if (item.organizations != [] && item.organizations != null) {
           for (var orgf of this.orgFilter) {
             for (var org in item.organizations) {
-              if (item.organizations[org].trim() == this.resultOrgs[orgf].label.trim()) {
+              if (item.organizations[org].trim() == this.resultOrgs[orgf.value].label.trim()) {
                 hasOrg = true;
                 break;
               }
             }
-          }          
+          }
         }
       } else {
         hasOrg = true
       }
 
       if (this.statusFilter.length > 0) {
-        for (var sf of this.statusFilter) {
-          if (item.status == this.resultStatus[sf].label) {
-            hasStatus = true;
+        if (item.status != [] && item.status != null) {
+          for (var sf of this.statusFilter) {
+            if (item.status == this.resultStatus[sf.value].label) {
+              hasStatus = true;
+              break;
+            }
           }
         }
       } else {
         hasStatus = true
       }
-      
+
       if (this.fyFilter.length > 0) {
-        for (var fy of this.fyFilter) {
-          if (item.fiscal_year == this.resultFY[fy].label) {
-            hasFY = true
+        if (item.fiscal_year != [] && item.fiscal_year != null) {
+          for (var fy of this.fyFilter) {
+            if (item.fiscal_year == this.resultFY[fy.value].label) {
+              hasFY = true
+              break;
+            }
           }
         }
       } else {
         hasFY = true
       }
-   
+
       if (this.typeFilter.length > 0) {
-        for (var ft of this.typeFilter) {
-          for (var type in item.types) {
-            if (item.types[type] == this.resultTypes[ft].label) {
-              hasType = true;
-              break;
+        if (item.types != [] && item.types != null) {
+          for (var ft of this.typeFilter) {
+            for (var type in item.types) {
+              if (item.types[type] == this.resultTypes[ft.value].label) {
+                hasType = true;
+                break;
+              }
             }
           }
-        }   
+        }
       } else {
         hasType = true;
       }
@@ -258,7 +268,7 @@ export class SearchService {
       this.updateFilteredResultsCount(-1)
     } else {
       this.updateFilteredResultsCount(Object.keys(this.filteredResults).length);
-    }    
+    }
     this._filteredResultsSource.next(this.filteredResults);
 
   }
@@ -309,7 +319,7 @@ export class SearchService {
       var tempFY = [];
       this.updateTotalResults(Object.keys(this.results).length);
       this.updateFilteredResultsCount(Object.keys(this.results).length)
-      
+
       for (var item of this.results) {
         for (var org in item.organizations) {
           if ((tempOrgs.indexOf(item.organizations[org].trim()) < 0) && item.organizations[org] != null) {
@@ -320,13 +330,13 @@ export class SearchService {
           if ((tempTypes.indexOf(item.types[type]) < 0) && (item.types[type] != null)){
             tempTypes.push(item.types[type])
           }
-        } 
+        }
         if ((tempFY.indexOf(item.fiscal_year) < 0) && (item.fiscal_year != null)) {
           tempFY.push(item.fiscal_year)
-        }      
+        }
         if ((tempStatus.indexOf(item.status) < 0) && (item.status != null)){
           tempStatus.push(item.status)
-        }      
+        }
         this.updateResults(item);
       }
       var value = 0;
@@ -361,6 +371,6 @@ export class SearchService {
       this._resultFY.next(this.resultFY);
       this._resultTypes.next(this.resultTypes);
       this._resultStatus.next(this.resultStatus);
-    }));   
+    }));
   }
 }
