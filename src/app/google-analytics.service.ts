@@ -8,14 +8,14 @@ declare let gtag:Function;
 export class GoogleAnalyticsService {
 
   constructor() { }
-  public eventEmitter( 
-	eventAction: string, 
-	eventCategory: string, 
-	eventLabel: string = null,  
-	eventValue: number = null ){ 
-		gtag('event', eventAction, { 
-			eventCategory: eventCategory, 
-			eventLabel: eventLabel, 
+  public eventEmitter(
+    eventAction: string,
+	  eventCategory: string,
+	  eventLabel: string = null,
+	  eventValue: number = null ){
+		gtag('event', eventAction, {
+			eventCategory: eventCategory,
+			eventLabel: eventLabel,
 			eventValue: eventValue
 		})
 	}

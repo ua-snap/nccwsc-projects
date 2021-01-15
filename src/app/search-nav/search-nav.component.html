@@ -6,7 +6,7 @@
         <input type="text" id="queryTerms" [(ngModel)]="searchQuery" value="searchQuery" placeholder="Search terms ..." name="queryTerms">
       </div>
       <div class="field" *ngIf="topicsLoaded">
-        <ng-select 
+        <ng-select
           [items]="topics"
           (change)="onTopicsChange($event.value)"
           [(ngModel)]="selectedTopic"
@@ -44,45 +44,45 @@
   <div class="filters" *ngIf="totalResults > 0">
     <h4>Filters</h4>
     <div class="field">
-      <ng-select #orgs  
+      <ng-select #orgs
         [multiple]="true"
-        [items]="resultOrgs" 
-        (change)="onOrgSourceChange($event.label)" 
+        [items]="resultOrgs"
+        (change)="onOrgSourceChange($event.label)"
         [(ngModel)]="filteredOrg"
-        [label]="Organizations"         
-        (deselected)="onOrgSourceChange($event.label)" 
+        [label]="Organizations"
+        (deselected)="onOrgSourceChange($event.label)"
         placeholder="All Organizations">
       </ng-select>
     </div>
     <div class="field">
-      <ng-select #types 
+      <ng-select #types
         [multiple]="true"
-        [items]="resultTypes" 
+        [items]="resultTypes"
         (change)="onTypeSourceChange($event.label)"
-        [(ngModel)]="filteredType" 
+        [(ngModel)]="filteredType"
         [label]="Types"
         (deselected)="onTypeSourceChange($event.label)"
         placeholder="Project">
       </ng-select>
     </div>
     <div class="field">
-      <ng-select #fy 
+      <ng-select #fy
         [multiple]="true"
         [items]="resultFY"
-        (change)="onFYSourceChange($event.label)" 
-        [(ngModel)]="filteredFY" 
+        (change)="onFYSourceChange($event.label)"
+        [(ngModel)]="filteredFY"
         [label]="FiscalYears"
         (deselected)="onFYSourceChange($event.label)"
         placeholder="All Fiscal Years">
       </ng-select>
     </div>
     <div class="field">
-      <ng-select #statuses 
+      <ng-select #statuses
         [multiple]="true"
         [items]="resultStatus"
         (change)="onStatusSourceChange($event.label)"
         [(ngModel)]="filteredStatus"
-        [label]="Statuses"        
+        [label]="Statuses"
         (deselected)="onStatusSourceChange($event.label)"
         placeholder="All Statuses">
       </ng-select>
