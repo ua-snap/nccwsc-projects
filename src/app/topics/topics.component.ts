@@ -97,7 +97,7 @@ export class TopicsComponent implements OnInit {
   subtopicsFilter:string[] = null;
 
   constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private searchService: SearchService, private router: Router, private location: Location, private aroute: ActivatedRoute) { }
-    
+
   filterProjectsList(event:any = null) {
     this.filteredProjectsList = [];
     for (var project in this.projectsList) {
@@ -105,7 +105,7 @@ export class TopicsComponent implements OnInit {
         var matched_subtopic = false;
         for (var subtopic in this.projectsList[project].subtopics) {
           if (this.projectsList[project].subtopics[subtopic] == this.current_subtopic) {
-            matched_subtopic = true;   
+            matched_subtopic = true;
             break;
           }
         }
@@ -142,7 +142,7 @@ export class TopicsComponent implements OnInit {
           continue;
         }
       }
-      this.filteredProjectsList.push(this.projectsList[project]);      
+      this.filteredProjectsList.push(this.projectsList[project]);
     }
     this.updateUrl()
     this.sortList()
@@ -189,7 +189,7 @@ export class TopicsComponent implements OnInit {
         .router
         .createUrlTree([params], {relativeTo: this.aroute})
         .toString();
-    
+
     this.location.replaceState(url);
   }
 
@@ -264,10 +264,14 @@ export class TopicsComponent implements OnInit {
             }
           }
           if (this.fiscal_years.indexOf(this.projectsList[project].fiscal_year) < 0) {
-            this.fiscal_years.push(this.projectsList[project].fiscal_year)
+            if (this.projectsList[project].fiscal_year != null) {
+              this.fiscal_years.push(this.projectsList[project].fiscal_year)
+            }
           }
           if (this.statuses.indexOf(this.projectsList[project].status) < 0) {
-            this.statuses.push(this.projectsList[project].status)
+            if (this.projectsList[project].status != null) {
+              this.statuses.push(this.projectsList[project].status)
+            }
           }
           if (this.cscs.indexOf(this.projectsList[project].csc['name']) < 0) {
             this.cscs.push(this.projectsList[project].csc['name'])
@@ -275,9 +279,11 @@ export class TopicsComponent implements OnInit {
           if (this.projectsList[project].types) {
             for (var this_type of this.projectsList[project].types) {
               if (this.types.indexOf(this_type) < 0) {
-                this.types.push(this_type)
+                if (this_type != null) {
+                  this.types.push(this_type)
+                }
               }
-            } 
+            }
           }
 
           this.fiscal_years.sort();
@@ -313,7 +319,7 @@ export class TopicsComponent implements OnInit {
             //if (!this.projectsList[project].types) {
             //  this.projectsList[project].types = "N/A";
             //}
-            
+
             // contains
             this.projectsList[project].contains = '<div align="center">';
 
@@ -328,14 +334,11 @@ export class TopicsComponent implements OnInit {
           }//end for project
 
         }
-    
+
       this.current_type = 'Project'
       this.filterProjectsList()
       this.sortList()
-      
+
     });
   }
 }
-
-
-
