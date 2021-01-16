@@ -25,7 +25,7 @@ export class SearchNavComponent implements OnInit {
   orgs:any = []
   showReset = false
   totalResults: number;
-  totalResultsSubscription: Subscription; 
+  totalResultsSubscription: Subscription;
   multipleOrgs = true
   resultOrgs
   resultFY
@@ -56,35 +56,68 @@ export class SearchNavComponent implements OnInit {
   onTopicsChange(event) {
     var topic = this.topics[event]
     this.subtopics = topic['subtopics']
+    this.googleAnalyticsService.eventEmitter(
+      "Topic Change: " + topic['label'], "search"
+    );
     this.showReset = true
   }
 
   onSubtopicsChange(event) {
+    this.selectedSubtopics.forEach(subtopic => {
+      this.googleAnalyticsService.eventEmitter(
+        "Subtopic Change: " + subtopic['label'], "search"
+      );
+    })
     this.showReset = true
   }
 
   onOrgsChange(event) {
+    this.selectedOrgs.forEach(org => {
+      this.googleAnalyticsService.eventEmitter(
+        "Organization Change: " + org['label'], "search"
+      );
+    })
     this.showReset = true
   }
 
   onOrgSourceChange(orgSource) {
+    this.filteredOrg.forEach(org => {
+      this.googleAnalyticsService.eventEmitter(
+        "Filter Organization Results: " + org['label'], "search"
+      );
+    })
     this.searchService.updateOrgItems(this.filteredOrg)
   }
 
   onTypeSourceChange(typeSource) {
+    this.filteredType.forEach(type => {
+      this.googleAnalyticsService.eventEmitter(
+        "Filter Data Type Results: " + type['label'], "search"
+      );
+    })
     this.searchService.updateTypeItems(this.filteredType)
   }
 
   onStatusSourceChange(statusSource) {
+    this.filteredStatus.forEach(status => {
+      this.googleAnalyticsService.eventEmitter(
+        "Filter Project Status Results: " + status['label'], "search"
+      );
+    })
     this.searchService.updateStatusItems(this.filteredStatus)
   }
 
   onFYSourceChange(fySource) {
+    this.filteredFY.forEach(fy => {
+      this.googleAnalyticsService.eventEmitter(
+        "Filter Fiscal Year Results: " + fy['label'], "search"
+      );
+    })
     this.searchService.updateFYItems(this.filteredFY)
   }
 
   updateFilters(){
-    this.filteredOrg = [null]    
+    this.filteredOrg = [null]
     this.filteredFY = [null]
     this.filteredType = [null]
     this.filteredStatus = [null]
@@ -99,34 +132,43 @@ export class SearchNavComponent implements OnInit {
 
   onSubmit() {
 
-    this.googleAnalyticsService.eventEmitter(
-      "search", "submit" 
-    );
-
     var queryString = '';
     var query = '?query=';
     var subtopics = '&subtopics=';
+    var gaSubtopics = "", gaTopic = "", gaOrgs = "", gaQuery = "";
     this.showReset = true
     if ((this.selectedSubtopics.length > 0) && (this.selectedSubtopics[0] != null)) {
       for (var st of this.selectedSubtopics) {
         subtopics = subtopics + encodeURIComponent(st['label'])  + ',';
+        gaSubtopics = gaSubtopics + st['label'] + ',';
       }
-      subtopics = subtopics.substring(0, subtopics.length -1)
+      subtopics = subtopics.substring(0, subtopics.length -1);
+      gaSubtopics = gaSubtopics.substring(0, gaSubtopics.length -1);
     }
     var topic = '&topics=';
     if (this.selectedTopic != null) {
       topic = topic + encodeURIComponent(this.selectedTopic['label']);
+      gaTopic = gaTopic + this.selectedTopic['label'];
     }
     var organizations = '&organizations=';
     if ((this.selectedOrgs.length > 0) && (this.selectedOrgs[0] != null)) {
       for (var org of this.selectedOrgs) {
         organizations = organizations + encodeURIComponent(org.label) + ',';
+        gaOrgs = gaOrgs + org.label + ',';
       }
-      organizations = organizations.substring(0, organizations.length - 1)
+      organizations = organizations.substring(0, organizations.length - 1);
+      gaOrgs = gaOrgs.substring(0, gaOrgs.length -1);
     }
     if (this.searchQuery && this.searchQuery.length > 0) {
       query = query + encodeURIComponent(this.searchQuery);
     }
+
+    var submission = "Search Submission - Query: " + this.searchQuery + " Topic: " + gaTopic + " Subtopics: " + gaSubtopics + " Organizations: " + gaOrgs;
+
+    this.googleAnalyticsService.eventEmitter(
+      submission, "engagement"
+    );
+
     queryString = query + topic + subtopics + organizations;
     this.searchService.searchProjects(queryString).subscribe(results => {
       this.updateFilters();
