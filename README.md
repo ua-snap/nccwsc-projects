@@ -1,6 +1,6 @@
 # NCCWSC/CASC Projects
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.26.
+This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 11.0.1
 
 ## Development server
 
@@ -9,16 +9,15 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 In the source directory:
 
 ```
-nvm install 8.5.0 
-npm install -g @angular/cli@1
-npm install typescript@'>=2.1.0 <2.4.0’
+nvm install v15.5.1
+nvm use v15.5.1
 npm install
 ```
 
 ### Run
 
 ```
-nvm use 8.5.0
+nvm use v15.5.1
 ng build
 ng serve
 ```
