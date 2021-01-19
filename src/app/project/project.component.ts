@@ -31,7 +31,6 @@ export class ProjectComponent implements OnInit {
   }
 
   goodTitle(title) {
-    console.log(title.substring(0,8))
     if (title == 'Thumbnail' || title.substring(0,8) == 'metadata') {
 
       return false
@@ -54,7 +53,7 @@ export class ProjectComponent implements OnInit {
           return value;
       }
     } catch (error) {
-      console.log(`Could not parse value: ${value}`)
+      console.error(`Could not parse value: ${value}`)
       return value
     }
   }
