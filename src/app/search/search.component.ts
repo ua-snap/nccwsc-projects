@@ -59,7 +59,7 @@ export class SearchComponent implements OnInit {
           return value;
       }
     } catch (error) {
-      console.log(`Could not parse value: ${value}`)
+      console.error(`Could not parse value: ${value}`)
       return value
     }
   }

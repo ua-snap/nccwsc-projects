@@ -70,7 +70,6 @@ export class ProjectResourceComponent implements OnInit {
       this.resourceOrgs = this.getAffiliations()
       this.resourceContacts = this.getResourceContacts()
       this.resourceDates = this.getResourceDates()
-      console.log(this.currentResource)
     })
 
   }
