@@ -36,7 +36,7 @@
       </div>
       <div class="float-right buttons">
       	<button (click)="onSubmit()" class="btn btn-sm btn-success">Search</button>
-        <button (click)="resetQuery()" *ngIf="showReset"class="btn btn-sm btn-warning">Reset Query</button>
+        <button (click)="resetQuery()" *ngIf="showReset" class="btn btn-sm btn-warning">Reset Query</button>
       </div>
     </form>
   </div>
@@ -88,7 +88,7 @@
       </ng-select>
     </div>
     <div class="field">
-      <button (click)="statuses.clear(); fy.clear(); types.clear(); orgs.clear()" class="btn btn-sm btn-warning">Reset Filters</button>
+      <button (click)="resetFilters()" *ngIf="showResetFilters" class="btn btn-sm btn-warning">Reset Filters</button>
     </div>
   </div>
   <div class="info">

@@ -24,6 +24,7 @@ export class SearchNavComponent implements OnInit {
   subtopics:any = []
   orgs:any = []
   showReset = false
+  showResetFilters = false
   totalResults: number;
   totalResultsSubscription: Subscription;
   multipleOrgs = true
@@ -87,6 +88,7 @@ export class SearchNavComponent implements OnInit {
       );
     })
     this.searchService.updateOrgItems(this.filteredOrg)
+    this.showResetFilters = true
   }
 
   onTypeSourceChange(typeSource) {
@@ -96,6 +98,7 @@ export class SearchNavComponent implements OnInit {
       );
     })
     this.searchService.updateTypeItems(this.filteredType)
+    this.showResetFilters = true
   }
 
   onStatusSourceChange(statusSource) {
@@ -105,6 +108,7 @@ export class SearchNavComponent implements OnInit {
       );
     })
     this.searchService.updateStatusItems(this.filteredStatus)
+    this.showResetFilters = true
   }
 
   onFYSourceChange(fySource) {
@@ -114,17 +118,18 @@ export class SearchNavComponent implements OnInit {
       );
     })
     this.searchService.updateFYItems(this.filteredFY)
+    this.showResetFilters = true
   }
 
   updateFilters(){
-    this.filteredOrg = [null]
-    this.filteredFY = [null]
-    this.filteredType = [null]
-    this.filteredStatus = [null]
+    this.filteredOrg = []
+    this.filteredFY = []
+    this.filteredType = []
+    this.filteredStatus = []
   }
 
   resetFilters() {
-    this.showReset = false
+    this.showResetFilters = false;
     this.updateFilters();
     this.searchService.resetFilters();
   }

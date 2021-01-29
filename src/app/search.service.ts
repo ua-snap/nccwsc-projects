@@ -168,7 +168,7 @@ export class SearchService {
       var hasStatus = false;
       var hasFY = false;
       var hasType = false;
-      
+
       if (this.orgFilter.length > 0) {
         if (item.organizations != [] && item.organizations != null) {
           for (var orgf of this.orgFilter) {
@@ -277,10 +277,6 @@ export class SearchService {
     this.statusFilter = []
     this.fyFilter = []
     this.typeFilter = []
-    this.resultOrgs = []
-    this.resultFY = []
-    this.resultTypes = []
-    this.resultStatus = []
     this._resultOrgs.next(this.resultOrgs);
     this._resultFY.next(this.resultFY);
     this._resultTypes.next(this.resultTypes);
