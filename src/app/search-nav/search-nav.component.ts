@@ -176,6 +176,8 @@ export class SearchNavComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.resetQuery();
+
     this.searchService.getTopics().subscribe(topics => {
       this.topics = [];
       topics.forEach(topic => {
