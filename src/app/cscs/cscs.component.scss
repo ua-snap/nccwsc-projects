@@ -3,7 +3,7 @@ h2 {
     font-family: 'Source Sans Pro';
 }
 
-.btn { 
+.btn {
   width: 80% !important;
   /* margin-left: 10%; */
   margin-bottom: 1em;
@@ -11,8 +11,8 @@ h2 {
   width: 280px;
   cursor: pointer;
     font-family: 'Source Sans Pro';
-   
-  
+
+
 }
 .btn.btn-success {
   /* width: 20em !important; */
@@ -38,5 +38,11 @@ h2 {
     height: 60px;
     white-space: normal;
       font-size: 1.25em;
+  }
+}
+
+.center-last-button {
+  div:last-child {
+    margin: 0 auto;
   }
 }
