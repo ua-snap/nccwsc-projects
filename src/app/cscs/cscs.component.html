@@ -8,12 +8,12 @@
     </div>
   </div>
 
-  <div class="button-group row">
+  <div class="button-group row center-last-button">
     <div class="col-md-12">
       <h2>Explore Projects by Region</h2>
     </div>
     <div class="col-md-4" *ngFor="let csc of csc_ids">
-      <button class="btn btn-primary nav-link" [routerLink]="['/casc/', csc.id]">{{ csc.name}}</button>  
+      <button class="btn btn-primary nav-link" [routerLink]="['/casc/', csc.id]">{{ csc.name}}</button>
     </div>
   </div>
 
@@ -22,7 +22,7 @@
       <h2>Explore Projects by Topic</h2>
     </div>
     <div class="col-md-4" *ngFor="let topic of topic_ids">
-      <button class="btn btn-info nav-link" [routerLink]="['/topics/', topic.id]">{{ topic.name }}</button>  
+      <button class="btn btn-info nav-link" [routerLink]="['/topics/', topic.id]">{{ topic.name }}</button>
     </div>
   </div>
 </div>

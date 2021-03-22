@@ -35,7 +35,8 @@ export class CscComponent implements OnInit {
     '4f8c650ae4b0546c0c397b48': 'Pacific Islands CASC',
     '4f8c652fe4b0546c0c397b4a': 'South Central CASC',
     '4f8c6557e4b0546c0c397b4c': 'Southeast CASC',
-    '4f8c6580e4b0546c0c397b4e': 'Southwest CASC'
+    '4f8c6580e4b0546c0c397b4e': 'Southwest CASC',
+    '5e2f3f59e4b0a79317d422af': 'Midwest CASC'
   }
 
   csc_english_ids = {
@@ -47,7 +48,8 @@ export class CscComponent implements OnInit {
     'pacific-islands': '4f8c650ae4b0546c0c397b48',
     'south-central': '4f8c652fe4b0546c0c397b4a',
     'southeast': '4f8c6557e4b0546c0c397b4c',
-    'southwest': '4f8c6580e4b0546c0c397b4e'
+    'southwest': '4f8c6580e4b0546c0c397b4e',
+    'midwest': '5e2f3f59e4b0a79317d422af'
   }
 
   settings = {

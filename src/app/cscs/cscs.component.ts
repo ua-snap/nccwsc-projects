@@ -17,6 +17,7 @@ export class CscsComponent implements OnInit {
     {'id': 'south-central', 'name' : 'South Central'},
     {'id': 'southeast', 'name' : 'Southeast'},
     {'id': 'national-casc', 'name' : 'National CASC'},
+    {'id': 'midwest', 'name': 'Midwest CASC'},
   ]
 
   topic_ids = [
