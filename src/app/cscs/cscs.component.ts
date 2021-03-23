@@ -9,6 +9,7 @@ export class CscsComponent implements OnInit {
 
   csc_ids = [
     {'id': 'alaska', 'name' : 'Alaska'},
+    {'id': 'midwest', 'name': 'Midwest CASC'},
     {'id': 'northwest', 'name' : 'Northwest'},
     {'id': 'north-central', 'name' : 'North Central'},
     {'id': 'northeast', 'name' : 'Northeast'},
@@ -17,7 +18,6 @@ export class CscsComponent implements OnInit {
     {'id': 'south-central', 'name' : 'South Central'},
     {'id': 'southeast', 'name' : 'Southeast'},
     {'id': 'national-casc', 'name' : 'National CASC'},
-    {'id': 'midwest', 'name': 'Midwest CASC'},
   ]
 
   topic_ids = [
