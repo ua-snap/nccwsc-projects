@@ -114,8 +114,12 @@ ul.taglist {
   display: inline;
 }
 
+.taglist li:first-child:before {
+  content: ": "
+}
+
 .taglist li:after {
-   content: ", ";
+   content: "; ";
 }
 
 .taglist li:last-child:after {
