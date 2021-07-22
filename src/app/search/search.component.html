@@ -64,7 +64,7 @@
             <a class="summary_link" (click)="result.isCollapsed = !result.isCollapsed" [attr.aria-expanded]="!result.isCollapsed" aria-controls="collapseExample">Summary</a>
             <div id="collapseExample" [ngbCollapse]="result.isCollapsed">
               <div class="card-block">
-                <p class="card-text">{{ result.summary }}</p>
+                <p class="card-text" [innerHtml]="result.summary"></p>
               </div>
             </div>
           </div>
