@@ -102,15 +102,6 @@
   {{ projectJson.status}}</p>
 </span>
 
-<span class="list-group-item" *ngIf="projectJson.keywords && projectJson.keywords.length > 0">
-  <strong>Keyword(s):</strong>
-  <ul class="taglist">
-    <li *ngFor = "let keyword of projectJson.keywords">
-      {{ keyword }}
-    </li>
-  </ul>
-</span>
-
 <span class="list-group-item" *ngIf="projectJson.topics && projectJson.topics.length > 0">
   <strong>Science Topic(s):</strong>
   <ul class="taglist">
