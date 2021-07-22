@@ -115,7 +115,8 @@ ul.taglist {
 }
 
 .taglist li:first-child:before {
-  content: ": "
+  content: " ";
+  white-space: pre;
 }
 
 .taglist li:after {

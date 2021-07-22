@@ -103,7 +103,7 @@
 </span>
 
 <span class="list-group-item" *ngIf="projectJson.topics && projectJson.topics.length > 0">
-  <strong>Science Topic(s)</strong>
+  <strong>Science Topic(s):</strong>
   <ul class="taglist">
     <li *ngFor = "let topic of projectJson.topics">
       {{ topic }}
@@ -112,7 +112,7 @@
 </span>
 
 <span class="list-group-item" *ngIf="projectJson.topics && projectJson.topics.length > 0">
-  <strong>Science Subtopic(s)</strong>
+  <strong>Science Subtopic(s):</strong>
   <ul class="taglist">
     <li *ngFor = "let subtopic of projectJson.subtopics">
       {{ subtopic }}
