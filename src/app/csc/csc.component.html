@@ -88,13 +88,6 @@
 				<span *ngIf="project.status"> {{ project.status }} </span>
 				<span *ngIf="!project.status"> Unknown </span>
 			</div>
-			<!--Contains-->
-			<div class="card-text">
-				<b>Contains:</b>
-				<span class="icons" *ngIf="project.hasFolders"> <i class="fa fa-folder fa-lg" title="This project has products." aria-hidden="true"></i></span>
-				<span *ngIf="project.hasMaps"> <i class="fa fa-map fa-lg" title="This project has maps." aria-hidden="true"></i></span>
-				<span class="icons" *ngIf="!project.hasFolders&&!project.hasMaps"> N/A </span>
-			</div>
 
 		</div>
 		<!--/.Card content-->
