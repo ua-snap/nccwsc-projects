@@ -28,7 +28,7 @@
     </select>
   </div>
   <div class="col-xs-12 col-md-2 filter-bar">
-    <a class = "btn btn-secondary btn-sm" href="#">Explore Other Topics</a>
+    <a class = "btn btn-primary btn-sm" href="#">Explore Other Topics</a>
   </div>
 
 <div *ngIf="!dataLoading && filteredProjectsList.length > 0">
@@ -111,14 +111,6 @@
 				<b>Status:</b>
 				<span *ngIf="project.status"> <span>{{ project.status }}</span> </span>
 				<span *ngIf="!project.status"> <span>N/A</span> </span>
-			</div>
-
-			<!--Contains-->
-			<div class="card-text">
-				<b>Contains:</b>
-        <span class="icons" *ngIf="project.hasFolders"> <i class="fa fa-folder fa-lg" title="This project has products." aria-hidden="true"></i></span>
-        <span *ngIf="project.hasMaps"> <i class="fa fa-map fa-lg" title="This project has maps." aria-hidden="true"></i></span>
-        <span class="icons" *ngIf="!project.hasFolders&&!project.hasMaps"> N/A </span>
 			</div>
 
 		</div>

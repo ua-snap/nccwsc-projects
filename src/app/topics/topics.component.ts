@@ -61,11 +61,6 @@ export class TopicsComponent implements OnInit {
       status: {
         title: 'Status',
         width: '7%',
-      },
-      contains: {
-        title: 'Contains',
-        type: 'html',
-        width: '7%',
       }
     },
     actions: false,
