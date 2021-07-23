@@ -77,11 +77,6 @@ export class CscComponent implements OnInit {
       status: {
         title: 'Status',
         width: '7%',
-      },
-      contains: {
-        title: 'Contains',
-        type: 'html',
-        width: '7%',
       }
     },
     actions: false,
@@ -253,16 +248,6 @@ export class CscComponent implements OnInit {
             this.cscProjectsList[project].topics_formatted = this.cscProjectsList[project].topics_formatted + t + '<br>';
           }
 
-          // contains
-          this.cscProjectsList[project].contains = '<div align="center">';
-
-          if (this.cscProjectsList[project].hasFolders) {
-            this.cscProjectsList[project].contains += '<i class="fa fa-folder fa-lg" title="This project has products." aria-hidden="true"></i>';
-          }
-          if (this.cscProjectsList[project].hasMaps) {
-            this.cscProjectsList[project].contains += '&nbsp&nbsp<i class="fa fa-map fa-lg" title="This project has maps." aria-hidden="true"></i>';
-          }
-          this.cscProjectsList[project].contains += '</div>'
           // status
           if (!this.cscProjectsList[project].status) {
             this.cscProjectsList[project].status = 'N/A';
