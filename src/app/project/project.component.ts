@@ -32,15 +32,42 @@ export class ProjectComponent implements OnInit {
     'Wildlife and Plants': 'wildlife-plants'
   }
 
+  subtopic_names = {
+    'Arctic': 'landscapes;subtopic=Arctic',
+    'Forests': 'landscapes;subtopic=Forests',
+    'Grasslands and Plains': 'landscapes;subtopic=Grasslands%20and%20Plains',
+    'Other Landscapes': "landscapes;subtopic=Other%20Landscapes",
+    'Drought': 'drought-fire-extremes;subtopic=Drought',
+    'Extreme Weather': 'drought-fire-extremes;subtopic=Extreme%20Weather',
+    'Fire': 'drought-fire-extremes;subtopic=Fire',
+    'Birds': 'wildlife-plants;subtopic=Birds',
+    'Fish': 'wildlife-plants;subtopic=Fish',
+    'Mammals': 'wildlife-plants;subtopic=Mammals',
+    'Other Wildlife': 'wildlife-plants;subtopic=Other%20Wildlife',
+    'Plants': 'wildlife-plants;subtopic=Plants',
+    'Coral Reefs': 'water-coasts-ice;subtopic=Coral%20Reefs',
+    'Glaciers and Permafrost': 'water-coasts-ice;subtopic=Glaciers%20and%20Permafrost',
+    'Other Water': 'water-coasts-ice;subtopic=Other%20Water',
+    'Rivers, Streams and Lakes': 'water-coasts-ice;subtopic=Rivers,%20Streams%20and%20Lakes',
+    'Sea-Level Rise and Coasts': 'water-coasts-ice;subtopic=Sea-Level%20Rise%20and%20Coasts',
+    'Wetlands': 'water-coasts-ice;subtopic=Wetlands',
+    'Alaska Natives and Corporations': 'native-communities;subtopic=Alaska%20Natives%20and%20Corporations',
+    'Pacific Islander Indigenous Communities': 'native-communities;subtopic=Pacific%20Islander%20Indigenous%20Communities',
+    'Tribes and Tribal Organizations': 'native-communities;subtopic=Tribes%20and%20Tribal%20Organizations',
+    'Data Visualization & Tools': 'science-tools;subtopic=Data%20Visualization%20&%20Tools',
+    'Social Science': 'science-tools;subtopic=Social%20Science',
+    'State of the Science': 'science-tools;subtopic=State%20of%20the%20Science'
+  }
+
   constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private router: Router, private sanitizer: DomSanitizer, private modalService: NgbModal) { }
 
   openImage(imageModal, image) {
     this.modal_image = image;
     this.modalService.open(imageModal, { size: 'lg', windowClass: 'dark-modal' });
   }
-
-  topicNames(topic_name) {
-    return this.topic_names[topic_name];
+  
+  subTopics(subtopic) {
+    return this.subtopic_names[subtopic]
   }
 
   goodTitle(title) {

@@ -107,7 +107,7 @@
   <strong>Science Topic(s):</strong>
   <ul class="taglist">
     <li *ngFor = "let topic of projectJson.topics">
-      <a [routerLink]="['/topics/', this.topicNames(topic)]">{{ topic }}</a>
+      <a [routerLink]="['/topics/', this.topic_names[topic]]">{{ topic }}</a>
     </li>
   </ul>
 </span>
@@ -116,7 +116,8 @@
   <strong>Science Subtopic(s):</strong>
   <ul class="taglist">
     <li *ngFor = "let subtopic of projectJson.subtopics">
-      {{ subtopic }}
+      <a href="/#/topics/{{ this.subtopic_names[subtopic] }}">{{ subtopic }}</a>
+      <!-- <a [routerLink]="['/topics/', this.subTopics(subtopic)]">{{ subtopic }}</a> -->
     </li>
   </ul>
 </span>
