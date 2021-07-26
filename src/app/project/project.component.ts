@@ -23,11 +23,24 @@ export class ProjectComponent implements OnInit {
   trustedDashboardUrl : SafeUrl;
   sbURL = environment.sbmainURL;
 
+  topic_names = {
+    'Drought, Fire and Extreme Weather': 'drought-fire-extremes',
+    'Science Tools for Managers': 'science-tools',
+    'Landscapes': 'landscapes',
+    'Native Communities': 'native-communities',
+    'Water, Coasts and Ice': 'water-coasts-ice',
+    'Wildlife and Plants': 'wildlife-plants'
+  }
+
   constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private router: Router, private sanitizer: DomSanitizer, private modalService: NgbModal) { }
 
   openImage(imageModal, image) {
     this.modal_image = image;
     this.modalService.open(imageModal, { size: 'lg', windowClass: 'dark-modal' });
+  }
+
+  topicNames(topic_name) {
+    return this.topic_names[topic_name];
   }
 
   goodTitle(title) {

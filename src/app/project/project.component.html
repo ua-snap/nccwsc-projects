@@ -68,6 +68,7 @@
 <span *ngIf="projectJson.contacts.authors && projectJson.contacts.authors.length > 0">
   <strong>Author(s):</strong>
   <ul class="contacts">
+    <li> {{ projectJson.topics }} </li>
     <li *ngFor = "let author of projectJson.contacts.authors">
       {{ author.name }}
       <em *ngIf="author.organization">({{ author.organization }})</em>
@@ -106,7 +107,7 @@
   <strong>Science Topic(s):</strong>
   <ul class="taglist">
     <li *ngFor = "let topic of projectJson.topics">
-      {{ topic }}
+      <a [routerLink]="['/topics/', this.topicNames(topic)]">{{ topic }}</a>
     </li>
   </ul>
 </span>
