@@ -188,7 +188,7 @@
             </ul>
           </li>  
         </ul>
-        <p>{{ nonProjectItem.body }}</p>
+        <p [innerHtml]="nonProjectItem.body"></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
