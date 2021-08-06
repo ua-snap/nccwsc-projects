@@ -157,7 +157,7 @@
 <h2>Publications and Other</h2><hr/>
 <ul *ngFor="let product of projectJson.approved_products">
   <li>
-    <div class="pubTitle"><a href="{{sbURL}}/catalog/item/{{product.id}}" target="_blank">{{ product.title }}</a></div>
+    <div class="pubTitle">{{ product.title }}</div>
     <div *ngIf="product.webLinks">
       <ul *ngFor="let webLink of product.webLinks">
         <li *ngIf="webLink.title != 'Thumbnail'">{{ webLink.title }} <a href="{{ webLink.uri }}" target="_blank">(External URL)</a></li>
