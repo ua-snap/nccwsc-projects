@@ -36,11 +36,6 @@
                   <li *ngFor="let subtopic of result.subtopics">{{ subtopic }}</li>
                 </ul>
               </li>   
-              <li class="list-group-item" *ngIf="result.keywords?.length > 0"><strong>Keyword(s):</strong>
-                <ul class="taglist"> 
-                  <li *ngFor="let keyword of result.keywords">{{ keyword }}</li>
-                </ul>
-              </li>
               <li class="list-group-item" *ngIf="result.fiscal_year"><strong>Fiscal Year:</strong> {{ result.fiscal_year }}</li>
               <li class="list-group-item" *ngIf="result.dates?.publication_date"><strong>Publication Date:</strong> {{ result.dates.publication_date }}</li>
               <li class="list-group-item" *ngIf="result.dates?.start_date && result.dates?.end_date"><strong>Start Date / End Date:</strong> {{ result.dates.start_date }} - {{ result.dates.end_date }}</li>
