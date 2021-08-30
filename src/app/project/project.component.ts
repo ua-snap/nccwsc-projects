@@ -65,10 +65,6 @@ export class ProjectComponent implements OnInit {
     this.modal_image = image;
     this.modalService.open(imageModal, { size: 'lg', windowClass: 'dark-modal' });
   }
-  
-  subTopics(subtopic) {
-    return this.subtopic_names[subtopic]
-  }
 
   goodTitle(title) {
     if (title == 'Thumbnail' || title.substring(0,8) == 'metadata') {
