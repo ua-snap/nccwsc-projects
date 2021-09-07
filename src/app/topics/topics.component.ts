@@ -20,7 +20,7 @@ export class TopicsComponent implements OnInit {
     'drought-fire-extremes': '588244b0e4b0b3d9add24391',
     'science-tools': '5b6212e7e4b03f4cf7599b82',
     'landscapes': '5882456be4b0b3d9add24395',
-    'native-communities': '588246dae4b0b3d9add243a1',
+    'indigenous-peoples': '588246dae4b0b3d9add243a1',
     'water-coasts-ice': '5882464ce4b0b3d9add2439a',
     'wildlife-plants': '58824220e4b0b3d9add2438b'
   }
@@ -28,7 +28,7 @@ export class TopicsComponent implements OnInit {
     'drought-fire-extremes': 'Drought, Fire and Extreme Weather',
     'science-tools': 'Science Tools for Managers',
     'landscapes': 'Landscapes',
-    'native-communities': 'Native Communities',
+    'indigenous-peoples': 'Indigenous Peoples',
     'water-coasts-ice': 'Water, Coasts and Ice',
     'wildlife-plants': 'Wildlife and Plants'
   }

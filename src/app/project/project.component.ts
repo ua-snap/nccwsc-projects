@@ -27,7 +27,7 @@ export class ProjectComponent implements OnInit {
     'Drought, Fire and Extreme Weather': 'drought-fire-extremes',
     'Science Tools for Managers': 'science-tools',
     'Landscapes': 'landscapes',
-    'Native Communities': 'native-communities',
+    'Indigenous Peoples': 'indigenous-peoples',
     'Water, Coasts and Ice': 'water-coasts-ice',
     'Wildlife and Plants': 'wildlife-plants'
   }
@@ -51,9 +51,9 @@ export class ProjectComponent implements OnInit {
     'Rivers, Streams and Lakes': 'water-coasts-ice;subtopic=Rivers,%20Streams%20and%20Lakes',
     'Sea-Level Rise and Coasts': 'water-coasts-ice;subtopic=Sea-Level%20Rise%20and%20Coasts',
     'Wetlands': 'water-coasts-ice;subtopic=Wetlands',
-    'Alaska Natives and Corporations': 'native-communities;subtopic=Alaska%20Natives%20and%20Corporations',
-    'Pacific Islander Indigenous Communities': 'native-communities;subtopic=Pacific%20Islander%20Indigenous%20Communities',
-    'Tribes and Tribal Organizations': 'native-communities;subtopic=Tribes%20and%20Tribal%20Organizations',
+    'Alaska Natives and Corporations': 'indigenous-peoples;subtopic=Alaska%20Natives%20and%20Corporations',
+    'Pacific Islander Indigenous Communities': 'indigenous-peoples;subtopic=Pacific%20Islander%20Indigenous%20Communities',
+    'Tribes and Tribal Organizations': 'indigenous-peoples;subtopic=Tribes%20and%20Tribal%20Organizations',
     'Data Visualization & Tools': 'science-tools;subtopic=Data%20Visualization%20&%20Tools',
     'Social Science': 'science-tools;subtopic=Social%20Science',
     'State of the Science': 'science-tools;subtopic=State%20of%20the%20Science'

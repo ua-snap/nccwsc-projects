@@ -25,7 +25,7 @@ export class CscsComponent implements OnInit {
     {'id': 'drought-fire-extremes', 'name': 'Drought, Fire and Extreme Weather'},
     {'id': 'wildlife-plants', 'name': 'Wildlife and Plants'},
     {'id': 'water-coasts-ice', 'name': 'Water, Coasts and Ice'},
-    {'id': 'native-communities', 'name': 'Native Communities'},
+    {'id': 'indigenous-peoples', 'name': 'Indigenous Peoples'},
     {'id': 'science-tools', 'name': 'Science Tools for Managers'},
   ]
 
