@@ -33,6 +33,17 @@ h2 {
   padding: 8px 0;
 }
 
+.title-background {
+  background-color: #DAE8F4;
+  padding: 5px;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.topics {
+  padding-bottom: 10px;
+}
+
 @media (max-width: 1200px) {
   .btn {
     height: 60px;

@@ -1,10 +1,29 @@
 <div class="container">
   <div class="button-group row">
-    <div class="col-md-12">
-      <h2>Search Our Science</h2>
+    <div class="col-md-2">
+      <h2 class="title-background">Search by topic...</h2>
     </div>
-    <div class="col-md-4">
-      <button class="btn btn-success nav-link" [routerLink]="['/search']">Advanced Search</button>
+    <div class="col-md-10">
+      <h2 class="title-background">...or search by region</h2>
+    </div>
+    <div class="col-md-2">
+      <div class="topics" *ngFor="let topic of topic_ids">
+        <a [routerLink]="['/topics/', topic.id]">{{ topic.name }}</a>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <img src="assets/images/casc_regional_map.png" usemap="#casc-image" />
+      <map name="casc-image">
+        <area target="" alt="Alaska" title="Alaska" href="#/casc/alaska" coords="1,1,271,203" shape="rect">
+        <area target="" alt="Pacific Islands" title="Pacific Islands" href="#/casc/pacific-islands" coords="0,210,274,409" shape="rect">
+        <area target="" alt="Northwest" title="Northwest" href="#/casc/northwest" coords="307,-1,279,116,436,151,439,102,421,98,410,73,410,58,402,10" shape="poly">
+        <area target="" alt="Southwest" title="Southwest" href="#/casc/southwest" coords="277,119,288,262,363,319,431,340,458,170,437,163,436,152" shape="poly">
+        <area target="" alt="North Central" title="North Central" href="#/casc/north-central" coords="405,11,424,97,443,105,439,160,458,166,451,234,629,240,622,188,608,146,601,32" shape="poly">
+        <area target="" alt="South Central" title="South Central" href="#/casc/south-central" coords="449,236,434,335,470,337,513,386,527,374,569,435,597,434,606,392,642,378,708,379,694,347,670,343,672,314,637,312,629,246" shape="poly">
+        <area target="" alt="Midwest" title="Midwest" href="#/casc/midwest" coords="603,21,610,143,625,186,630,242,685,243,691,250,708,233,718,216,753,192,782,195,798,170,769,63" shape="poly">
+        <area target="" alt="Southeast" title="Southeast" href="#/casc/southeast" coords="632,249,639,310,675,312,672,339,694,344,707,360,781,361,822,427,855,423,935,417,944,360,943,219,742,245" shape="poly">
+        <area target="" alt="Northeast" title="Northeast" href="#/casc/northeast" coords="889,12,881,54,836,69,831,101,804,109,807,122,796,135,799,168,784,199,753,193,717,217,702,239,799,234,876,222,937,60,929,10" shape="poly">
+      </map>
     </div>
   </div>
 
