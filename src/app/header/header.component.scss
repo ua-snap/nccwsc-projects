@@ -1,22 +1,42 @@
 
+.headerTop {
+  background: #00264C;
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    text-align: center;
+    -webkit-box-shadow: 0px 3px 6px 0px rgba(179,182,189,1);
+-moz-box-shadow: 0px 3px 6px 0px rgba(179,182,189,1);
+box-shadow: 0px 3px 6px 0px rgba(179,182,189,1);
+
+        h2 {
+          font-size: 1.5em;
+          color: #fff;
+          font-family: 'Source Sans Pro', sans-serif;
+          margin-bottom: 0px;
+        }
+}
+
 .brandContainer{
-    background: #00264C;
+    background:  #A1CBF1;
     height:auto;
     width: 100%;
-    text-align: center;
-    padding: 20px;
+    text-align: left;
+    padding: 5px;
+    padding-left: 50px;
     -webkit-box-shadow: 0px 3px 6px 0px rgba(179,182,189,1);
 -moz-box-shadow: 0px 3px 6px 0px rgba(179,182,189,1);
 box-shadow: 0px 3px 6px 0px rgba(179,182,189,1);
 
         h1, h2 {
-            color: #fff;
-            font-family: 'Source Sans Pro', sans-serif;
+            color: #000;
+            font-family: 'Courier New', monospace;
             
         }
     
     h1   {
-        font-size: 4em;
+        font-size: 3em;
+        font-weight: 100;
     }
         
     }
