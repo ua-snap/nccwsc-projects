@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
+declare function imageMapResize(): void;
+
 @Component({
   selector: 'app-cscs',
   templateUrl: './cscs.component.html',
   styleUrls: ['./cscs.component.scss']
 })
+
 export class CscsComponent implements OnInit {
 
   csc_ids = [
@@ -32,6 +35,10 @@ export class CscsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  imageResized() {
+    imageMapResize(); // Javascript function in imageMapResizer.min.js 
   }
 
 }
