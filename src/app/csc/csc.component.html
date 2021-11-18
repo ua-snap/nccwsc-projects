@@ -1,9 +1,16 @@
 
 <div class="row csc">
+	<div class="col-md-12">
+		<div class="breadcrumbs">
+			<a href="#">Project Explorer Home</a>
+			<span class="trail">&gt;</span>
+			<a [href]="url">{{ title }} </a>
+		</div>
+	</div>
   <div class="col-md-12">
     <h1>{{ title }} Projects</h1>
 	</div>
-	<div class="col-md-3 background-div">
+	<div class="col-md-2 background-div">
 		<h2>Filter Projects</h2>
 		<div class="select-box">
 			<h3 class="select-title">Topic</h3>
@@ -27,7 +34,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-9 background-div">
+	<div class="col-md-10 background-div">
 		<div class="csc-projects" *ngIf="!dataLoading && filteredCscProjectsList.length > 0">
 			<div class="col-md-12">
 				<ng2-smart-table class= "table table-striped table-bordered hidden-md-down" [settings]="settings" [source]="filteredCscProjectsList"></ng2-smart-table>

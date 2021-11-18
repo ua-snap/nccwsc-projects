@@ -15,6 +15,7 @@ export class CscComponent implements OnInit {
   sub: any;
   id: any;
   sbId: any;
+  url: any;
   cscProjectsList = [];
   filteredCscProjectsList = [];
   csc_url = environment.baseURL;
@@ -212,6 +213,9 @@ export class CscComponent implements OnInit {
     } else {
       this.sbId = this.id;
     }
+    
+    // Generate current URL for breadcrumb
+    this.url = "#" + this.router.url;
     this.title = this.csc_ids[this.sbId];
     this.localJson.loadCscProjects(this.sbId).subscribe(data => {
       this.cscProjectsList = data;
@@ -228,8 +232,11 @@ export class CscComponent implements OnInit {
           if (this.statuses.indexOf(this.cscProjectsList[project].status) < 0) {
             this.statuses.push(this.cscProjectsList[project].status)
           }
+      
+          // This is done so that "All Fiscal Years" is sorted at the top.
+          this.fiscal_years.sort().reverse();
+
           this.topics.sort();
-          this.fiscal_years.sort();
           this.statuses.sort();
           this.filteredCscProjectsList.push(this.cscProjectsList[project]);
           this.dataLoading = false;
