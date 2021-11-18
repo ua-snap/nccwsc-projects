@@ -31,7 +31,16 @@ h3 {
 }
 
 .select-box {
+  margin-left: 15px;
+  margin-bottom: 15px;
   border: 1px solid black;
+
+  input {
+    margin-left: 5px;
+  }
+  label {
+    margin-left: 5px;
+  }
 }
 
 .background-div {
