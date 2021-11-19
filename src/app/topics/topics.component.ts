@@ -75,6 +75,7 @@ export class TopicsComponent implements OnInit {
   topics_url = environment.baseURL;
   project_url = environment.baseURL + '/project';
 
+  url: any;
   subtopics = ['All Subtopics'];
   fiscal_years = ['All Fiscal Years'];
   statuses = ['All Statuses'];
@@ -217,6 +218,8 @@ export class TopicsComponent implements OnInit {
 
   ngOnInit() {
 
+    this.url = "#" + this.router.url;
+
     this.sub = this.route.params.subscribe(params => {
       this.topic = params['topic'];
       if (params['subtopic']) {
@@ -281,7 +284,7 @@ export class TopicsComponent implements OnInit {
             }
           }
 
-          this.fiscal_years.sort();
+          this.fiscal_years.sort().reverse();
           this.subtopics.sort();
           this.statuses.sort();
           this.cscs.sort();
