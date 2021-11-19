@@ -288,6 +288,12 @@ export class TopicsComponent implements OnInit {
           this.subtopics.sort();
           this.statuses.sort();
           this.cscs.sort();
+
+          // After sorting, move All CASCs to top of sorted list.
+          var temp = this.cscs[0]
+          this.cscs[0] = this.cscs[1]
+          this.cscs[1] = temp
+
           this.filteredProjectsList.push(this.projectsList[project]);
           this.dataLoading = false;
 

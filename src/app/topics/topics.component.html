@@ -40,36 +40,6 @@
 			</div>
 		</div>
 	</div>
-  <!-- <div class=" col-xs-12 col-md-2 filter-bar hidden-md-down">
-    <select (change)="filterProjectsList($event.target.value)" [(ngModel)]="current_subtopic" class="filter">
-      <option *ngFor="let subtopic of subtopics" [value]="subtopic">{{ subtopic }}</option>
-    </select>
-  </div>
-  <div class="col-xs-12 col-md-2 filter-bar">
-    <select (change)="filterProjectsList($event.target.value)"  [(ngModel)]="current_fy" class="filter">
-      <option *ngFor="let fiscal_year of fiscal_years" [value]="fiscal_year">{{ fiscal_year }}</option>
-    </select>
-  </div>
-  <div class="col-xs-12 col-md-2 filter-bar">
-    <select  (change)="filterProjectsList($event.target.value)" [(ngModel)]="current_status" class="filter">
-      <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
-    </select>
-  </div>
-  <!--div class="col-xs-12 col-md-2 filter-bar">
-    <select  (change)="filterProjectsList($event.target.value)" [(ngModel)]="current_type" class="filter">
-      <option *ngFor="let type of types" [value]="type">{{ type }}</option>
-    </select>
-  </div-->
-  <!--
-  <div class="col-xs-12 col-md-2 filter-bar">
-    <select  (change)="filterProjectsList($event.target.value)" [(ngModel)]="current_csc" class="filter">
-      <option *ngFor="let csc of cscs" [value]="csc">{{ csc }}</option>
-    </select>
-  </div>
-  <div class="col-xs-12 col-md-2 filter-bar">
-    <a class = "btn btn-primary btn-sm" href="#">Explore Other Topics</a>
-  </div> -->
-
 
 <div class="col-md-10 background-div" *ngIf="!dataLoading && filteredProjectsList.length > 0">
   <div class="col-md-12">
@@ -138,13 +108,6 @@
 
 				<span *ngIf="!project.subtopics"> N/A </span>
 			</div>
-
-			<!--Types-->
-			<!--div class="card-text">
-				<b>Types:</b>
-				<span *ngIf="project.types"> <span>{{ project.types }}</span> </span>
-				<span *ngIf="!project.types"> <span>N/A</span> </span>
-			</div-->
 
 			<!--Status-->
 			<div class="card-text">
