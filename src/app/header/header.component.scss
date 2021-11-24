@@ -1,144 +1,49 @@
-
 .headerTop {
-  background: #00264C;
+    background: #00264c;
     width: 100%;
-    height: auto;
-    padding: 5px;
+    padding: 0.45rem;
     text-align: center;
-    -webkit-box-shadow: 0px 3px 6px 0px rgba(179,182,189,1);
--moz-box-shadow: 0px 3px 6px 0px rgba(179,182,189,1);
-box-shadow: 0px 3px 6px 0px rgba(179,182,189,1);
 
-        h2 {
-          font-size: 1.5em;
-          color: #fff;
-          font-family: 'Source Sans Pro', sans-serif;
-          margin-bottom: 0px;
-          letter-spacing: 0.3em;
-          font-weight: 400;
-        }
+    h2 {
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        color: #fff;
+        font-family: "Source Sans Pro", sans-serif;
+        margin-bottom: 0;
+        letter-spacing: 0.25rem;
+        font-weight: 400;
+    }
 }
 
-.brandContainer{
-    background:  #A1CBF1;
-    height:auto;
+.brandContainer {
+    background: #a1cbf1;
     width: 100%;
-    text-align: left;
-    letter-spacing: 0.2em;
-    padding: 5px;
-    padding-left: 50px;
-    -webkit-box-shadow: 0px 3px 6px 0px rgba(179,182,189,1);
--moz-box-shadow: 0px 3px 6px 0px rgba(179,182,189,1);
-box-shadow: 0px 3px 6px 0px rgba(179,182,189,1);
+    padding: 1rem 2rem;
 
-        h1, h2 {
-            color: #000;
-            font-family: 'Biryani', monospace;
-            font-weight: 200;
-            
+    a[title="home"]:hover {
+        text-decoration: none;
+    }
+
+    font-family: "Biryani";
+    h1,
+    h2 {
+        color: #000;
+    }
+    
+    h2 {
+        margin-top: 0;
+        font-weight: 200;
+
+        .no {
+            text-decoration: line-through;
         }
-    
-    h1   {
-        font-size: 3em;
-        margin-top: 0.2em;
-    }
-        
     }
 
-
-
-
-
-.navbar-brand {
-    white-space: normal;
-    width: 100%;
-    margin: 0;
-}
-
-
-
-
-@media (max-width: 1199px) {
-		#top-site-name{
-		font-size: 21px;
-	}
-}
-
-
-@media (max-width: 991px) {
-    #top-site-name {
-      font-size: 18px;
-      margin-left: 5px;
-      //position: absolute;
-      bottom: 0px;
-      z-index: 200;
-    }
-    .navbar {
-      height: auto !important;
-      padding: 0 1rem;
-    }
-    
-    .bg-inverse {
-      background-color:#333!important;
-      height: 49px;
-      z-index: 10;
-      position: relative;
-    }
-
-    .navbar-toggler-right {
-     top: -50px;
-    }
-    .site-name-wrapper-mobile {
-        display: inline-block;
-    }
-    .site-name-wrapper {
-        display:none;
-    }
-    div.branding {
-        display:none;
-    }
-
-    
-}
-
-@media (max-width: 767px) {
-  .navbar-brand {
-    margin-right: 0;
-    margin-left: 0;
-  }
-
-  .brandContainer {
-    width: auto;
-  }
-
-
-  #top-site-name {
-    margin-top: 0;
-  }
-}
-@media (max-width: 565px) {
-    .site-name-wrapper-mobile {
-        display:none;
+    h1 {
+        font-size: 2.75rem;
+        margin-top: 1rem;
+        font-weight: 300;
+        margin-bottom: 0.5rem;
     }
 }
-/*Custom media query for Small viewport (below 415)*/
-@media (max-width: 415px) {
-    
-}
-
-
-/*Custom media query for tiny viewport (below 344)*/
-@media (max-width: 344px) {
-  #top-site-name {
-    font-size: 13px !important;
-    line-height: 1.2;
-  }
-}
-
-
-
-
-
-
- 
 
