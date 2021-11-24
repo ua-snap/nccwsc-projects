@@ -1,4 +1,5 @@
 <div class="container-fluid">
+
 	<div class="breadcrumbs">
 		<a href="#">Project Explorer Home</a>
 		<span class="trail">/</span>
@@ -68,7 +69,7 @@
 		</div>
 
 		<div class="col-md-10 results-table" *ngIf="!dataLoading && filteredProjectsList.length > 0" >
-			<div>
+			<div class="d-none d-lg-block">
 				<ng2-smart-table
 					class="table table-striped"
 					[settings]="settings"
@@ -104,7 +105,7 @@
 
 			<!-- ********************< Mobile Cards*****************************************************-->
 			<div
-				class="col-xs-12 hidden-lg-up"
+				class="d-lg-none"
 				*ngIf="!dataLoading && filteredProjectsList.length > 0"
 			>
 				<div

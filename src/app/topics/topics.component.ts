@@ -36,9 +36,8 @@ export class TopicsComponent implements OnInit {
   settings = {
     columns: {
       fiscal_year: {
-        title: 'Funding Year',
-        // sortDirection:'desc',
-        width: '8%',
+        title: 'Year',
+        width: '6%',
       },
       title: {
         title: 'Title',
@@ -47,20 +46,14 @@ export class TopicsComponent implements OnInit {
       },
         csc_name: {
         title: 'CASC',
-        width: '10%',
       },
       subtopics_formatted: {
         title: 'Subtopic(s)',
-        width: '10%',
         type: 'html',
       },
-      //types: {
-      //  title: 'Types',
-      //  width: '7%',
-      //},
       status: {
         title: 'Status',
-        width: '7%',
+        width: '10%',
       }
     },
     actions: false,

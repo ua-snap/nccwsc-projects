@@ -1,6 +1,6 @@
 <div class="container-fluid">
-  <div class="search-group row">
-    <div class="col-md-3">
+  <div class="row">
+    <div class="col-md-3 search-group">
       <h2 class="title-background">Search by topic</h2>
       <div class="topics-wrapper">
         <div class="topics" *ngFor="let topic of topic_ids">
@@ -8,7 +8,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-9 search-group">
       <h2 class="title-background">Search by region</h2>
       <img class="casc-map" src="assets/images/casc_regional_map.png" usemap="#casc-image" (load)="imageResized();" />
       <map name="casc-image">
@@ -24,8 +24,8 @@
       </map>
     </div>
   </div>
-  <div class="search-group row">
-    <div class="col-12">
+  <div class="row">
+    <div class="col-12 search-group" >
       <h2 class="title-background">Search the entire project database</h2>
       <app-search></app-search>
     </div>

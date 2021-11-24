@@ -1,128 +1,6 @@
-// .table {
-//   th.fy {
-//     width: 7em;
-//   }
-//   th.contains {
-//     width: 7em;
-//   }
-//   th.subtopics {
-//     width: 10em;
-//   }
-//   th.status {
-//     width: 7em;
-//   }
-//   th.types {
-//     width: 8em;
-//   }
-//   th.csc {
-//     width: 10em;
-//   }
-// }
-
-// ul {
-//     list-style:  none;
-// }
-// th{
-//   text-align: center;
-// }
-// table {
-//     table-layout: fixed;
-//     word-wrap: break-word;
-//     font-size: 16px !important;
-//     margin-bottom: 0px;
-//     border: 1px;
-// }
-
-// table li img{
-//   width: 45px;
-//   height: 45px;
-// }
-
-// div.topic {
-//   padding: 1em;
-// }
-
-// select {
-//   width: 100%;
-//   padding: 10px;
-// }
-
-// div.filter-bar {
-//   margin-bottom: 1em;
-//   a {
-//     display: block;
-//     margin-left: auto;
-//     margin-right: auto;
-//   }
-// }
-
-// div.loading {
-//   margin: 1em;
-//   padding: 1em;
-//   text-align: center;
-//   img {
-//     display: block;
-//     margin-left: auto;
-//     margin-right: auto;
-//   }
-// }
-
-// ul {
-//   margin: 0;
-//   padding: 0;
-// }
-
-// li.icons {
-//   display: block !important;
-//   margin-left: auto !important;
-//   margin-right: auto !important;
-// }
-
-// .icon-map,
-// .icon-products{
-//   color: #CCC !important;
-// }
-
-// .list-group-item {
-//   background: none !important;
-// }
-
-// h1 {
-//   margin-top: 30px;
-// }
-
-// h3 {
-//   background-color: #DAE8F4;
-//   padding: 5px;
-//   font-size: 18px;
-//   font-weight: 900;
-// }
-
-// .background-div {
-//   background-color: #F4F4F4;
-
-//   h2 {
-//     margin-top: 15px;
-//     margin-bottom: 15px;
-//   }
-
-//   .select-box {
-//     margin-bottom: 15px;
-//     border: 1px solid black;
-
-//     input {
-//       margin-left: 10px;
-//     }
-//     label {
-//       margin-left: 5px;
-//       display: inline;
-//     }
-//   }
-// }
-
 .breadcrumbs {
-  margin: 1rem 0;
-  font-size: 1.5rem;
+  margin: 1rem 0.75rem;
+  font-size: 1.35rem;
 
   .trail {
     display: inline-block;
@@ -131,13 +9,15 @@
 }
 
 h2 {
-  margin: 1.5rem 0 2rem;
+  margin: 1.5rem 0.75rem 3rem;
 }
 
 .select-box {
   margin-bottom: 1.5rem;
   h3 {
     font-size: 1.35rem;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #eee;
   }
   div {
     margin: 0;
@@ -154,49 +34,35 @@ h2 {
   }
 }
 
-.results-table {
-  margin: 0;
-  padding: 0;
-}
-
 :host::ng-deep table {
   thead {
     border-bottom: 1px solid #eee;
   }
-  th {
-    text-align: center;
-    vertical-align: middle !important;
-  }
-  th, td {
-    line-height: 1.25;
-    font-size: 1rem !important;
-  }
-  // TODO: not working need to de-select this somehow!
-  tr.n2-smart-row.selected {
-    background-color: none !important;
+  tr {
+    th.ng2-smart-th {
+      text-align: left;
+      vertical-align: bottom !important;
+      padding-top: 0;
+      margin-top: 0;
+      &.title {
+        text-align: center;
+      }
+    }
+    th,
+    td {
+      line-height: 1.25;
+      font-size: 1rem !important;
+      border-top: none;
+    }
   }
 }
 
-// div.no_data {
-//   display: block;
-//   width: 90%;
-//   margin-left: auto;
-//   margin-right: auto;
-//   margin: 1em;
-//   border: 1px solid #333;
-//   padding: 1em;
-//   a {
-//     display: block;
-//     margin-left: auto;
-//     margin-right: auto;
-//   }
-// }
-// div .card{
-//     margin-bottom: 1em !important;
-//     margin-left:0.3em;
-//     margin-right: 0.3em;
-//   }
+.card {
+  margin-bottom: 1rem;
+  padding: 1rem;
 
-// .mobile h4.card-title a {
-//     font-size: 0.8em;
-//   }
+  ul {
+    margin: 0;
+    padding-left: 1rem;
+  }
+}
