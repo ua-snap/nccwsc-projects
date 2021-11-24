@@ -4,8 +4,9 @@ import {ViewCell} from "ng2-smart-table";
 @Component({
   selector: 'app-title-link',
   template: `
-    <a href="{{href}}">{{value}}</a>
+    <a class="app-title-link" href="{{href}}">{{value}}</a>
   `,
+  styleUrls: ['./title-link.component.scss']
 })
 export class TitleLinkComponent implements ViewCell, OnInit {
   // renderValue;
