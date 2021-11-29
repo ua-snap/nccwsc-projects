@@ -1,194 +1,56 @@
-sb-map {
-  height: 300px;
-}
-.container {
-  float: none;
-   margin: 0 auto;
-   /*height:100%;
-    overflow-y:scroll;*/
-    /* background-color: #E6E6E6; */
-    margin-top: 3%;
-    margin-bottom: 3%;
-    position: relative !important;
+.project {
+  margin-top: 2rem;
+  .body {
+    line-height: 1.65;
+    margin-bottom: 2rem;
+  }
 
-}
-ul {
-    list-style:  none;
-}
-.project_files {
-  margin-bottom: 10px;
-  ul ul {    
-    margin: 0 35px;
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  .related-publications {
+    ul {
+      padding-left: 0;
+      list-style-type: none;
+      ul {
+        padding-left: 2rem;
+      }
+    }
+  }
+
+  .affiliations {
+    padding-bottom: 1rem;
+  }
+
+  .media-cards {
+    margin-bottom: 2rem;
+
+    .card {
+      width: 30%;
+      display: inline-block;
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+      vertical-align: top;
+      a:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .sb-link {
+    margin: 2rem 0;
   }
 }
 
-p {
-  display: block;
-  margin-bottom: 1em;
-}
-
-ul{
-  padding-left: 0px;
-}
-.dates{
-  display: inline-block;
-  margin-right: 10px;
-}
-
-.map{
-padding: 0px;
-margin-top: 30px;
-}
-
-div.cscs_list {
-  margin-left: 1em;
-  display: inline-block;
-  a {
-    display: inline-block;
-  }
-}
-
-img#previewImage {
+.modal-image {
   width: 100%;
-  margin: 0;
-  padding: 0;
-  position:absolute;
-  top: 105px;
-  left: 0px;
 }
-
-div.row.project_content {
-    position: relative;
-
-    background: rgba(255,255,255, .9) !important;
-    color: black;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-bottom: 65px;
-    margin-top: 60px;
-    padding: .5em;
-}
-
-img.preview-image {
-  width: 100%;
-  height: auto;
-}
-
-#imageModal {
-  width: 90% !important;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.dark-modal {
-  width: 90% !important;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.dark-modal .modal-content {
-  background-color: #111;
-  color: white;
-}
-.dark-modal .close {
-  color: white;
-}
-
-div.map {
-  height: 400px !important;
-}
-
-ul.taglist {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.taglist {
-  display: inline;
-  list-style: none;
-}
-
-.taglist li {
-  display: inline;
-}
-
-.taglist li:first-child:before {
-  content: " ";
-  white-space: pre;
-}
-
-.taglist li:after {
-   content: "; ";
-}
-
-.taglist li:last-child:after {
-    content: "";
-}
-
- p.single {
-  margin-bottom: 0;
- }
-
-.list-group-item {
-  border: none !important;
-  margin: 0;
-  padding: 0;
-  background: none !important;
-}
-
-ul.contacts {
-  margin-bottom: 0;
-  li {
-    margin-left: 1em;
-  }
-}
-
-img.modal-image {
-  width: 100%;
-  height: auto;
-}
-
-div.image_container {
-    position: absolute;
-    overflow: hidden;
-    vertical-align: middle;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    top: 218px;
-    z-index: 0;
-}
-@media(max-width:1319px) { div.image_container {top: 197px; } }
-@media(max-width:1090px) { div.image_container {top: 100px; } }
-
-
-img.project_image {
-    max-width: 100%;
-    width: 100%;
-    min-height: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    vertical-align: middle;
-}
-
-.gradientback{
-
-    position:absolute;
-    bottom: 0px;
-    left:0px;
-    width:100%;
-    height:25%;
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,000000+100&0+9,1+99 */
-background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(3,3,3,0) 9%, rgba(232,232,232,1) 99%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(3,3,3,0) 9%,rgba(232,232,232,1) 99%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(3,3,3,0) 9%,rgba(232,232,232,1) 99%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#FFFFFF',GradientType=0 ); /* IE6-9 */
-
-}
-
-.pubTitle {
-  font-weight:bold;
-  font-size: 18px;
-}
-
