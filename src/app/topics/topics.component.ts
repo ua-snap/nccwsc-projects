@@ -1,10 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { LocalJsonService } from "../local-json.service";
-import { SearchService } from "../search.service";
-import { Router, ActivatedRoute } from "@angular/router";
-import { environment } from "../../environments/environment";
-import { TitleLinkComponent } from "../title-link/title-link.component";
-import { Location } from "@angular/common";
+import { Component, OnInit } from '@angular/core';
+import { LocalJsonService } from '../local-json.service';
+import { SearchService } from '../search.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { environment } from '../../environments/environment';
+import { TitleLinkComponent } from '../title-link/title-link.component';
+import { Location } from '@angular/common';
+import { UrlService } from '../url.service';
+
 
 @Component({
   selector: "app-topics",
@@ -82,6 +84,7 @@ export class TopicsComponent implements OnInit {
   projectsList = [];
   filteredProjectsList = [];
   dataLoading = true;
+
   subtopicsFilter: string[] = null;
 
   constructor(
@@ -90,10 +93,12 @@ export class TopicsComponent implements OnInit {
     private searchService: SearchService,
     private router: Router,
     private location: Location,
-    private aroute: ActivatedRoute
+    private aroute: ActivatedRoute,
+    private urlService: UrlService
   ) {}
 
   filterProjectsList(event: any = null) {
+    
     this.filteredProjectsList = [];
     for (var project in this.projectsList) {
       if (
@@ -213,7 +218,11 @@ export class TopicsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.url = "#" + this.router.url;
+
+    this.urlService.currentUrl$
+    .subscribe((current_url: string) => {
+      this.url = "#" + current_url;
+    });
 
     this.sub = this.route.params.subscribe(params => {
       this.topic = params["topic"];
@@ -232,7 +241,10 @@ export class TopicsComponent implements OnInit {
       if (params["csc"]) {
         this.current_csc = params["csc"];
       }
-      this.page_title = this.topic_names[this.topic];
+
+      this.page_title = this.topic_names[this.topic]
+      this.urlService.setPreviousTitle(this.page_title);
+
     });
     this.searchService.getTopics().subscribe(topics => {
       var topics = topics;

@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { TitleLinkComponent } from '../title-link/title-link.component';
 import { Location } from '@angular/common';
+import { UrlService } from '../url.service';
 
 @Component({
   selector: 'app-csc',
@@ -88,7 +89,7 @@ export class CscComponent implements OnInit {
     // this.source.setSort([{ field: 'id', direction: 'asc' }]);
   };
 
-  constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private router: Router, private location: Location, private aroute: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private router: Router, private location: Location, private aroute: ActivatedRoute, private urlService: UrlService) {
   }
 
   showAllProjects() {
@@ -214,9 +215,12 @@ export class CscComponent implements OnInit {
       this.sbId = this.id;
     }
     
-    // Generate current URL for breadcrumb
-    this.url = "#" + this.router.url;
+    this.urlService.currentUrl$
+    .subscribe((current_url: string) => {
+      this.url = "#" + current_url;
+    });
     this.title = this.csc_ids[this.sbId];
+    this.urlService.setPreviousTitle(this.title);
     this.localJson.loadCscProjects(this.sbId).subscribe(data => {
       this.cscProjectsList = data;
         // tslint:disable-next-line:forin
