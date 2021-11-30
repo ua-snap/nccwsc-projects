@@ -1,12 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400');
-@import url('https://fonts.googleapis.com/css?family=Biryani:200,300,400,500,600,900');
+@import url('https://fonts.googleapis.com/css2?family=Martel:wght@400;600;700&family=News+Cycle:wght@400;700&display=swap');
 
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
-body {
-  font-family: 'Biryani',sans-serif !important;
+*, html, body {
+  font-family: 'Martel', serif !important;
+  font-weight: 400;
   font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'News Cycle', sans-serif !important;
+    font-weight: 700;
 }
 
 a {

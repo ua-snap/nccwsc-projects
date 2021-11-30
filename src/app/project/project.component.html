@@ -237,15 +237,7 @@
           [mapUrl]="projectJson.map_url"
         ></sb-map>
       </div>
-      <div>
-        <span *ngIf="projectJson.types[0] != 'Project'">
-          <h2>Product Information</h2>
-        </span>
-        <span *ngIf="projectJson.types[0] == 'Project'">
-          <h2>Project Information</h2>
-        </span>
-      </div>
-      <div>
+      <div class="information-sidebar">
         <div
           class="affiliations"
           *ngIf="!projectJson.cscs || projectJson.cscs.length < 1"

@@ -1,5 +1,6 @@
 .project {
   margin-top: 2rem;
+
   .body {
     line-height: 1.65;
     margin-bottom: 2rem;
@@ -13,14 +14,22 @@
   h2 {
     margin-top: 2rem;
     margin-bottom: 1rem;
-    font-size: 1.25rem;
-    font-weight: 500;
+    font-size: 1.5rem;
+  }
+
+  .information-sidebar {
+    margin-top: 2rem;
   }
 
   .related-publications {
+    .pubTitle {
+      font-size: 1rem;
+      font-weight: 700;
+    }
     ul {
       padding-left: 0;
       list-style-type: none;
+
       ul {
         padding-left: 2rem;
       }

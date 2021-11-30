@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3 search-group">
-      <h2 class="title-background">Search by topic</h2>
+      <h3>Search by topic</h3>
       <div class="topics-wrapper">
         <div class="topics" *ngFor="let topic of topic_ids">
           <a [routerLink]="['/topics/', topic.id]">{{ topic.name }}</a>
@@ -9,8 +9,8 @@
       </div>
     </div>
     <div class="col-md-9 search-group">
-      <h2 class="title-background">Search by region</h2>
-      <img class="casc-map" src="assets/images/casc_regional_map.png" usemap="#casc-image" (load)="imageResized();" />
+      <h3>Search by region</h3>
+      <img class="casc-map" src="assets/images/casc_regional_map.svg" usemap="#casc-image" (load)="imageResized();" />
       <map name="casc-image">
         <area target="" alt="Alaska" title="Alaska" href="#/casc/alaska" coords="-1,2,405,303" shape="rect">
         <area target="" alt="Pacific Islands" title="Pacific Islands" href="#/casc/pacific-islands" coords="-1,308,395,610" shape="rect">
@@ -26,7 +26,7 @@
   </div>
   <div class="row">
     <div class="col-12 search-group" >
-      <h2 class="title-background">Search the entire project database</h2>
+      <h3>Search the entire project database</h3>
       <app-search></app-search>
     </div>
   </div>

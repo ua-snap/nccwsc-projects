@@ -1,5 +1,6 @@
 .headerTop {
-    background: #00264c;
+    background-color: #fff;
+    color: #00264c;
     width: 100%;
     padding: 0.45rem;
     text-align: center;
@@ -7,8 +8,6 @@
     h2 {
         font-size: 1.1rem;
         text-transform: uppercase;
-        color: #fff;
-        font-family: "Source Sans Pro", sans-serif;
         margin-bottom: 0;
         letter-spacing: 0.25rem;
         font-weight: 400;
@@ -16,34 +15,31 @@
 }
 
 .brandContainer {
-    background: #a1cbf1;
+    background: #003946 no-repeat url("/assets/images/header-bar.jpg");
     width: 100%;
+    height: 174px;
     padding: 1rem 1.5rem;
+    color: #fff;
 
-    a[title="home"]:hover {
-        text-decoration: none;
-    }
-
-    font-family: "Biryani";
-    h1,
-    h2 {
-        color: #000;
-    }
-    
-    h2 {
-        margin-top: 0;
-        font-weight: 200;
-
-        .no {
-            text-decoration: line-through;
+    .media {
+        padding-top: 1rem;
+        img {
+            height: 100px;
+            padding-right: 1rem;
         }
     }
 
+    h2 {
+        letter-spacing: .02em;
+        margin-top: 0.1rem;
+        font-weight: 400;
+    }
+
     h1 {
+        letter-spacing: .02em;
         font-size: 2.75rem;
-        margin-top: 1rem;
-        font-weight: 300;
-        margin-bottom: 0.5rem;
+        margin-top: 0;
+        font-weight: 700;
+        margin-bottom: 0;
     }
 }
-
