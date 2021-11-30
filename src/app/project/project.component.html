@@ -211,7 +211,6 @@
       <div *ngIf="projectJson.images && projectJson.images.length > 1">
         <h2>Media</h2>
         <div class="media-cards">
-        
           <div class="card" *ngFor="let image of projectJson.images">
             <a (click)="openImage(imageModal, image)"
               ><img class="card-img-top" src="{{ image.url }}"
@@ -219,9 +218,7 @@
             <div class="card-body">
               {{ image.title }}
             </div>
-
           </div>
-        
         </div>
       </div>
       <div class="sb-link">
@@ -249,13 +246,19 @@
         </span>
       </div>
       <div>
-        <div class="affiliations" *ngIf="!projectJson.cscs || projectJson.cscs.length < 1">
+        <div
+          class="affiliations"
+          *ngIf="!projectJson.cscs || projectJson.cscs.length < 1"
+        >
           <strong>Affiliation(s): </strong>
           <a [routerLink]="['/casc/', projectJson.csc.id]">{{
             projectJson.csc.name
           }}</a>
         </div>
-        <div class="affiliations" *ngIf="projectJson.cscs && projectJson.cscs.length > 0">
+        <div
+          class="affiliations"
+          *ngIf="projectJson.cscs && projectJson.cscs.length > 0"
+        >
           <strong>Affiliation(s): </strong>
           <ul class="cscs_list">
             <li *ngFor="let csc of projectJson.cscs">
