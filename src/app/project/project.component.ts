@@ -104,7 +104,6 @@ export class ProjectComponent implements OnInit {
       if (previous_url != null) {
         this.previousUrl = "#" + previous_url;
       }
-      console.log(this.previousUrl);
     });
     this.urlService.previousTitle$
     .subscribe((previous_title: string) => {
