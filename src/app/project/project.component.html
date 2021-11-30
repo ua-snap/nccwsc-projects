@@ -1,5 +1,14 @@
 <div class="project container-fluid">
   <div class="row" *ngIf="projectJson">
+    <div class="col-md-12">
+      <div class="breadcrumbs">
+        <a href="#">Project Explorer Home</a>
+        <span class="trail" *ngIf="previousUrl">&gt;</span>
+        <a *ngIf="previousUrl" [href]="previousUrl">{{ previousTitle }}</a>
+        <span class="trail">&gt;</span>
+        <a [href]="currentUrl">Current Project</a>
+      </div>
+    </div>
     <div class="col-md-8">
       <h1>{{ projectJson.title }}</h1>
 

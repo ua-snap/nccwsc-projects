@@ -23,6 +23,7 @@ import { SearchNavComponent } from './search-nav/search-nav.component'
 import { LocalJsonService } from './local-json.service'
 import { SciencebaseService } from './sciencebase.service'
 import { SearchService } from './search.service';
+import { UrlService } from './url.service';
 import { CscComponent } from './csc/csc.component'
 import { ProjectResourceComponent } from './project-resource/project-resource.component'
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -58,7 +59,7 @@ import { TitleLinkComponent } from './title-link/title-link.component'
   entryComponents: [
     TitleLinkComponent
   ],
-  providers: [GoogleAnalyticsService, LocalJsonService, SciencebaseService, SearchService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [GoogleAnalyticsService, LocalJsonService, SciencebaseService, SearchService, UrlService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

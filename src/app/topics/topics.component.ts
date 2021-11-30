@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { TitleLinkComponent } from '../title-link/title-link.component';
 import { Location } from '@angular/common';
+import { UrlService } from '../url.service';
 
 @Component({
   selector: 'app-topics',
@@ -85,7 +86,7 @@ export class TopicsComponent implements OnInit {
   dataLoading = true;
   subtopicsFilter:string[] = null;
 
-  constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private searchService: SearchService, private router: Router, private location: Location, private aroute: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private searchService: SearchService, private router: Router, private location: Location, private aroute: ActivatedRoute, private urlService: UrlService) { }
 
   filterProjectsList(event:any = null) {
     this.filteredProjectsList = [];
@@ -211,7 +212,10 @@ export class TopicsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.url = "#" + this.router.url;
+    this.urlService.currentUrl$
+    .subscribe((current_url: string) => {
+      this.url = "#" + current_url;
+    });
 
     this.sub = this.route.params.subscribe(params => {
       this.topic = params['topic'];
@@ -231,6 +235,7 @@ export class TopicsComponent implements OnInit {
         this.current_csc = params['csc'];
       }
       this.page_title = this.topic_names[this.topic]
+      this.urlService.setPreviousTitle(this.page_title);
     });
     this.searchService.getTopics().subscribe(topics => {
       var topics = topics;

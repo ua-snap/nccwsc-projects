@@ -27,6 +27,27 @@
     }
   }
 
+  .breadcrumbs {
+    color: #666;
+    font-weight: 100;
+    font-size: 16px;
+    display: inline;
+  
+    .trail {
+      margin-left: 15px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+  
+    a {
+      color: #666;
+      font-weight: 100;
+      margin-left: 15px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+  }
+
   .affiliations {
     padding-bottom: 1rem;
   }
