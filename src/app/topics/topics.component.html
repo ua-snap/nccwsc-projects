@@ -105,11 +105,11 @@
 
 			<!-- ********************< Mobile Cards*****************************************************-->
 			<div
-				class="d-lg-none"
+				class="d-lg-none col-xs-10"
 				*ngIf="!dataLoading && filteredProjectsList.length > 0"
 			>
 				<div
-					class="card col-xs-10"
+					class="card"
 					*ngFor="let project of filteredProjectsList"
 				>
 					<!--Card content-->
@@ -142,7 +142,7 @@
 						</h4>
 						<!--Project Year-->
 						<div class="card-text">
-							<b>Funding Year:</b>
+							<b>Funding Year: </b>
 							<span *ngIf="project['fiscal_year']">
 								{{ project.fiscal_year }}
 							</span>
@@ -151,7 +151,7 @@
 
 						<!--CSC-->
 						<div class="card-text">
-							<b>CASC:</b>
+							<b>CASC: </b>
 							<span> {{ project.csc.name }} </span>
 						</div>
 
@@ -170,7 +170,7 @@
 
 						<!--Status-->
 						<div class="card-text">
-							<b>Status:</b>
+							<b>Status: </b>
 							<span *ngIf="project.status">
 								<span>{{ project.status }}</span>
 							</span>

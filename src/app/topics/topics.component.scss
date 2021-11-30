@@ -13,30 +13,45 @@ h2 {
 }
 
 .select-box {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   h3 {
     font-size: 1.35rem;
     padding-bottom: 2px;
     border-bottom: 1px solid #eee;
   }
   div {
-    margin: 0;
-    padding: 0;
-    line-height: 1.5;
+    margin: 0 0 0.2rem 0;
+    padding-left: 1.1rem;
+    text-indent: -1.1rem;
+    line-height: 1.4;
     font-size: 1rem;
+
+    input[type="radio"] {
+      display: inline;
+      position: relative;
+      bottom: 1px;
+      margin-right: 0.5ex;
+    }
+
     label {
+      display: inline;
       margin-bottom: 0;
     }
   }
-  input[type="radio"] {
-    display: inline-block;
-    margin-right: 0.5ex;
-  }
+  
 }
 
 :host::ng-deep table {
   thead {
     border-bottom: 1px solid #eee;
+    a.sort.asc::after {
+      border-width: 6px !important;
+      border-bottom-color: #888;
+    }
+    a.sort.desc::after {
+      border-width: 6px !important;
+      border-bottom-color: #888;
+    }
   }
   tr {
     th.ng2-smart-th {
@@ -53,6 +68,10 @@ h2 {
       line-height: 1.25;
       font-size: 1rem !important;
       border-top: none;
+
+      ul {
+        margin-left: 0; padding-left: 0;
+      }
     }
   }
 }
@@ -64,5 +83,9 @@ h2 {
   ul {
     margin: 0;
     padding-left: 1rem;
+  }
+
+  h4.card-title {
+    font-size: 1.25rem;
   }
 }

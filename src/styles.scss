@@ -1,10 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400');
-@import url('https://fonts.googleapis.com/css?family=Biryani:200,300,400,600,900');
+@import url('https://fonts.googleapis.com/css?family=Biryani:200,300,400,500,600,900');
 
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
 body {
   font-family: 'Biryani',sans-serif !important;
   font-size: 16px;
+}
+
+a {
+  color: #007bff !important;
 }
