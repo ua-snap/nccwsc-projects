@@ -1,9 +1,8 @@
-<div class="row search">
-  <h4>Search</h4>
+<div class="search">
   <div class="search-nav">
-    <form class="ui form row" >
+    <form class="ui form" >
       <div class="field">
-        <input type="text" id="queryTerms" [(ngModel)]="searchQuery" value="searchQuery" placeholder="Search terms ..." name="queryTerms">
+        <input type="text" id="queryTerms" [(ngModel)]="searchQuery" value="searchQuery" placeholder="Enter search terms&hellip;" name="queryTerms">
       </div>
       <div class="field" *ngIf="topicsLoaded">
         <ng-select
@@ -87,8 +86,8 @@
         placeholder="All Statuses">
       </ng-select>
     </div>
-    <div class="field">
-      <button (click)="resetFilters()" *ngIf="showResetFilters" class="btn btn-sm btn-warning">Reset Filters</button>
+    <div class="clearfix" style="width: 100%;">
+      <button (click)="resetFilters()" *ngIf="showResetFilters" class="btn btn-sm btn-warning float-right">Reset Filters</button>
     </div>
   </div>
 </div>

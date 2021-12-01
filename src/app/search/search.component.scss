@@ -1,123 +1,14 @@
-div .card {
-  margin-bottom: 1em !important;
-  width: 95%;
-  display: block;
-  margin-left: 0;
-  margin-right: auto;
-  .card-block {
-    margin: .5em !important;
-    padding: 0;
-    padding-left: 0.25em;
-  }
-}
-
-h4 {
-  margin-bottom: .7em !important;
-}
-
-div.results {
-  margin-top: 2em !important;
-}
-
-ul.taglist {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-li.list-group-item i {
-  padding: .25em;
-}
-
-.taglist {
-  display: inline;
-  list-style: none;
-}
-
-.taglist li {
-  display: inline;
-}
-
-.taglist li:after {
-   content: ", ";
-}
-
-.taglist li:last-child:after {
-    content: "";
-}
-
-.list-group-flush .list-group-item {
-  border: none !important;
-  margin: 0;
-  padding: 0 1em 0 1em;
-}
-
-div.modal-body .list-group-flush .list-group-item {
-  padding: 0 0 .25em 0;
-}
-
-h4.card-title a {
-  font-size: .8em !important;
-  font-weight: bold !important;
-  margin-bottom: 0 !important;
-  color: white ;
-  background-color: rgb(29, 90, 171);
-  padding: 6px;
-  width: 100%;
-  line-height: 45px !important;
-}
-
-h4.card-title a.nonProject {
-  font-size: .75em !important;
-  font-weight: bold !important;
-  color: rgb(29, 90, 171);
-  background-color: white;
-  line-height: 35px !important;
-  padding: 0;
-}
-
-strong {
-  margin-right: 1em !important;
-}
-
-.card-img-top {
-  width: 100%;
-  clip:rect(0px,100%,200px,0px);
-  overflow: hidden;
-}
-
-a.summary_link {
-  font-size: 1.1em;
-  margin-top: .5em;
-  margin-bottom: .5em;
-  margin-left: 1em;
-  color: #0275d8 !important;
-}
-
-a.summary_link:hover {
-  color: #014c8c !important;
-}
-
-div.no_search,
-div.loading {
-  h4.loading {
-    text-align: center;
-  }
-  padding: 0 1em 1em 1em;
-  img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  p {
-    display: block;
-    width: 95%;
-    border: 1px #ddd solid;
-    text-align: center;
-    padding: 1em;
+.results {
+  .results-count {
     font-style: italic;
   }
-}
 
-.row {
-  font-family: Arial;
+  .card {
+    margin-bottom: 1rem;
+    h4.card-title a {
+      font-family: "Lora", serif !important;
+      font-weight: 500 !important;
+      font-size: 1.3rem;
+    }
+  }
 }

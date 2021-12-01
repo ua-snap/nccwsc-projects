@@ -78,6 +78,7 @@ export class SearchComponent implements OnInit {
         if (result.dates.publication_date) {
           result.dates.publication_date = SearchComponent.niceDate(result.dates.publication_date);
         }
+        console.log(result)
       }
     });
     this.filteredResultsCountSubscription = this.searchService.filteredResultsCount$.subscribe(filteredResultsCount=>
@@ -89,7 +90,7 @@ export class SearchComponent implements OnInit {
       // If no results are returned, totalItems returns a -1, then 0
       // This code checks to see if a -1 has been returned, then it modifies the noResult message
       if (this.total_results < 0) {        
-        this.noResult = "No results found. Enter (or modify) the search term(s) and select 'Search' to search."
+        this.noResult = "No results found. Enter (or modify) the search term(s)."
       } else {
         this.noResult = 'Use the search controls to create and filter your query.'
       }

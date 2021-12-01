@@ -1,193 +1,337 @@
-<div class="row">
+<div class="row clearfix">
   <div class="col-md-3">
     <search-nav></search-nav>
   </div>
   <div class="col-md-9 results">
+    <p *ngIf="results && results.length == 0">Enter search terms and filters using the controls on the left, then click &ldquo;Search&rdquo; to get results.</p>
     <div *ngIf="results.length > 0">
-      <span><h4>Search Results</h4><p *ngIf="total_results > 0 && filteredResultsCount != -1">( Total Results: {{ total_results }}, Filtered Results: {{ filteredResultsCount }} )</p></span>
+      <h4>Search Results <span *ngIf="total_results > 0 && filteredResultsCount != -1">({{ filteredResultsCount }})</span></h4>
       <div class="haveResults" *ngIf="total_results > 0">
         <div *ngFor="let result of results">
-          <div class="card card-result">
+          <div class="card">
             <!-- <img *ngIf="result.previewImage" class="card-img-top" src="{{ result.previewImage.url }}" alt="{{ result.previewImage.title }}"> -->
-            <div class="card-block top">
+            <div class="card-body">
               <h4 class="card-title">
-                <a [routerLink]="['/project/', result.csc.id, result.id]" *ngIf="isProject(result.types)">
+                <a
+                  [routerLink]="['/project/', result.csc.id, result.id]"
+                  *ngIf="isProject(result.types)"
+                >
                   {{ result.title }}
                 </a>
-                <a class="nonProject" [routerLink]="['/search/']" (click)="open(nonProject, result)" *ngIf="!isProject(result.types)">{{ result.title }}</a>
+                <a
+                  class="nonProject"
+                  [routerLink]="['/search/']"
+                  (click)="open(nonProject, result)"
+                  *ngIf="!isProject(result.types)"
+                  >{{ result.title }}</a
+                >
               </h4>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item" *ngIf="result.contacts?.principal_investigators"><strong>Lead Contact(s):</strong>
-                <ul class="taglist"> 
-                  <li *ngFor="let pi of result.contacts.principal_investigators">{{ pi.name }}</li>
-                </ul>
-              </li>
-              <li class="list-group-item" *ngIf="result.csc?.name"><strong>CASC:</strong> {{ result.csc.name }}</li>
-              <li class="list-group-item" *ngIf="result.status"><strong>Status:</strong> {{ result.status }}</li>
-              <li class="list-group-item" *ngIf="result.topics?.length > 0"><strong>Science Topic(s):</strong>
-                <ul class="taglist"> 
-                  <li *ngFor="let topic of result.topics">{{ topic }}</li>
-                </ul>
-              </li>
-              <li class="list-group-item" *ngIf="result.subtopics?.length > 0">
-                <strong>Science Subtopic(s):</strong>
-                <ul class="taglist"> 
-                  <li *ngFor="let subtopic of result.subtopics">{{ subtopic }}</li>
-                </ul>
-              </li>   
-              <li class="list-group-item" *ngIf="result.fiscal_year"><strong>Fiscal Year:</strong> {{ result.fiscal_year }}</li>
-              <li class="list-group-item" *ngIf="result.dates?.publication_date"><strong>Publication Date:</strong> {{ result.dates.publication_date }}</li>
-              <li class="list-group-item" *ngIf="result.dates?.start_date && result.dates?.end_date"><strong>Start Date / End Date:</strong> {{ result.dates.start_date }} - {{ result.dates.end_date }}</li>
-              <li class="list-group-item" *ngIf="result.types?.length > 0"><strong>Type(s):</strong>
-                <ul class="taglist"> 
-                  <li *ngFor="let type of result.types">{{ type }}</li>
-                </ul>
-              </li>  
-              <li class="list-group-item" *ngIf="result.organizations?.length > 0"><strong>Organizations(s):</strong>
-                <ul class="taglist"> 
-                  <li *ngFor="let organization of result.organizations">{{ organization }}</li>
-                </ul>
-              </li> 
-              <li class="list-group-item" *ngIf="result.hasMaps == true || result.hasFolders == true || isProject(result.types)">
-                <i class="fa fa-link fa-lg" title="This is a project." aria-hidden="true" *ngIf="isProject(result.types)"></i>
-                <i class="fa fa-map fa-lg" title="This project has maps." aria-hidden="true" *ngIf="result.hasMaps == true"></i>
-                <i class="fa fa-folder fa-lg" title="This project has products." aria-hidden="true" *ngIf="result.hasFolders == true"></i>                
-              </li>
-            </ul>
 
-            <a class="summary_link" (click)="result.isCollapsed = !result.isCollapsed" [attr.aria-expanded]="!result.isCollapsed" aria-controls="collapseExample">Summary</a>
-            <div id="collapseExample" [ngbCollapse]="result.isCollapsed">
-              <div class="card-block">
-                <p class="card-text" [innerHtml]="result.summary"></p>
+              <ul>
+                <li *ngIf="result.contacts?.principal_investigators.length > 0">
+                  <strong>Lead Contact(s):</strong>
+                  <ul class="taglist">
+                    <li
+                      *ngFor="let pi of result.contacts.principal_investigators"
+                    >
+                      {{ pi.name }}
+                    </li>
+                  </ul>
+                </li>
+                <li *ngIf="result.csc?.name">
+                  <strong>CASC: </strong> {{ result.csc.name }}
+                </li>
+                <li *ngIf="result.status">
+                  <strong>Status: </strong> {{ result.status }}
+                </li>
+                <li *ngIf="result.topics?.length > 0">
+                  <strong>Science Topic(s): </strong>
+                  <ul class="taglist">
+                    <li *ngFor="let topic of result.topics">{{ topic }}</li>
+                  </ul>
+                </li>
+                <li *ngIf="result.subtopics?.length > 0">
+                  <strong>Science Subtopic(s): </strong>
+                  <ul class="taglist">
+                    <li *ngFor="let subtopic of result.subtopics">
+                      {{ subtopic }}
+                    </li>
+                  </ul>
+                </li>
+                <li *ngIf="result.fiscal_year">
+                  <strong>Fiscal Year: </strong> {{ result.fiscal_year }}
+                </li>
+                <li *ngIf="result.dates?.publication_date">
+                  <strong>Publication Date:</strong>
+                  {{ result.dates.publication_date }}
+                </li>
+                <li *ngIf="result.dates?.start_date && result.dates?.end_date">
+                  <strong>Start Date/End Date:</strong>
+                  {{ result.dates.start_date }}&ndash;{{ result.dates.end_date }}
+                </li>
+                <li *ngIf="result.types?.length > 0">
+                  <strong>Type(s):</strong>
+                  <ul class="taglist">
+                    <li *ngFor="let type of result.types">{{ type }}</li>
+                  </ul>
+                </li>
+                <li *ngIf="result.organizations?.length > 0">
+                  <strong>Organizations(s):</strong>
+                  <ul class="taglist">
+                    <li *ngFor="let organization of result.organizations">
+                      {{ organization }}
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+
+              <a
+                class="summary_link"
+                (click)="result.isCollapsed = !result.isCollapsed"
+                [attr.aria-expanded]="!result.isCollapsed"
+                aria-controls="collapseExample"
+                >Summary</a
+              >
+              <div id="collapseExample" [ngbCollapse]="result.isCollapsed">
+                <div class="card-block">
+                  <p class="card-text" [innerHtml]="result.summary"></p>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        <div class="loading" *ngIf="total_results == -1">
+          <h4 class="loading">Loading {{ title }} ScienceBase Projects.</h4>
+          <img
+            src="{{ approot }}assets/loading.gif"
+            class="loading"
+            alt="Loading Results"
+            title="Loading Results"
+          />
+        </div>
+
+        <div class="no_search" *ngIf="total_results == 0">
+          <h4>Search Results</h4>
+          <p class="no_data">{{ noResult }}</p>
+        </div>
+
+        <div class="row">
+          <div
+            class="col-md-12 no_search"
+            *ngIf="filteredResultsCount == -1 && total_results > 0"
+          >
+            <h4>Search Results with Filter</h4>
+            <p class="no_data">
+              No projects exist that match the current filters. Please reset the
+              filters and refine your filters.
+            </p>
+          </div>
+        </div>
+
+        <ng-template #nonProject let-c="close" let-d="dismiss">
+          <div class="modal-header">
+            <h4 class="modal-title">{{ nonProjectItem.title }}</h4>
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="d('Cross click')"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul class="list-group list-group-flush">
+              <li
+                class="list-group-item"
+                *ngIf="
+                  nonProjectItem.contacts?.principal_investigators.length > 0
+                "
+              >
+                <strong>Lead Contact(s):</strong>
+                <ul class="taglist">
+                  <li
+                    *ngFor="
+                      let pi of nonProjectItem.contacts.principal_investigators
+                    "
+                  >
+                    {{ pi.name }}
+                  </li>
+                </ul>
+              </li>
+              <li class="list-group-item" *ngIf="nonProjectItem.csc?.name">
+                <strong>CASC:</strong> {{ nonProjectItem.csc.name }}
+              </li>
+              <li class="list-group-item" *ngIf="nonProjectItem.status">
+                <strong>Status:</strong> {{ nonProjectItem.status }}
+              </li>
+              <li
+                class="list-group-item"
+                *ngIf="
+                  nonProjectItem.contacts?.principal_investigators &&
+                  nonProjectItem.contacts?.principal_investigators.length > 0
+                "
+              >
+                <strong>Principal Investigator(s):</strong>
+                <ul class="contacts">
+                  <li
+                    *ngFor="
+                      let principal_investigator of nonProjectItem.contacts
+                        .principal_investigators
+                    "
+                  >
+                    {{ principal_investigator.name }}
+                    <em *ngIf="principal_investigator.organization"
+                      >({{ principal_investigator.organization }})</em
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li
+                class="list-group-item"
+                *ngIf="
+                  nonProjectItem.contacts?.co_investigators &&
+                  nonProjectItem.contacts.co_investigators.length > 0
+                "
+              >
+                <strong>Co-Investigator(s):</strong>
+                <ul class="contacts">
+                  <li
+                    *ngFor="
+                      let co_investigator of nonProjectItem.contacts
+                        .co_investigators
+                    "
+                  >
+                    {{ co_investigator.name }}
+                    <em *ngIf="co_investigator.organization"
+                      >({{ co_investigator.organization }})</em
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li
+                class="list-group-item"
+                *ngIf="
+                  nonProjectItem.contacts?.authors &&
+                  nonProjectItem.contacts.authors.length > 0
+                "
+              >
+                <strong>Author(s):</strong>
+                <ul class="contacts">
+                  <li *ngFor="let author of nonProjectItem.contacts.authors">
+                    {{ author.name }}
+                    <em *ngIf="author.organization"
+                      >({{ author.organization }})</em
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li
+                class="list-group-item"
+                *ngIf="
+                  nonProjectItem.contacts?.partners &&
+                  nonProjectItem.contacts.partners.length > 0
+                "
+              >
+                <strong>Partner(s):</strong>
+                <ul class="contacts">
+                  <li *ngFor="let partner of nonProjectItem.contacts.partners">
+                    {{ partner.name }}
+                    <em *ngIf="partner.organization"
+                      >({{ partner.organization }})</em
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li
+                class="list-group-item"
+                *ngIf="nonProjectItem.topics?.length > 0"
+              >
+                <strong>Science Topic(s):</strong>
+                <ul class="taglist">
+                  <li *ngFor="let topic of nonProjectItem.topics">
+                    {{ topic }}
+                  </li>
+                </ul>
+              </li>
+              <li
+                class="list-group-item"
+                *ngIf="nonProjectItem.subtopics?.length > 0"
+              >
+                <strong>Science Subtopic(s):</strong>
+                <ul class="taglist">
+                  <li *ngFor="let subtopic of nonProjectItem.subtopics">
+                    {{ subtopic }}
+                  </li>
+                </ul>
+              </li>
+              <li
+                class="list-group-item"
+                *ngIf="nonProjectItem.keywords?.length > 0"
+              >
+                <strong>Keyword(s):</strong>
+                <ul class="taglist">
+                  <li *ngFor="let keyword of nonProjectItem.keywords">
+                    {{ keyword }}
+                  </li>
+                </ul>
+              </li>
+              <li class="list-group-item" *ngIf="nonProjectItem.fiscal_year">
+                <strong>Fiscal Year:</strong> {{ nonProjectItem.fiscal_year }}
+              </li>
+              <li
+                class="list-group-item"
+                *ngIf="nonProjectItem.dates?.publication_date"
+              >
+                <strong>Publication Date:</strong>
+                {{ nonProjectItem.dates.publication_date }}
+              </li>
+              <li
+                class="list-group-item"
+                *ngIf="
+                  nonProjectItem.dates?.start_date &&
+                  nonProjectItem.dates?.end_date
+                "
+              >
+                <strong>Start Date / End Date:</strong>
+                {{ nonProjectItem.dates.start_date }} -
+                {{ nonProjectItem.dates.end_date }}
+              </li>
+              <li
+                class="list-group-item"
+                *ngIf="nonProjectItem.types?.length > 0"
+              >
+                <strong>Type(s):</strong>
+                <ul class="taglist">
+                  <li *ngFor="let type of nonProjectItem.types">{{ type }}</li>
+                </ul>
+              </li>
+              <li
+                class="list-group-item"
+                *ngIf="nonProjectItem.organizations?.length > 0"
+              >
+                <strong>Organizations(s):</strong>
+                <ul class="taglist">
+                  <li *ngFor="let organization of nonProjectItem.organizations">
+                    {{ organization }}
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <p [innerHtml]="nonProjectItem.body"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="c('Close click')"
+            >
+              Close
+            </button>
+          </div>
+        </ng-template>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-md-12 loading" *ngIf="total_results == -1">
-        <h4 class="loading">Loading {{ title }} ScienceBase Projects.</h4>
-        <img src="{{ approot }}assets/loading.gif" class="loading" alt="Loading Results" title="Loading Results" />
-      </div>
-      
-      <div class="col-md-12 no_search" *ngIf="total_results == 0">
-        <h4>Search Results</h4>        
-        <p class="no_data">{{ noResult }}</p>
-      </div>      
-    </div>
-
-    <div class="row">
-      <div class="col-md-12 no_search" *ngIf="filteredResultsCount == -1 && total_results > 0">
-        <h4>Search Results with Filter {{ filteredResultsCount }}</h4>
-        <p class="no_data">No projects exist that match the current filter configuration.  Please reset the filters and refine your filters.</p>
-      </div>
-    </div>
-
-    <ng-template #nonProject let-c="close" let-d="dismiss">
-      <div class="modal-header">
-        <h4 class="modal-title">{{ nonProjectItem.title }}</h4>
-        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item" *ngIf="nonProjectItem.contacts?.principal_investigators.length > 0"><strong>Lead Contact(s):</strong>
-            <ul class="taglist"> 
-              <li *ngFor="let pi of nonProjectItem.contacts.principal_investigators">{{ pi.name }}</li>
-            </ul>
-          </li>
-          <li class="list-group-item" *ngIf="nonProjectItem.csc?.name">
-            <strong>CASC:</strong> {{ nonProjectItem.csc.name }}
-          </li>
-          <li class="list-group-item" *ngIf="nonProjectItem.status">
-            <strong>Status:</strong> {{ nonProjectItem.status }}
-          </li>
-          <li class="list-group-item" *ngIf="nonProjectItem.contacts?.principal_investigators && nonProjectItem.contacts?.principal_investigators.length > 0">
-            <strong>Principal Investigator(s):</strong>
-            <ul class="contacts">
-              <li *ngFor = "let principal_investigator of nonProjectItem.contacts.principal_investigators">
-                {{ principal_investigator.name }}
-                <em *ngIf="principal_investigator.organization">({{ principal_investigator.organization }})</em>
-              </li>
-            </ul>
-          </li>
-          <li class="list-group-item" *ngIf="nonProjectItem.contacts?.co_investigators && nonProjectItem.contacts.co_investigators.length > 0">
-            <strong>Co-Investigator(s):</strong>
-            <ul class="contacts">
-              <li *ngFor = "let co_investigator of nonProjectItem.contacts.co_investigators">
-                {{ co_investigator.name }}
-                <em *ngIf="co_investigator.organization">({{ co_investigator.organization }})</em>
-              </li>
-            </ul>
-          </li>
-          <li class="list-group-item" *ngIf="nonProjectItem.contacts?.authors && nonProjectItem.contacts.authors.length > 0">
-            <strong>Author(s):</strong>
-            <ul class="contacts">
-              <li *ngFor = "let author of nonProjectItem.contacts.authors">
-                {{ author.name }}
-                <em *ngIf="author.organization">({{ author.organization }})</em>
-              </li>
-            </ul>
-          </li>
-          <li class="list-group-item" *ngIf="nonProjectItem.contacts?.partners && nonProjectItem.contacts.partners.length > 0">
-            <strong>Partner(s):</strong>
-            <ul class="contacts">
-              <li *ngFor = "let partner of nonProjectItem.contacts.partners">
-                {{ partner.name }}
-                <em *ngIf="partner.organization">({{ partner.organization }})</em>
-              </li>
-            </ul>
-          </li>
-          <li class="list-group-item" *ngIf="nonProjectItem.topics?.length > 0">
-            <strong>Science Topic(s):</strong>
-            <ul class="taglist"> 
-              <li *ngFor="let topic of nonProjectItem.topics">{{ topic }}</li>
-            </ul>
-          </li>
-          <li class="list-group-item" *ngIf="nonProjectItem.subtopics?.length > 0">
-            <strong>Science Subtopic(s):</strong>
-            <ul class="taglist"> 
-              <li *ngFor="let subtopic of nonProjectItem.subtopics">{{ subtopic }}</li>
-            </ul>
-          </li>
-          <li class="list-group-item" *ngIf="nonProjectItem.keywords?.length > 0">
-            <strong>Keyword(s):</strong>
-            <ul class="taglist"> 
-              <li *ngFor="let keyword of nonProjectItem.keywords">{{ keyword }}</li>
-            </ul>
-          </li>
-          <li class="list-group-item" *ngIf="nonProjectItem.fiscal_year">
-            <strong>Fiscal Year:</strong> {{ nonProjectItem.fiscal_year }}
-          </li>
-          <li class="list-group-item" *ngIf="nonProjectItem.dates?.publication_date">
-            <strong>Publication Date:</strong> 
-            {{ nonProjectItem.dates.publication_date }}
-          </li>
-          <li class="list-group-item" *ngIf="nonProjectItem.dates?.start_date && nonProjectItem.dates?.end_date">
-            <strong>Start Date / End Date:</strong> {{ nonProjectItem.dates.start_date }} - {{ nonProjectItem.dates.end_date }}
-          </li>
-          <li class="list-group-item" *ngIf="nonProjectItem.types?.length > 0">
-            <strong>Type(s):</strong>
-            <ul class="taglist"> 
-              <li *ngFor="let type of nonProjectItem.types">{{ type }}</li>
-            </ul>
-          </li>  
-          <li class="list-group-item" *ngIf="nonProjectItem.organizations?.length > 0">
-            <strong>Organizations(s):</strong>
-            <ul class="taglist"> 
-              <li *ngFor="let organization of nonProjectItem.organizations">{{ organization }}</li>
-            </ul>
-          </li>  
-        </ul>
-        <p [innerHtml]="nonProjectItem.body"></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
-      </div>
-    </ng-template>
   </div>
-</div>  
+</div>

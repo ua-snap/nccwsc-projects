@@ -1,83 +1,42 @@
-div.row {
-  margin-top: 2em;
-  margin-left: 1em !important;
-  margin-right: 0 !important;
+.search-nav {
+  margin-top: 0.35rem; // to align with right column
+
+  .field {
+    margin-bottom: 1rem;
+
+    input#queryTerms {
+      padding: 0.5rem;
+      width: 100%;
+      border: 1px solid #87845e;
+      border-radius: 0.25rem;
+      margin-top: 0;
+      box-shadow: 0 0 0.5rem rgba(226, 217, 81, 0.5);
+
+      &::placeholder {
+        color: #888;
+        font-style: italic;
+        opacity: 1;
+      }
+    }
+  }
+
+  .buttons button {
+    margin-left: 0.75rem;
+  }
 }
 
-h4 {
-  margin-left: .5em;
-  font-family: Arial;
-}
-
-form {
-  margin-left: .5em;
-  margin-right: 0;
-}
-
-input {
-  padding: 3px 10px;
-  border: solid 1px #dddddd !important;
-}
-
-div.field {
-  width: 100%;
-  margin-bottom: .8em;
-  color: #000000;
-}
-
-div.filters {
-  width: 100%;
-  margin: 15px 0 0 .5em !important;
+.filters {
+  clear: both;
+  padding-top: 2rem;
   h4 {
-    margin-left: 0;
+    font-size: 1.2rem;
+  }
+
+  .field {
+    margin-bottom: 1rem;
   }
 }
 
-div.search-nav {
-  width: 100% !important;
-  margin-top: 10px;
-}
-
-label {
-  padding: 0;
-  margin: 0;
-}
-
-input#queryTerms {
-  width: 100%;
-}
-
-.btn {
-  margin-bottom: 1em;
-  margin-top: 1em !important;
-}
-
-.buttons {
-  .btn {
-    margin-top: .4em !important;
-  }
-}
-
-.btn-success {
-  background-color: rgb(29, 90, 171);
-  border-color: rgb(29, 90, 171);
-  font-weight: bold;
-}
-
-.btn-success:focus {
-  box-shadow: 0 0 0 2px rgba(86,171,182,.5);
-}
-
-div.info {
-  margin: .5em 0 1.5em .5em;
-  background-color: #F5F5F5;
-  border: solid 1px #E0E0E0;
-  padding: .25em;
-  p {
-    margin: 0;
-    padding: 0;
-    font-style: italic;
-    font-size: smaller;
-    text-align: center;
-  }
+:host::ng-deep .ng-select .ng-select-container {
+  height: 2.2rem;
 }

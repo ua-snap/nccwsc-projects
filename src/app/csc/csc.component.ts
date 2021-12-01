@@ -10,7 +10,7 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 @Component({
   selector: "app-csc",
   templateUrl: "./csc.component.html",
-  styleUrls: ["./csc.component.scss"]
+  styleUrls: ["./csc.component.scss", "../shared.scss"]
 })
 export class CscComponent implements OnInit {
   faHome = faHome;

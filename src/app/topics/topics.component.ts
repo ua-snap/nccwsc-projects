@@ -11,7 +11,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: "app-topics",
   templateUrl: "./topics.component.html",
-  styleUrls: ["./topics.component.scss"]
+  styleUrls: ["./topics.component.scss", "../shared.scss"]
 })
 export class TopicsComponent implements OnInit {
   faHome = faHome;
