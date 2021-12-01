@@ -1,6 +1,15 @@
 .breadcrumbs {
   margin: 1rem 0.75rem;
-  font-size: 1.35rem;
+
+  .home-icon * {
+    font-size: 20px;
+    color: #626466;
+    margin-right: 0.25rem;
+  }
+
+  a, span.leaf {
+    font-size: 1.25rem;
+  }
 
   .trail {
     display: inline-block;

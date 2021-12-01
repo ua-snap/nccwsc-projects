@@ -1,6 +1,27 @@
 .project {
   margin-top: 2rem;
 
+  .breadcrumbs {
+    margin: 0 0.75rem 1rem;
+
+    .home-icon * {
+      font-size: 20px;
+      color: #626466;
+      margin-right: 0.25rem;
+    }
+
+    a,
+    span.leaf {
+      font-size: 1.25rem;
+      margin: 0;
+    }
+
+    .trail {
+      display: inline-block;
+      margin: 0 1ex;
+    }
+  }
+
   .body {
     line-height: 1.65;
     margin-bottom: 2rem;
@@ -33,27 +54,6 @@
       ul {
         padding-left: 2rem;
       }
-    }
-  }
-
-  .breadcrumbs {
-    color: #666;
-    font-weight: 100;
-    font-size: 16px;
-    display: inline;
-  
-    .trail {
-      margin-left: 15px;
-      margin-top: 15px;
-      margin-bottom: 15px;
-    }
-  
-    a {
-      color: #666;
-      font-weight: 100;
-      margin-left: 15px;
-      margin-top: 15px;
-      margin-bottom: 15px;
     }
   }
 

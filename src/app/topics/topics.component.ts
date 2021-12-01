@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
 import { TitleLinkComponent } from '../title-link/title-link.component';
 import { Location } from '@angular/common';
 import { UrlService } from '../url.service';
-
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: "app-topics",
@@ -14,6 +14,7 @@ import { UrlService } from '../url.service';
   styleUrls: ["./topics.component.scss"]
 })
 export class TopicsComponent implements OnInit {
+  faHome = faHome;
   sub = null;
   topic = null;
   page_title = null;

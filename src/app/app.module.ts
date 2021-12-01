@@ -10,6 +10,7 @@ import { NgbModule, NgbActiveModal, NgbDropdownModule } from '@ng-bootstrap/ng-b
 import { LeafletModule } from "@asymmetrik/ngx-leaflet";
 import { NgSelectModule } from '@ng-select/ng-select';
 import { GoogleAnalyticsService } from './google-analytics.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { HeaderComponent } from './header/header.component'
 import { FooterComponent } from './footer/footer.component'
@@ -55,6 +56,7 @@ import { TitleLinkComponent } from './title-link/title-link.component'
     Ng2SmartTableModule,
     NgbDropdownModule,
     NgbModule,
+    FontAwesomeModule
   ],
   entryComponents: [
     TitleLinkComponent

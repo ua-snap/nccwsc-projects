@@ -6,6 +6,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 import { environment } from '../../environments/environment';
 import { UrlService } from '../url.service';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-project',
@@ -14,6 +15,7 @@ import { UrlService } from '../url.service';
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit {
+  faHome = faHome;
   sub: any;
   projectId: string;
   cscId: string;

@@ -1,9 +1,13 @@
 <div class="container-fluid">
-
 	<div class="breadcrumbs">
-		<a href="#">Project Explorer Home</a>
+		<a href="#"
+			><span class="home-icon">
+				<fa-icon [icon]="faHome"></fa-icon>
+			</span>
+			Project Explorer Home</a
+		>
 		<span class="trail">/</span>
-		<a [href]="url">{{ page_title }} </a>
+		<span class="leaf">{{ page_title }}</span>
 	</div>
 
 	<h2>Topic: {{ page_title }}</h2>
@@ -68,7 +72,10 @@
 			</div>
 		</div>
 
-		<div class="col-md-10 results-table" *ngIf="!dataLoading && filteredProjectsList.length > 0" >
+		<div
+			class="col-md-10 results-table"
+			*ngIf="!dataLoading && filteredProjectsList.length > 0"
+		>
 			<div class="d-none d-lg-block">
 				<ng2-smart-table
 					class="table table-striped"
@@ -77,7 +84,9 @@
 				></ng2-smart-table>
 
 				<div *ngIf="dataLoading">
-					<h4 class="loading">Loading {{ title }} ScienceBase Projects.</h4>
+					<h4 class="loading">
+						Loading {{ title }} ScienceBase Projects.
+					</h4>
 					<img
 						src="{{ approot }}assets/loading.gif"
 						class="loading"
@@ -88,11 +97,14 @@
 
 				<div
 					class="no_data"
-					*ngIf="filteredProjectsList.length == 0 && dataLoading == false"
+					*ngIf="
+						filteredProjectsList.length == 0 && dataLoading == false
+					"
 				>
 					<h4 class="no_data">
-						Use one or more filters above to select the topics, fiscal years, or
-						statises for the projects you wish to view.
+						Use one or more filters above to select the topics,
+						fiscal years, or statises for the projects you wish to
+						view.
 					</h4>
 					<button
 						class="btn btn-outline-secondary btn-small"
@@ -108,19 +120,26 @@
 				class="d-lg-none col-xs-10"
 				*ngIf="!dataLoading && filteredProjectsList.length > 0"
 			>
-				<div
-					class="card"
-					*ngFor="let project of filteredProjectsList"
-				>
+				<div class="card" *ngFor="let project of filteredProjectsList">
 					<!--Card content-->
 					<div class="card-block mobile">
 						<!--Title-->
 						<h4 class="card-title">
-							<a [routerLink]="['/project/', project.csc['id'], project.id]">
+							<a
+								[routerLink]="[
+									'/project/',
+									project.csc['id'],
+									project.id
+								]"
+							>
 								{{ project["title"] }}
 							</a>
 							<ul *ngIf="project.children?.length > 0">
-								<li *ngFor="let childProject of project.children">
+								<li
+									*ngFor="
+										let childProject of project.children
+									"
+								>
 									<span *ngIf="project.types == 'Project'">
 										<a
 											[routerLink]="[
@@ -133,7 +152,12 @@
 										</a>
 									</span>
 									<span *ngIf="project.types != 'Project'">
-										<a [routerLink]="['/component/', project.id]">
+										<a
+											[routerLink]="[
+												'/component/',
+												project.id
+											]"
+										>
 											{{ project["title"] }}
 										</a>
 									</span>
@@ -174,7 +198,9 @@
 							<span *ngIf="project.status">
 								<span>{{ project.status }}</span>
 							</span>
-							<span *ngIf="!project.status"> <span>N/A</span> </span>
+							<span *ngIf="!project.status">
+								<span>N/A</span>
+							</span>
 						</div>
 					</div>
 					<!--/.Card content-->
