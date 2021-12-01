@@ -1,109 +1,160 @@
+<div class="container-fluid">
+	<div class="breadcrumbs">
+		<a href="#"
+			><span class="home-icon">
+				<fa-icon [icon]="faHome"></fa-icon>
+			</span>
+			Project Explorer Home</a
+		>
+		<span class="trail">/</span>
+		<span class="leaf">{{ title }}</span>
+	</div>
+	<h2>{{ title }} Projects</h2>
+	<div class="row csc">
+		<div class="col-md-2">
+			<div class="select-box">
+				<h3 class="select-title">Topic</h3>
+				<div *ngFor="let topic of topics">
+					<input
+						type="radio"
+						(change)="filterProjectsList($event.target.value)"
+						[(ngModel)]="current_topic"
+						[value]="topic"
+						[id]="topic"
+						name="topic"
+					/>
+					<label [for]="topic">{{ topic }}</label>
+				</div>
+			</div>
+			<div class="select-box">
+				<h3 class="select-title">Fiscal Year</h3>
+				<div *ngFor="let fy of fiscal_years">
+					<input
+						type="radio"
+						(change)="filterProjectsList($event.target.value)"
+						[(ngModel)]="current_fy"
+						[value]="fy"
+						[id]="fy"
+						name="fy"
+					/>
+					<label [for]="fy">{{ fy }}</label>
+				</div>
+			</div>
+			<div class="select-box">
+				<h3 class="select-title">Status</h3>
+				<div *ngFor="let status of statuses">
+					<input
+						type="radio"
+						(change)="filterProjectsList($event.target.value)"
+						[(ngModel)]="current_status"
+						[value]="status"
+						[id]="status"
+						name="status"
+					/>
+					<label [for]="status">{{ status }}</label>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-10 results-table">
+			<div
+				class="csc-projects"
+				*ngIf="!dataLoading && filteredCscProjectsList.length > 0"
+			>
+				<div class="d-none d-lg-block">
+					<ng2-smart-table
+						class="table table-striped"
+						[settings]="settings"
+						[source]="filteredCscProjectsList"
+					></ng2-smart-table>
 
-<div class="row csc">
-	<div class="col-md-12">
-		<div class="breadcrumbs">
-			<a href="#">Project Explorer Home</a>
-			<span class="trail">&gt;</span>
-			<a [href]="url">{{ title }} </a>
-		</div>
-	</div>
-  <div class="col-md-12">
-    <h1>{{ title }} Projects</h1>
-	</div>
-	<div class="col-md-2 background-div">
-		<h2>Filter Projects</h2>
-		<div class="select-box">
-			<h3 class="select-title">Topic</h3>
-			<div *ngFor="let topic of topics">
-				<input type="radio" (change)="filterProjectsList($event.target.value)" [(ngModel)]="current_topic" [value]="topic" [id]="topic" name="topic">
-				<label [for]="topic">{{ topic }}</label>
-			</div>
-		</div>
-		<div class="select-box">
-			<h3 class="select-title">Fiscal Year</h3>
-			<div *ngFor="let fy of fiscal_years">
-				<input type="radio" (change)="filterProjectsList($event.target.value)" [(ngModel)]="current_fy" [value]="fy" [id]="fy" name="fy">
-				<label [for]="fy">{{ fy }}</label>
-			</div>
-		</div>
-		<div class="select-box">
-			<h3 class="select-title">Status</h3>
-			<div *ngFor="let status of statuses">
-				<input type="radio" (change)="filterProjectsList($event.target.value)" [(ngModel)]="current_status" [value]="status" [id]="status" name="status">
-				<label [for]="status">{{ status }}</label>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-10 background-div">
-		<div class="csc-projects" *ngIf="!dataLoading && filteredCscProjectsList.length > 0">
-			<div class="col-md-12">
-				<ng2-smart-table class= "table table-striped table-bordered hidden-md-down" [settings]="settings" [source]="filteredCscProjectsList"></ng2-smart-table>
-
-				<div class="col-md-12 loading" *ngIf="dataLoading">
+					<div *ngIf="dataLoading">
 						<h4 class="loading">Loading {{ title }} ScienceBase Projects.</h4>
-						<img src="{{ approot }}assets/loading.gif" class="loading" alt="Loading Results" title="Loading Results" />
-				</div>
+						<img
+							src="{{ approot }}assets/loading.gif"
+							class="loading"
+							alt="Loading Results"
+							title="Loading Results"
+						/>
+					</div>
 
-				<div class="no_data col-md-12" *ngIf="filteredCscProjectsList.length == 0 && dataLoading == false">
-						<h4 class="no_data">Use one or more filters above to select the topics, fiscal years, or statises for the projects you wish to view.</h4>
-						<button class="btn btn-outline-secondary btn-small" (click)="showAllProjects()">See All Projects</button>
+					<div
+						class="no_data"
+						*ngIf="filteredCscProjectsList.length == 0 && dataLoading == false"
+					>
+						<h4 class="no_data">
+							Use one or more filters above to select the topics, fiscal years,
+							or statises for the projects you wish to view.
+						</h4>
+						<button
+							class="btn btn-outline-secondary btn-small"
+							(click)="showAllProjects()"
+						>
+							See All Projects
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
+		<!-- ********************< Mobile Cards*****************************************************-->
 
-<!-- ********************< Mobile Cards*****************************************************-->
+		<div
+			class="d-lg-none col-xs-10"
+			*ngIf="!dataLoading && filteredCscProjectsList.length > 0"
+		>
+			<div class="card" *ngFor="let project of filteredCscProjectsList">
+				<!--Card content-->
+				<div class="card-block mobile">
+					<!--Title-->
+					<h4 class="card-title">
+						<a [routerLink]="['/project/', sbId, project.id]">
+							{{ project["title"] }}
+						</a>
+						<ul *ngIf="project.children?.length > 0">
+							<li *ngFor="let childProject of project.children">
+								{{ childProject.title }}
+							</li>
+						</ul>
+					</h4>
 
-    <div class = "col-xs-12 hidden-lg-up " *ngIf="!dataLoading && filteredCscProjectsList.length > 0">
-		<div class = "card col-xs-10"  *ngFor= "let project of filteredCscProjectsList">
+					<!--Project Year-->
+					<div class="card-text">
+						<b>Funding Year: </b>
+						<span *ngIf="project['fiscal_year']">
+							{{ project.fiscal_year }}
+						</span>
+						<span *ngIf="!project.fiscal_year"> N/A </span>
+					</div>
 
-		<!--Card content-->
-		<div class="card-block mobile">
+					<!--Principal Investigator-->
+					<div class="card-text">
+						<b>Principle Investigator(s): </b>
+						<ul *ngFor="let pi of project.contacts.principal_investigators">
+							<li>
+								{{ pi.name }}
+								<em *ngIf="pi.organization">({{ pi.organization }})</em>
+							</li>
+						</ul>
+					</div>
 
-			<!--Title-->
-			<h4 class="card-title "><a [routerLink]="['/project/', sbId, project.id]"> {{ project['title']}} </a>
-			<ul *ngIf="project.children?.length > 0">
-				<li *ngFor= "let childProject of project.children">
-					{{ childProject.title }}
-				</li>
-			</ul></h4>
+					<!--Topics-->
+					<div class="card-text">
+						<b>Topic(s): </b>
 
-			<!--Project Year-->
-			<div class="card-text">
-				<b>Funding Year:</b>
-				<span *ngIf="project['fiscal_year']"> {{ project.fiscal_year}} </span>
-				<span *ngIf="!project.fiscal_year"> N/A </span>
+						<span *ngIf="project?.topics"> {{ project.topics }} </span>
+						<span *ngIf="!project.topics"> Unknown </span>
+					</div>
+
+					<!--Status-->
+					<div class="card-text">
+						<b>Status: </b>
+						<span *ngIf="project.status"> {{ project.status }} </span>
+						<span *ngIf="!project.status"> Unknown </span>
+					</div>
+				</div>
+				<!--/.Card content-->
 			</div>
-
-			<!--Principal Investigator-->
-			<div class="card-text">
-				<b>Principle Investigator(s):</b>
-				<ul *ngFor="let pi of project.contacts.principal_investigators">
-					<li>
-						{{ pi.name }} <em *ngIf="pi.organization">({{ pi.organization }})</em>
-					</li>
-				</ul>
-			</div>
-
-			<!--Topics-->
-			<div class="card-text">
-				<b>Topic(s):</b>
-
-				<span *ngIf="project?.topics"> {{ project.topics }} </span>
-				<span *ngIf="!project.topics"> Unknown </span>
-			</div>
-
-			<!--Status-->
-			<div class="card-text">
-				<b>Status:</b>
-				<span *ngIf="project.status"> {{ project.status }} </span>
-				<span *ngIf="!project.status"> Unknown </span>
-			</div>
-
-		</div>
-		<!--/.Card content-->
 		</div>
 	</div>
 
+	<!--/.Card-->
 </div>
-
-<!--/.Card-->
