@@ -20,7 +20,6 @@
                 </a>
                 <a
                   class="nonProject"
-                  [routerLink]="['/search/']"
                   (click)="open(nonProject, result)"
                   *ngIf="!isProject(result.types)"
                   >{{ result.title }}</a
