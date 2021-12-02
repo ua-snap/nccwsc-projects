@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UrlService } from "../url.service";
 
 declare function imageMapResize(): void;
 
@@ -32,9 +33,10 @@ export class CscsComponent implements OnInit {
     {'id': 'science-tools', 'name': 'Science Tools for Managers'},
   ]
 
-  constructor() { }
+  constructor(private urlService: UrlService) { }
 
   ngOnInit() {
+    this.urlService.setPreviousTitle(null);
   }
 
   imageResized() {

@@ -6,7 +6,6 @@ import { environment } from '../../environments/environment';
 import { TitleLinkComponent } from '../title-link/title-link.component';
 import { Location } from '@angular/common';
 import { UrlService } from '../url.service';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: "app-topics",
@@ -14,7 +13,6 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ["./topics.component.scss", "../shared.scss"]
 })
 export class TopicsComponent implements OnInit {
-  faHome = faHome;
   sub = null;
   topic = null;
   page_title = null;
@@ -219,12 +217,6 @@ export class TopicsComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.urlService.currentUrl$
-    .subscribe((current_url: string) => {
-      this.url = "#" + current_url;
-    });
-
     this.sub = this.route.params.subscribe(params => {
       this.topic = params["topic"];
       if (params["subtopic"]) {
@@ -245,6 +237,7 @@ export class TopicsComponent implements OnInit {
 
       this.page_title = this.topic_names[this.topic]
       this.urlService.setPreviousTitle(this.page_title);
+      this.urlService.setCurrentTitle(this.page_title);
 
     });
     this.searchService.getTopics().subscribe(topics => {
