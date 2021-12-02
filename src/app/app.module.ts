@@ -28,7 +28,8 @@ import { UrlService } from './url.service';
 import { CscComponent } from './csc/csc.component'
 import { ProjectResourceComponent } from './project-resource/project-resource.component'
 import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { TitleLinkComponent } from './title-link/title-link.component'
+import { TitleLinkComponent } from './title-link/title-link.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component'
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { TitleLinkComponent } from './title-link/title-link.component'
     SearchNavComponent,
     CscComponent,
     ProjectResourceComponent,
-    TitleLinkComponent
+    TitleLinkComponent,
+    BreadcrumbComponent
   ],
   imports: [
     LeafletModule,

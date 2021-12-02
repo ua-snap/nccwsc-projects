@@ -17,7 +17,6 @@ export class CscComponent implements OnInit {
   sub: any;
   id: any;
   sbId: any;
-  url: any;
   cscProjectsList = [];
   filteredCscProjectsList = [];
   csc_url = environment.baseURL;
@@ -207,11 +206,9 @@ export class CscComponent implements OnInit {
       this.sbId = this.id;
     }
 
-    this.urlService.currentUrl$.subscribe((current_url: string) => {
-      this.url = "#" + current_url;
-    });
     this.title = this.csc_ids[this.sbId];
     this.urlService.setPreviousTitle(this.title);
+    this.urlService.setCurrentTitle(this.title);
     this.localJson.loadCscProjects(this.sbId).subscribe(data => {
       this.cscProjectsList = data;
       // tslint:disable-next-line:forin

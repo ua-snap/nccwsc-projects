@@ -21,7 +21,6 @@ export class AppComponent {
 			if(event instanceof NavigationEnd) {
 				this.urlService.setPreviousUrl(this.currentUrl);
 				this.currentUrl = event.url;
-				this.urlService.setCurrentUrl(this.currentUrl);
 				gtag('config', 'UA-3978613-27', 
 					{ 'page_path': event.urlAfterRedirects }
 				);

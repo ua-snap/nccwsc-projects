@@ -6,7 +6,6 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 import { environment } from '../../environments/environment';
 import { UrlService } from '../url.service';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-project',
@@ -15,7 +14,6 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit {
-  faHome = faHome;
   sub: any;
   projectId: string;
   cscId: string;
@@ -23,9 +21,6 @@ export class ProjectComponent implements OnInit {
   previewImage: any;
   modal_image: any;
   closeResult: string;
-  previousUrl: string = '';
-  currentUrl: string = '';
-  previousTitle: string = '';
   trustedDashboardUrl : SafeUrl;
   sbURL = environment.sbmainURL;
 
@@ -101,20 +96,7 @@ export class ProjectComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.urlService.previousUrl$
-    .subscribe((previous_url: string) => {
-      if (previous_url != null) {
-        this.previousUrl = "#" + previous_url;
-      }
-    });
-    this.urlService.previousTitle$
-    .subscribe((previous_title: string) => {
-      this.previousTitle = previous_title;
-    });
-    this.urlService.currentUrl$
-    .subscribe((current_url: string) => {
-      this.currentUrl = "#" + current_url;
-    });
+    this.urlService.setCurrentTitle("Project");
     this.sub = this.route.params.subscribe(params => {
       this.projectId = params['id'];
       this.cscId = params['csc'];
