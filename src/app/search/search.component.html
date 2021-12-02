@@ -3,7 +3,7 @@
     <search-nav></search-nav>
   </div>
   <div class="col-md-9 results">
-    <p *ngIf="results && results.length == 0">Enter search terms and filters using the controls on the left, then click &ldquo;Search&rdquo; to get results.</p>
+    <p *ngIf="results && results.length == 0">Enter search terms and filters using the controls, then click &ldquo;Search&rdquo; to get results.</p>
     <div *ngIf="results.length > 0">
       <h4>Search Results <span *ngIf="total_results > 0 && filteredResultsCount != -1">({{ filteredResultsCount }})</span></h4>
       <div class="haveResults" *ngIf="total_results > 0">
