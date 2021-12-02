@@ -5,7 +5,6 @@ import { environment } from "../../environments/environment";
 import { TitleLinkComponent } from "../title-link/title-link.component";
 import { Location } from "@angular/common";
 import { UrlService } from "../url.service";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-csc",
@@ -13,7 +12,6 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
   styleUrls: ["./csc.component.scss", "../shared.scss"]
 })
 export class CscComponent implements OnInit {
-  faHome = faHome;
   sub: any;
   id: any;
   sbId: any;

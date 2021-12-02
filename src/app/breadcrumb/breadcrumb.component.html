@@ -5,8 +5,8 @@
     </span>
     Project Explorer Home</a
   >
-  <span class="trail" *ngIf="previousUrl && previousTitle != currentTitle">/</span>
-  <a *ngIf="previousUrl && previousTitle != currentTitle" [href]="previousUrl">{{ previousTitle }}</a>
+  <span class="trail" *ngIf="previousUrl && previousUrl != '#/'">/</span>
+  <a *ngIf="previousUrl && previousUrl != '#/'" [href]="previousUrl">{{ previousTitle }}</a>
   <span class="trail">/</span>
   <span class="leaf">{{ currentTitle }}</span>
 </div>
