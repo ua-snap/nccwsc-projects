@@ -78,7 +78,6 @@ export class SearchComponent implements OnInit {
         if (result.dates.publication_date) {
           result.dates.publication_date = SearchComponent.niceDate(result.dates.publication_date);
         }
-        console.log(result)
       }
     });
     this.filteredResultsCountSubscription = this.searchService.filteredResultsCount$.subscribe(filteredResultsCount=>
