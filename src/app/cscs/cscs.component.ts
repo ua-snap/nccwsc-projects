@@ -25,12 +25,12 @@ export class CscsComponent implements OnInit {
   ]
 
   topic_ids = [
-    {'id': 'landscapes', 'name': 'Landscapes'},
     {'id': 'drought-fire-extremes', 'name': 'Drought, Fire and Extreme Weather'},
-    {'id': 'wildlife-plants', 'name': 'Wildlife and Plants'},
-    {'id': 'water-coasts-ice', 'name': 'Water, Coasts and Ice'},
+    {'id': 'landscapes', 'name': 'Landscapes'},
     {'id': 'indigenous-peoples', 'name': 'Indigenous Peoples'},
     {'id': 'science-tools', 'name': 'Science Tools for Managers'},
+    {'id': 'water-coasts-ice', 'name': 'Water, Coasts and Ice'},
+    {'id': 'wildlife-plants', 'name': 'Wildlife and Plants'},
   ]
 
   constructor(private urlService: UrlService) { }
