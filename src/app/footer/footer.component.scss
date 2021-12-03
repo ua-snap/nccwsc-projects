@@ -1,32 +1,9 @@
-
-
-
-.footer {
-  .hf-container .row {
-      background-color: #00264C;
-      margin: 0px;
-    }
-
-  a:active,
-  a:focus {
-    outline: none !important;
-  }
-  
-  ul {
-    margin: 0.25em;
-    padding-left: 10px;
-    font-size: .9em;
-    color: #333;
-    li.menu-links {
-      list-style: none;
-      span{
-        padding: 0 12px;
-        color: white !important;
-      }
-      a {
-        color: white !important;
-      }
-
-    }
+footer {
+  background-color: #003946;
+  padding: 1rem;
+  a {
+    display: inline-block;
+    margin-right: 2rem;
+    color: #fff !important;
   }
 }
