@@ -1,0 +1,12 @@
+<div class="breadcrumbs">
+  <a href="#"
+    ><span class="home-icon">
+      <fa-icon [icon]="faHome"></fa-icon>
+    </span>
+    Project Explorer Home</a
+  >
+  <span class="trail" *ngIf="previousUrl && previousUrl != '#/'">/</span>
+  <a *ngIf="previousUrl && previousUrl != '#/'" [href]="previousUrl">{{ previousTitle }}</a>
+  <span class="trail">/</span>
+  <span class="leaf">{{ currentTitle }}</span>
+</div>

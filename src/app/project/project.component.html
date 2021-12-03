@@ -1,18 +1,7 @@
 <div class="project container-fluid">
   <div class="row" *ngIf="projectJson">
     <div class="col-md-12">
-      <div class="breadcrumbs">
-        <a href="#"
-          ><span class="home-icon">
-            <fa-icon [icon]="faHome"></fa-icon>
-          </span>
-          Project Explorer Home</a
-        >
-        <span class="trail" *ngIf="previousUrl">/</span>
-        <a *ngIf="previousUrl" [href]="previousUrl">{{ previousTitle }}</a>
-        <span class="trail">/</span>
-        <span class="leaf">Project</span>
-      </div>
+      <app-breadcrumb></app-breadcrumb>
     </div>
 
     <div class="col-md-8">
