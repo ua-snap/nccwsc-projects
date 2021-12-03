@@ -42,3 +42,65 @@
         margin-bottom: 0;
     }
 }
+
+@media only screen and (max-width: 767px) {
+    .brandContainer {
+        background: #003946;
+        width: 100%;
+        height: 150px;
+        padding: 0.3rem 1.5rem 1rem;
+        color: #fff;
+    
+        .media {
+            padding-top: 1rem;
+            img {
+                display: none;
+            }
+        }
+    
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 0.1rem;
+            font-weight: 400;
+        }
+    
+        h1 {
+            font-size: 2.75rem;
+            margin-top: 0;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+    }
+    
+}
+
+@media only screen and (max-width: 484px) {
+    .brandContainer {
+        background: #003946;
+        width: 100%;
+        height: 150px;
+        padding: 0.5rem 1.5rem 1rem;
+        color: #fff;
+    
+        .media {
+            padding-top: 1rem;
+            img {
+                display: none;
+            }
+        }
+    
+        h2 {
+            font-size: 1.4rem;
+            margin-top: 0.1rem;
+            font-weight: 400;
+        }
+    
+        h1 {
+            font-size: 2.2rem;
+            margin-top: 0;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+    }
+    
+}
