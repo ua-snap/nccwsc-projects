@@ -30,33 +30,3 @@
     }
   }
 }
-
-@media (max-width:767px){
-  .footer-line{
-    display:none;
-  }
-  .hf-container{
-    display:flex;
-    flex-direction: row;
-    justify-content: space-around;
-    .nav-row {
-      width: 205px;
-    }
-    
-    ul {
-      flex-direction: column;
-      li {
-        padding-top: 4px;
-        > span {
-          display:none;
-        }
-      }
-    }
-  }
-  
-
-  /* li.menu-links{
-    width:100%;
-    clear:both;
-  } */
-}
