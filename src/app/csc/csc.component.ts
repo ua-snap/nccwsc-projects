@@ -237,25 +237,33 @@ export class CscComponent implements OnInit {
         this.dataLoading = false;
 
         // principal investigators
-        this.cscProjectsList[project].investigators_formatted = "";
+        if (this.cscProjectsList[project].contacts.principal_investigators != null) {
+          this.cscProjectsList[project].investigators_formatted = "";
 
-        for (var pi of this.cscProjectsList[project].contacts
-          .principal_investigators) {
-          this.cscProjectsList[project].investigators_formatted =
+          for (var pi of this.cscProjectsList[project].contacts
+            .principal_investigators) {
+            this.cscProjectsList[project].investigators_formatted =
             this.cscProjectsList[project].investigators_formatted +
             pi.name +
             "&nbsp;<i>(" +
             pi.organization +
             "</i>)<br>";
+          }
+        } else {
+          this.cscProjectsList[project].investigators_formatted = "N/A";
         }
 
         // topics
-        this.cscProjectsList[project].topics_formatted = "<ul>";
-        for (var t of this.cscProjectsList[project].topics) {
-          this.cscProjectsList[project].topics_formatted +=
-            "<li>" + t + "</li>";
+        if (this.cscProjectsList[project].topics != null) {
+          this.cscProjectsList[project].topics_formatted = "<ul>";
+          for (var t of this.cscProjectsList[project].topics) {
+            this.cscProjectsList[project].topics_formatted +=
+              "<li>" + t + "</li>";
+          }
+          this.cscProjectsList[project].topics_formatted += "</ul>";
+        } else {
+          this.cscProjectsList[project].topics_formatted = "N/A";
         }
-        this.cscProjectsList[project].topics_formatted += "</ul>";
 
         // status
         if (!this.cscProjectsList[project].status) {
