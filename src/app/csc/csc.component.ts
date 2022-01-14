@@ -230,7 +230,7 @@ export class CscComponent implements OnInit {
 
         // This is done so that "All Fiscal Years" is sorted at the top.
         this.fiscal_years.sort().reverse();
-
+        
         this.topics.sort();
         this.statuses.sort();
         this.filteredCscProjectsList.push(this.cscProjectsList[project]);
