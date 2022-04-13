@@ -55,7 +55,7 @@ export class CscComponent implements OnInit {
   settings = {
     columns: {
       fiscal_year: {
-        title: "FY",
+        title: "Year",
         width: "6%"
       },
       title: {
