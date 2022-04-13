@@ -1,9 +1,39 @@
 footer {
-  background-color: rgb(0, 38, 76);
-  padding: 1rem;
+  background-color: rgb(255, 255, 255);
+  .colored {
+    background-color: rgb(0, 38, 76);
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    text-align: center;
+
+    h4 {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.538);
+    }
+  }
   a {
     display: inline-block;
     margin-right: 2rem;
-    color: #fff !important;
+    color: #48CAF7 !important;
+  }
+
+  
+
+  .footer-container {
+    width: 85%;
+  }
+
+  .logos {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  img {
+    display: block;
+    height: 6rem;
+    width: 100%;
   }
 }
