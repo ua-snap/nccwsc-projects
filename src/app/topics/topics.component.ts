@@ -69,12 +69,12 @@ export class TopicsComponent implements OnInit {
   project_url = environment.baseURL + "/project";
 
   url: any;
-  subtopics = ["All Subtopics"];
+  subtopics = [];
   fiscal_years = ["All Fiscal Years"];
   statuses = ["All Statuses"];
   cscs = [];
   types = ["Project"];
-  current_subtopic = "All Subtopics";
+  current_subtopic = ["All Subtopics"];
   current_type = "Project";
   current_fy = "All Fiscal Years";
   current_status = "All Statuses";
@@ -117,22 +117,45 @@ export class TopicsComponent implements OnInit {
     this.filterProjectsList(event.target.value)
   }
 
+  changeCurrentSubTopic(event: any = null) {
+    if (event.target.checked == true) {
+
+      let index = this.current_subtopic.indexOf("All Subtopics")
+      if (index != -1) {
+        this.current_subtopic.splice(index, 1)
+      }
+      this.current_subtopic.push(event.target.value)
+    } else {
+      let index = this.current_subtopic.indexOf(event.target.value)
+      if (index != -1) {
+        this.current_subtopic.splice(index, 1)
+      }
+    }
+    if (this.current_subtopic.length == 0) {    
+      this.current_subtopic.push("All Subtopics")
+    }
+
+    this.filterProjectsList(event.target.value)
+  }
+
   filterProjectsList(event: any = null) {
     
     this.filteredProjectsList = [];
     for (var project in this.projectsList) {
       if (
-        this.current_subtopic != "All Subtopics" &&
+        this.current_subtopic.indexOf("All Subtopics") === -1 &&
         this.projectsList[project].subtopics != null
       ) {
         var matched_subtopic = false;
-        for (var subtopic in this.projectsList[project].subtopics) {
-          if (
-            this.projectsList[project].subtopics[subtopic] ==
-            this.current_subtopic
-          ) {
-            matched_subtopic = true;
-            break;
+        for (let subtopic in this.projectsList[project].subtopics) {
+          for (let curr_subtopic in this.current_subtopic) {
+            if (
+              this.projectsList[project].subtopics[subtopic] ==
+              this.current_subtopic[curr_subtopic]
+            ) {
+              matched_subtopic = true;
+              break;
+            }
           }
         }
         if (!matched_subtopic) {
@@ -186,7 +209,7 @@ export class TopicsComponent implements OnInit {
 
   showAllProjects() {
     this.filteredProjectsList = this.projectsList;
-    this.current_subtopic = "All Subtopics";
+    this.current_subtopic = [];
     this.current_fy = "All Fiscal Years";
     this.current_status = "All Statuses";
     this.current_type = "Project";
@@ -205,8 +228,8 @@ export class TopicsComponent implements OnInit {
   //TODO: put this code in a utility function/service
   updateUrl() {
     let params: any = {};
-    if (this.current_subtopic != "All Subtopics") {
-      params["subtopic"] = this.current_subtopic;
+    if (this.current_subtopic.indexOf("All Subtopics") === -1) {
+      params["subtopic"] = this.current_subtopic.join('+');
     }
     if (this.current_fy != "All Fiscal Years") {
       params["year"] = this.current_fy;
@@ -249,7 +272,7 @@ export class TopicsComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.topic = params["topic"];
       if (params["subtopic"]) {
-        this.current_subtopic = params["subtopic"];
+        this.current_subtopic = params["subtopic"].split('+');
       }
       if (params["year"]) {
         this.current_fy = params["year"];

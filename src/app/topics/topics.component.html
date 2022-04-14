@@ -22,9 +22,8 @@
 				<h3 class="select-title">Subtopic</h3>
 				<div *ngFor="let subtopic of subtopics">
 					<input
-						type="radio"
-						(change)="filterProjectsList($event.target.value)"
-						[(ngModel)]="current_subtopic"
+						type="checkbox"
+						(change)="changeCurrentSubTopic($event)"
 						[value]="subtopic"
 						[id]="subtopic"
 						name="subtopic"
