@@ -22,7 +22,7 @@ export class CscComponent implements OnInit {
   fiscal_years = [];
   statuses = [];
   current_topic = "All Topics";
-  current_fy = "All Fiscal Years";
+  current_fy = ["All Fiscal Years"];
   current_status = "All Statuses";
   title = null;
   dataLoading = true;
@@ -120,9 +120,19 @@ export class CscComponent implements OnInit {
 
   changeCurrentFY(event: any = null) {
     if (event.target.checked == true) {
-      this.current_fy = event.target.value
+      let index = this.current_fy.indexOf("All Fiscal Years")
+      if (index != -1) {
+        this.current_fy.splice(index, 1)
+      }
+      this.current_fy.push(event.target.value)
     } else {
-      this.current_fy = "All Fiscal Years"
+      let index = this.current_fy.indexOf(event.target.value)
+      if (index != -1) {
+        this.current_fy.splice(index, 1)
+      }
+    }
+    if (this.current_fy.length == 0) {    
+      this.current_fy.push("All Fiscal Years")
     }
     this.filterProjectsList(event.target.value)
   }
@@ -161,9 +171,17 @@ export class CscComponent implements OnInit {
           continue;
         }
       }
-      if (this.current_fy != "All Fiscal Years") {
-        if (this.cscProjectsList[project].fiscal_year !== this.current_fy) {
-          continue;
+      if (this.current_fy.indexOf("All Fiscal Years") == -1) {
+        var found = false
+        for (var year in this.current_fy) {
+          if (this.cscProjectsList[project].fiscal_year == this.current_fy[year]) {
+            found = true
+            break
+          }
+        }
+
+        if (!found) {
+          continue
         }
       }
       if (this.current_status != "All Statuses") {
@@ -184,8 +202,9 @@ export class CscComponent implements OnInit {
     if (this.current_topic != "All Topics") {
       params["topic"] = this.current_topic;
     }
-    if (this.current_fy != "All Fiscal Years") {
-      params["year"] = this.current_fy;
+   
+    if (this.current_fy.indexOf("All Fiscal Years") == -1) {
+      params["year"] = this.current_fy.join('+');
     }
     if (this.current_status != "All Statuses") {
       params["status"] = this.current_status;
@@ -219,7 +238,7 @@ export class CscComponent implements OnInit {
         this.current_topic = params["topic"];
       }
       if (params["year"]) {
-        this.current_fy = params["year"];
+        this.current_fy = params["year"].split('+');
       }
       if (params["status"]) {
         this.current_status = params["status"];
