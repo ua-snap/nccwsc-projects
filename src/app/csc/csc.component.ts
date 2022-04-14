@@ -23,7 +23,7 @@ export class CscComponent implements OnInit {
   statuses = [];
   current_topic = "All Topics";
   current_fy = ["All Fiscal Years"];
-  current_status = "All Statuses";
+  current_status = ["All Statuses"];
   title = null;
   dataLoading = true;
   csc_ids = {
@@ -139,10 +139,21 @@ export class CscComponent implements OnInit {
 
   changeCurrentStatus(event: any = null) {
     if (event.target.checked == true) {
-      this.current_status = event.target.value
+      let index = this.current_status.indexOf("All Statuses")
+      if (index != -1) {
+        this.current_status.splice(index, 1)
+      }
+      this.current_status.push(event.target.value)
     } else {
-      this.current_status = "All Statuses"
+      let index = this.current_status.indexOf(event.target.value)
+      if (index != -1) {
+        this.current_status.splice(index, 1)
+      }
     }
+    if (this.current_status.length == 0) {    
+      this.current_status.push("All Statuses")
+    }
+
     this.filterProjectsList(event.target.value)
   }
 
@@ -171,21 +182,29 @@ export class CscComponent implements OnInit {
           continue;
         }
       }
-      if (this.current_fy.indexOf("All Fiscal Years") == -1) {
-        var found = false
-        for (var year in this.current_fy) {
-          if (this.cscProjectsList[project].fiscal_year == this.current_fy[year]) {
-            found = true
-            break
+      if (this.current_fy.indexOf("All Fiscal Years") === -1) {
+        let found = false;
+        for (let year in this.current_fy) {
+          if (this.cscProjectsList[project].fiscal_year === this.current_fy[year]) {
+            found = true;
+            break;
           }
         }
 
         if (!found) {
-          continue
+          continue;
         }
       }
-      if (this.current_status != "All Statuses") {
-        if (this.cscProjectsList[project].status !== this.current_status) {
+      if (this.current_status.indexOf("All Statuses") === -1) {
+        let found = false;
+        for (let status in this.current_status) {
+          if (this.cscProjectsList[project].status === this.current_status[status]) {
+            found = true;
+            break;
+          }
+        }
+
+        if (!found) {
           continue;
         }
       }
@@ -203,11 +222,11 @@ export class CscComponent implements OnInit {
       params["topic"] = this.current_topic;
     }
    
-    if (this.current_fy.indexOf("All Fiscal Years") == -1) {
+    if (this.current_fy.indexOf("All Fiscal Years") === -1) {
       params["year"] = this.current_fy.join('+');
     }
-    if (this.current_status != "All Statuses") {
-      params["status"] = this.current_status;
+    if (this.current_status.indexOf("All Statuses") === -1) {
+      params["status"] = this.current_status.join("+");
     }
     const url = this.router
       .createUrlTree([params], { relativeTo: this.aroute })
@@ -241,7 +260,7 @@ export class CscComponent implements OnInit {
         this.current_fy = params["year"].split('+');
       }
       if (params["status"]) {
-        this.current_status = params["status"];
+        this.current_status = params["status"].split('+');
       }
     });
     if (this.id.length != 24) {
