@@ -9,9 +9,8 @@
 				<h3 class="select-title">CASC</h3>
 				<div *ngFor="let csc of cscs">
 					<input
-						type="radio"
-						(change)="filterProjectsList($event.target.value)"
-						[(ngModel)]="current_csc"
+						type="checkbox"
+						(change)="changeCurrentCASC($event)"
 						[value]="csc"
 						[id]="csc"
 						name="csc"

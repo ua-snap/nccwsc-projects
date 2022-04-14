@@ -72,13 +72,13 @@ export class TopicsComponent implements OnInit {
   subtopics = ["All Subtopics"];
   fiscal_years = ["All Fiscal Years"];
   statuses = ["All Statuses"];
-  cscs = ["All CASCs"];
+  cscs = [];
   types = ["Project"];
   current_subtopic = "All Subtopics";
   current_type = "Project";
   current_fy = "All Fiscal Years";
   current_status = "All Statuses";
-  current_csc = "All CASCs";
+  current_csc = ["All CASCs"];
   topicKeys;
   projectsList = [];
   filteredProjectsList = [];
@@ -95,6 +95,27 @@ export class TopicsComponent implements OnInit {
     private aroute: ActivatedRoute,
     private urlService: UrlService
   ) {}
+
+  changeCurrentCASC(event: any = null) {
+    if (event.target.checked == true) {
+
+      let index = this.current_csc.indexOf("All CASCs")
+      if (index != -1) {
+        this.current_csc.splice(index, 1)
+      }
+      this.current_csc.push(event.target.value)
+    } else {
+      let index = this.current_csc.indexOf(event.target.value)
+      if (index != -1) {
+        this.current_csc.splice(index, 1)
+      }
+    }
+    if (this.current_csc.length == 0) {    
+      this.current_csc.push("All CASCs")
+    }
+
+    this.filterProjectsList(event.target.value)
+  }
 
   filterProjectsList(event: any = null) {
     
@@ -144,8 +165,16 @@ export class TopicsComponent implements OnInit {
           continue;
         }
       }
-      if (this.current_csc != "All CASCs") {
-        if (this.projectsList[project].csc["name"] !== this.current_csc) {
+      if (this.current_csc.indexOf("All CASCs") === -1) {
+        let found = false;
+        for (let csc in this.current_csc) {
+          if (this.projectsList[project].csc["name"] == this.current_csc[csc]) {
+            found = true;
+            break;
+          }
+        }
+
+        if (!found) {
           continue;
         }
       }
@@ -161,7 +190,7 @@ export class TopicsComponent implements OnInit {
     this.current_fy = "All Fiscal Years";
     this.current_status = "All Statuses";
     this.current_type = "Project";
-    this.current_csc = "All CASCs";
+    this.current_csc = [];
   }
 
   isOnTopic(subtopic) {
@@ -188,8 +217,8 @@ export class TopicsComponent implements OnInit {
     if (this.current_type != "All Types") {
       params["type"] = this.current_type;
     }
-    if (this.current_csc != "All CASCs") {
-      params["casc"] = this.current_csc;
+    if (this.current_csc.indexOf("All CASCs") == -1) {
+      params["csc"] = this.current_csc.join('+');
     }
 
     const url = this.router
@@ -232,7 +261,7 @@ export class TopicsComponent implements OnInit {
         this.current_type = params["type"];
       }
       if (params["csc"]) {
-        this.current_csc = params["csc"];
+        this.current_csc = params["csc"].split('+');
       }
 
       this.page_title = this.topic_names[this.topic]
