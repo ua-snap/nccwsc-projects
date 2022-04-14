@@ -18,9 +18,9 @@ export class CscComponent implements OnInit {
   cscProjectsList = [];
   filteredCscProjectsList = [];
   csc_url = environment.baseURL;
-  topics = ["All Topics"];
-  fiscal_years = ["All Fiscal Years"];
-  statuses = ["All Statuses"];
+  topics = [];
+  fiscal_years = [];
+  statuses = [];
   current_topic = "All Topics";
   current_fy = "All Fiscal Years";
   current_status = "All Statuses";
@@ -131,15 +131,12 @@ export class CscComponent implements OnInit {
     if (event.target.checked == true) {
       this.current_status = event.target.value
     } else {
-      this.current_status = "All Fiscal Years"
+      this.current_status = "All Statuses"
     }
     this.filterProjectsList(event.target.value)
   }
 
   filterProjectsList(event: any = null) {
-    console.log(event)
-    console.log("What year is it: " + this.current_fy)
-    
     this.filteredCscProjectsList = [];
     // tslint:disable-next-line:forin
     for (var project in this.cscProjectsList) {
@@ -188,7 +185,6 @@ export class CscComponent implements OnInit {
       params["topic"] = this.current_topic;
     }
     if (this.current_fy != "All Fiscal Years") {
-      console.log("This is is the current FY: " + this.current_fy)
       params["year"] = this.current_fy;
     }
     if (this.current_status != "All Statuses") {
