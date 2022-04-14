@@ -109,7 +109,37 @@ export class CscComponent implements OnInit {
     });
   }
 
+  changeCurrentTopic(event: any = null) {
+    if (event.target.checked == true) {
+      this.current_topic = event.target.value
+    } else {
+      this.current_topic = "All Topics"
+    }
+    this.filterProjectsList(event.target.value)
+  }
+
+  changeCurrentFY(event: any = null) {
+    if (event.target.checked == true) {
+      this.current_fy = event.target.value
+    } else {
+      this.current_fy = "All Fiscal Years"
+    }
+    this.filterProjectsList(event.target.value)
+  }
+
+  changeCurrentStatus(event: any = null) {
+    if (event.target.checked == true) {
+      this.current_status = event.target.value
+    } else {
+      this.current_status = "All Fiscal Years"
+    }
+    this.filterProjectsList(event.target.value)
+  }
+
   filterProjectsList(event: any = null) {
+    console.log(event)
+    console.log("What year is it: " + this.current_fy)
+    
     this.filteredCscProjectsList = [];
     // tslint:disable-next-line:forin
     for (var project in this.cscProjectsList) {
@@ -158,6 +188,7 @@ export class CscComponent implements OnInit {
       params["topic"] = this.current_topic;
     }
     if (this.current_fy != "All Fiscal Years") {
+      console.log("This is is the current FY: " + this.current_fy)
       params["year"] = this.current_fy;
     }
     if (this.current_status != "All Statuses") {
