@@ -35,9 +35,8 @@
 				<h3 class="select-title">Status</h3>
 				<div *ngFor="let status of statuses">
 					<input
-						type="radio"
-						(change)="filterProjectsList($event.target.value)"
-						[(ngModel)]="current_status"
+						type="checkbox"
+						(change)="changeCurrentStatus($event)"
 						[value]="status"
 						[id]="status"
 						name="status"

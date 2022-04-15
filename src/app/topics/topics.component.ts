@@ -71,13 +71,13 @@ export class TopicsComponent implements OnInit {
   url: any;
   subtopics = [];
   fiscal_years = ["All Fiscal Years"];
-  statuses = ["All Statuses"];
+  statuses = [];
   cscs = [];
   types = ["Project"];
   current_subtopic = ["All Subtopics"];
   current_type = "Project";
   current_fy = "All Fiscal Years";
-  current_status = "All Statuses";
+  current_status = ["All Statuses"];
   current_csc = ["All CASCs"];
   topicKeys;
   projectsList = [];
@@ -138,6 +138,27 @@ export class TopicsComponent implements OnInit {
     this.filterProjectsList(event.target.value)
   }
 
+  changeCurrentStatus(event: any = null) {
+    if (event.target.checked == true) {
+
+      let index = this.current_status.indexOf("All Statuses")
+      if (index != -1) {
+        this.current_status.splice(index, 1)
+      }
+      this.current_status.push(event.target.value)
+    } else {
+      let index = this.current_status.indexOf(event.target.value)
+      if (index != -1) {
+        this.current_status.splice(index, 1)
+      }
+    }
+    if (this.current_status.length == 0) {    
+      this.current_status.push("All Statuses")
+    }
+
+    this.filterProjectsList(event.target.value)
+  }
+
   filterProjectsList(event: any = null) {
     
     this.filteredProjectsList = [];
@@ -183,15 +204,24 @@ export class TopicsComponent implements OnInit {
           continue;
         }
       }
-      if (this.current_status != "All Statuses") {
-        if (this.projectsList[project].status !== this.current_status) {
+      if (this.current_status.indexOf("All Statuses") === -1) {
+        let found = false;
+        for (let status in this.current_status) {
+          if (this.projectsList[project].status === this.current_status[status]) {
+            found = true;
+            console.log("This is TRUE")
+            break;
+          }
+        }
+          
+        if (!found) {
           continue;
         }
       }
       if (this.current_csc.indexOf("All CASCs") === -1) {
         let found = false;
         for (let csc in this.current_csc) {
-          if (this.projectsList[project].csc["name"] == this.current_csc[csc]) {
+          if (this.projectsList[project].csc["name"] === this.current_csc[csc]) {
             found = true;
             break;
           }
@@ -211,7 +241,7 @@ export class TopicsComponent implements OnInit {
     this.filteredProjectsList = this.projectsList;
     this.current_subtopic = [];
     this.current_fy = "All Fiscal Years";
-    this.current_status = "All Statuses";
+    this.current_status = [];
     this.current_type = "Project";
     this.current_csc = [];
   }
@@ -234,8 +264,8 @@ export class TopicsComponent implements OnInit {
     if (this.current_fy != "All Fiscal Years") {
       params["year"] = this.current_fy;
     }
-    if (this.current_status != "All Statuses") {
-      params["status"] = this.current_status;
+    if (this.current_status.indexOf("All Statuses") === -1) {
+      params["status"] = this.current_status.join('+');
     }
     if (this.current_type != "All Types") {
       params["type"] = this.current_type;
@@ -278,7 +308,7 @@ export class TopicsComponent implements OnInit {
         this.current_fy = params["year"];
       }
       if (params["status"]) {
-        this.current_status = params["status"];
+        this.current_status = params["status"].split('+');
       }
       if (params["type"]) {
         this.current_type = params["type"];
