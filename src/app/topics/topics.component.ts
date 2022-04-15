@@ -37,7 +37,7 @@ export class TopicsComponent implements OnInit {
   settings = {
     columns: {
       fiscal_year: {
-        title: "FY",
+        title: "Year",
         width: "6%"
       },
       title: {
@@ -70,13 +70,13 @@ export class TopicsComponent implements OnInit {
 
   url: any;
   subtopics = [];
-  fiscal_years = ["All Fiscal Years"];
+  fiscal_years = [];
   statuses = [];
   cscs = [];
   types = ["Project"];
   current_subtopic = ["All Subtopics"];
   current_type = "Project";
-  current_fy = "All Fiscal Years";
+  current_fy = ["All Fiscal Years"];
   current_status = ["All Statuses"];
   current_csc = ["All CASCs"];
   topicKeys;
@@ -159,6 +159,27 @@ export class TopicsComponent implements OnInit {
     this.filterProjectsList(event.target.value)
   }
 
+  changeCurrentYear(event: any = null) {
+    if (event.target.checked == true) {
+
+      let index = this.current_fy.indexOf("All Fiscal Years")
+      if (index != -1) {
+        this.current_fy.splice(index, 1)
+      }
+      this.current_fy.push(event.target.value)
+    } else {
+      let index = this.current_fy.indexOf(event.target.value)
+      if (index != -1) {
+        this.current_fy.splice(index, 1)
+      }
+    }
+    if (this.current_fy.length == 0) {    
+      this.current_fy.push("All Fiscal Years")
+    }
+
+    this.filterProjectsList(event.target.value)
+  }
+
   filterProjectsList(event: any = null) {
     
     this.filteredProjectsList = [];
@@ -199,8 +220,16 @@ export class TopicsComponent implements OnInit {
           continue;
         }
       }
-      if (this.current_fy != "All Fiscal Years") {
-        if (this.projectsList[project].fiscal_year !== this.current_fy) {
+      if (this.current_fy.indexOf("All Fiscal Years") === -1) {
+        let found = false;
+        for (let year in this.current_fy) {
+          if (this.projectsList[project].fiscal_year === this.current_fy[year]) {
+            found = true;
+            break;
+          }
+        }
+
+        if (!found) {
           continue;
         }
       }
@@ -240,7 +269,7 @@ export class TopicsComponent implements OnInit {
   showAllProjects() {
     this.filteredProjectsList = this.projectsList;
     this.current_subtopic = [];
-    this.current_fy = "All Fiscal Years";
+    this.current_fy = [];
     this.current_status = [];
     this.current_type = "Project";
     this.current_csc = [];
@@ -261,8 +290,8 @@ export class TopicsComponent implements OnInit {
     if (this.current_subtopic.indexOf("All Subtopics") === -1) {
       params["subtopic"] = this.current_subtopic.join('+');
     }
-    if (this.current_fy != "All Fiscal Years") {
-      params["year"] = this.current_fy;
+    if (this.current_fy.indexOf("All Fiscal Years") === -1) {
+      params["year"] = this.current_fy.join('+');
     }
     if (this.current_status.indexOf("All Statuses") === -1) {
       params["status"] = this.current_status.join('+');
@@ -305,7 +334,7 @@ export class TopicsComponent implements OnInit {
         this.current_subtopic = params["subtopic"].split('+');
       }
       if (params["year"]) {
-        this.current_fy = params["year"];
+        this.current_fy = params["year"].split('+');
       }
       if (params["status"]) {
         this.current_status = params["status"].split('+');
