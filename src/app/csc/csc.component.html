@@ -9,6 +9,7 @@
 					<input
 						type="checkbox"
 						(change)="changeCurrentTopic($event)"
+						[checked]="current_topic.indexOf(topic) != -1"
 						[value]="topic"
 						[id]="topic"
 						name="topic"
@@ -22,6 +23,7 @@
 					<input
 						type="checkbox"
 						(change)="changeCurrentFY($event)"
+						[checked]="current_fy.indexOf(fy) != -1"
 						[value]="fy"
 						[id]="fy"
 						name="fy"
@@ -35,6 +37,7 @@
 					<input
 						type="checkbox"
 						(change)="changeCurrentStatus($event)"
+						[checked]="current_status.indexOf(status) != -1"
 						[value]="status"
 						[id]="status"
 						name="status"
