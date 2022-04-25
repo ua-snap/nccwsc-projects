@@ -18,12 +18,12 @@ export class CscComponent implements OnInit {
   cscProjectsList = [];
   filteredCscProjectsList = [];
   csc_url = environment.baseURL;
-  topics = ["All Topics"];
-  fiscal_years = ["All Fiscal Years"];
-  statuses = ["All Statuses"];
-  current_topic = "All Topics";
-  current_fy = "All Fiscal Years";
-  current_status = "All Statuses";
+  topics = [];
+  fiscal_years = [];
+  statuses = [];
+  current_topic = ["All Topics"];
+  current_fy = ["All Fiscal Years"];
+  current_status = ["All Statuses"];
   title = null;
   dataLoading = true;
   csc_ids = {
@@ -55,7 +55,7 @@ export class CscComponent implements OnInit {
   settings = {
     columns: {
       fiscal_year: {
-        title: "FY",
+        title: "Year",
         width: "6%"
       },
       title: {
@@ -109,24 +109,89 @@ export class CscComponent implements OnInit {
     });
   }
 
+  changeCurrentTopic(event: any = null) {
+    if (event.target.checked == true) {
+
+      let index = this.current_topic.indexOf("All Topics")
+      if (index != -1) {
+        this.current_topic.splice(index, 1)
+      }
+      this.current_topic.push(event.target.value)
+    } else {
+      let index = this.current_topic.indexOf(event.target.value)
+      if (index != -1) {
+        this.current_topic.splice(index, 1)
+      }
+    }
+    if (this.current_topic.length == 0) {    
+      this.current_topic.push("All Topics")
+    }
+
+    this.filterProjectsList(event.target.value)
+  }
+
+  changeCurrentFY(event: any = null) {
+    if (event.target.checked == true) {
+      let index = this.current_fy.indexOf("All Fiscal Years")
+      if (index != -1) {
+        this.current_fy.splice(index, 1)
+      }
+      this.current_fy.push(event.target.value)
+    } else {
+      let index = this.current_fy.indexOf(event.target.value)
+      if (index != -1) {
+        this.current_fy.splice(index, 1)
+      }
+    }
+    if (this.current_fy.length == 0) {    
+      this.current_fy.push("All Fiscal Years")
+    }
+    this.filterProjectsList(event.target.value)
+  }
+
+  changeCurrentStatus(event: any = null) {
+    if (event.target.checked == true) {
+      let index = this.current_status.indexOf("All Statuses")
+      if (index != -1) {
+        this.current_status.splice(index, 1)
+      }
+      this.current_status.push(event.target.value)
+    } else {
+      let index = this.current_status.indexOf(event.target.value)
+      if (index != -1) {
+        this.current_status.splice(index, 1)
+      }
+    }
+    if (this.current_status.length == 0) {    
+      this.current_status.push("All Statuses")
+    }
+
+    this.filterProjectsList(event.target.value)
+  }
+
   filterProjectsList(event: any = null) {
     this.filteredCscProjectsList = [];
     // tslint:disable-next-line:forin
     for (var project in this.cscProjectsList) {
       var display = true;
       if (
-        this.current_topic != "All Topics" &&
+        this.current_topic.indexOf("All Topics") === -1 &&
         this.cscProjectsList[project].topics != null
       ) {
-        var matched_topic = false;
-        for (var topic in this.cscProjectsList[project].topics) {
-          if (
-            this.cscProjectsList[project].topics[topic]
-              .replace(/,/g, "")
-              .trim() == this.current_topic.replace(/,/g, "").trim()
-          ) {
-            matched_topic = true;
-            // Found our topic, let's check year and status.
+        let matched_topic = false;
+        for (let topic in this.cscProjectsList[project].topics) {
+          for (let curr_topic in this.current_topic) {
+            if (
+              this.cscProjectsList[project].topics[topic]
+                .replace(/,/g, "")
+                .trim() == this.current_topic[curr_topic].replace(/,/g, "").trim()
+            ) {
+              matched_topic = true;
+              // Found our topic, let's check year and status.
+              break;
+            }
+          }
+          if (matched_topic == true) {
             break;
           }
         }
@@ -134,13 +199,29 @@ export class CscComponent implements OnInit {
           continue;
         }
       }
-      if (this.current_fy != "All Fiscal Years") {
-        if (this.cscProjectsList[project].fiscal_year !== this.current_fy) {
+      if (this.current_fy.indexOf("All Fiscal Years") === -1) {
+        let found = false;
+        for (let year in this.current_fy) {
+          if (this.cscProjectsList[project].fiscal_year === this.current_fy[year]) {
+            found = true;
+            break;
+          }
+        }
+
+        if (!found) {
           continue;
         }
       }
-      if (this.current_status != "All Statuses") {
-        if (this.cscProjectsList[project].status !== this.current_status) {
+      if (this.current_status.indexOf("All Statuses") === -1) {
+        let found = false;
+        for (let status in this.current_status) {
+          if (this.cscProjectsList[project].status === this.current_status[status]) {
+            found = true;
+            break;
+          }
+        }
+
+        if (!found) {
           continue;
         }
       }
@@ -154,14 +235,15 @@ export class CscComponent implements OnInit {
   //TODO: put this code in a utility function/service
   updateUrl() {
     let params: any = {};
-    if (this.current_topic != "All Topics") {
-      params["topic"] = this.current_topic;
+    if (this.current_topic.indexOf("All Topics") === -1) {
+      params["topic"] = this.current_topic.join('+');
     }
-    if (this.current_fy != "All Fiscal Years") {
-      params["year"] = this.current_fy;
+   
+    if (this.current_fy.indexOf("All Fiscal Years") === -1) {
+      params["year"] = this.current_fy.join('+');
     }
-    if (this.current_status != "All Statuses") {
-      params["status"] = this.current_status;
+    if (this.current_status.indexOf("All Statuses") === -1) {
+      params["status"] = this.current_status.join("+");
     }
     const url = this.router
       .createUrlTree([params], { relativeTo: this.aroute })
@@ -189,13 +271,13 @@ export class CscComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.id = params["id"];
       if (params["topic"]) {
-        this.current_topic = params["topic"];
+        this.current_topic = params["topic"].split('+');
       }
       if (params["year"]) {
-        this.current_fy = params["year"];
+        this.current_fy = params["year"].split('+');
       }
       if (params["status"]) {
-        this.current_status = params["status"];
+        this.current_status = params["status"].split('+');
       }
     });
     if (this.id.length != 24) {

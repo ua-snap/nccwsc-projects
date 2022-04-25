@@ -9,9 +9,9 @@
 				<h3 class="select-title">CASC</h3>
 				<div *ngFor="let csc of cscs">
 					<input
-						type="radio"
-						(change)="filterProjectsList($event.target.value)"
-						[(ngModel)]="current_csc"
+						type="checkbox"
+						(change)="changeCurrentCASC($event)"
+						[checked]="current_csc.indexOf(csc) != -1"
 						[value]="csc"
 						[id]="csc"
 						name="csc"
@@ -23,9 +23,9 @@
 				<h3 class="select-title">Subtopic</h3>
 				<div *ngFor="let subtopic of subtopics">
 					<input
-						type="radio"
-						(change)="filterProjectsList($event.target.value)"
-						[(ngModel)]="current_subtopic"
+						type="checkbox"
+						(change)="changeCurrentSubTopic($event)"
+						[checked]="current_subtopic.indexOf(subtopic) != -1"
 						[value]="subtopic"
 						[id]="subtopic"
 						name="subtopic"
@@ -37,9 +37,9 @@
 				<h3 class="select-title">Status</h3>
 				<div *ngFor="let status of statuses">
 					<input
-						type="radio"
-						(change)="filterProjectsList($event.target.value)"
-						[(ngModel)]="current_status"
+						type="checkbox"
+						(change)="changeCurrentStatus($event)"
+						[checked]="current_status.indexOf(status) != -1"
 						[value]="status"
 						[id]="status"
 						name="status"
@@ -48,12 +48,12 @@
 				</div>
 			</div>
 			<div class="select-box">
-				<h3 class="select-title">Fiscal Year</h3>
+				<h3 class="select-title">Year</h3>
 				<div *ngFor="let fy of fiscal_years">
 					<input
-						type="radio"
-						(change)="filterProjectsList($event.target.value)"
-						[(ngModel)]="current_fy"
+						type="checkbox"
+						(change)="changeCurrentYear($event)"
+						[checked]="current_fy.indexOf(fy) != -1"
 						[value]="fy"
 						[id]="fy"
 						name="fy"
