@@ -37,7 +37,7 @@ export class TopicsComponent implements OnInit {
   settings = {
     columns: {
       fiscal_year: {
-        title: "FY",
+        title: "Year",
         width: "6%"
       },
       title: {
@@ -69,16 +69,16 @@ export class TopicsComponent implements OnInit {
   project_url = environment.baseURL + "/project";
 
   url: any;
-  subtopics = ["All Subtopics"];
-  fiscal_years = ["All Fiscal Years"];
-  statuses = ["All Statuses"];
-  cscs = ["All CASCs"];
+  subtopics = [];
+  fiscal_years = [];
+  statuses = [];
+  cscs = [];
   types = ["Project"];
-  current_subtopic = "All Subtopics";
+  current_subtopic = ["All Subtopics"];
   current_type = "Project";
-  current_fy = "All Fiscal Years";
-  current_status = "All Statuses";
-  current_csc = "All CASCs";
+  current_fy = ["All Fiscal Years"];
+  current_status = ["All Statuses"];
+  current_csc = ["All CASCs"];
   topicKeys;
   projectsList = [];
   filteredProjectsList = [];
@@ -96,22 +96,108 @@ export class TopicsComponent implements OnInit {
     private urlService: UrlService
   ) {}
 
+  changeCurrentCASC(event: any = null) {
+    if (event.target.checked == true) {
+
+      let index = this.current_csc.indexOf("All CASCs")
+      if (index != -1) {
+        this.current_csc.splice(index, 1)
+      }
+      this.current_csc.push(event.target.value)
+    } else {
+      let index = this.current_csc.indexOf(event.target.value)
+      if (index != -1) {
+        this.current_csc.splice(index, 1)
+      }
+    }
+    if (this.current_csc.length == 0) {    
+      this.current_csc.push("All CASCs")
+    }
+
+    this.filterProjectsList(event.target.value)
+  }
+
+  changeCurrentSubTopic(event: any = null) {
+    if (event.target.checked == true) {
+
+      let index = this.current_subtopic.indexOf("All Subtopics")
+      if (index != -1) {
+        this.current_subtopic.splice(index, 1)
+      }
+      this.current_subtopic.push(event.target.value)
+    } else {
+      let index = this.current_subtopic.indexOf(event.target.value)
+      if (index != -1) {
+        this.current_subtopic.splice(index, 1)
+      }
+    }
+    if (this.current_subtopic.length == 0) {    
+      this.current_subtopic.push("All Subtopics")
+    }
+
+    this.filterProjectsList(event.target.value)
+  }
+
+  changeCurrentStatus(event: any = null) {
+    if (event.target.checked == true) {
+
+      let index = this.current_status.indexOf("All Statuses")
+      if (index != -1) {
+        this.current_status.splice(index, 1)
+      }
+      this.current_status.push(event.target.value)
+    } else {
+      let index = this.current_status.indexOf(event.target.value)
+      if (index != -1) {
+        this.current_status.splice(index, 1)
+      }
+    }
+    if (this.current_status.length == 0) {    
+      this.current_status.push("All Statuses")
+    }
+
+    this.filterProjectsList(event.target.value)
+  }
+
+  changeCurrentYear(event: any = null) {
+    if (event.target.checked == true) {
+
+      let index = this.current_fy.indexOf("All Fiscal Years")
+      if (index != -1) {
+        this.current_fy.splice(index, 1)
+      }
+      this.current_fy.push(event.target.value)
+    } else {
+      let index = this.current_fy.indexOf(event.target.value)
+      if (index != -1) {
+        this.current_fy.splice(index, 1)
+      }
+    }
+    if (this.current_fy.length == 0) {    
+      this.current_fy.push("All Fiscal Years")
+    }
+
+    this.filterProjectsList(event.target.value)
+  }
+
   filterProjectsList(event: any = null) {
     
     this.filteredProjectsList = [];
     for (var project in this.projectsList) {
       if (
-        this.current_subtopic != "All Subtopics" &&
+        this.current_subtopic.indexOf("All Subtopics") === -1 &&
         this.projectsList[project].subtopics != null
       ) {
         var matched_subtopic = false;
-        for (var subtopic in this.projectsList[project].subtopics) {
-          if (
-            this.projectsList[project].subtopics[subtopic] ==
-            this.current_subtopic
-          ) {
-            matched_subtopic = true;
-            break;
+        for (let subtopic in this.projectsList[project].subtopics) {
+          for (let curr_subtopic in this.current_subtopic) {
+            if (
+              this.projectsList[project].subtopics[subtopic] ==
+              this.current_subtopic[curr_subtopic]
+            ) {
+              matched_subtopic = true;
+              break;
+            }
           }
         }
         if (!matched_subtopic) {
@@ -134,18 +220,43 @@ export class TopicsComponent implements OnInit {
           continue;
         }
       }
-      if (this.current_fy != "All Fiscal Years") {
-        if (this.projectsList[project].fiscal_year !== this.current_fy) {
+      if (this.current_fy.indexOf("All Fiscal Years") === -1) {
+        let found = false;
+        for (let year in this.current_fy) {
+          if (this.projectsList[project].fiscal_year === this.current_fy[year]) {
+            found = true;
+            break;
+          }
+        }
+
+        if (!found) {
           continue;
         }
       }
-      if (this.current_status != "All Statuses") {
-        if (this.projectsList[project].status !== this.current_status) {
+      if (this.current_status.indexOf("All Statuses") === -1) {
+        let found = false;
+        for (let status in this.current_status) {
+          if (this.projectsList[project].status === this.current_status[status]) {
+            found = true;
+            console.log("This is TRUE")
+            break;
+          }
+        }
+          
+        if (!found) {
           continue;
         }
       }
-      if (this.current_csc != "All CASCs") {
-        if (this.projectsList[project].csc["name"] !== this.current_csc) {
+      if (this.current_csc.indexOf("All CASCs") === -1) {
+        let found = false;
+        for (let csc in this.current_csc) {
+          if (this.projectsList[project].csc["name"] === this.current_csc[csc]) {
+            found = true;
+            break;
+          }
+        }
+
+        if (!found) {
           continue;
         }
       }
@@ -157,11 +268,11 @@ export class TopicsComponent implements OnInit {
 
   showAllProjects() {
     this.filteredProjectsList = this.projectsList;
-    this.current_subtopic = "All Subtopics";
-    this.current_fy = "All Fiscal Years";
-    this.current_status = "All Statuses";
+    this.current_subtopic = [];
+    this.current_fy = [];
+    this.current_status = [];
     this.current_type = "Project";
-    this.current_csc = "All CASCs";
+    this.current_csc = [];
   }
 
   isOnTopic(subtopic) {
@@ -176,20 +287,20 @@ export class TopicsComponent implements OnInit {
   //TODO: put this code in a utility function/service
   updateUrl() {
     let params: any = {};
-    if (this.current_subtopic != "All Subtopics") {
-      params["subtopic"] = this.current_subtopic;
+    if (this.current_subtopic.indexOf("All Subtopics") === -1) {
+      params["subtopic"] = this.current_subtopic.join('+');
     }
-    if (this.current_fy != "All Fiscal Years") {
-      params["year"] = this.current_fy;
+    if (this.current_fy.indexOf("All Fiscal Years") === -1) {
+      params["year"] = this.current_fy.join('+');
     }
-    if (this.current_status != "All Statuses") {
-      params["status"] = this.current_status;
+    if (this.current_status.indexOf("All Statuses") === -1) {
+      params["status"] = this.current_status.join('+');
     }
     if (this.current_type != "All Types") {
       params["type"] = this.current_type;
     }
-    if (this.current_csc != "All CASCs") {
-      params["casc"] = this.current_csc;
+    if (this.current_csc.indexOf("All CASCs") == -1) {
+      params["csc"] = this.current_csc.join('+');
     }
 
     const url = this.router
@@ -220,19 +331,19 @@ export class TopicsComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.topic = params["topic"];
       if (params["subtopic"]) {
-        this.current_subtopic = params["subtopic"];
+        this.current_subtopic = params["subtopic"].split('+');
       }
       if (params["year"]) {
-        this.current_fy = params["year"];
+        this.current_fy = params["year"].split('+');
       }
       if (params["status"]) {
-        this.current_status = params["status"];
+        this.current_status = params["status"].split('+');
       }
       if (params["type"]) {
         this.current_type = params["type"];
       }
       if (params["csc"]) {
-        this.current_csc = params["csc"];
+        this.current_csc = params["csc"].split('+');
       }
 
       this.page_title = this.topic_names[this.topic]
@@ -300,11 +411,6 @@ export class TopicsComponent implements OnInit {
           this.subtopics.sort();
           this.statuses.sort();
           this.cscs.sort();
-
-          // After sorting, move All CASCs to top of sorted list.
-          var temp = this.cscs[0];
-          this.cscs[0] = this.cscs[1];
-          this.cscs[1] = temp;
 
           this.filteredProjectsList.push(this.projectsList[project]);
           this.dataLoading = false;

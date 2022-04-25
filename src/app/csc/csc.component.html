@@ -7,9 +7,9 @@
 				<h3 class="select-title">Topic</h3>
 				<div *ngFor="let topic of topics">
 					<input
-						type="radio"
-						(change)="filterProjectsList($event.target.value)"
-						[(ngModel)]="current_topic"
+						type="checkbox"
+						(change)="changeCurrentTopic($event)"
+						[checked]="current_topic.indexOf(topic) != -1"
 						[value]="topic"
 						[id]="topic"
 						name="topic"
@@ -18,12 +18,12 @@
 				</div>
 			</div>
 			<div class="select-box">
-				<h3 class="select-title">Fiscal Year</h3>
+				<h3 class="select-title">Year</h3>
 				<div *ngFor="let fy of fiscal_years">
 					<input
-						type="radio"
-						(change)="filterProjectsList($event.target.value)"
-						[(ngModel)]="current_fy"
+						type="checkbox"
+						(change)="changeCurrentFY($event)"
+						[checked]="current_fy.indexOf(fy) != -1"
 						[value]="fy"
 						[id]="fy"
 						name="fy"
@@ -35,9 +35,9 @@
 				<h3 class="select-title">Status</h3>
 				<div *ngFor="let status of statuses">
 					<input
-						type="radio"
-						(change)="filterProjectsList($event.target.value)"
-						[(ngModel)]="current_status"
+						type="checkbox"
+						(change)="changeCurrentStatus($event)"
+						[checked]="current_status.indexOf(status) != -1"
 						[value]="status"
 						[id]="status"
 						name="status"
@@ -118,7 +118,7 @@
 
 					<!--Principal Investigator-->
 					<div class="card-text">
-						<b>Principle Investigator(s): </b>
+						<b>Principal Investigator(s): </b>
 						<ul *ngFor="let pi of project.contacts.principal_investigators">
 							<li>
 								{{ pi.name }}
