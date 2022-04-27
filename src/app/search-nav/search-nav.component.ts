@@ -28,10 +28,10 @@ export class SearchNavComponent implements OnInit {
   totalResults: number;
   totalResultsSubscription: Subscription;
   multipleOrgs = true
-  resultOrgs
-  resultFY
-  resultTypes
-  resultStatus
+  resultOrgs:any = []
+  resultFY:any = []
+  resultTypes:any = []
+  resultStatus:any = []
   filteredOrg:any = []
   filteredFY:any = []
   filteredType:any = []
@@ -136,6 +136,9 @@ export class SearchNavComponent implements OnInit {
 
 
   onSubmit() {
+
+    // Wipe previous query on new search
+    this.searchService.wipeQuery()
 
     var queryString = '';
     var query = '?query=';
