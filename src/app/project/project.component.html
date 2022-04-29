@@ -243,13 +243,16 @@
       </div>
       <div class="information-sidebar">
         <div
-          class="affiliations"
           *ngIf="!projectJson.cscs || projectJson.cscs.length < 1"
         >
           <strong>Affiliation(s): </strong>
+          <ul class="cscs_list">
+            <li>
           <a [routerLink]="['/casc/', projectJson.csc.id]">{{
             projectJson.csc.name
           }}</a>
+          </li>
+          </ul>
         </div>
         <div
           *ngIf="projectJson.cscs && projectJson.cscs.length > 0"
@@ -345,6 +348,10 @@
           </ul>
         </div>
 
+        <div *ngIf="projectJson.fiscal_year">
+          <p><strong>Fiscal Year: </strong> {{ projectJson.fiscal_year }}</p>
+        </div>
+
         <div *ngIf="projectJson.dates.start_date">
           <p class="single">
             <strong>Start Date: </strong>
@@ -387,9 +394,6 @@
           </ul>
         </div>
 
-        <div *ngIf="projectJson.fiscal_year">
-          <p><strong>Fiscal Year: </strong> {{ projectJson.fiscal_year }}</p>
-        </div>
       </div>
 
       <div
