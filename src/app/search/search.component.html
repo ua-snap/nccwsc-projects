@@ -26,6 +26,46 @@
                 >
               </h4>
 
+              <div *ngIf="result.types?.length > 0 && result.types == 'Publication'">
+                <button
+                  type="button"
+                  class="btn btn-publication btn-small"
+                  aria-label="Publication"
+                  disabled
+                >
+                  <span aria-hidden="true">Publication</span>
+                </button>
+              </div>
+              <div *ngIf="result.types?.length > 0 && result.types == 'Project'">
+                <button
+                  type="button"
+                  class="btn btn-project btn-small"
+                  aria-label="Project"
+                  disabled
+                >
+                  <span aria-hidden="true">Project</span>
+                </button>
+              </div>
+              <div *ngIf="result.types?.length > 0 && result.types == 'Data'">
+                <button
+                  type="button"
+                  class="btn btn-data btn-small"
+                  aria-label="Data"
+                  disabled
+                >
+                  <span aria-hidden="true">Data</span>
+                </button>
+              </div>
+              <div *ngIf="result.types?.length > 0 && result.types == 'Other Product'">
+                <button
+                  type="button"
+                  class="btn btn-other-product btn-small"
+                  aria-label="Other Product"
+                  disabled
+                >
+                  <span aria-hidden="true">Other Product</span>
+                </button>
+              </div>
               <ul>
                 <li *ngIf="result.contacts?.principal_investigators.length > 0">
                   <strong>Lead Contact(s):</strong>
@@ -67,12 +107,6 @@
                 <li *ngIf="result.dates?.start_date && result.dates?.end_date">
                   <strong>Start Date/End Date:</strong>
                   {{ result.dates.start_date }}&ndash;{{ result.dates.end_date }}
-                </li>
-                <li *ngIf="result.types?.length > 0">
-                  <strong>Type(s):</strong>
-                  <ul class="taglist">
-                    <li *ngFor="let type of result.types">{{ type }}</li>
-                  </ul>
                 </li>
                 <li *ngIf="result.organizations?.length > 0">
                   <strong>Organizations(s):</strong>
@@ -138,6 +172,36 @@
               (click)="d('Cross click')"
             >
               <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body underline" *ngIf="nonProjectItem.types?.length > 0 && nonProjectItem.types == 'Publication'">
+            <button
+              type="button"
+              class="btn btn-publication btn-small"
+              aria-label="Publication"
+              disabled
+            >
+              <span aria-hidden="true">Publication</span>
+            </button>
+          </div>
+          <div class="modal-body underline" *ngIf="nonProjectItem.types?.length > 0 && nonProjectItem.types == 'Data'">
+            <button
+              type="button"
+              class="btn btn-data btn-small"
+              aria-label="Data"
+              disabled
+            >
+              <span aria-hidden="true">Data</span>
+            </button>
+          </div>
+          <div class="modal-body underline" *ngIf="nonProjectItem.types?.length > 0 && nonProjectItem.types == 'Other Product'">
+            <button
+              type="button"
+              class="btn btn-other-product btn-small"
+              aria-label="Other Product"
+              disabled
+            >
+              <span aria-hidden="true">Other Product</span>
             </button>
           </div>
           <div class="modal-body">
@@ -296,15 +360,6 @@
                 <strong>Start Date / End Date:</strong>
                 {{ nonProjectItem.dates.start_date }} -
                 {{ nonProjectItem.dates.end_date }}
-              </li>
-              <li
-                class="list-group-item"
-                *ngIf="nonProjectItem.types?.length > 0"
-              >
-                <strong>Type(s):</strong>
-                <ul class="taglist">
-                  <li *ngFor="let type of nonProjectItem.types">{{ type }}</li>
-                </ul>
               </li>
               <li
                 class="list-group-item"
