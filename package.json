@@ -34,6 +34,7 @@
     "core-js": "^2.6.11",
     "font-awesome": "^4.7.0",
     "leaflet": "^1.7.1",
+    "ng-maphilight": "^1.0.1",
     "ng2-completer": "^9.0.1",
     "ng2-smart-table": "^1.5.0",
     "rxjs": "^6.6.3",

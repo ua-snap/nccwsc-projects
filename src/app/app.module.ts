@@ -11,6 +11,7 @@ import { LeafletModule } from "@asymmetrik/ngx-leaflet";
 import { NgSelectModule } from '@ng-select/ng-select';
 import { GoogleAnalyticsService } from './google-analytics.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MaphilightModule } from 'ng-maphilight';
 
 import { HeaderComponent } from './header/header.component'
 import { FooterComponent } from './footer/footer.component'
@@ -58,7 +59,8 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component'
     Ng2SmartTableModule,
     NgbDropdownModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MaphilightModule
   ],
   entryComponents: [
     TitleLinkComponent

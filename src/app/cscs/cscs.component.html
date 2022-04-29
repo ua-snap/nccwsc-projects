@@ -10,6 +10,7 @@
     </div>
     <div class="col-md-9 search-group">
       <h3>Search by region</h3>
+      <maphilight id="maphilight-casc-map" [config]="config">
       <img class="casc-map" src="assets/images/casc_regional_map.png" usemap="#casc-image" (load)="imageResized();" alt="Map showing the different CASC regions" />
       <map name="casc-image">
         <area target="" alt="Alaska" title="Alaska" href="#/casc/alaska" coords="-1,0,582,453" shape="rect">
@@ -22,6 +23,7 @@
         <area target="" alt="Southeast" title="Southeast" href="#/casc/southeast" coords="1352,549,1367,667,1374,684,1452,687,1444,748,1496,752,1507,781,1562,781,1614,772,1627,789,1669,774,1702,805,1699,844,1771,936,1806,923,1813,827,2036,818,2036,652,1785,656,1876,549,1865,496,1671,525,1494,555" shape="poly">
         <area target="" alt="Northeast" title="Northeast" href="#/casc/northeast" coords="1946,46,1914,46,1900,127,1815,173,1791,238,1739,249,1739,282,1712,308,1710,391,1680,444,1621,431,1588,466,1529,490,1507,536,1653,520,1872,483,1855,450,1892,391,2016,385,2012,321,1931,308,1981,262,1959,214,2005,140" shape="poly">
       </map>
+      </maphilight>
     </div>
   </div>
   <div class="row">
