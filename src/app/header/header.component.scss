@@ -15,7 +15,10 @@
 }
 
 .brandContainer {
-    background: #003946 no-repeat url("/assets/images/header-bar.jpg");
+    background-image: url("/assets/images/header-bar.svg");
+    background-size: cover;
+    background-position: 0 30%;
+    background-repeat: no-repeat;
     width: 100%;
     height: 174px;
     padding: 1.15rem 1.5rem 1rem;
@@ -45,7 +48,7 @@
 
 @media only screen and (max-width: 767px) {
     .brandContainer {
-        background: #003946;
+        background: #00264B;
         width: 100%;
         height: auto;
         text-align: center;
