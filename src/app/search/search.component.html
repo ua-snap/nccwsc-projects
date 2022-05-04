@@ -3,9 +3,17 @@
     <search-nav></search-nav>
   </div>
   <div class="col-md-9 results">
-    <p *ngIf="results && results.length == 0">Enter search terms and filters using the controls, then click &ldquo;Search&rdquo; to get results.</p>
+    <p *ngIf="results && results.length == 0">
+      Enter search terms and filters using the controls, then click
+      &ldquo;Search&rdquo; to get results.
+    </p>
     <div *ngIf="results.length > 0">
-      <h4>Search Results <span *ngIf="total_results > 0 && filteredResultsCount != -1">({{ filteredResultsCount }})</span></h4>
+      <h4>
+        Search Results
+        <span *ngIf="total_results > 0 && filteredResultsCount != -1"
+          >({{ filteredResultsCount }})</span
+        >
+      </h4>
       <div class="haveResults" *ngIf="total_results > 0">
         <div *ngFor="let result of results">
           <div class="card">
@@ -26,6 +34,34 @@
                 >
               </h4>
 
+              <div class="badges">
+                <div
+                  *ngIf="
+                    result.types?.length > 0 && result.types == 'Publication'
+                  "
+                >
+                  <span class="badge badge-pill badge-publication"
+                    >Publication</span
+                  >
+                </div>
+                <div
+                  *ngIf="result.types?.length > 0 && result.types == 'Project'"
+                >
+                  <span class="badge badge-pill badge-project">Project</span>
+                </div>
+                <div *ngIf="result.types?.length > 0 && result.types == 'Data'">
+                  <span class="badge badge-pill badge-data">Data</span>
+                </div>
+                <div
+                  *ngIf="
+                    result.types?.length > 0 && result.types == 'Other Product'
+                  "
+                >
+                  <span class="badge badge-pill badge-other">
+                    Other Product</span
+                  >
+                </div>
+              </div>
               <ul>
                 <li *ngIf="result.contacts?.principal_investigators.length > 0">
                   <strong>Lead Contact(s):</strong>
@@ -66,13 +102,9 @@
                 </li>
                 <li *ngIf="result.dates?.start_date && result.dates?.end_date">
                   <strong>Start Date/End Date:</strong>
-                  {{ result.dates.start_date }}&ndash;{{ result.dates.end_date }}
-                </li>
-                <li *ngIf="result.types?.length > 0">
-                  <strong>Type(s):</strong>
-                  <ul class="taglist">
-                    <li *ngFor="let type of result.types">{{ type }}</li>
-                  </ul>
+                  {{ result.dates.start_date }}&ndash;{{
+                    result.dates.end_date
+                  }}
                 </li>
                 <li *ngIf="result.organizations?.length > 0">
                   <strong>Organizations(s):</strong>
@@ -139,6 +171,32 @@
             >
               <span aria-hidden="true">&times;</span>
             </button>
+          </div>
+          <div
+            class="modal-body underline badges"
+            *ngIf="
+              nonProjectItem.types?.length > 0 &&
+              nonProjectItem.types == 'Publication'
+            "
+          >
+            <span class="badge badge-pill badge-publication">Publication</span>
+          </div>
+          <div
+            class="modal-body underline badges"
+            *ngIf="
+              nonProjectItem.types?.length > 0 && nonProjectItem.types == 'Data'
+            "
+          >
+            <span class="badge badge-pill badge-data">Data</span>
+          </div>
+          <div
+            class="modal-body underline badges"
+            *ngIf="
+              nonProjectItem.types?.length > 0 &&
+              nonProjectItem.types == 'Other Product'
+            "
+          >
+            <span class="badge badge-pill badge-other">Other Product</span>
           </div>
           <div class="modal-body">
             <ul class="list-group list-group-flush">
@@ -296,15 +354,6 @@
                 <strong>Start Date / End Date:</strong>
                 {{ nonProjectItem.dates.start_date }} -
                 {{ nonProjectItem.dates.end_date }}
-              </li>
-              <li
-                class="list-group-item"
-                *ngIf="nonProjectItem.types?.length > 0"
-              >
-                <strong>Type(s):</strong>
-                <ul class="taglist">
-                  <li *ngFor="let type of nonProjectItem.types">{{ type }}</li>
-                </ul>
               </li>
               <li
                 class="list-group-item"

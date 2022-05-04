@@ -12,3 +12,32 @@
     }
   }
 }
+
+.badges {
+  color: white;
+  margin-bottom: 1rem;
+  .badge {
+    padding: 0.4rem 0.5rem 0.25rem 0.5rem;
+    font-family: sans-serif;
+  }
+  .badge-publication {
+    background-color: #dd8b31;
+  }
+
+  .badge-project {
+    background-color: #03aedd;
+  }
+
+  .badge-data {
+    background-color: #b24142;
+  }
+
+  .badge-other-product {
+    background-color: #5478bf;
+  }
+}
+
+.underline {
+  border: 1px #dee2e6 solid;
+  border-width: 0 0 1px;
+}
