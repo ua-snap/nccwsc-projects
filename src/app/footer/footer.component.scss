@@ -17,13 +17,11 @@ footer {
   a {
     display: inline-block;
     margin-right: 2rem;
-    color: #48CAF7 !important;
+    color: #48caf7 !important;
   }
 
-  
-
   .footer-container {
-    width: 85%;
+    width: 90%;
   }
 
   .logos {
@@ -33,8 +31,10 @@ footer {
 
   img {
     display: block;
-    height: 6rem;
-    width: 100%;
+    height: 8rem;
+    min-width: 150px;
+    max-width: 225px;
+    margin: 0 auto;
   }
 
   .social-media-icon {
