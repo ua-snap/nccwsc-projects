@@ -13,28 +13,28 @@
   }
 }
 
-.btn-publication {
-  background-color: #DD8B31;
+.badges {
   color: white;
-  opacity: 1.0;
-}
+  margin-bottom: 1rem;
+  .badge {
+    padding: 0.4rem 0.5rem 0.25rem 0.5rem;
+    font-family: sans-serif;
+  }
+  .badge-publication {
+    background-color: #dd8b31;
+  }
 
-.btn-project {
-  background-color: #03AEDD;
-  color: white;
-  opacity: 1.0;
-}
+  .badge-project {
+    background-color: #03aedd;
+  }
 
-.btn-data {
-  background-color: #B24142;
-  color: white;
-  opacity: 1.0;
-}
+  .badge-data {
+    background-color: #b24142;
+  }
 
-.btn-other-product {
-  background-color: #5478BF;
-  color: white;
-  opacity: 1.0;
+  .badge-other-product {
+    background-color: #5478bf;
+  }
 }
 
 .underline {
