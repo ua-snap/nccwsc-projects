@@ -46,15 +46,17 @@ export class TopicsComponent implements OnInit {
         renderComponent: TitleLinkComponent
       },
       csc_name: {
-        title: "CASC"
+        title: "CASC",
+        width: "15%"
       },
       subtopics_formatted: {
         title: "Subtopic(s)",
-        type: "html"
+        type: "html",
+        width: "20%"
       },
       status: {
         title: "Status",
-        width: "10%"
+        width: "15%"
       }
     },
     actions: false,
