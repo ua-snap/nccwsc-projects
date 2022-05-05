@@ -16,6 +16,14 @@ export class BreadcrumbComponent implements OnInit {
 
   constructor(private urlService: UrlService) { }
 
+  is_project() {
+    if (this.previousUrl != null) {
+      if (this.previousUrl.includes('project')) {
+        return true;
+      }
+   }
+  }
+
   ngOnInit() {
     this.urlService.previousUrl$
     .subscribe((previous_url: string) => {
