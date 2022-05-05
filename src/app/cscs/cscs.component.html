@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row large-screen">
     <div class="col-md-3 search-group">
       <h3>Search by topic</h3>
       <div class="topics-wrapper">
@@ -8,7 +8,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-9 search-group">
+    <div class="col-md-9 search-group large-screen">
       <h3>Search by region</h3>
       <maphilight id="maphilight-casc-map" [config]="config">
       <img class="casc-map" src="assets/images/casc_regional_map.png" usemap="#casc-image" (load)="imageResized();" alt="Map showing the different CASC regions" />
@@ -25,6 +25,31 @@
         <area target="" alt="Northeast" title="Northeast" href="#/casc/northeast" coords="1919,59,1910,107,1908,138,1878,159,1829,174,1730,176,1732,246,1788,248,1739,257,1748,276,1712,309,1719,354,1716,390,1683,442,1626,433,1595,467,1574,483,1547,487,1532,507,1520,503,1512,530,1547,534,1590,523,1660,521,1869,489,1867,467,1854,476,1845,442,1863,435,1871,420,1799,419,1799,372,1885,366,1932,305,1970,264,1971,246,2015,248,2016,174,1968,174,2004,141,1986,114,1971,109,1957,57,1946,57,1935,66" shape="poly">
       </map>
       </maphilight>
+    </div>
+  </div>
+  <div class="row small-screen">
+    <div class="col-md-12 search-group">
+      <h3>Search by topic</h3>
+      <div class="topics-wrapper">
+        <div class="topics" *ngFor="let topic of topic_ids">
+          <a class="btn btn-light" [routerLink]="['/topics/', topic.id]">{{ topic.name }}</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 search-group">
+      <h3>Search by region</h3>
+      <div class="regions">
+        <a class="btn btn-light" href="#/casc/national-casc">National</a>
+        <a class="btn btn-light" href="#/casc/alaska">Alaska</a>
+        <a class="btn btn-light" href="#/casc/midwest">Midwest</a>
+        <a class="btn btn-light" href="#/casc/north-central">North Central</a>
+        <a class="btn btn-light" href="#/casc/northeast">Northeast</a>
+        <a class="btn btn-light" href="#/casc/northwest">Northwest</a>
+        <a class="btn btn-light" href="#/casc/south-central">South Central</a>
+        <a class="btn btn-light" href="#/casc/southeast">Southeast</a>
+        <a class="btn btn-light" href="#/casc/southwest">Southwest</a>
+        <a class="btn btn-light" href="#/casc/pacific-islands">Pacific Islands</a>
+      </div>
     </div>
   </div>
   <div class="row">
