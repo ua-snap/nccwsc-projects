@@ -11,6 +11,29 @@ declare function imageMapResize(): void;
 
 export class CscsComponent implements OnInit {
 
+  config = {
+    fade: true,
+    alwaysOn: false,
+    neverOn: false,
+
+    // fill
+    fill: true,
+    fillColor: '#ffffff',
+    fillOpacity: 0.4,
+
+    // stroke
+    stroke: true,
+    strokeColor: '#f0ff00',
+    strokeOpacity: 1,
+    strokeWidth: 5,
+
+    // shadow:
+    shadow: false,
+    shadowColor: '#000000',
+    shadowOpacity: 0.8,
+    shadowRadius: 10
+  }
+
   csc_ids = [
     {'id': 'alaska', 'name' : 'Alaska'},
     {'id': 'midwest', 'name': 'Midwest'},
