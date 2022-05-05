@@ -56,7 +56,7 @@ export class TopicsComponent implements OnInit {
       },
       status: {
         title: "Status",
-        width: "10%"
+        width: "15%"
       }
     },
     actions: false,
