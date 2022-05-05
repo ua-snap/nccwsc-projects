@@ -4,7 +4,7 @@
       <h3>Search by topic</h3>
       <div class="topics-wrapper">
         <div class="topics" *ngFor="let topic of topic_ids">
-          <a [routerLink]="['/topics/', topic.id]">{{ topic.name }}</a>
+          <a class="btn btn-light" [routerLink]="['/topics/', topic.id]">{{ topic.name }}</a>
         </div>
       </div>
     </div>
