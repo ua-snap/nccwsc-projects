@@ -29,4 +29,25 @@
       display: block;
     }
   }
+
+  .regions {
+    line-height: 1.2;
+    a {
+      font-size: 1.3rem;
+      width: 100%;
+      display: block;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .large-screen {
+    display: none;
+  }
+}
+@media screen and (min-width: 861px) {
+  .small-screen {
+    display: none;
+  }
 }
