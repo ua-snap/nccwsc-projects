@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { CscsComponent } from './cscs.component';\nexport const CscsRoutes = [{\n  path: '',\n  component: CscsComponent\n}, {\n  path: 'cascs',\n  component: CscsComponent\n}];","map":null,"metadata":{},"sourceType":"module"}
