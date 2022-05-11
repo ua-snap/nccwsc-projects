@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { ProjectResourceComponent } from './project-resource.component';\nexport const ProjectResourceRoutes = [{\n  path: 'component/:sbId',\n  component: ProjectResourceComponent\n}];","map":null,"metadata":{},"sourceType":"module"}

@@ -1,1 +1,0 @@
-{"ast":null,"code":"export class LeafletMapModel {\n  constructor(baseLayers, baseLayer, overlayLayers = []) {\n    this.baseLayers = baseLayers;\n    this.baseLayer = baseLayer;\n    this.overlayLayers = overlayLayers;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}
