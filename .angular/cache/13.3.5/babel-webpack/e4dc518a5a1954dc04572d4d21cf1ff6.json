@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { TopicsComponent } from './topics.component';\nexport const TopicsRoutes = [{\n  path: 'topics/:topic',\n  component: TopicsComponent\n}];","map":null,"metadata":{},"sourceType":"module"}

@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { ProjectComponent } from './project.component';\nexport const ProjectRoutes = [{\n  path: 'project/:csc/:id',\n  component: ProjectComponent\n}];","map":null,"metadata":{},"sourceType":"module"}
