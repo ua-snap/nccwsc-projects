@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { CscComponent } from './csc.component';\nexport const CscRoutes = [{\n  path: 'casc/:id',\n  component: CscComponent\n}];","map":null,"metadata":{},"sourceType":"module"}
