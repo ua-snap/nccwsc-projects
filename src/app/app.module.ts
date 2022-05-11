@@ -33,39 +33,36 @@ import { TitleLinkComponent } from './title-link/title-link.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component'
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    ProjectComponent,
-    ProjectsComponent,
-    SearchComponent,
-    CscsComponent,
-    TopicsComponent,
-    MapComponent,
-    SearchNavComponent,
-    CscComponent,
-    ProjectResourceComponent,
-    TitleLinkComponent,
-    BreadcrumbComponent
-  ],
-  imports: [
-    LeafletModule,
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    routing,
-    NgSelectModule,
-    Ng2SmartTableModule,
-    NgbDropdownModule,
-    NgbModule,
-    FontAwesomeModule,
-    MaphilightModule
-  ],
-  entryComponents: [
-    TitleLinkComponent
-  ],
-  providers: [GoogleAnalyticsService, LocalJsonService, SciencebaseService, SearchService, UrlService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        FooterComponent,
+        ProjectComponent,
+        ProjectsComponent,
+        SearchComponent,
+        CscsComponent,
+        TopicsComponent,
+        MapComponent,
+        SearchNavComponent,
+        CscComponent,
+        ProjectResourceComponent,
+        TitleLinkComponent,
+        BreadcrumbComponent
+    ],
+    imports: [
+        LeafletModule,
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        routing,
+        NgSelectModule,
+        Ng2SmartTableModule,
+        NgbDropdownModule,
+        NgbModule,
+        FontAwesomeModule,
+        MaphilightModule
+    ],
+    providers: [GoogleAnalyticsService, LocalJsonService, SciencebaseService, SearchService, UrlService, { provide: LocationStrategy, useClass: HashLocationStrategy }],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
