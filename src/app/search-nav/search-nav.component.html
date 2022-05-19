@@ -43,17 +43,6 @@
   <div class="filters" *ngIf="totalResults > 0">
     <h4>Filters</h4>
     <div class="field">
-      <ng-select #orgs
-        [multiple]="true"
-        [items]="resultOrgs"
-        (change)="onOrgSourceChange($event.label)"
-        [(ngModel)]="filteredOrg"
-        [label]="Organizations"
-        (deselected)="onOrgSourceChange($event.label)"
-        placeholder="All Organizations">
-      </ng-select>
-    </div>
-    <div class="field">
       <ng-select #types
         [multiple]="true"
         [items]="resultTypes"
