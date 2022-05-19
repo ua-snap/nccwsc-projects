@@ -1,17 +1,19 @@
 footer {
+  margin-top: 4rem;
+  border-top: 1px solid #888;
+  padding-top: 4rem;
   background-color: rgb(255, 255, 255);
-  .colored {
+  box-shadow: 0 0 15px 0 #888 inset;
+
+  .footer-dark {
     background-color: rgb(0, 38, 76);
     padding-top: 2rem;
-    padding-bottom: 1rem;
+    padding-bottom: 2rem;
     text-align: center;
 
-    h4 {
-      color: rgba(255, 255, 255, 0.8);
-    }
-
+    h4,
     p {
-      color: rgba(255, 255, 255, 0.8);
+      color: white;
     }
   }
   a {
@@ -27,19 +29,16 @@ footer {
   .logos {
     margin-top: 2rem;
     margin-bottom: 2rem;
-   
 
     img {
       display: block;
-      height: 8rem;
-      min-width: 150px;
-      max-width: 250px;
-      margin: 0 auto;
+      margin: 1rem auto;
     }
   }
 
   .social-media-icon {
     height: 2rem;
     width: 2rem;
+    border: 1px solid red;
   }
 }
