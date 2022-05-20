@@ -5,6 +5,10 @@ footer {
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 15px 0 #888 inset;
 
+  .footer-intro {
+    margin-bottom: 4rem;
+  }
+
   .footer-dark {
     background-color: rgb(0, 38, 76);
     padding-top: 2rem;
@@ -26,13 +30,15 @@ footer {
     width: 90%;
   }
 
-  .logos {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-
-    img {
-      display: block;
-      margin: 1rem auto;
+  .logo-block {
+    margin-bottom: 4rem;
+    
+    .logos {
+      img {
+        display: block;
+        width: 185px;
+        margin: 0 auto 1rem;
+      }
     }
   }
 
