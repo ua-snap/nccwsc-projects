@@ -209,7 +209,7 @@
           </li>
         </ul>
       </div>
-      <div *ngIf="projectJson.images && projectJson.images.length > 1">
+      <div *ngIf="(projectJson.images && projectJson.images.length > 1) || previewImage">
         <h2>Media</h2>
         <div class="media-cards">
           <div class="card" *ngFor="let image of projectJson.images">
