@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { LocalJsonService } from '../local-json.service';
-import { SearchService } from '../search.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { environment } from '../../environments/environment';
-import { TitleLinkComponent } from '../title-link/title-link.component';
-import { Location } from '@angular/common';
-import { UrlService } from '../url.service';
+import { Component, OnInit } from "@angular/core";
+import { LocalJsonService } from "../local-json.service";
+import { SearchService } from "../search.service";
+import { Router, ActivatedRoute } from "@angular/router";
+import { environment } from "../../environments/environment";
+import { TitleLinkComponent } from "../title-link/title-link.component";
+import { Location } from "@angular/common";
+import { UrlService } from "../url.service";
 
 @Component({
   selector: "app-topics",
   templateUrl: "./topics.component.html",
-  styleUrls: ["./topics.component.scss", "../shared.scss"]
+  styleUrls: ["./topics.component.scss", "../shared.scss"],
 })
 export class TopicsComponent implements OnInit {
   sub = null;
@@ -23,7 +23,7 @@ export class TopicsComponent implements OnInit {
     landscapes: "5882456be4b0b3d9add24395",
     "indigenous-peoples": "588246dae4b0b3d9add243a1",
     "water-coasts-ice": "5882464ce4b0b3d9add2439a",
-    "wildlife-plants": "58824220e4b0b3d9add2438b"
+    "wildlife-plants": "58824220e4b0b3d9add2438b",
   };
   topic_names = {
     "drought-fire-extremes": "Drought, Fire and Extreme Weather",
@@ -31,39 +31,39 @@ export class TopicsComponent implements OnInit {
     landscapes: "Landscapes",
     "indigenous-peoples": "Indigenous Peoples",
     "water-coasts-ice": "Water, Coasts and Ice",
-    "wildlife-plants": "Wildlife and Plants"
+    "wildlife-plants": "Wildlife and Plants",
   };
 
   settings = {
     columns: {
       fiscal_year: {
         title: "Year",
-        width: "6%"
+        width: "6%",
       },
       title: {
         title: "Title",
         type: "custom",
-        renderComponent: TitleLinkComponent
+        renderComponent: TitleLinkComponent,
       },
       csc_name: {
         title: "CASC",
-        width: "15%"
+        width: "15%",
       },
       subtopics_formatted: {
         title: "Subtopic(s)",
         type: "html",
-        width: "20%"
+        width: "20%",
       },
       status: {
         title: "Status",
-        width: "15%"
-      }
+        width: "15%",
+      },
     },
     actions: false,
     hideSubHeader: true,
     pager: {
-      display: false
-    }
+      display: false,
+    },
     // this.source.setSort([{ field: 'id', direction: 'asc' }]);
   };
 
@@ -100,90 +100,85 @@ export class TopicsComponent implements OnInit {
 
   changeCurrentCASC(event: any = null) {
     if (event.target.checked == true) {
-
-      let index = this.current_csc.indexOf("All CASCs")
+      let index = this.current_csc.indexOf("All CASCs");
       if (index != -1) {
-        this.current_csc.splice(index, 1)
+        this.current_csc.splice(index, 1);
       }
-      this.current_csc.push(event.target.value)
+      this.current_csc.push(event.target.value);
     } else {
-      let index = this.current_csc.indexOf(event.target.value)
+      let index = this.current_csc.indexOf(event.target.value);
       if (index != -1) {
-        this.current_csc.splice(index, 1)
+        this.current_csc.splice(index, 1);
       }
     }
-    if (this.current_csc.length == 0) {    
-      this.current_csc.push("All CASCs")
+    if (this.current_csc.length == 0) {
+      this.current_csc.push("All CASCs");
     }
 
-    this.filterProjectsList(event.target.value)
+    this.filterProjectsList(event.target.value);
   }
 
   changeCurrentSubTopic(event: any = null) {
     if (event.target.checked == true) {
-
-      let index = this.current_subtopic.indexOf("All Subtopics")
+      let index = this.current_subtopic.indexOf("All Subtopics");
       if (index != -1) {
-        this.current_subtopic.splice(index, 1)
+        this.current_subtopic.splice(index, 1);
       }
-      this.current_subtopic.push(event.target.value)
+      this.current_subtopic.push(event.target.value);
     } else {
-      let index = this.current_subtopic.indexOf(event.target.value)
+      let index = this.current_subtopic.indexOf(event.target.value);
       if (index != -1) {
-        this.current_subtopic.splice(index, 1)
+        this.current_subtopic.splice(index, 1);
       }
     }
-    if (this.current_subtopic.length == 0) {    
-      this.current_subtopic.push("All Subtopics")
+    if (this.current_subtopic.length == 0) {
+      this.current_subtopic.push("All Subtopics");
     }
 
-    this.filterProjectsList(event.target.value)
+    this.filterProjectsList(event.target.value);
   }
 
   changeCurrentStatus(event: any = null) {
     if (event.target.checked == true) {
-
-      let index = this.current_status.indexOf("All Statuses")
+      let index = this.current_status.indexOf("All Statuses");
       if (index != -1) {
-        this.current_status.splice(index, 1)
+        this.current_status.splice(index, 1);
       }
-      this.current_status.push(event.target.value)
+      this.current_status.push(event.target.value);
     } else {
-      let index = this.current_status.indexOf(event.target.value)
+      let index = this.current_status.indexOf(event.target.value);
       if (index != -1) {
-        this.current_status.splice(index, 1)
+        this.current_status.splice(index, 1);
       }
     }
-    if (this.current_status.length == 0) {    
-      this.current_status.push("All Statuses")
+    if (this.current_status.length == 0) {
+      this.current_status.push("All Statuses");
     }
 
-    this.filterProjectsList(event.target.value)
+    this.filterProjectsList(event.target.value);
   }
 
   changeCurrentYear(event: any = null) {
     if (event.target.checked == true) {
-
-      let index = this.current_fy.indexOf("All Fiscal Years")
+      let index = this.current_fy.indexOf("All Fiscal Years");
       if (index != -1) {
-        this.current_fy.splice(index, 1)
+        this.current_fy.splice(index, 1);
       }
-      this.current_fy.push(event.target.value)
+      this.current_fy.push(event.target.value);
     } else {
-      let index = this.current_fy.indexOf(event.target.value)
+      let index = this.current_fy.indexOf(event.target.value);
       if (index != -1) {
-        this.current_fy.splice(index, 1)
+        this.current_fy.splice(index, 1);
       }
     }
-    if (this.current_fy.length == 0) {    
-      this.current_fy.push("All Fiscal Years")
+    if (this.current_fy.length == 0) {
+      this.current_fy.push("All Fiscal Years");
     }
 
-    this.filterProjectsList(event.target.value)
+    this.filterProjectsList(event.target.value);
   }
 
   filterProjectsList(event: any = null) {
-    
     this.filteredProjectsList = [];
     for (var project in this.projectsList) {
       if (
@@ -225,7 +220,9 @@ export class TopicsComponent implements OnInit {
       if (this.current_fy.indexOf("All Fiscal Years") === -1) {
         let found = false;
         for (let year in this.current_fy) {
-          if (this.projectsList[project].fiscal_year === this.current_fy[year]) {
+          if (
+            this.projectsList[project].fiscal_year === this.current_fy[year]
+          ) {
             found = true;
             break;
           }
@@ -238,13 +235,14 @@ export class TopicsComponent implements OnInit {
       if (this.current_status.indexOf("All Statuses") === -1) {
         let found = false;
         for (let status in this.current_status) {
-          if (this.projectsList[project].status === this.current_status[status]) {
+          if (
+            this.projectsList[project].status === this.current_status[status]
+          ) {
             found = true;
-            console.log("This is TRUE")
             break;
           }
         }
-          
+
         if (!found) {
           continue;
         }
@@ -252,7 +250,9 @@ export class TopicsComponent implements OnInit {
       if (this.current_csc.indexOf("All CASCs") === -1) {
         let found = false;
         for (let csc in this.current_csc) {
-          if (this.projectsList[project].csc["name"] === this.current_csc[csc]) {
+          if (
+            this.projectsList[project].csc["name"] === this.current_csc[csc]
+          ) {
             found = true;
             break;
           }
@@ -290,19 +290,19 @@ export class TopicsComponent implements OnInit {
   updateUrl() {
     let params: any = {};
     if (this.current_subtopic.indexOf("All Subtopics") === -1) {
-      params["subtopic"] = this.current_subtopic.join('+');
+      params["subtopic"] = this.current_subtopic.join("+");
     }
     if (this.current_fy.indexOf("All Fiscal Years") === -1) {
-      params["year"] = this.current_fy.join('+');
+      params["year"] = this.current_fy.join("+");
     }
     if (this.current_status.indexOf("All Statuses") === -1) {
-      params["status"] = this.current_status.join('+');
+      params["status"] = this.current_status.join("+");
     }
     if (this.current_type != "All Types") {
       params["type"] = this.current_type;
     }
     if (this.current_csc.indexOf("All CASCs") == -1) {
-      params["csc"] = this.current_csc.join('+');
+      params["csc"] = this.current_csc.join("+");
     }
 
     const url = this.router
@@ -330,30 +330,29 @@ export class TopicsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
+    this.sub = this.route.params.subscribe((params) => {
       this.topic = params["topic"];
       if (params["subtopic"]) {
-        this.current_subtopic = params["subtopic"].split('+');
+        this.current_subtopic = params["subtopic"].split("+");
       }
       if (params["year"]) {
-        this.current_fy = params["year"].split('+');
+        this.current_fy = params["year"].split("+");
       }
       if (params["status"]) {
-        this.current_status = params["status"].split('+');
+        this.current_status = params["status"].split("+");
       }
       if (params["type"]) {
         this.current_type = params["type"];
       }
       if (params["csc"]) {
-        this.current_csc = params["csc"].split('+');
+        this.current_csc = params["csc"].split("+");
       }
 
-      this.page_title = this.topic_names[this.topic]
+      this.page_title = this.topic_names[this.topic];
       this.urlService.setPreviousTitle(this.page_title);
       this.urlService.setCurrentTitle(this.page_title);
-
     });
-    this.searchService.getTopics().subscribe(topics => {
+    this.searchService.getTopics().subscribe((topics) => {
       var topics = topics;
       for (var topic in topics) {
         if (topics[topic].label == this.page_title) {
@@ -363,7 +362,7 @@ export class TopicsComponent implements OnInit {
     });
     this.localJson
       .loadTopic(encodeURIComponent(this.topic_names[this.topic]))
-      .subscribe(data => {
+      .subscribe((data) => {
         this.projectsList = data;
         for (var project in this.projectsList) {
           for (var subtopic in this.projectsList[project].topics) {
@@ -392,7 +391,10 @@ export class TopicsComponent implements OnInit {
             }
           }
           if (this.statuses.indexOf(this.projectsList[project].status) < 0) {
-            if (this.projectsList[project].status != null) {
+            if (
+              this.projectsList[project].status != null &&
+              this.projectsList[project].status != "N/A"
+            ) {
               this.statuses.push(this.projectsList[project].status);
             }
           }
