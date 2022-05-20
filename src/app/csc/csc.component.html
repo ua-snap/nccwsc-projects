@@ -47,6 +47,27 @@
 			</div>
 		</div>
 		<div class="col-md-10 results-table">
+			<div *ngIf="dataLoading">
+				<h4 class="loading">
+					<img
+						src="{{ approot }}assets/loading.gif"
+						class="loading"
+						alt="Loading Results"
+						title="Loading Results"
+					/>Loading {{ title }} ScienceBase projects&hellip;
+				</h4>
+			</div>
+			<div
+				class="no_data"
+				*ngIf="
+					filteredCscProjectsList.length == 0 && dataLoading == false
+				"
+			>
+				<h4 class="no_data">
+					No projects match all the search filters selected.
+				</h4>
+				<p>Remove one or more filters to see matching projects.</p>
+			</div>
 			<div
 				class="csc-projects"
 				*ngIf="!dataLoading && filteredCscProjectsList.length > 0"
@@ -57,32 +78,6 @@
 						[settings]="settings"
 						[source]="filteredCscProjectsList"
 					></ng2-smart-table>
-
-					<div *ngIf="dataLoading">
-						<h4 class="loading">Loading {{ title }} ScienceBase Projects.</h4>
-						<img
-							src="{{ approot }}assets/loading.gif"
-							class="loading"
-							alt="Loading Results"
-							title="Loading Results"
-						/>
-					</div>
-
-					<div
-						class="no_data"
-						*ngIf="filteredCscProjectsList.length == 0 && dataLoading == false"
-					>
-						<h4 class="no_data">
-							Use one or more filters above to select the topics, fiscal years,
-							or statises for the projects you wish to view.
-						</h4>
-						<button
-							class="btn btn-outline-secondary btn-small"
-							(click)="showAllProjects()"
-						>
-							See All Projects
-						</button>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -119,10 +114,17 @@
 					<!--Principal Investigator-->
 					<div class="card-text">
 						<b>Principal Investigator(s): </b>
-						<ul *ngFor="let pi of project.contacts.principal_investigators">
+						<ul
+							*ngFor="
+								let pi of project.contacts
+									.principal_investigators
+							"
+						>
 							<li>
 								{{ pi.name }}
-								<em *ngIf="pi.organization">({{ pi.organization }})</em>
+								<em *ngIf="pi.organization"
+									>({{ pi.organization }})</em
+								>
 							</li>
 						</ul>
 					</div>
@@ -131,14 +133,18 @@
 					<div class="card-text">
 						<b>Topic(s): </b>
 
-						<span *ngIf="project?.topics"> {{ project.topics }} </span>
+						<span *ngIf="project?.topics">
+							{{ project.topics }}
+						</span>
 						<span *ngIf="!project.topics"> Unknown </span>
 					</div>
 
 					<!--Status-->
 					<div class="card-text">
 						<b>Status: </b>
-						<span *ngIf="project.status"> {{ project.status }} </span>
+						<span *ngIf="project.status">
+							{{ project.status }}
+						</span>
 						<span *ngIf="!project.status"> Unknown </span>
 					</div>
 				</div>

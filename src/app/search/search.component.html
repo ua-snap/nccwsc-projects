@@ -3,10 +3,32 @@
     <search-nav></search-nav>
   </div>
   <div class="col-md-9 results">
-    <p *ngIf="results && results.length == 0">
+    <div class="loading" *ngIf="total_results == -1">
+      <h4 class="loading">
+        <img
+          src="{{ approot }}assets/loading.gif"
+          class="loading"
+          alt="Loading Results"
+          title="Loading Results"
+        />
+        Loading {{ title }} ScienceBase Projects.
+      </h4>
+    </div>
+    <div *ngIf="!noResult && results && results.length == 0 && total_results > -1">
       Enter search terms and filters using the controls, then click
       &ldquo;Search&rdquo; to get results.
-    </p>
+    </div>
+
+    <div *ngIf="noResult && total_results <= 0">
+      <p>Sorry, no matching items were found.  Try using different search terms.</p>
+    </div>
+
+    <div *ngIf="filteredResultsCount == -1 && total_results > 0">
+      <h4>Search Results with Filter</h4>
+      <p class="no_data">
+        No items exist that match the current filters.
+      </p>
+    </div>
     <div *ngIf="results.length > 0">
       <h4>
         Search Results
@@ -129,34 +151,6 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div class="loading" *ngIf="total_results == -1">
-          <h4 class="loading">Loading {{ title }} ScienceBase Projects.</h4>
-          <img
-            src="{{ approot }}assets/loading.gif"
-            class="loading"
-            alt="Loading Results"
-            title="Loading Results"
-          />
-        </div>
-
-        <div class="no_search" *ngIf="total_results == 0">
-          <h4>Search Results</h4>
-          <p class="no_data">{{ noResult }}</p>
-        </div>
-
-        <div class="row">
-          <div
-            class="col-md-12 no_search"
-            *ngIf="filteredResultsCount == -1 && total_results > 0"
-          >
-            <h4>Search Results with Filter</h4>
-            <p class="no_data">
-              No projects exist that match the current filters. Please reset the
-              filters and refine your filters.
-            </p>
           </div>
         </div>
 
