@@ -14,20 +14,22 @@
         Loading {{ title }} ScienceBase Projects.
       </h4>
     </div>
-    <div *ngIf="!noResult && results && results.length == 0 && total_results > -1">
+    <div
+      *ngIf="!noResult && results && results.length == 0 && total_results > -1"
+    >
       Enter search terms and filters using the controls, then click
       &ldquo;Search&rdquo; to get results.
     </div>
 
     <div *ngIf="noResult && total_results <= 0">
-      <p>Sorry, no matching items were found.  Try using different search terms.</p>
+      <p>
+        Sorry, no matching items were found. Try using different search terms.
+      </p>
     </div>
 
     <div *ngIf="filteredResultsCount == -1 && total_results > 0">
       <h4>Search Results with Filter</h4>
-      <p class="no_data">
-        No items exist that match the current filters.
-      </p>
+      <p class="no_data">No items exist that match the current filters.</p>
     </div>
     <div *ngIf="results.length > 0">
       <h4>
@@ -76,7 +78,9 @@
                 </div>
                 <div
                   *ngIf="
-                    result.types?.length > 0 && result.types == 'Other Product'
+                    (result.types?.length > 0 &&
+                      result.types == 'Other Product') ||
+                    result.types == null
                   "
                 >
                   <span class="badge badge-pill badge-other">
@@ -139,6 +143,7 @@
               </ul>
 
               <a
+                *ngIf="result.summary"
                 class="summary_link"
                 (click)="result.isCollapsed = !result.isCollapsed"
                 [attr.aria-expanded]="!result.isCollapsed"
