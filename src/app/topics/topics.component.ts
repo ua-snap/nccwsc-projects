@@ -427,8 +427,9 @@ export class TopicsComponent implements OnInit {
               this.projectsList[project].csc["name"];
 
             // subtopics
-            this.projectsList[project].subtopics_formatted = "<ul>";
+            this.projectsList[project].subtopics_formatted = "";
             if (this.projectsList[project].subtopics != null) {
+              this.projectsList[project].subtopics_formatted = "<ul>";
               for (var st of this.projectsList[project].subtopics) {
                 if (
                   this.isOnTopic(st) &&
@@ -445,7 +446,6 @@ export class TopicsComponent implements OnInit {
               this.projectsList[project].status = "N/A";
             }
           } //end for project
-          console.log(this.projectsList);
         }
 
         this.current_type = "Project";
