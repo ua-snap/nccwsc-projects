@@ -423,28 +423,29 @@ export class TopicsComponent implements OnInit {
 
           // cscs and year
           for (var project in this.filteredProjectsList) {
-            this.projectsList[project].csc_name = this.projectsList[
-              project
-            ].csc["name"];
+            this.projectsList[project].csc_name =
+              this.projectsList[project].csc["name"];
 
             // subtopics
             this.projectsList[project].subtopics_formatted = "<ul>";
-            for (var st of this.projectsList[project].subtopics) {
-              if (
-                this.isOnTopic(st) &&
-                this.projectsList[project].subtopics_formatted.indexOf(st) < 0
-              ) {
-                this.projectsList[project].subtopics_formatted +=
-                  "<li>" + st + "</li>";
+            if (this.projectsList[project].subtopics != null) {
+              for (var st of this.projectsList[project].subtopics) {
+                if (
+                  this.isOnTopic(st) &&
+                  this.projectsList[project].subtopics_formatted.indexOf(st) < 0
+                ) {
+                  this.projectsList[project].subtopics_formatted +=
+                    "<li>" + st + "</li>";
+                }
               }
+              this.projectsList[project].subtopics_formatted += "</ul>";
             }
-            this.projectsList[project].subtopics_formatted += "</ul>";
-
             // status
             if (!this.projectsList[project].status) {
               this.projectsList[project].status = "N/A";
             }
           } //end for project
+          console.log(this.projectsList);
         }
 
         this.current_type = "Project";
