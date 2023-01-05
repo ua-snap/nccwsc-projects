@@ -10,6 +10,7 @@ import { NgbModule, NgbActiveModal, NgbDropdownModule } from '@ng-bootstrap/ng-b
 import { LeafletModule } from "@asymmetrik/ngx-leaflet";
 import { NgSelectModule } from '@ng-select/ng-select';
 import { GoogleAnalyticsService } from './google-analytics.service';
+import { UmamiService } from './umami.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MaphilightModule } from 'ng-maphilight';
 
@@ -62,7 +63,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component'
         FontAwesomeModule,
         MaphilightModule
     ],
-    providers: [GoogleAnalyticsService, LocalJsonService, SciencebaseService, SearchService, UrlService, { provide: LocationStrategy, useClass: HashLocationStrategy }],
+    providers: [GoogleAnalyticsService, UmamiService, LocalJsonService, SciencebaseService, SearchService, UrlService, { provide: LocationStrategy, useClass: HashLocationStrategy }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
