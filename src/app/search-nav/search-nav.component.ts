@@ -109,7 +109,18 @@ export class SearchNavComponent implements OnInit {
   }
 
   sendAnalytics() {
-    let payload = {}
+    // The CSV export script expects every event to have the full set of
+    // field keys. So, initialize all fields with blank strings to start with.
+    let payload = {
+      query: '',
+      topic: '',
+      payload: '',
+      organizations: '',
+      type: '',
+      fy: '',
+      status: ''
+    }
+
     if (this.searchQuery) {
       payload['query'] = this.searchQuery
     }

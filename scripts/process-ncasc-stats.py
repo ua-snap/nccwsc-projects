@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+"""
+This script queries and aggregates event data from Umami's PostgreSQL database.
+You can optionally provide start and end dates. Otherwise, all event data from
+the specified Umami website ID is returned.
+"""
 import argparse
 import csv
 import os
@@ -44,14 +49,22 @@ sql = """
     SELECT COUNT(*), event_data.event_data
     FROM event INNER JOIN event_data ON event.event_id = event_data.event_id
     WHERE event.website_id = %(website_id)s
-    AND created_at BETWEEN %(start_date)s AND %(end_date)s
-    GROUP BY event_data ORDER BY count DESC
 """
+
 params = {
     "website_id": umami_website_id,
-    "start_date": args.start_date,
-    "end_date": args.end_date
 }
+
+if args.start_date:
+    sql += " AND created_at >= %(start_date)s"
+    params["start_date"] = args.start_date
+
+if args.end_date:
+    sql += " AND created_at <= %(end_date)s"
+    params["end_date"] = args.end_date
+
+sql += " GROUP BY event_data ORDER BY count DESC"
+
 cursor.execute(sql, params)
 rows = cursor.fetchall()
 conn.close()
