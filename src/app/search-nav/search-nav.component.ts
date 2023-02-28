@@ -109,15 +109,29 @@ export class SearchNavComponent implements OnInit {
   }
 
   sendAnalytics() {
-    this.umamiService.eventEmitter("Search Submission", {
-      query: this.searchQuery,
-      topic: this.selectedTopic['label'],
-      subtopics: this.combineLabels(this.selectedSubtopics),
-      organizations:  this.combineLabels(this.selectedOrgs),
-      type:  this.combineLabels(this.filteredType),
-      fy:  this.combineLabels(this.filteredFY),
-      status:  this.combineLabels(this.filteredStatus)
-    })
+    let payload = {}
+    if (this.searchQuery) {
+      payload['query'] = this.searchQuery
+    }
+    if (this.selectedTopic) {
+      payload['topic'] = this.selectedTopic['label']
+    }
+    if (this.selectedSubtopics) {
+      payload['subtopics'] = this.combineLabels(this.selectedSubtopics)
+    }
+    if (this.selectedOrgs) {
+      payload['organizations'] = this.combineLabels(this.selectedOrgs)
+    }
+    if (this.filteredType) {
+      payload['type'] = this.combineLabels(this.filteredType)
+    }
+    if (this.filteredFY) {
+      payload['fy'] = this.combineLabels(this.filteredFY)
+    }
+    if (this.filteredStatus) {
+      payload['status'] = this.combineLabels(this.filteredStatus)
+    }
+    this.umamiService.eventEmitter("Search Submission", payload)
   }
 
   onSubmit() {
