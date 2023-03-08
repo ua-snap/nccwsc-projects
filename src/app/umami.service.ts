@@ -14,6 +14,6 @@ export class UmamiService {
 
   constructor() { }
   public eventEmitter(eventLabel: string, eventData: object) {
-		_window().umami.trackEvent(eventLabel, eventData )
+    _window().umami.trackEvent(eventLabel, eventData )
   }
 }
