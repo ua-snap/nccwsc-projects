@@ -9,17 +9,17 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 In the source directory:
 
 ```
-nvm install v15.5.1
-nvm use v15.5.1
+nvm install lts/gallium
+nvm use lts/gallium
 npm install
 ```
 
 ### Run
 
 ```
-nvm use v15.5.1
-ng build
-ng serve
+nvm use lts/gallium
+npm run build
+npm run start
 ```
 Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
