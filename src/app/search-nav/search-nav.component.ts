@@ -114,7 +114,7 @@ export class SearchNavComponent implements OnInit {
     let payload = {
       query: '',
       topic: '',
-      payload: '',
+      subtopics: '',
       organizations: '',
       type: '',
       fy: '',
