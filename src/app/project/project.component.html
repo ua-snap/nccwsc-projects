@@ -14,7 +14,7 @@
           <li *ngFor="let relationship of projectJson.relationships">
             <a [routerLink]="[
                 '/project',
-                projectJson.csc.id,
+                relationship.cscID,
                 relationship.relatedId
               ]">{{ relationship.relatedTitle }}</a>
           </li>
