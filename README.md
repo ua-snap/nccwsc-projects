@@ -11,7 +11,7 @@ In the source directory:
 ```
 nvm install lts/gallium
 nvm use lts/gallium
-npm install --legacy-peer-deps
+npm install --force
 ```
 
 ### Run
