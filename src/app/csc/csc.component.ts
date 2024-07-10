@@ -9,7 +9,7 @@ import { UrlService } from "../url.service";
 @Component({
   selector: "app-csc",
   templateUrl: "./csc.component.html",
-  styleUrls: ["./csc.component.scss", "../shared.scss"]
+  styleUrls: ["./csc.component.scss", "../shared.scss"],
 })
 export class CscComponent implements OnInit {
   sub: any;
@@ -36,7 +36,7 @@ export class CscComponent implements OnInit {
     "4f8c652fe4b0546c0c397b4a": "South Central CASC",
     "4f8c6557e4b0546c0c397b4c": "Southeast CASC",
     "4f8c6580e4b0546c0c397b4e": "Southwest CASC",
-    "5e2f3f59e4b0a79317d422af": "Midwest CASC"
+    "5e2f3f59e4b0a79317d422af": "Midwest CASC",
   };
 
   csc_english_ids = {
@@ -49,40 +49,40 @@ export class CscComponent implements OnInit {
     "south-central": "4f8c652fe4b0546c0c397b4a",
     southeast: "4f8c6557e4b0546c0c397b4c",
     southwest: "4f8c6580e4b0546c0c397b4e",
-    midwest: "5e2f3f59e4b0a79317d422af"
+    midwest: "5e2f3f59e4b0a79317d422af",
   };
 
   settings = {
     columns: {
       fiscal_year: {
         title: "Year",
-        width: "6%"
+        width: "6%",
       },
       title: {
         title: "Title",
         type: "custom",
-        renderComponent: TitleLinkComponent
+        renderComponent: TitleLinkComponent,
       },
       investigators_formatted: {
         title: "Principal Investigator(s)",
         type: "html",
-        width: "25%"
+        width: "25%",
       },
       topics_formatted: {
         title: "Topic(s)",
         width: "10%",
-        type: "html"
+        type: "html",
       },
       status: {
         title: "Status",
-        width: "7%"
-      }
+        width: "7%",
+      },
     },
     actions: false,
     hideSubHeader: true,
     pager: {
-      display: false
-    }
+      display: false,
+    },
   };
 
   constructor(
@@ -91,7 +91,7 @@ export class CscComponent implements OnInit {
     private router: Router,
     private location: Location,
     private aroute: ActivatedRoute,
-    private urlService: UrlService
+    private urlService: UrlService,
   ) {}
 
   showAllProjects() {
@@ -111,62 +111,61 @@ export class CscComponent implements OnInit {
 
   changeCurrentTopic(event: any = null) {
     if (event.target.checked == true) {
-
-      let index = this.current_topic.indexOf("All Topics")
+      let index = this.current_topic.indexOf("All Topics");
       if (index != -1) {
-        this.current_topic.splice(index, 1)
+        this.current_topic.splice(index, 1);
       }
-      this.current_topic.push(event.target.value)
+      this.current_topic.push(event.target.value);
     } else {
-      let index = this.current_topic.indexOf(event.target.value)
+      let index = this.current_topic.indexOf(event.target.value);
       if (index != -1) {
-        this.current_topic.splice(index, 1)
+        this.current_topic.splice(index, 1);
       }
     }
-    if (this.current_topic.length == 0) {    
-      this.current_topic.push("All Topics")
+    if (this.current_topic.length == 0) {
+      this.current_topic.push("All Topics");
     }
 
-    this.filterProjectsList(event.target.value)
+    this.filterProjectsList(event.target.value);
   }
 
   changeCurrentFY(event: any = null) {
     if (event.target.checked == true) {
-      let index = this.current_fy.indexOf("All Fiscal Years")
+      let index = this.current_fy.indexOf("All Fiscal Years");
       if (index != -1) {
-        this.current_fy.splice(index, 1)
+        this.current_fy.splice(index, 1);
       }
-      this.current_fy.push(event.target.value)
+      this.current_fy.push(event.target.value);
     } else {
-      let index = this.current_fy.indexOf(event.target.value)
+      let index = this.current_fy.indexOf(event.target.value);
       if (index != -1) {
-        this.current_fy.splice(index, 1)
+        this.current_fy.splice(index, 1);
       }
     }
-    if (this.current_fy.length == 0) {    
-      this.current_fy.push("All Fiscal Years")
+    if (this.current_fy.length == 0) {
+      this.current_fy.push("All Fiscal Years");
     }
-    this.filterProjectsList(event.target.value)
+    this.filterProjectsList(event.target.value);
   }
 
   changeCurrentStatus(event: any = null) {
     if (event.target.checked == true) {
-      let index = this.current_status.indexOf("All Statuses")
+      let index = this.current_status.indexOf("All Statuses");
       if (index != -1) {
-        this.current_status.splice(index, 1)
+        this.current_status.splice(index, 1);
       }
-      this.current_status.push(event.target.value)
+      this.current_status.push(event.target.value);
     } else {
-      let index = this.current_status.indexOf(event.target.value)
+      let index = this.current_status.indexOf(event.target.value);
       if (index != -1) {
-        this.current_status.splice(index, 1)
+        this.current_status.splice(index, 1);
       }
     }
-    if (this.current_status.length == 0) {    
-      this.current_status.push("All Statuses")
+    if (this.current_status.length == 0) {
+      this.current_status.push("All Statuses");
     }
 
-    this.filterProjectsList(event.target.value)
+    this.filterProjectsList(event.target.value);
   }
 
   filterProjectsList(event: any = null) {
@@ -184,7 +183,8 @@ export class CscComponent implements OnInit {
             if (
               this.cscProjectsList[project].topics[topic]
                 .replace(/,/g, "")
-                .trim() == this.current_topic[curr_topic].replace(/,/g, "").trim()
+                .trim() ==
+              this.current_topic[curr_topic].replace(/,/g, "").trim()
             ) {
               matched_topic = true;
               // Found our topic, let's check year and status.
@@ -202,7 +202,9 @@ export class CscComponent implements OnInit {
       if (this.current_fy.indexOf("All Fiscal Years") === -1) {
         let found = false;
         for (let year in this.current_fy) {
-          if (this.cscProjectsList[project].fiscal_year === this.current_fy[year]) {
+          if (
+            this.cscProjectsList[project].fiscal_year === this.current_fy[year]
+          ) {
             found = true;
             break;
           }
@@ -215,7 +217,9 @@ export class CscComponent implements OnInit {
       if (this.current_status.indexOf("All Statuses") === -1) {
         let found = false;
         for (let status in this.current_status) {
-          if (this.cscProjectsList[project].status === this.current_status[status]) {
+          if (
+            this.cscProjectsList[project].status === this.current_status[status]
+          ) {
             found = true;
             break;
           }
@@ -236,11 +240,11 @@ export class CscComponent implements OnInit {
   updateUrl() {
     let params: any = {};
     if (this.current_topic.indexOf("All Topics") === -1) {
-      params["topic"] = this.current_topic.join('+');
+      params["topic"] = this.current_topic.join("+");
     }
-   
+
     if (this.current_fy.indexOf("All Fiscal Years") === -1) {
-      params["year"] = this.current_fy.join('+');
+      params["year"] = this.current_fy.join("+");
     }
     if (this.current_status.indexOf("All Statuses") === -1) {
       params["status"] = this.current_status.join("+");
@@ -268,16 +272,16 @@ export class CscComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
+    this.sub = this.route.params.subscribe((params) => {
       this.id = params["id"];
       if (params["topic"]) {
-        this.current_topic = params["topic"].split('+');
+        this.current_topic = params["topic"].split("+");
       }
       if (params["year"]) {
-        this.current_fy = params["year"].split('+');
+        this.current_fy = params["year"].split("+");
       }
       if (params["status"]) {
-        this.current_status = params["status"].split('+');
+        this.current_status = params["status"].split("+");
       }
     });
     if (this.id.length != 24) {
@@ -289,7 +293,7 @@ export class CscComponent implements OnInit {
     this.title = this.csc_ids[this.sbId];
     this.urlService.setPreviousTitle(this.title);
     this.urlService.setCurrentTitle(this.title);
-    this.localJson.loadCscProjects(this.sbId).subscribe(data => {
+    this.localJson.loadCscProjects(this.sbId).subscribe((data) => {
       this.cscProjectsList = data;
       // tslint:disable-next-line:forin
       for (var project in this.cscProjectsList) {
@@ -312,24 +316,26 @@ export class CscComponent implements OnInit {
 
         // This is done so that "All Fiscal Years" is sorted at the top.
         this.fiscal_years.sort().reverse();
-        
+
         this.topics.sort();
         this.statuses.sort();
         this.filteredCscProjectsList.push(this.cscProjectsList[project]);
         this.dataLoading = false;
 
         // principal investigators
-        if (this.cscProjectsList[project].contacts.principal_investigators != null) {
+        if (
+          this.cscProjectsList[project].contacts.principal_investigators != null
+        ) {
           this.cscProjectsList[project].investigators_formatted = "";
 
           for (var pi of this.cscProjectsList[project].contacts
             .principal_investigators) {
             this.cscProjectsList[project].investigators_formatted =
-            this.cscProjectsList[project].investigators_formatted +
-            pi.name +
-            "&nbsp;<i>(" +
-            pi.organization +
-            "</i>)<br>";
+              this.cscProjectsList[project].investigators_formatted +
+              pi.name +
+              "&nbsp;<i>(" +
+              pi.organization +
+              "</i>)<br>";
           }
         } else {
           this.cscProjectsList[project].investigators_formatted = "N/A";

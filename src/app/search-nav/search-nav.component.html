@@ -1,16 +1,24 @@
 <div class="search">
   <div class="search-nav">
-    <form class="ui form" >
+    <form class="ui form">
       <div class="field">
-        <input type="text" id="queryTerms" [(ngModel)]="searchQuery" value="searchQuery" placeholder="Enter search terms&hellip;" name="queryTerms">
+        <input
+          type="text"
+          id="queryTerms"
+          [(ngModel)]="searchQuery"
+          value="searchQuery"
+          placeholder="Enter search terms&hellip;"
+          name="queryTerms"
+        />
       </div>
       <div class="field" *ngIf="topicsLoaded">
         <ng-select
           [items]="topics"
           (change)="onTopicsChange($event.value)"
           [(ngModel)]="selectedTopic"
-          [ngModelOptions]="{standalone: true}"
-          placeholder="Topic">
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Topic"
+        >
         </ng-select>
       </div>
       <div class="field">
@@ -18,9 +26,10 @@
           [multiple]="true"
           [items]="subtopics"
           (change)="onSubtopicsChange($event.value)"
-          [(ngModel)] = "selectedSubtopics"
-          [ngModelOptions]="{standalone: true}"
-          placeholder="Subtopics">
+          [(ngModel)]="selectedSubtopics"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="Subtopics"
+        >
         </ng-select>
       </div>
       <div class="field" *ngIf="orgsLoaded">
@@ -29,13 +38,22 @@
           [items]="orgs"
           (change)="onOrgsChange($event.value)"
           [(ngModel)]="selectedOrgs"
-          [ngModelOptions]="{standalone: true}"
-          placeholder="CASCs  ">
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="CASCs  "
+        >
         </ng-select>
       </div>
       <div class="float-right buttons">
-      	<button (click)="onSubmit()" class="btn btn-sm btn-success">Search</button>
-        <button (click)="resetQuery()" *ngIf="showReset" class="btn btn-sm btn-warning">Reset Query</button>
+        <button (click)="onSubmit()" class="btn btn-sm btn-success">
+          Search
+        </button>
+        <button
+          (click)="resetQuery()"
+          *ngIf="showReset"
+          class="btn btn-sm btn-warning"
+        >
+          Reset Query
+        </button>
       </div>
     </form>
   </div>
@@ -43,40 +61,52 @@
   <div class="filters" *ngIf="totalResults > 0">
     <h4>Filters</h4>
     <div class="field">
-      <ng-select #types
+      <ng-select
+        #types
         [multiple]="true"
         [items]="resultTypes"
         (change)="onTypeSourceChange($event.label)"
         [(ngModel)]="filteredType"
         [label]="Types"
         (deselected)="onTypeSourceChange($event.label)"
-        placeholder="Project Type">
+        placeholder="Project Type"
+      >
       </ng-select>
     </div>
     <div class="field">
-      <ng-select #fy
+      <ng-select
+        #fy
         [multiple]="true"
         [items]="resultFY"
         (change)="onFYSourceChange($event.label)"
         [(ngModel)]="filteredFY"
         [label]="FiscalYears"
         (deselected)="onFYSourceChange($event.label)"
-        placeholder="All Years">
+        placeholder="All Years"
+      >
       </ng-select>
     </div>
     <div class="field">
-      <ng-select #statuses
+      <ng-select
+        #statuses
         [multiple]="true"
         [items]="resultStatus"
         (change)="onStatusSourceChange($event.label)"
         [(ngModel)]="filteredStatus"
         [label]="Statuses"
         (deselected)="onStatusSourceChange($event.label)"
-        placeholder="All Statuses">
+        placeholder="All Statuses"
+      >
       </ng-select>
     </div>
-    <div class="clearfix" style="width: 100%;">
-      <button (click)="resetFilters()" *ngIf="showResetFilters" class="btn btn-sm btn-warning float-right">Reset Filters</button>
+    <div class="clearfix" style="width: 100%">
+      <button
+        (click)="resetFilters()"
+        *ngIf="showResetFilters"
+        class="btn btn-sm btn-warning float-right"
+      >
+        Reset Filters
+      </button>
     </div>
   </div>
 </div>

@@ -1,8 +1,10 @@
-      <div *ngIf="render" leaflet style="height: 400px;"
-           [leafletOptions]="options"
-           [leafletLayers]="layers"
-           [leafletLayersControl]="layersControl"
-           [leafletCenter]="center"
-           [leafletFitBounds]="fitBounds">
-      </div>
-
+<div
+  *ngIf="render"
+  leaflet
+  style="height: 400px"
+  [leafletOptions]="options"
+  [leafletLayers]="layers"
+  [leafletLayersControl]="layersControl"
+  [leafletCenter]="center"
+  [leafletFitBounds]="fitBounds"
+></div>

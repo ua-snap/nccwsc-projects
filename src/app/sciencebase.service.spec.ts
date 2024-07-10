@@ -1,15 +1,18 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed, inject } from "@angular/core/testing";
 
-import { SciencebaseService } from './sciencebase.service';
+import { SciencebaseService } from "./sciencebase.service";
 
-describe('SciencebaseService', () => {
+describe("SciencebaseService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SciencebaseService]
+      providers: [SciencebaseService],
     });
   });
 
-  it('should be created', inject([SciencebaseService], (service: SciencebaseService) => {
-    expect(service).toBeTruthy();
-  }));
+  it("should be created", inject(
+    [SciencebaseService],
+    (service: SciencebaseService) => {
+      expect(service).toBeTruthy();
+    },
+  ));
 });

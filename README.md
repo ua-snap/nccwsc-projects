@@ -21,6 +21,7 @@ nvm use lts/gallium
 npm run build
 npm run start
 ```
+
 Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding

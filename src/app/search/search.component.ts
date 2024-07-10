@@ -24,7 +24,7 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private searchService: SearchService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
   ) {}
 
   open(nonProject, item) {
@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit {
       },
       (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      }
+      },
     );
   }
 
@@ -71,40 +71,40 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.filteredResultsSubscription = this.searchService.filteredResults$.subscribe(
-      (filteredResults) => {
+    this.filteredResultsSubscription =
+      this.searchService.filteredResults$.subscribe((filteredResults) => {
         this.results = filteredResults;
         for (let result of this.results) {
           if (result.dates.start_date) {
             result.dates.start_date = SearchComponent.niceDate(
-              result.dates.start_date
+              result.dates.start_date,
             );
           }
           if (result.dates.end_date) {
             result.dates.end_date = SearchComponent.niceDate(
-              result.dates.end_date
+              result.dates.end_date,
             );
           }
           if (result.dates.publication_date) {
             result.dates.publication_date = SearchComponent.niceDate(
-              result.dates.publication_date
+              result.dates.publication_date,
             );
           }
         }
-      }
-    );
-    this.filteredResultsCountSubscription = this.searchService.filteredResultsCount$.subscribe(
-      (filteredResultsCount) => {
-        this.filteredResultsCount = filteredResultsCount;
-      }
-    );
+      });
+    this.filteredResultsCountSubscription =
+      this.searchService.filteredResultsCount$.subscribe(
+        (filteredResultsCount) => {
+          this.filteredResultsCount = filteredResultsCount;
+        },
+      );
     this.totalResultsSubscription = this.searchService.totalItem$.subscribe(
       (totalItems) => {
         // If no results are returned, totalItems returns a -1, then 0
         // This code checks to see if a -1 has been returned, then it modifies the noResult message
         this.noResult = this.total_results < 0;
         this.total_results = totalItems;
-      }
+      },
     );
   }
 
