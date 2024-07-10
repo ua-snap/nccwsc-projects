@@ -18,7 +18,7 @@
               [routerLink]="[
                 '/project',
                 relationship.cscID,
-                relationship.relatedId,
+                relationship.relatedId
               ]"
               >{{ relationship.relatedTitle }}</a
             >
@@ -33,7 +33,7 @@
             [routerLink]="[
               '/project',
               projectJson.csc.id,
-              projectJson.main_project.relatedId,
+              projectJson.main_project.relatedId
             ]"
             >{{ projectJson.main_project.relatedTitle }}</a
           >
@@ -206,7 +206,10 @@
         <div class="media-cards">
           <div class="card" *ngFor="let image of projectJson.images">
             <a (click)="openImage(imageModal, image)"
-              ><img class="card-img-top" src="{{ image.url }}"
+              ><img
+                class="card-img-top"
+                alt="{{ image.title }}"
+                src="{{ image.url }}"
             /></a>
             <div class="card-body">
               {{ image.title }}
