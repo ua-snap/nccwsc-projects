@@ -58,7 +58,7 @@
           $(img).width() +
           "px;height:" +
           $(img).height() +
-          'px;"></canvas>'
+          'px;"></canvas>',
       ).get(0);
       c.getContext("2d").clearRect(0, 0, $(img).width(), $(img).height());
       return c;
@@ -73,7 +73,7 @@
           coords[0] + x_shift,
           coords[1] + y_shift,
           coords[2] - coords[0],
-          coords[3] - coords[1]
+          coords[3] - coords[1],
         );
       } else if (shape == "poly") {
         context.moveTo(coords[0] + x_shift, coords[1] + y_shift);
@@ -88,7 +88,7 @@
           coords[2],
           0,
           Math.PI * 2,
-          false
+          false,
         );
       }
       context.closePath();
@@ -121,7 +121,7 @@
         context.shadowBlur = options.shadowRadius;
         context.shadowColor = css3color(
           options.shadowColor,
-          options.shadowOpacity
+          options.shadowOpacity,
         );
 
         // Now, work out where to cast the shadow from! It looks better if it's cast
@@ -171,7 +171,7 @@
       if (options.stroke) {
         context.strokeStyle = css3color(
           options.strokeColor,
-          options.strokeOpacity
+          options.strokeOpacity,
         );
         context.lineWidth = options.strokeWidth;
         context.stroke();
@@ -194,7 +194,7 @@
           img.width +
           "px;height:" +
           img.height +
-          'px;"></var>'
+          'px;"></var>',
       ).get(0);
     };
     add_shape_to = function (canvas, shape, coords, options, name) {
@@ -230,7 +230,7 @@
             (coords[2] - coords[0]) +
             "px;height:" +
             (coords[3] - coords[1]) +
-            'px;"></v:rect>'
+            'px;"></v:rect>',
         );
       } else if (shape == "poly") {
         e = $(
@@ -252,7 +252,7 @@
             canvas.width +
             "px;height:" +
             canvas.height +
-            'px;"></v:shape>'
+            'px;"></v:shape>',
         );
       } else if (shape == "circ") {
         e = $(
@@ -268,7 +268,7 @@
             coords[2] * 2 +
             "px;height:" +
             coords[2] * 2 +
-            'px;"></v:oval>'
+            'px;"></v:oval>',
         );
       }
       e.get(0).innerHTML = fill + opacity;
@@ -303,7 +303,7 @@
       {},
       options,
       $.metadata ? $area.metadata() : false,
-      $area.data("maphilight")
+      $area.data("maphilight"),
     );
   };
 
@@ -347,7 +347,7 @@
         $.each(shapes, function () {
           style.addRule(
             "v\\:" + this,
-            "behavior: url(#default#VML); antialias:true"
+            "behavior: url(#default#VML); antialias:true",
           );
         });
       });
@@ -377,7 +377,7 @@
         {},
         opts,
         $.metadata ? img.metadata() : false,
-        img.data("maphilight")
+        img.data("maphilight"),
       );
 
       // jQuery bug with Opera, results in full-url#usemap being returned from jQuery's attr.
@@ -469,7 +469,7 @@
                     shape[0],
                     shape[1],
                     area_options,
-                    ""
+                    "",
                   );
                 } else {
                   add_shape_to(canvas, shape[0], shape[1], area_options, "");
@@ -493,7 +493,7 @@
               shape[0],
               shape[1],
               area_options,
-              "highlighted"
+              "highlighted",
             );
             if (area_options.groupBy) {
               if (typeof area_options.groupBy == "string") {
@@ -505,7 +505,7 @@
                 // two ways groupBy might work; attribute and selector
                 if (/^[a-zA-Z][\-a-zA-Z]+$/.test(groupitem)) {
                   areas = map.find(
-                    "area[" + groupitem + '="' + el.attr(groupitem) + '"]'
+                    "area[" + groupitem + '="' + el.attr(groupitem) + '"]',
                   );
                 } else {
                   areas = map.find(groupitem);
@@ -521,7 +521,7 @@
                         shape[0],
                         shape[1],
                         subarea_options,
-                        "highlighted"
+                        "highlighted",
                       );
                     }
                   }

@@ -1,19 +1,18 @@
 /* tslint:disable:no-unused-variable */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { By } from "@angular/platform-browser";
+import { DebugElement } from "@angular/core";
 
-import { FooterComponent } from './footer.component';
+import { FooterComponent } from "./footer.component";
 
-describe('FooterComponent', () => {
+describe("FooterComponent", () => {
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ FooterComponent ]
-    })
-    .compileComponents();
+      declarations: [FooterComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,7 +21,7 @@ describe('FooterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

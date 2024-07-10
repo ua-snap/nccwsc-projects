@@ -95,7 +95,7 @@ export class TopicsComponent implements OnInit {
     private router: Router,
     private location: Location,
     private aroute: ActivatedRoute,
-    private urlService: UrlService
+    private urlService: UrlService,
   ) {}
 
   changeCurrentCASC(event: any = null) {
@@ -372,11 +372,11 @@ export class TopicsComponent implements OnInit {
                   this.projectsList[project].subtopics[subtopic] ==
                     this.subtopicsFilter[topicSubtopic]["label"] &&
                   this.subtopics.indexOf(
-                    this.projectsList[project].subtopics[subtopic]
+                    this.projectsList[project].subtopics[subtopic],
                   ) < 0
                 ) {
                   this.subtopics.push(
-                    this.projectsList[project].subtopics[subtopic]
+                    this.projectsList[project].subtopics[subtopic],
                   );
                 }
               }

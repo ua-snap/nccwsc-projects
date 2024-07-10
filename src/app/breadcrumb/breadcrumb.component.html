@@ -6,8 +6,14 @@
     Project Explorer Home</a
   >
   <span class="trail" *ngIf="previousUrl && previousUrl != '#/'">/</span>
-  <a *ngIf="previousUrl && previousUrl != '#/' && !is_project()" [href]="previousUrl">{{ previousTitle }}</a>
-  <a *ngIf="previousUrl && is_project()" [href]="previousUrl">Referring Project</a>
+  <a
+    *ngIf="previousUrl && previousUrl != '#/' && !is_project()"
+    [href]="previousUrl"
+    >{{ previousTitle }}</a
+  >
+  <a *ngIf="previousUrl && is_project()" [href]="previousUrl"
+    >Referring Project</a
+  >
   <span class="trail">/</span>
   <span class="leaf">{{ currentTitle }}</span>
 </div>

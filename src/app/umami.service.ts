@@ -1,19 +1,18 @@
-import { Injectable } from '@angular/core';
-import { umami } from 'umami';
+import { Injectable } from "@angular/core";
+import { umami } from "umami";
 
-function _window() : any {
+function _window(): any {
   return window;
 }
 
-declare let umami:Function;
+declare let umami: Function;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class UmamiService {
-
-  constructor() { }
+  constructor() {}
   public eventEmitter(eventLabel: string, eventData: object) {
-    _window().umami.track(eventLabel, eventData )
+    _window().umami.track(eventLabel, eventData);
   }
 }

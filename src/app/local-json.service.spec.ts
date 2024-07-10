@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, inject, waitForAsync } from '@angular/core/testing';
-import { LocalJsonService } from './local-json.service';
+import { TestBed, inject, waitForAsync } from "@angular/core/testing";
+import { LocalJsonService } from "./local-json.service";
 
-describe('LocalJsonService', () => {
+describe("LocalJsonService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [LocalJsonService]
+      providers: [LocalJsonService],
     });
   });
 
-  it('should ...', inject([LocalJsonService], (service: LocalJsonService) => {
+  it("should ...", inject([LocalJsonService], (service: LocalJsonService) => {
     expect(service).toBeTruthy();
   }));
 });

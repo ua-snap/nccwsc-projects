@@ -1,19 +1,17 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { TestBed, waitForAsync } from "@angular/core/testing";
+import { AppComponent } from "./app.component";
 
-describe('AppComponent', () => {
+describe("AppComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      declarations: [AppComponent],
     });
     TestBed.compileComponents();
   });
 
-  it('should create the app', waitForAsync(() => {
+  it("should create the app", waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
@@ -22,13 +20,13 @@ describe('AppComponent', () => {
   it(`should have as title 'app works!'`, waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app works!');
+    expect(app.title).toEqual("app works!");
   }));
 
-  it('should render title in a h1 tag', waitForAsync(() => {
+  it("should render title in a h1 tag", waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('app works!');
+    expect(compiled.querySelector("h1").textContent).toContain("app works!");
   }));
 });

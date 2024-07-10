@@ -1,35 +1,42 @@
 <h1>{{ csc_title }}</h1>
-<span *ngFor= "let projectYear of cscJson">
+<span *ngFor="let projectYear of cscJson">
   <div class="project_year" *ngIf="projectYear.title">
-
-    <table class = "table table-striped table-bordered">
+    <table class="table table-striped table-bordered">
       <tr>
-        <th style = "width:10%;">Year(s)</th>
-        <th style = "width:60%;">Title</th>
-        <th style = "width:20%;">Principle Investigator(s)</th>
-        <th style = "width:10%;">Contains</th>
+        <th style="width: 10%">Year(s)</th>
+        <th style="width: 60%">Title</th>
+        <th style="width: 20%">Principle Investigator(s)</th>
+        <th style="width: 10%">Contains</th>
       </tr>
-      <tr *ngFor= "let project of projectYear.projects">
+      <tr *ngFor="let project of projectYear.projects">
         <td>
-          {{ project.dates}}
+          {{ project.dates }}
         </td>
         <td>
           <a [routerLink]="['/project/', sbId, project.id]">
-            {{ project.title}}
+            {{ project.title }}
           </a>
           <ul *ngIf="project.children?.length > 0">
-            <li *ngFor= "let childProject of project.children">{{ childProject.title }}</li>
+            <li *ngFor="let childProject of project.children">
+              {{ childProject.title }}
+            </li>
           </ul>
         </td>
         <td *ngIf="project.principal_investigator">
           <ul *ngFor="let pi of project.principal_investigator">
-            <li>{{ pi.name }} (<em>{{ pi.organization}})</em></li>
+            <li>
+              {{ pi.name }} (<em>{{ pi.organization }})</em>
+            </li>
           </ul>
         </td>
         <td>
           <ul>
-            <li *ngIf="project.hasFolders"><img src = "assets\images\Folder_Icon.png" alt = "Folder"></li>
-            <li *ngIf="project.hasMaps"><img src = "assets\images\GIS_Icon.png" alt = "Map"></li>
+            <li *ngIf="project.hasFolders">
+              <img src="assets\images\Folder_Icon.png" alt="Folder" />
+            </li>
+            <li *ngIf="project.hasMaps">
+              <img src="assets\images\GIS_Icon.png" alt="Map" />
+            </li>
           </ul>
         </td>
       </tr>

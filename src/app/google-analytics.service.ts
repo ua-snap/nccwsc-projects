@@ -1,22 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
-declare let gtag:Function;
+declare let gtag: Function;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class GoogleAnalyticsService {
-
-  constructor() { }
+  constructor() {}
   public eventEmitter(
     eventAction: string,
-	  eventCategory: string,
-	  eventLabel: string = null,
-	  eventValue: number = null ){
-		gtag('event', eventAction, {
-			eventCategory: eventCategory,
-			eventLabel: eventLabel,
-			eventValue: eventValue
-		})
-	}
+    eventCategory: string,
+    eventLabel: string = null,
+    eventValue: number = null,
+  ) {
+    gtag("event", eventAction, {
+      eventCategory: eventCategory,
+      eventLabel: eventLabel,
+      eventValue: eventValue,
+    });
+  }
 }

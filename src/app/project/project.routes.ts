@@ -1,6 +1,6 @@
-import { Routes, RouterModule } from '@angular/router';
-import { ProjectComponent } from './project.component';
+import { Routes, RouterModule } from "@angular/router";
+import { ProjectComponent } from "./project.component";
 
 export const ProjectRoutes: Routes = [
-  { path: 'project/:csc/:id',  component: ProjectComponent }
+  { path: "project/:csc/:id", component: ProjectComponent },
 ];

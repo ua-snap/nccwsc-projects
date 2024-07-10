@@ -1,19 +1,18 @@
 /* tslint:disable:no-unused-variable */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { By } from "@angular/platform-browser";
+import { DebugElement } from "@angular/core";
 
-import { MapComponent } from './map.component';
+import { MapComponent } from "./map.component";
 
-describe('MapComponent', () => {
+describe("MapComponent", () => {
   let component: MapComponent;
   let fixture: ComponentFixture<MapComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ MapComponent ]
-    })
-    .compileComponents();
+      declarations: [MapComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,7 +21,7 @@ describe('MapComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

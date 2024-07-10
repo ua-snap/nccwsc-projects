@@ -1,6 +1,6 @@
-import { Routes, RouterModule } from '@angular/router';
-import { CscComponent } from './csc.component';
+import { Routes, RouterModule } from "@angular/router";
+import { CscComponent } from "./csc.component";
 
 export const CscRoutes: Routes = [
-  { path: 'casc/:id',  component: CscComponent },
+  { path: "casc/:id", component: CscComponent },
 ];

@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import { CscComponent } from './csc.component';
+import { CscComponent } from "./csc.component";
 
-describe('CscComponent', () => {
+describe("CscComponent", () => {
   let component: CscComponent;
   let fixture: ComponentFixture<CscComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CscComponent ]
-    })
-    .compileComponents();
+      declarations: [CscComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('CscComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
