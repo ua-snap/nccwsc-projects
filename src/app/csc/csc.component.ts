@@ -57,6 +57,9 @@ export class CscComponent implements OnInit {
       fiscal_year: {
         title: "Year",
         width: "6%",
+        sort: true,
+        sortDirection: "desc",
+        defaultSortDirection: "desc",
       },
       title: {
         title: "Title",
