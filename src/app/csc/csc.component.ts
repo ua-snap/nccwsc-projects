@@ -236,6 +236,10 @@ export class CscComponent implements OnInit {
     this.sortList();
   }
 
+  getFilteredProjectsCount() {
+    return this.filteredCscProjectsList.length;
+  }
+
   //TODO: put this code in a utility function/service
   updateUrl() {
     let params: any = {};

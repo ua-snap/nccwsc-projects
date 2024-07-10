@@ -70,6 +70,10 @@
         class="csc-projects"
         *ngIf="!dataLoading && filteredCscProjectsList.length > 0"
       >
+        <p>
+          <strong>Total projects:</strong>
+          {{ getFilteredProjectsCount() }}
+        </p>
         <div class="d-none d-lg-block">
           <ng2-smart-table
             class="table table-striped"

@@ -268,6 +268,10 @@ export class TopicsComponent implements OnInit {
     this.sortList();
   }
 
+  getFilteredProjectsCount() {
+    return this.filteredProjectsList.length;
+  }
+
   showAllProjects() {
     this.filteredProjectsList = this.projectsList;
     this.current_subtopic = [];

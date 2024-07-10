@@ -86,6 +86,10 @@
       </div>
 
       <div *ngIf="!dataLoading && filteredProjectsList.length > 0">
+        <p>
+          <strong>Total projects:</strong>
+          {{ getFilteredProjectsCount() }}
+        </p>
         <div class="d-none d-lg-block">
           <ng2-smart-table
             class="table table-striped"
@@ -111,7 +115,7 @@
                         [routerLink]="[
                           '/project/',
                           project.csc['id'],
-                          project.id,
+                          project.id
                         ]"
                       >
                         {{ project["title"] }}
