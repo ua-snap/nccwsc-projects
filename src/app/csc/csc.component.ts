@@ -1,10 +1,17 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+  ChangeDetectorRef,
+} from "@angular/core";
 import { LocalJsonService } from "../local-json.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { environment } from "../../environments/environment";
 import { Location } from "@angular/common";
 import { UrlService } from "../url.service";
 import { MatTableDataSource } from "@angular/material/table";
+import { MatSort } from "@angular/material/sort";
 
 @Component({
   selector: "app-csc",
@@ -13,12 +20,14 @@ import { MatTableDataSource } from "@angular/material/table";
   encapsulation: ViewEncapsulation.None,
 })
 export class CscComponent implements OnInit {
+  dataSource: MatTableDataSource<any>;
+  @ViewChild(MatSort) sort = new MatSort();
+
   sub: any;
   id: any;
   sbId: any;
   cscProjectsList = [];
   filteredCscProjectsList = [];
-  dataSource = new MatTableDataSource<any>(this.filteredCscProjectsList);
   csc_url = environment.baseURL;
   topics = [];
   fiscal_years = [];
@@ -69,19 +78,13 @@ export class CscComponent implements OnInit {
     private location: Location,
     private aroute: ActivatedRoute,
     private urlService: UrlService,
-  ) {}
+    private cdr: ChangeDetectorRef,
+  ) {
+    this.dataSource = new MatTableDataSource<any>();
+  }
 
   showAllProjects() {
     this.filteredCscProjectsList = [...this.cscProjectsList];
-    // this.dataSource.data = this.filteredCscProjectsList;
-  }
-
-  sortProjectsByKey(array, key) {
-    return array.sort(function (a, b) {
-      var x = a[key];
-      var y = b[key];
-      return x > y ? -1 : x < y ? 1 : 0;
-    });
   }
 
   changeCurrentTopic(event: any = null) {
@@ -205,9 +208,9 @@ export class CscComponent implements OnInit {
 
       this.filteredCscProjectsList.push(this.cscProjectsList[project]);
     }
-    this.dataSource.data = this.filteredCscProjectsList;
+
     this.updateUrl();
-    this.sortList();
+    this.dataSource.data = [...this.filteredCscProjectsList];
   }
 
   updateUrl() {
@@ -226,22 +229,6 @@ export class CscComponent implements OnInit {
       .createUrlTree([params], { relativeTo: this.aroute })
       .toString();
     this.location.replaceState(url);
-  }
-
-  sortList() {
-    this.filteredCscProjectsList.sort((a, b) => {
-      function sortByTitle(a, b) {
-        if (a.title == b.title) {
-          return 0;
-        }
-        return a.title < b.title ? -1 : 1;
-      }
-
-      if (a.fiscal_year == b.fiscal_year) {
-        return sortByTitle(a, b);
-      }
-      return a.fiscal_year > b.fiscal_year ? -1 : 1;
-    });
   }
 
   ngOnInit() {
@@ -325,8 +312,13 @@ export class CscComponent implements OnInit {
       }
 
       this.filterProjectsList();
-      this.sortList();
       this.dataLoading = false;
+      // Waits until the data is loaded to render the table
+      this.cdr.detectChanges();
+      // Applies the sorting to the table after it is available in the DOM
+      this.dataSource.sort = this.sort;
+      // Sets the default sorting to the fiscal year column to show the downward arrow
+      this.sort.sort({ id: "fiscal_year", start: "desc", disableClear: true });
     });
   }
 }
