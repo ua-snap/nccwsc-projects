@@ -33,7 +33,6 @@ import { UrlService } from "./url.service";
 import { CscComponent } from "./csc/csc.component";
 import { ProjectResourceComponent } from "./project-resource/project-resource.component";
 import { MatTableModule } from "@angular/material/table";
-import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -66,7 +65,6 @@ import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
     NgbModule,
     FontAwesomeModule,
     MatTableModule,
-    MatPaginatorModule,
     MatSortModule,
     MatCheckboxModule,
     BrowserAnimationsModule,
