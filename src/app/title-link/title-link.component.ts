@@ -1,12 +1,11 @@
 import { Component, Input, OnInit, Pipe, PipeTransform } from "@angular/core";
-import { ViewCell } from "ng2-smart-table";
 
 @Component({
   selector: "app-title-link",
   template: ` <a class="app-title-link" href="{{ href }}">{{ value }}</a> `,
   styleUrls: ["./title-link.component.scss"],
 })
-export class TitleLinkComponent implements ViewCell, OnInit {
+export class TitleLinkComponent implements OnInit {
   // renderValue;
   href: string;
 

@@ -32,7 +32,11 @@ import { SearchService } from "./search.service";
 import { UrlService } from "./url.service";
 import { CscComponent } from "./csc/csc.component";
 import { ProjectResourceComponent } from "./project-resource/project-resource.component";
-import { Ng2SmartTableModule } from "ng2-smart-table";
+import { MatTableModule } from "@angular/material/table";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatSortModule } from "@angular/material/sort";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TitleLinkComponent } from "./title-link/title-link.component";
 import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
 
@@ -60,10 +64,14 @@ import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
     HttpClientModule,
     routing,
     NgSelectModule,
-    Ng2SmartTableModule,
     NgbDropdownModule,
     NgbModule,
     FontAwesomeModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatCheckboxModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     GoogleAnalyticsService,
