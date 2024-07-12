@@ -1,4 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+  ChangeDetectorRef,
+} from "@angular/core";
 import { LocalJsonService } from "../local-json.service";
 import { SearchService } from "../search.service";
 import { Router, ActivatedRoute } from "@angular/router";
@@ -6,13 +12,18 @@ import { environment } from "../../environments/environment";
 import { Location } from "@angular/common";
 import { UrlService } from "../url.service";
 import { MatTableDataSource } from "@angular/material/table";
+import { MatSort, Sort } from "@angular/material/sort";
 
 @Component({
   selector: "app-topics",
   templateUrl: "./topics.component.html",
   styleUrls: ["./topics.component.scss", "../shared.scss"],
+  encapsulation: ViewEncapsulation.None,
 })
 export class TopicsComponent implements OnInit {
+  dataSource: MatTableDataSource<any>;
+  @ViewChild(MatSort) sort: MatSort;
+
   sub = null;
   topic = null;
   page_title = null;
@@ -52,7 +63,6 @@ export class TopicsComponent implements OnInit {
   projectsList = [];
   filteredProjectsList = [];
   dataLoading = true;
-  dataSource = new MatTableDataSource<any>(this.filteredProjectsList);
 
   subtopicsFilter: string[] = null;
 
@@ -64,7 +74,10 @@ export class TopicsComponent implements OnInit {
     private location: Location,
     private aroute: ActivatedRoute,
     private urlService: UrlService,
-  ) {}
+    private cdr: ChangeDetectorRef,
+  ) {
+    this.dataSource = new MatTableDataSource<any>();
+  }
 
   displayedColumns: string[] = [
     "fiscal_year",
@@ -240,9 +253,8 @@ export class TopicsComponent implements OnInit {
       }
       this.filteredProjectsList.push(this.projectsList[project]);
     }
-    this.dataSource.data = this.filteredProjectsList;
     this.updateUrl();
-    this.sortList();
+    this.dataSource.data = [...this.filteredProjectsList];
   }
 
   showAllProjects() {
@@ -287,23 +299,6 @@ export class TopicsComponent implements OnInit {
       .toString();
 
     this.location.replaceState(url);
-  }
-
-  sortList() {
-    // First sorts projects by year, then by title
-    this.filteredProjectsList.sort((a, b) => {
-      function sortByTitle(a, b) {
-        if (a.title == b.title) {
-          return 0;
-        }
-        return a.title < b.title ? -1 : 1;
-      }
-
-      if (a.fiscal_year == b.fiscal_year) {
-        return sortByTitle(a, b);
-      }
-      return a.fiscal_year > b.fiscal_year ? -1 : 1;
-    });
   }
 
   ngOnInit() {
@@ -426,8 +421,29 @@ export class TopicsComponent implements OnInit {
 
         this.current_type = "Project";
         this.filterProjectsList();
-        this.sortList();
         this.dataLoading = false;
+        // Waits until the data is loaded to render the table
+        this.cdr.detectChanges();
+        // Applies the sorting to the table after it is available in the DOM
+        this.dataSource.sort = this.sort;
+        // Sets the default sorting to the fiscal year column to show the downward arrow
+        this.setInitialSort();
       });
+  }
+  setInitialSort() {
+    // This sets the initial sort to the fiscal year column in descending order
+    const sortState: Sort = { active: "fiscal_year", direction: "desc" };
+    this.sort.active = sortState.active;
+    this.sort.direction = sortState.direction;
+    this.sort.sortChange.emit(sortState);
+  }
+
+  onSortChange(sortState: Sort) {
+    // This catches the case where the sortState would normally not have a direction
+    // and instead switches it to ascending order. This is to prevent the sort from
+    // going from descending to no sort at all.
+    if (sortState.direction === "") {
+      this.sort.direction = "asc";
+    }
   }
 }

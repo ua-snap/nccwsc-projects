@@ -11,7 +11,7 @@ import { environment } from "../../environments/environment";
 import { Location } from "@angular/common";
 import { UrlService } from "../url.service";
 import { MatTableDataSource } from "@angular/material/table";
-import { MatSort } from "@angular/material/sort";
+import { MatSort, Sort } from "@angular/material/sort";
 
 @Component({
   selector: "app-csc",
@@ -318,7 +318,24 @@ export class CscComponent implements OnInit {
       // Applies the sorting to the table after it is available in the DOM
       this.dataSource.sort = this.sort;
       // Sets the default sorting to the fiscal year column to show the downward arrow
-      this.sort.sort({ id: "fiscal_year", start: "desc", disableClear: true });
+      // this.sort.sort({ id: "fiscal_year", start: "desc", disableClear: true });
+      this.setInitialSort();
     });
+  }
+  setInitialSort() {
+    // This sets the initial sort to the fiscal year column in descending order
+    const sortState: Sort = { active: "fiscal_year", direction: "desc" };
+    this.sort.active = sortState.active;
+    this.sort.direction = sortState.direction;
+    this.sort.sortChange.emit(sortState);
+  }
+
+  onSortChange(sortState: Sort) {
+    // This catches the case where the sortState would normally not have a direction
+    // and instead switches it to ascending order. This is to prevent the sort from
+    // going from descending to no sort at all.
+    if (sortState.direction === "") {
+      this.sort.direction = "asc";
+    }
   }
 }

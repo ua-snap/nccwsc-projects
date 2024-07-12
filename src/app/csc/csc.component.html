@@ -69,6 +69,7 @@
           mat-table
           [dataSource]="dataSource"
           matSort
+          (matSortChange)="onSortChange($event)"
           class="mat-elevation-z8"
         >
           <!-- Define columns -->
