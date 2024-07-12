@@ -8,6 +8,7 @@
         <h3 class="select-title">Topic</h3>
         <div *ngFor="let topic of topics">
           <mat-checkbox
+            class="casc-checkbox"
             (change)="changeCurrentTopic($event)"
             [checked]="current_topic.indexOf(topic) != -1"
             [value]="topic"
@@ -79,8 +80,10 @@
           </ng-container>
 
           <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
-            <td mat-cell *matCellDef="let project">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="title">
+              Title
+            </th>
+            <td mat-cell *matCellDef="let project" class="title">
               <a [routerLink]="['/project/', sbId, project.id]">{{
                 project.title
               }}</a>

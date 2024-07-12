@@ -37,7 +37,6 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { TitleLinkComponent } from "./title-link/title-link.component";
 import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
 
 @NgModule({
@@ -54,7 +53,6 @@ import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
     SearchNavComponent,
     CscComponent,
     ProjectResourceComponent,
-    TitleLinkComponent,
     BreadcrumbComponent,
   ],
   imports: [

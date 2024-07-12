@@ -3,9 +3,9 @@ import { LocalJsonService } from "../local-json.service";
 import { SearchService } from "../search.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { environment } from "../../environments/environment";
-import { TitleLinkComponent } from "../title-link/title-link.component";
 import { Location } from "@angular/common";
 import { UrlService } from "../url.service";
+import { MatTableDataSource } from "@angular/material/table";
 
 @Component({
   selector: "app-topics",
@@ -34,39 +34,6 @@ export class TopicsComponent implements OnInit {
     "wildlife-plants": "Wildlife and Plants",
   };
 
-  settings = {
-    columns: {
-      fiscal_year: {
-        title: "Year",
-        width: "6%",
-      },
-      title: {
-        title: "Title",
-        type: "custom",
-        renderComponent: TitleLinkComponent,
-      },
-      csc_name: {
-        title: "CASC",
-        width: "15%",
-      },
-      subtopics_formatted: {
-        title: "Subtopic(s)",
-        type: "html",
-        width: "20%",
-      },
-      status: {
-        title: "Status",
-        width: "15%",
-      },
-    },
-    actions: false,
-    hideSubHeader: true,
-    pager: {
-      display: false,
-    },
-    // this.source.setSort([{ field: 'id', direction: 'asc' }]);
-  };
-
   topics_url = environment.baseURL;
   project_url = environment.baseURL + "/project";
 
@@ -85,6 +52,7 @@ export class TopicsComponent implements OnInit {
   projectsList = [];
   filteredProjectsList = [];
   dataLoading = true;
+  dataSource = new MatTableDataSource<any>(this.filteredProjectsList);
 
   subtopicsFilter: string[] = null;
 
@@ -98,15 +66,23 @@ export class TopicsComponent implements OnInit {
     private urlService: UrlService,
   ) {}
 
+  displayedColumns: string[] = [
+    "fiscal_year",
+    "title",
+    "csc_name",
+    "subtopics_formatted",
+    "status",
+  ];
+
   changeCurrentCASC(event: any = null) {
-    if (event.target.checked == true) {
+    if (event.checked) {
       let index = this.current_csc.indexOf("All CASCs");
       if (index != -1) {
         this.current_csc.splice(index, 1);
       }
-      this.current_csc.push(event.target.value);
+      this.current_csc.push(event.source.value);
     } else {
-      let index = this.current_csc.indexOf(event.target.value);
+      let index = this.current_csc.indexOf(event.source.value);
       if (index != -1) {
         this.current_csc.splice(index, 1);
       }
@@ -115,18 +91,18 @@ export class TopicsComponent implements OnInit {
       this.current_csc.push("All CASCs");
     }
 
-    this.filterProjectsList(event.target.value);
+    this.filterProjectsList(event.source.value);
   }
 
   changeCurrentSubTopic(event: any = null) {
-    if (event.target.checked == true) {
+    if (event.checked) {
       let index = this.current_subtopic.indexOf("All Subtopics");
       if (index != -1) {
         this.current_subtopic.splice(index, 1);
       }
-      this.current_subtopic.push(event.target.value);
+      this.current_subtopic.push(event.source.value);
     } else {
-      let index = this.current_subtopic.indexOf(event.target.value);
+      let index = this.current_subtopic.indexOf(event.source.value);
       if (index != -1) {
         this.current_subtopic.splice(index, 1);
       }
@@ -135,18 +111,18 @@ export class TopicsComponent implements OnInit {
       this.current_subtopic.push("All Subtopics");
     }
 
-    this.filterProjectsList(event.target.value);
+    this.filterProjectsList(event.source.value);
   }
 
   changeCurrentStatus(event: any = null) {
-    if (event.target.checked == true) {
+    if (event.checked) {
       let index = this.current_status.indexOf("All Statuses");
       if (index != -1) {
         this.current_status.splice(index, 1);
       }
-      this.current_status.push(event.target.value);
+      this.current_status.push(event.source.value);
     } else {
-      let index = this.current_status.indexOf(event.target.value);
+      let index = this.current_status.indexOf(event.source.value);
       if (index != -1) {
         this.current_status.splice(index, 1);
       }
@@ -155,18 +131,18 @@ export class TopicsComponent implements OnInit {
       this.current_status.push("All Statuses");
     }
 
-    this.filterProjectsList(event.target.value);
+    this.filterProjectsList(event.source.value);
   }
 
   changeCurrentYear(event: any = null) {
-    if (event.target.checked == true) {
+    if (event.checked) {
       let index = this.current_fy.indexOf("All Fiscal Years");
       if (index != -1) {
         this.current_fy.splice(index, 1);
       }
-      this.current_fy.push(event.target.value);
+      this.current_fy.push(event.source.value);
     } else {
-      let index = this.current_fy.indexOf(event.target.value);
+      let index = this.current_fy.indexOf(event.source.value);
       if (index != -1) {
         this.current_fy.splice(index, 1);
       }
@@ -175,7 +151,7 @@ export class TopicsComponent implements OnInit {
       this.current_fy.push("All Fiscal Years");
     }
 
-    this.filterProjectsList(event.target.value);
+    this.filterProjectsList(event.source.value);
   }
 
   filterProjectsList(event: any = null) {
@@ -264,6 +240,7 @@ export class TopicsComponent implements OnInit {
       }
       this.filteredProjectsList.push(this.projectsList[project]);
     }
+    this.dataSource.data = this.filteredProjectsList;
     this.updateUrl();
     this.sortList();
   }
@@ -417,7 +394,6 @@ export class TopicsComponent implements OnInit {
           this.cscs.sort();
 
           this.filteredProjectsList.push(this.projectsList[project]);
-          this.dataLoading = false;
 
           // Prepares data for sortable table
 
@@ -451,6 +427,7 @@ export class TopicsComponent implements OnInit {
         this.current_type = "Project";
         this.filterProjectsList();
         this.sortList();
+        this.dataLoading = false;
       });
   }
 }

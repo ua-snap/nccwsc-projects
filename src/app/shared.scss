@@ -3,31 +3,31 @@ h2 {
 }
 
 .select-box {
-  margin-bottom: 2rem;
-  h3 {
-    font-size: 1.35rem;
-    padding-bottom: 2px;
-    border-bottom: 1px solid #eee;
-  }
-  div {
-    margin: 0 0 0.2rem 0;
-    padding-left: 1.1rem;
-    text-indent: -1.1rem;
-    line-height: 1.4;
-    font-size: 1rem;
+  .mat-checkbox {
+    display: flex;
+    align-items: center;
 
-    input[type="radio"] {
-      display: inline;
-      position: relative;
-      bottom: 1px;
-      margin-right: 0.5ex;
+    .mat-checkbox-layout {
+      width: auto; // Ensures the width adjusts to the content
     }
 
-    label {
-      display: inline;
-      margin-bottom: 0;
+    .mat-checkbox-label {
+      padding-left: 1rem; // Add the padding to the label
     }
   }
+}
+.mat-mdc-table .mat-mdc-header-row .mat-mdc-header-cell,
+.mat-mdc-table .mat-mdc-row .mat-mdc-cell {
+  overflow: visible;
+}
+
+.title {
+  width: 40%;
+}
+
+.mat-mdc-table .mat-mdc-row:nth-of-type(odd),
+.mat-mdc-table .mat-mdc-row:nth-of-type(odd):hover {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 :host::ng-deep table {
@@ -43,7 +43,7 @@ h2 {
     }
   }
   tr {
-    th.ng2-smart-th {
+    th {
       text-align: left;
       vertical-align: bottom !important;
       padding-top: 0;

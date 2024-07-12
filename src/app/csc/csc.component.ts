@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { LocalJsonService } from "../local-json.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { environment } from "../../environments/environment";
@@ -10,6 +10,7 @@ import { MatTableDataSource } from "@angular/material/table";
   selector: "app-csc",
   templateUrl: "./csc.component.html",
   styleUrls: ["./csc.component.scss", "../shared.scss"],
+  encapsulation: ViewEncapsulation.None,
 })
 export class CscComponent implements OnInit {
   sub: any;
