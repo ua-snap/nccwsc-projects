@@ -318,7 +318,6 @@ export class CscComponent implements OnInit {
       // Applies the sorting to the table after it is available in the DOM
       this.dataSource.sort = this.sort;
       // Sets the default sorting to the fiscal year column to show the downward arrow
-      // this.sort.sort({ id: "fiscal_year", start: "desc", disableClear: true });
       this.setInitialSort();
     });
   }
