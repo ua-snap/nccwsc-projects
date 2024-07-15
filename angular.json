@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "nccwsc-projects:build:production"
+              "buildTarget": "nccwsc-projects:build:production"
             },
             "development": {
-              "browserTarget": "nccwsc-projects:build:development"
+              "buildTarget": "nccwsc-projects:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "nccwsc-projects:build"
+            "buildTarget": "nccwsc-projects:build"
           }
         },
         "test": {
