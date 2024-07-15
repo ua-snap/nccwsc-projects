@@ -11,7 +11,7 @@ import {
   NgbActiveModal,
   NgbDropdownModule,
 } from "@ng-bootstrap/ng-bootstrap";
-import { LeafletModule } from "@asymmetrik/ngx-leaflet";
+// import { LeafletModule } from "@bluehalo/ngx-leaflet";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { GoogleAnalyticsService } from "./google-analytics.service";
 import { UmamiService } from "./umami.service";
@@ -55,7 +55,6 @@ import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
     BreadcrumbComponent,
   ],
   imports: [
-    LeafletModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
