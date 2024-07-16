@@ -3,26 +3,44 @@ h2 {
 }
 
 .select-box {
-  .mat-checkbox {
+  .mat-mdc-checkbox {
     display: flex;
     align-items: center;
+    margin: 0 0 0.2rem;
+    font-size: 1rem !important;
+    text-indent: -1.1rem;
+    padding-left: 1.1rem;
 
     .mat-checkbox-layout {
       width: auto; // Ensures the width adjusts to the content
     }
 
     .mat-checkbox-label {
-      padding-left: 1rem; // Add the padding to the label
+      padding-left: 1.1rem; // Add the padding to the label
     }
   }
 }
-.mat-mdc-table .mat-mdc-header-row .mat-mdc-header-cell,
+
 .mat-mdc-table .mat-mdc-row .mat-mdc-cell {
   overflow: visible;
+  font-size: 1rem;
+  font-family: Lora, serif;
+  font-weight: 400;
+  padding: 0.5em 1em;
+  line-height: 1.25;
+  vertical-align: top;
+}
+
+.mat-mdc-table .mat-mdc-header-row .mat-mdc-header-cell {
+  font-size: 1rem;
+  font-family: Lora, serif;
+  color: #0d66c4;
+  font-weight: 700;
+  text-align: center;
 }
 
 .title {
-  width: 40%;
+  width: 50%;
 }
 
 .mat-mdc-table .mat-mdc-row:nth-of-type(odd),
