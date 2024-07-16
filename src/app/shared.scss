@@ -43,8 +43,7 @@ h2 {
 }
 
 .mat-mdc-header-row th:nth-of-type(3) .mat-sort-header-content {
-  border: 1px solid red;
-  min-width: 13rem;
+  min-width: 11.5rem;
 }
 
 .mat-sort-header-container .mat-sort-header-content {
@@ -63,45 +62,8 @@ td.mat-mdc-cell ul {
   width: 50%;
 }
 
-.mat-mdc-table .mat-mdc-row:nth-of-type(odd),
-.mat-mdc-table .mat-mdc-row:nth-of-type(odd):hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-:host::ng-deep table {
-  thead {
-    border-bottom: 1px solid #eee;
-    a.sort.asc::after {
-      border-width: 6px !important;
-      border-bottom-color: #888;
-    }
-    a.sort.desc::after {
-      border-width: 6px !important;
-      border-bottom-color: #888;
-    }
-  }
-  tr {
-    th {
-      text-align: left;
-      vertical-align: bottom !important;
-      padding-top: 0;
-      margin-top: 0;
-      &.title {
-        text-align: center;
-      }
-    }
-    th,
-    td {
-      line-height: 1.25;
-      font-size: 1rem !important;
-      border-top: none;
-
-      ul {
-        margin-left: 0;
-        padding-left: 0;
-      }
-    }
-  }
+.mat-mdc-table .mat-mdc-row:nth-of-type(odd) {
+  background-color: #f2f2f2;
 }
 
 .card {
