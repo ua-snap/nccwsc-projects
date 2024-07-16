@@ -1,6 +1,6 @@
 {
   "name": "nccwsc-projects",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "engines": {
     "node": ">=18.20.4"
@@ -45,8 +45,10 @@
     "@angular/compiler-cli": "^18.1.0",
     "@types/leaflet": "1.9.12",
     "@types/node": "^20.14.10",
+    "angular-eslint": "18.1.0",
+    "eslint": "^9.6.0",
     "ts-node": "~10.9.2",
-    "tslint": "~6.1.0",
-    "typescript": "~5.5.3"
+    "typescript": "~5.5.3",
+    "typescript-eslint": "8.0.0-alpha.38"
   }
 }
