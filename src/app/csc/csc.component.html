@@ -70,7 +70,7 @@
           [dataSource]="dataSource"
           matSort
           (matSortChange)="onSortChange($event)"
-          class="mat-elevation-z8"
+          class="mat-elevation-z8 d-none d-lg-block"
         >
           <!-- Define columns -->
           <ng-container matColumnDef="fiscal_year">
@@ -120,6 +120,69 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
+      </div>
+    </div>
+    <!-- ********************< Mobile Cards*****************************************************-->
+
+    <div
+      class="d-lg-none col-xs-10"
+      *ngIf="!dataLoading && filteredCscProjectsList.length > 0"
+    >
+      <div class="card" *ngFor="let project of filteredCscProjectsList">
+        <!--Card content-->
+        <div class="card-block mobile">
+          <!--Title-->
+          <h4 class="card-title">
+            <a [routerLink]="['/project/', sbId, project.id]">
+              {{ project["title"] }}
+            </a>
+            <ul *ngIf="project.children?.length > 0">
+              <li *ngFor="let childProject of project.children">
+                {{ childProject.title }}
+              </li>
+            </ul>
+          </h4>
+
+          <!--Project Year-->
+          <div class="card-text">
+            <b>Funding Year: </b>
+            <span *ngIf="project['fiscal_year']">
+              {{ project.fiscal_year }}
+            </span>
+            <span *ngIf="!project.fiscal_year"> N/A </span>
+          </div>
+
+          <!--Principal Investigator-->
+          <div class="card-text">
+            <b>Principal Investigator(s): </b>
+            <ul *ngFor="let pi of project.contacts.principal_investigators">
+              <li>
+                {{ pi.name }}
+                <em *ngIf="pi.organization">({{ pi.organization }})</em>
+              </li>
+            </ul>
+          </div>
+
+          <!--Topics-->
+          <div class="card-text">
+            <b>Topic(s): </b>
+
+            <span *ngIf="project?.topics">
+              {{ project.topics }}
+            </span>
+            <span *ngIf="!project.topics"> Unknown </span>
+          </div>
+
+          <!--Status-->
+          <div class="card-text">
+            <b>Status: </b>
+            <span *ngIf="project.status">
+              {{ project.status }}
+            </span>
+            <span *ngIf="!project.status"> Unknown </span>
+          </div>
+        </div>
+        <!--/.Card content-->
       </div>
     </div>
   </div>
