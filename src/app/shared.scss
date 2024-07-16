@@ -36,7 +36,27 @@ h2 {
   font-family: Lora, serif;
   color: #0d66c4;
   font-weight: 700;
-  text-align: center;
+}
+
+.mat-mdc-header-row {
+  height: 40px !important;
+}
+
+.mat-mdc-header-row th:nth-of-type(3) .mat-sort-header-content {
+  border: 1px solid red;
+  min-width: 13rem;
+}
+
+.mat-sort-header-container .mat-sort-header-content {
+  text-align: left;
+}
+
+td.mat-mdc-cell {
+  font-weight: 500 !important;
+}
+
+td.mat-mdc-cell ul {
+  margin-left: -2.2rem;
 }
 
 .title {
