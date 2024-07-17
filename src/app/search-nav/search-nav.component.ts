@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { SearchService } from "../search.service";
 import { Subscription } from "rxjs";
-import { UmamiService } from "../umami.service";
+
+declare var umami: any;
 
 @Component({
   selector: "search-nav",
@@ -39,10 +40,7 @@ export class SearchNavComponent implements OnInit {
   orgsLoaded = false;
   topicsLoaded = false;
 
-  constructor(
-    private umamiService: UmamiService,
-    private searchService: SearchService,
-  ) {}
+  constructor(private searchService: SearchService) {}
 
   resetQuery() {
     this.selectedSubtopics = [];
@@ -145,7 +143,9 @@ export class SearchNavComponent implements OnInit {
     if (this.filteredStatus) {
       payload["status"] = this.combineLabels(this.filteredStatus);
     }
-    this.umamiService.eventEmitter("Search Submission", payload);
+    if (typeof umami !== "undefined") {
+      umami.track("Search Submission", payload);
+    }
   }
 
   onSubmit() {

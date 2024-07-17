@@ -17,7 +17,6 @@ import {
 import { LeafletModule } from "@asymmetrik/ngx-leaflet";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { GoogleAnalyticsService } from "./google-analytics.service";
-import { UmamiService } from "./umami.service";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 import { HeaderComponent } from "./header/header.component";
@@ -74,7 +73,6 @@ import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
   ],
   providers: [
     GoogleAnalyticsService,
-    UmamiService,
     LocalJsonService,
     SciencebaseService,
     SearchService,
