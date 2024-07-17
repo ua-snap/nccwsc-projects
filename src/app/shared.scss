@@ -3,20 +3,47 @@ h2 {
 }
 
 .select-box {
+  margin-bottom: 2rem;
+
+  .select-title {
+    font-size: 1.35rem;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #eee;
+  }
+
   .mat-mdc-checkbox {
     display: flex;
-    align-items: center;
     margin: 0 0 0.2rem;
-    font-size: 1rem !important;
-    text-indent: -1.1rem;
-    padding-left: 1.1rem;
+    margin-left: -10px;
+    font-weight: 400;
+    font-family: Lora, serif;
+    font-size: 18px;
+    margin-right: 1rem;
+    vertical-align: top;
 
-    .mat-checkbox-layout {
-      width: auto; // Ensures the width adjusts to the content
+    .mat-internal-form-field {
+      align-items: flex-start;
+    }
+    .mdc-label {
+      padding-left: 4.5px;
+      font-family: Lora, serif;
+      font-weight: 400;
+      width: 170px;
+      margin-bottom: 0;
     }
 
-    .mat-checkbox-label {
-      padding-left: 1.1rem; // Add the padding to the label
+    .mdc-checkbox {
+      width: 15px;
+      height: 15px;
+      margin-right: -15px;
+      margin-top: -5px;
+    }
+
+    .mdc-checkbox__background {
+      border: 1px solid currentColor;
+      border-radius: 2.5px;
+      width: 13px;
+      height: 13px;
     }
   }
 }
