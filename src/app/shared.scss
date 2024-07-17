@@ -40,10 +40,15 @@ h2 {
     }
 
     .mdc-checkbox__background {
-      border: 1px solid currentColor;
+      border: 1px solid #000;
       border-radius: 2.5px;
       width: 13px;
       height: 13px;
+    }
+
+    .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background {
+      background-color: #0075ff;
+      color: #fff;
     }
   }
 }
