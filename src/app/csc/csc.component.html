@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <app-breadcrumb></app-breadcrumb>
-  <h2>{{ title }} Projects</h2>
+  <h2 class="table-title">{{ title }} Projects</h2>
   <div class="row csc">
     <div class="col-md-2">
       <!-- Filter Section -->
@@ -122,8 +122,8 @@
         </table>
       </div>
     </div>
-    <!-- ********************< Mobile Cards*****************************************************-->
 
+    <!-- Alternative card-based display for mobile -->
     <div
       class="d-lg-none col-xs-10"
       *ngIf="!dataLoading && filteredCscProjectsList.length > 0"
