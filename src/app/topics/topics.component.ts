@@ -1,18 +1,29 @@
-import { Component, OnInit } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+  ChangeDetectorRef,
+} from "@angular/core";
 import { LocalJsonService } from "../local-json.service";
 import { SearchService } from "../search.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { environment } from "../../environments/environment";
-import { TitleLinkComponent } from "../title-link/title-link.component";
 import { Location } from "@angular/common";
 import { UrlService } from "../url.service";
+import { MatTableDataSource } from "@angular/material/table";
+import { MatSort, Sort } from "@angular/material/sort";
 
 @Component({
   selector: "app-topics",
   templateUrl: "./topics.component.html",
   styleUrls: ["./topics.component.scss", "../shared.scss"],
+  encapsulation: ViewEncapsulation.None,
 })
 export class TopicsComponent implements OnInit {
+  dataSource: MatTableDataSource<any>;
+  @ViewChild(MatSort) sort: MatSort;
+
   sub = null;
   topic = null;
   page_title = null;
@@ -32,39 +43,6 @@ export class TopicsComponent implements OnInit {
     "indigenous-peoples": "Indigenous Peoples",
     "water-coasts-ice": "Water, Coasts and Ice",
     "wildlife-plants": "Wildlife and Plants",
-  };
-
-  settings = {
-    columns: {
-      fiscal_year: {
-        title: "Year",
-        width: "6%",
-      },
-      title: {
-        title: "Title",
-        type: "custom",
-        renderComponent: TitleLinkComponent,
-      },
-      csc_name: {
-        title: "CASC",
-        width: "15%",
-      },
-      subtopics_formatted: {
-        title: "Subtopic(s)",
-        type: "html",
-        width: "20%",
-      },
-      status: {
-        title: "Status",
-        width: "15%",
-      },
-    },
-    actions: false,
-    hideSubHeader: true,
-    pager: {
-      display: false,
-    },
-    // this.source.setSort([{ field: 'id', direction: 'asc' }]);
   };
 
   topics_url = environment.baseURL;
@@ -96,17 +74,28 @@ export class TopicsComponent implements OnInit {
     private location: Location,
     private aroute: ActivatedRoute,
     private urlService: UrlService,
-  ) {}
+    private cdr: ChangeDetectorRef,
+  ) {
+    this.dataSource = new MatTableDataSource<any>();
+  }
+
+  displayedColumns: string[] = [
+    "fiscal_year",
+    "title",
+    "csc_name",
+    "subtopics_formatted",
+    "status",
+  ];
 
   changeCurrentCASC(event: any = null) {
-    if (event.target.checked == true) {
+    if (event.checked) {
       let index = this.current_csc.indexOf("All CASCs");
       if (index != -1) {
         this.current_csc.splice(index, 1);
       }
-      this.current_csc.push(event.target.value);
+      this.current_csc.push(event.source.value);
     } else {
-      let index = this.current_csc.indexOf(event.target.value);
+      let index = this.current_csc.indexOf(event.source.value);
       if (index != -1) {
         this.current_csc.splice(index, 1);
       }
@@ -115,18 +104,18 @@ export class TopicsComponent implements OnInit {
       this.current_csc.push("All CASCs");
     }
 
-    this.filterProjectsList(event.target.value);
+    this.filterProjectsList(event.source.value);
   }
 
   changeCurrentSubTopic(event: any = null) {
-    if (event.target.checked == true) {
+    if (event.checked) {
       let index = this.current_subtopic.indexOf("All Subtopics");
       if (index != -1) {
         this.current_subtopic.splice(index, 1);
       }
-      this.current_subtopic.push(event.target.value);
+      this.current_subtopic.push(event.source.value);
     } else {
-      let index = this.current_subtopic.indexOf(event.target.value);
+      let index = this.current_subtopic.indexOf(event.source.value);
       if (index != -1) {
         this.current_subtopic.splice(index, 1);
       }
@@ -135,18 +124,18 @@ export class TopicsComponent implements OnInit {
       this.current_subtopic.push("All Subtopics");
     }
 
-    this.filterProjectsList(event.target.value);
+    this.filterProjectsList(event.source.value);
   }
 
   changeCurrentStatus(event: any = null) {
-    if (event.target.checked == true) {
+    if (event.checked) {
       let index = this.current_status.indexOf("All Statuses");
       if (index != -1) {
         this.current_status.splice(index, 1);
       }
-      this.current_status.push(event.target.value);
+      this.current_status.push(event.source.value);
     } else {
-      let index = this.current_status.indexOf(event.target.value);
+      let index = this.current_status.indexOf(event.source.value);
       if (index != -1) {
         this.current_status.splice(index, 1);
       }
@@ -155,18 +144,18 @@ export class TopicsComponent implements OnInit {
       this.current_status.push("All Statuses");
     }
 
-    this.filterProjectsList(event.target.value);
+    this.filterProjectsList(event.source.value);
   }
 
   changeCurrentYear(event: any = null) {
-    if (event.target.checked == true) {
+    if (event.checked) {
       let index = this.current_fy.indexOf("All Fiscal Years");
       if (index != -1) {
         this.current_fy.splice(index, 1);
       }
-      this.current_fy.push(event.target.value);
+      this.current_fy.push(event.source.value);
     } else {
-      let index = this.current_fy.indexOf(event.target.value);
+      let index = this.current_fy.indexOf(event.source.value);
       if (index != -1) {
         this.current_fy.splice(index, 1);
       }
@@ -175,7 +164,7 @@ export class TopicsComponent implements OnInit {
       this.current_fy.push("All Fiscal Years");
     }
 
-    this.filterProjectsList(event.target.value);
+    this.filterProjectsList(event.source.value);
   }
 
   filterProjectsList(event: any = null) {
@@ -265,7 +254,7 @@ export class TopicsComponent implements OnInit {
       this.filteredProjectsList.push(this.projectsList[project]);
     }
     this.updateUrl();
-    this.sortList();
+    this.dataSource.data = [...this.filteredProjectsList];
   }
 
   showAllProjects() {
@@ -310,23 +299,6 @@ export class TopicsComponent implements OnInit {
       .toString();
 
     this.location.replaceState(url);
-  }
-
-  sortList() {
-    // First sorts projects by year, then by title
-    this.filteredProjectsList.sort((a, b) => {
-      function sortByTitle(a, b) {
-        if (a.title == b.title) {
-          return 0;
-        }
-        return a.title < b.title ? -1 : 1;
-      }
-
-      if (a.fiscal_year == b.fiscal_year) {
-        return sortByTitle(a, b);
-      }
-      return a.fiscal_year > b.fiscal_year ? -1 : 1;
-    });
   }
 
   ngOnInit() {
@@ -417,7 +389,6 @@ export class TopicsComponent implements OnInit {
           this.cscs.sort();
 
           this.filteredProjectsList.push(this.projectsList[project]);
-          this.dataLoading = false;
 
           // Prepares data for sortable table
 
@@ -450,7 +421,29 @@ export class TopicsComponent implements OnInit {
 
         this.current_type = "Project";
         this.filterProjectsList();
-        this.sortList();
+        this.dataLoading = false;
+        // Waits until the data is loaded to render the table
+        this.cdr.detectChanges();
+        // Applies the sorting to the table after it is available in the DOM
+        this.dataSource.sort = this.sort;
+        // Sets the default sorting to the fiscal year column to show the downward arrow
+        this.setInitialSort();
       });
+  }
+  setInitialSort() {
+    // This sets the initial sort to the fiscal year column in descending order
+    const sortState: Sort = { active: "fiscal_year", direction: "desc" };
+    this.sort.active = sortState.active;
+    this.sort.direction = sortState.direction;
+    this.sort.sortChange.emit(sortState);
+  }
+
+  onSortChange(sortState: Sort) {
+    // This catches the case where the sortState would normally not have a direction
+    // and instead switches it to ascending order. This is to prevent the sort from
+    // going from descending to no sort at all.
+    if (sortState.direction === "") {
+      this.sort.direction = "asc";
+    }
   }
 }

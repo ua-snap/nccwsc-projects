@@ -1,17 +1,28 @@
-import { Component, Input, OnInit, Pipe, PipeTransform } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+  ChangeDetectorRef,
+} from "@angular/core";
 import { LocalJsonService } from "../local-json.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { environment } from "../../environments/environment";
-import { TitleLinkComponent } from "../title-link/title-link.component";
 import { Location } from "@angular/common";
 import { UrlService } from "../url.service";
+import { MatTableDataSource } from "@angular/material/table";
+import { MatSort, Sort } from "@angular/material/sort";
 
 @Component({
   selector: "app-csc",
   templateUrl: "./csc.component.html",
   styleUrls: ["./csc.component.scss", "../shared.scss"],
+  encapsulation: ViewEncapsulation.None,
 })
 export class CscComponent implements OnInit {
+  dataSource: MatTableDataSource<any>;
+  @ViewChild(MatSort) sort = new MatSort();
+
   sub: any;
   id: any;
   sbId: any;
@@ -52,38 +63,13 @@ export class CscComponent implements OnInit {
     midwest: "5e2f3f59e4b0a79317d422af",
   };
 
-  settings = {
-    columns: {
-      fiscal_year: {
-        title: "Year",
-        width: "6%",
-      },
-      title: {
-        title: "Title",
-        type: "custom",
-        renderComponent: TitleLinkComponent,
-      },
-      investigators_formatted: {
-        title: "Principal Investigator(s)",
-        type: "html",
-        width: "25%",
-      },
-      topics_formatted: {
-        title: "Topic(s)",
-        width: "10%",
-        type: "html",
-      },
-      status: {
-        title: "Status",
-        width: "7%",
-      },
-    },
-    actions: false,
-    hideSubHeader: true,
-    pager: {
-      display: false,
-    },
-  };
+  displayedColumns: string[] = [
+    "fiscal_year",
+    "title",
+    "investigators_formatted",
+    "topics_formatted",
+    "status",
+  ];
 
   constructor(
     private route: ActivatedRoute,
@@ -92,32 +78,24 @@ export class CscComponent implements OnInit {
     private location: Location,
     private aroute: ActivatedRoute,
     private urlService: UrlService,
-  ) {}
-
-  showAllProjects() {
-    this.filteredCscProjectsList = [];
-    for (var project in this.cscProjectsList) {
-      this.filteredCscProjectsList.push(this.cscProjectsList[project]);
-    }
+    private cdr: ChangeDetectorRef,
+  ) {
+    this.dataSource = new MatTableDataSource<any>();
   }
 
-  sortProjectsByKey(array, key) {
-    return array.sort(function (a, b) {
-      var x = a[key];
-      var y = b[key];
-      return x > y ? -1 : x < y ? 1 : 0;
-    });
+  showAllProjects() {
+    this.filteredCscProjectsList = [...this.cscProjectsList];
   }
 
   changeCurrentTopic(event: any = null) {
-    if (event.target.checked == true) {
+    if (event.checked) {
       let index = this.current_topic.indexOf("All Topics");
       if (index != -1) {
         this.current_topic.splice(index, 1);
       }
-      this.current_topic.push(event.target.value);
+      this.current_topic.push(event.source.value);
     } else {
-      let index = this.current_topic.indexOf(event.target.value);
+      let index = this.current_topic.indexOf(event.source.value);
       if (index != -1) {
         this.current_topic.splice(index, 1);
       }
@@ -126,18 +104,18 @@ export class CscComponent implements OnInit {
       this.current_topic.push("All Topics");
     }
 
-    this.filterProjectsList(event.target.value);
+    this.filterProjectsList(event.source.value);
   }
 
   changeCurrentFY(event: any = null) {
-    if (event.target.checked == true) {
+    if (event.checked) {
       let index = this.current_fy.indexOf("All Fiscal Years");
       if (index != -1) {
         this.current_fy.splice(index, 1);
       }
-      this.current_fy.push(event.target.value);
+      this.current_fy.push(event.source.value);
     } else {
-      let index = this.current_fy.indexOf(event.target.value);
+      let index = this.current_fy.indexOf(event.source.value);
       if (index != -1) {
         this.current_fy.splice(index, 1);
       }
@@ -145,18 +123,18 @@ export class CscComponent implements OnInit {
     if (this.current_fy.length == 0) {
       this.current_fy.push("All Fiscal Years");
     }
-    this.filterProjectsList(event.target.value);
+    this.filterProjectsList(event.source.value);
   }
 
   changeCurrentStatus(event: any = null) {
-    if (event.target.checked == true) {
+    if (event.checked) {
       let index = this.current_status.indexOf("All Statuses");
       if (index != -1) {
         this.current_status.splice(index, 1);
       }
-      this.current_status.push(event.target.value);
+      this.current_status.push(event.source.value);
     } else {
-      let index = this.current_status.indexOf(event.target.value);
+      let index = this.current_status.indexOf(event.source.value);
       if (index != -1) {
         this.current_status.splice(index, 1);
       }
@@ -165,12 +143,11 @@ export class CscComponent implements OnInit {
       this.current_status.push("All Statuses");
     }
 
-    this.filterProjectsList(event.target.value);
+    this.filterProjectsList(event.source.value);
   }
 
   filterProjectsList(event: any = null) {
     this.filteredCscProjectsList = [];
-    // tslint:disable-next-line:forin
     for (var project in this.cscProjectsList) {
       var display = true;
       if (
@@ -187,7 +164,6 @@ export class CscComponent implements OnInit {
               this.current_topic[curr_topic].replace(/,/g, "").trim()
             ) {
               matched_topic = true;
-              // Found our topic, let's check year and status.
               break;
             }
           }
@@ -232,11 +208,11 @@ export class CscComponent implements OnInit {
 
       this.filteredCscProjectsList.push(this.cscProjectsList[project]);
     }
+
     this.updateUrl();
-    this.sortList();
+    this.dataSource.data = [...this.filteredCscProjectsList];
   }
 
-  //TODO: put this code in a utility function/service
   updateUrl() {
     let params: any = {};
     if (this.current_topic.indexOf("All Topics") === -1) {
@@ -253,22 +229,6 @@ export class CscComponent implements OnInit {
       .createUrlTree([params], { relativeTo: this.aroute })
       .toString();
     this.location.replaceState(url);
-  }
-
-  sortList() {
-    this.filteredCscProjectsList.sort((a, b) => {
-      function sortByTitle(a, b) {
-        if (a.title == b.title) {
-          return 0;
-        }
-        return a.title < b.title ? -1 : 1;
-      }
-
-      if (a.fiscal_year == b.fiscal_year) {
-        return sortByTitle(a, b);
-      }
-      return a.fiscal_year > b.fiscal_year ? -1 : 1;
-    });
   }
 
   ngOnInit() {
@@ -295,7 +255,6 @@ export class CscComponent implements OnInit {
     this.urlService.setCurrentTitle(this.title);
     this.localJson.loadCscProjects(this.sbId).subscribe((data) => {
       this.cscProjectsList = data;
-      // tslint:disable-next-line:forin
       for (var project in this.cscProjectsList) {
         for (var topic in this.cscProjectsList[project].topics) {
           if (
@@ -314,34 +273,27 @@ export class CscComponent implements OnInit {
           this.statuses.push(this.cscProjectsList[project].status);
         }
 
-        // This is done so that "All Fiscal Years" is sorted at the top.
+        // Sort options
         this.fiscal_years.sort().reverse();
-
         this.topics.sort();
         this.statuses.sort();
         this.filteredCscProjectsList.push(this.cscProjectsList[project]);
-        this.dataLoading = false;
 
-        // principal investigators
+        // Principal investigators
         if (
           this.cscProjectsList[project].contacts.principal_investigators != null
         ) {
           this.cscProjectsList[project].investigators_formatted = "";
-
           for (var pi of this.cscProjectsList[project].contacts
             .principal_investigators) {
-            this.cscProjectsList[project].investigators_formatted =
-              this.cscProjectsList[project].investigators_formatted +
-              pi.name +
-              "&nbsp;<i>(" +
-              pi.organization +
-              "</i>)<br>";
+            this.cscProjectsList[project].investigators_formatted +=
+              pi.name + "&nbsp;<i>(" + pi.organization + "</i>)<br>";
           }
         } else {
           this.cscProjectsList[project].investigators_formatted = "N/A";
         }
 
-        // topics
+        // Topics
         if (this.cscProjectsList[project].topics != null) {
           this.cscProjectsList[project].topics_formatted = "<ul>";
           for (var t of this.cscProjectsList[project].topics) {
@@ -353,14 +305,36 @@ export class CscComponent implements OnInit {
           this.cscProjectsList[project].topics_formatted = "N/A";
         }
 
-        // status
+        // Status
         if (!this.cscProjectsList[project].status) {
           this.cscProjectsList[project].status = "N/A";
         }
       }
 
       this.filterProjectsList();
-      this.sortList();
+      this.dataLoading = false;
+      // Waits until the data is loaded to render the table
+      this.cdr.detectChanges();
+      // Applies the sorting to the table after it is available in the DOM
+      this.dataSource.sort = this.sort;
+      // Sets the default sorting to the fiscal year column to show the downward arrow
+      this.setInitialSort();
     });
+  }
+  setInitialSort() {
+    // This sets the initial sort to the fiscal year column in descending order
+    const sortState: Sort = { active: "fiscal_year", direction: "desc" };
+    this.sort.active = sortState.active;
+    this.sort.direction = sortState.direction;
+    this.sort.sortChange.emit(sortState);
+  }
+
+  onSortChange(sortState: Sort) {
+    // This catches the case where the sortState would normally not have a direction
+    // and instead switches it to ascending order. This is to prevent the sort from
+    // going from descending to no sort at all.
+    if (sortState.direction === "") {
+      this.sort.direction = "asc";
+    }
   }
 }

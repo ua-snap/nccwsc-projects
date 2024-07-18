@@ -15,3 +15,5 @@ not dead
 not IE 9-11 # For IE 9-11 support, remove 'not'.
 not op_mob <= 73
 not android <= 109
+not kaios 2.5
+not op_mini all
