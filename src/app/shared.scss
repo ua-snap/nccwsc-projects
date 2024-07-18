@@ -1,69 +1,101 @@
-h2 {
+h2.table-title {
   margin: 1.5rem 0.75rem 3rem;
 }
 
 .select-box {
   margin-bottom: 2rem;
-  h3 {
+
+  .select-title {
     font-size: 1.35rem;
     padding-bottom: 2px;
     border-bottom: 1px solid #eee;
   }
-  div {
-    margin: 0 0 0.2rem 0;
-    padding-left: 1.1rem;
-    text-indent: -1.1rem;
-    line-height: 1.4;
-    font-size: 1rem;
 
-    input[type="radio"] {
-      display: inline;
-      position: relative;
-      bottom: 1px;
-      margin-right: 0.5ex;
+  .mat-mdc-checkbox {
+    display: flex;
+    margin: 0 0 0.2rem;
+    margin-left: -10px;
+    font-weight: 400;
+    font-family: Lora, serif;
+    font-size: 18px;
+    margin-right: 1rem;
+    vertical-align: top;
+
+    .mat-internal-form-field {
+      align-items: flex-start;
+    }
+    .mdc-label {
+      padding-left: 4.5px;
+      font-family: Lora, serif;
+      font-weight: 400;
+      width: 170px;
+      margin-bottom: 0;
     }
 
-    label {
-      display: inline;
-      margin-bottom: 0;
+    .mdc-checkbox {
+      width: 15px;
+      height: 15px;
+      margin-right: -15px;
+      margin-top: -5px;
+    }
+
+    .mdc-checkbox__background {
+      border: 1px solid #000;
+      border-radius: 2.5px;
+      width: 13px;
+      height: 13px;
+    }
+
+    .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background {
+      background-color: #0075ff;
+      color: #fff;
     }
   }
 }
 
-:host::ng-deep table {
-  thead {
-    border-bottom: 1px solid #eee;
-    a.sort.asc::after {
-      border-width: 6px !important;
-      border-bottom-color: #888;
-    }
-    a.sort.desc::after {
-      border-width: 6px !important;
-      border-bottom-color: #888;
-    }
-  }
-  tr {
-    th.ng2-smart-th {
-      text-align: left;
-      vertical-align: bottom !important;
-      padding-top: 0;
-      margin-top: 0;
-      &.title {
-        text-align: center;
-      }
-    }
-    th,
-    td {
-      line-height: 1.25;
-      font-size: 1rem !important;
-      border-top: none;
+.mat-mdc-table .mat-mdc-row .mat-mdc-cell {
+  overflow: visible;
+  font-size: 1rem;
+  font-family: Lora, serif;
+  font-weight: 400;
+  padding: 0.5em 1em;
+  line-height: 1.25;
+  vertical-align: top;
+}
 
-      ul {
-        margin-left: 0;
-        padding-left: 0;
-      }
-    }
-  }
+.mat-mdc-table .mat-mdc-header-row .mat-mdc-header-cell {
+  font-size: 1rem;
+  font-family: Lora, serif;
+  color: #0d66c4;
+  font-weight: 700;
+}
+
+.mat-mdc-header-row {
+  height: 40px !important;
+}
+
+.mat-mdc-header-row th:nth-of-type(3) .mat-sort-header-content {
+  min-width: 11.5rem;
+}
+
+.mat-sort-header-container .mat-sort-header-content {
+  text-align: left;
+}
+
+td.mat-mdc-cell {
+  font-weight: 500 !important;
+}
+
+td.mat-mdc-cell ul {
+  margin-left: -2.2rem;
+}
+
+.title {
+  width: 50%;
+}
+
+.mat-mdc-table .mat-mdc-row:nth-of-type(odd) {
+  background-color: #f2f2f2;
 }
 
 .card {

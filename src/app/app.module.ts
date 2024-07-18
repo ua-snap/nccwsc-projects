@@ -1,7 +1,10 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 
 import { AppComponent } from "./app.component";
@@ -14,7 +17,6 @@ import {
 import { LeafletModule } from "@asymmetrik/ngx-leaflet";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { GoogleAnalyticsService } from "./google-analytics.service";
-import { UmamiService } from "./umami.service";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 import { HeaderComponent } from "./header/header.component";
@@ -32,8 +34,10 @@ import { SearchService } from "./search.service";
 import { UrlService } from "./url.service";
 import { CscComponent } from "./csc/csc.component";
 import { ProjectResourceComponent } from "./project-resource/project-resource.component";
-import { Ng2SmartTableModule } from "ng2-smart-table";
-import { TitleLinkComponent } from "./title-link/title-link.component";
+import { MatTableModule } from "@angular/material/table";
+import { MatSortModule } from "@angular/material/sort";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
 
 @NgModule({
@@ -50,30 +54,31 @@ import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
     SearchNavComponent,
     CscComponent,
     ProjectResourceComponent,
-    TitleLinkComponent,
     BreadcrumbComponent,
   ],
+  bootstrap: [AppComponent],
   imports: [
     LeafletModule,
     BrowserModule,
     FormsModule,
-    HttpClientModule,
     routing,
     NgSelectModule,
-    Ng2SmartTableModule,
     NgbDropdownModule,
     NgbModule,
     FontAwesomeModule,
+    MatTableModule,
+    MatSortModule,
+    MatCheckboxModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     GoogleAnalyticsService,
-    UmamiService,
     LocalJsonService,
     SciencebaseService,
     SearchService,
     UrlService,
     { provide: LocationStrategy, useClass: HashLocationStrategy },
+    provideHttpClient(withInterceptorsFromDi()),
   ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}
