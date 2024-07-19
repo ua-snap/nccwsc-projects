@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Component,
   OnInit,
@@ -87,15 +88,15 @@ export class CscComponent implements OnInit {
     this.filteredCscProjectsList = [...this.cscProjectsList];
   }
 
-  changeCurrentTopic(event: any = null) {
+  changeCurrentTopic(event) {
     if (event.checked) {
-      let index = this.current_topic.indexOf("All Topics");
+      const index = this.current_topic.indexOf("All Topics");
       if (index != -1) {
         this.current_topic.splice(index, 1);
       }
       this.current_topic.push(event.source.value);
     } else {
-      let index = this.current_topic.indexOf(event.source.value);
+      const index = this.current_topic.indexOf(event.source.value);
       if (index != -1) {
         this.current_topic.splice(index, 1);
       }
@@ -104,18 +105,18 @@ export class CscComponent implements OnInit {
       this.current_topic.push("All Topics");
     }
 
-    this.filterProjectsList(event.source.value);
+    this.filterProjectsList();
   }
 
   changeCurrentFY(event: any = null) {
     if (event.checked) {
-      let index = this.current_fy.indexOf("All Fiscal Years");
+      const index = this.current_fy.indexOf("All Fiscal Years");
       if (index != -1) {
         this.current_fy.splice(index, 1);
       }
       this.current_fy.push(event.source.value);
     } else {
-      let index = this.current_fy.indexOf(event.source.value);
+      const index = this.current_fy.indexOf(event.source.value);
       if (index != -1) {
         this.current_fy.splice(index, 1);
       }
@@ -123,18 +124,18 @@ export class CscComponent implements OnInit {
     if (this.current_fy.length == 0) {
       this.current_fy.push("All Fiscal Years");
     }
-    this.filterProjectsList(event.source.value);
+    this.filterProjectsList();
   }
 
   changeCurrentStatus(event: any = null) {
     if (event.checked) {
-      let index = this.current_status.indexOf("All Statuses");
+      const index = this.current_status.indexOf("All Statuses");
       if (index != -1) {
         this.current_status.splice(index, 1);
       }
       this.current_status.push(event.source.value);
     } else {
-      let index = this.current_status.indexOf(event.source.value);
+      const index = this.current_status.indexOf(event.source.value);
       if (index != -1) {
         this.current_status.splice(index, 1);
       }
@@ -143,20 +144,19 @@ export class CscComponent implements OnInit {
       this.current_status.push("All Statuses");
     }
 
-    this.filterProjectsList(event.source.value);
+    this.filterProjectsList();
   }
 
-  filterProjectsList(event: any = null) {
+  filterProjectsList() {
     this.filteredCscProjectsList = [];
-    for (var project in this.cscProjectsList) {
-      var display = true;
+    for (const project in this.cscProjectsList) {
       if (
         this.current_topic.indexOf("All Topics") === -1 &&
         this.cscProjectsList[project].topics != null
       ) {
         let matched_topic = false;
-        for (let topic in this.cscProjectsList[project].topics) {
-          for (let curr_topic in this.current_topic) {
+        for (const topic in this.cscProjectsList[project].topics) {
+          for (const curr_topic in this.current_topic) {
             if (
               this.cscProjectsList[project].topics[topic]
                 .replace(/,/g, "")
@@ -177,7 +177,7 @@ export class CscComponent implements OnInit {
       }
       if (this.current_fy.indexOf("All Fiscal Years") === -1) {
         let found = false;
-        for (let year in this.current_fy) {
+        for (const year in this.current_fy) {
           if (
             this.cscProjectsList[project].fiscal_year === this.current_fy[year]
           ) {
@@ -192,7 +192,7 @@ export class CscComponent implements OnInit {
       }
       if (this.current_status.indexOf("All Statuses") === -1) {
         let found = false;
-        for (let status in this.current_status) {
+        for (const status in this.current_status) {
           if (
             this.cscProjectsList[project].status === this.current_status[status]
           ) {
@@ -214,7 +214,7 @@ export class CscComponent implements OnInit {
   }
 
   updateUrl() {
-    let params: any = {};
+    const params = {};
     if (this.current_topic.indexOf("All Topics") === -1) {
       params["topic"] = this.current_topic.join("+");
     }
@@ -255,8 +255,8 @@ export class CscComponent implements OnInit {
     this.urlService.setCurrentTitle(this.title);
     this.localJson.loadCscProjects(this.sbId).subscribe((data) => {
       this.cscProjectsList = data;
-      for (var project in this.cscProjectsList) {
-        for (var topic in this.cscProjectsList[project].topics) {
+      for (const project in this.cscProjectsList) {
+        for (const topic in this.cscProjectsList[project].topics) {
           if (
             this.topics.indexOf(this.cscProjectsList[project].topics[topic]) < 0
           ) {
@@ -284,7 +284,7 @@ export class CscComponent implements OnInit {
           this.cscProjectsList[project].contacts.principal_investigators != null
         ) {
           this.cscProjectsList[project].investigators_formatted = "";
-          for (var pi of this.cscProjectsList[project].contacts
+          for (const pi of this.cscProjectsList[project].contacts
             .principal_investigators) {
             this.cscProjectsList[project].investigators_formatted +=
               pi.name + "&nbsp;<i>(" + pi.organization + "</i>)<br>";
@@ -296,7 +296,7 @@ export class CscComponent implements OnInit {
         // Topics
         if (this.cscProjectsList[project].topics != null) {
           this.cscProjectsList[project].topics_formatted = "<ul>";
-          for (var t of this.cscProjectsList[project].topics) {
+          for (const t of this.cscProjectsList[project].topics) {
             this.cscProjectsList[project].topics_formatted +=
               "<li>" + t + "</li>";
           }

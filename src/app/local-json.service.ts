@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
 import { environment } from "../environments/environment";
 
 @Injectable()
@@ -10,17 +10,17 @@ export class LocalJsonService {
   constructor(private http: HttpClient) {}
 
   loadCscProjects(csc_id) {
-    var cscUrl = this.serviceURL + "/projects/" + csc_id;
+    const cscUrl = this.serviceURL + "/projects/" + csc_id;
     return this.http.get<any[]>(cscUrl);
   }
 
   loadTopics() {
-    var cscUrl = this.serviceURL + "/topics/";
+    const cscUrl = this.serviceURL + "/topics/";
     return this.http.get<any[]>(cscUrl);
   }
 
   loadTopic(topic_name) {
-    var cscUrl =
+    const cscUrl =
       this.serviceURL +
       "/search?query=&topics=" +
       topic_name +
@@ -29,7 +29,7 @@ export class LocalJsonService {
   }
 
   loadProject(csc_id, project_id) {
-    var cscUrl = this.serviceURL + "/projects/" + csc_id + "/" + project_id;
+    const cscUrl = this.serviceURL + "/projects/" + csc_id + "/" + project_id;
     return this.http.get<any[]>(cscUrl);
   }
 

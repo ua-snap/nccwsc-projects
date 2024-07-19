@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Component,
   OnInit,
@@ -89,13 +90,13 @@ export class TopicsComponent implements OnInit {
 
   changeCurrentCASC(event: any = null) {
     if (event.checked) {
-      let index = this.current_csc.indexOf("All CASCs");
+      const index = this.current_csc.indexOf("All CASCs");
       if (index != -1) {
         this.current_csc.splice(index, 1);
       }
       this.current_csc.push(event.source.value);
     } else {
-      let index = this.current_csc.indexOf(event.source.value);
+      const index = this.current_csc.indexOf(event.source.value);
       if (index != -1) {
         this.current_csc.splice(index, 1);
       }
@@ -104,18 +105,18 @@ export class TopicsComponent implements OnInit {
       this.current_csc.push("All CASCs");
     }
 
-    this.filterProjectsList(event.source.value);
+    this.filterProjectsList();
   }
 
   changeCurrentSubTopic(event: any = null) {
     if (event.checked) {
-      let index = this.current_subtopic.indexOf("All Subtopics");
+      const index = this.current_subtopic.indexOf("All Subtopics");
       if (index != -1) {
         this.current_subtopic.splice(index, 1);
       }
       this.current_subtopic.push(event.source.value);
     } else {
-      let index = this.current_subtopic.indexOf(event.source.value);
+      const index = this.current_subtopic.indexOf(event.source.value);
       if (index != -1) {
         this.current_subtopic.splice(index, 1);
       }
@@ -124,18 +125,18 @@ export class TopicsComponent implements OnInit {
       this.current_subtopic.push("All Subtopics");
     }
 
-    this.filterProjectsList(event.source.value);
+    this.filterProjectsList();
   }
 
   changeCurrentStatus(event: any = null) {
     if (event.checked) {
-      let index = this.current_status.indexOf("All Statuses");
+      const index = this.current_status.indexOf("All Statuses");
       if (index != -1) {
         this.current_status.splice(index, 1);
       }
       this.current_status.push(event.source.value);
     } else {
-      let index = this.current_status.indexOf(event.source.value);
+      const index = this.current_status.indexOf(event.source.value);
       if (index != -1) {
         this.current_status.splice(index, 1);
       }
@@ -144,18 +145,18 @@ export class TopicsComponent implements OnInit {
       this.current_status.push("All Statuses");
     }
 
-    this.filterProjectsList(event.source.value);
+    this.filterProjectsList();
   }
 
   changeCurrentYear(event: any = null) {
     if (event.checked) {
-      let index = this.current_fy.indexOf("All Fiscal Years");
+      const index = this.current_fy.indexOf("All Fiscal Years");
       if (index != -1) {
         this.current_fy.splice(index, 1);
       }
       this.current_fy.push(event.source.value);
     } else {
-      let index = this.current_fy.indexOf(event.source.value);
+      const index = this.current_fy.indexOf(event.source.value);
       if (index != -1) {
         this.current_fy.splice(index, 1);
       }
@@ -164,19 +165,19 @@ export class TopicsComponent implements OnInit {
       this.current_fy.push("All Fiscal Years");
     }
 
-    this.filterProjectsList(event.source.value);
+    this.filterProjectsList();
   }
 
-  filterProjectsList(event: any = null) {
+  filterProjectsList() {
     this.filteredProjectsList = [];
-    for (var project in this.projectsList) {
+    for (const project in this.projectsList) {
       if (
         this.current_subtopic.indexOf("All Subtopics") === -1 &&
         this.projectsList[project].subtopics != null
       ) {
-        var matched_subtopic = false;
-        for (let subtopic in this.projectsList[project].subtopics) {
-          for (let curr_subtopic in this.current_subtopic) {
+        let matched_subtopic = false;
+        for (const subtopic in this.projectsList[project].subtopics) {
+          for (const curr_subtopic in this.current_subtopic) {
             if (
               this.projectsList[project].subtopics[subtopic] ==
               this.current_subtopic[curr_subtopic]
@@ -190,10 +191,10 @@ export class TopicsComponent implements OnInit {
           continue;
         }
       }
-      var matchedType = false;
+      let matchedType = false;
       if (this.current_type != "All Types") {
-        for (var thisType in this.projectsList[project].types) {
-          var matchedType = true;
+        for (const thisType in this.projectsList[project].types) {
+          matchedType = true;
           if (
             this.projectsList[project].types[thisType] !== this.current_type
           ) {
@@ -208,7 +209,7 @@ export class TopicsComponent implements OnInit {
       }
       if (this.current_fy.indexOf("All Fiscal Years") === -1) {
         let found = false;
-        for (let year in this.current_fy) {
+        for (const year in this.current_fy) {
           if (
             this.projectsList[project].fiscal_year === this.current_fy[year]
           ) {
@@ -223,7 +224,7 @@ export class TopicsComponent implements OnInit {
       }
       if (this.current_status.indexOf("All Statuses") === -1) {
         let found = false;
-        for (let status in this.current_status) {
+        for (const status in this.current_status) {
           if (
             this.projectsList[project].status === this.current_status[status]
           ) {
@@ -238,7 +239,7 @@ export class TopicsComponent implements OnInit {
       }
       if (this.current_csc.indexOf("All CASCs") === -1) {
         let found = false;
-        for (let csc in this.current_csc) {
+        for (const csc in this.current_csc) {
           if (
             this.projectsList[project].csc["name"] === this.current_csc[csc]
           ) {
@@ -267,7 +268,7 @@ export class TopicsComponent implements OnInit {
   }
 
   isOnTopic(subtopic) {
-    for (var topicSubtopic in this.subtopicsFilter) {
+    for (const topicSubtopic in this.subtopicsFilter) {
       if (subtopic == this.subtopicsFilter[topicSubtopic]["label"]) {
         return true;
       }
@@ -277,7 +278,7 @@ export class TopicsComponent implements OnInit {
 
   //TODO: put this code in a utility function/service
   updateUrl() {
-    let params: any = {};
+    const params: any = {};
     if (this.current_subtopic.indexOf("All Subtopics") === -1) {
       params["subtopic"] = this.current_subtopic.join("+");
     }
@@ -325,8 +326,7 @@ export class TopicsComponent implements OnInit {
       this.urlService.setCurrentTitle(this.page_title);
     });
     this.searchService.getTopics().subscribe((topics) => {
-      var topics = topics;
-      for (var topic in topics) {
+      for (const topic in topics) {
         if (topics[topic].label == this.page_title) {
           this.subtopicsFilter = topics[topic].subtopics;
         }
@@ -336,10 +336,10 @@ export class TopicsComponent implements OnInit {
       .loadTopic(encodeURIComponent(this.topic_names[this.topic]))
       .subscribe((data) => {
         this.projectsList = data;
-        for (var project in this.projectsList) {
-          for (var subtopic in this.projectsList[project].topics) {
+        for (const project in this.projectsList) {
+          for (const subtopic in this.projectsList[project].topics) {
             if (this.subtopicsFilter != null) {
-              for (var topicSubtopic in this.subtopicsFilter) {
+              for (const topicSubtopic in this.subtopicsFilter) {
                 if (
                   this.projectsList[project].subtopics[subtopic] ==
                     this.subtopicsFilter[topicSubtopic]["label"] &&
@@ -374,7 +374,7 @@ export class TopicsComponent implements OnInit {
             this.cscs.push(this.projectsList[project].csc["name"]);
           }
           if (this.projectsList[project].types) {
-            for (var this_type of this.projectsList[project].types) {
+            for (const this_type of this.projectsList[project].types) {
               if (this.types.indexOf(this_type) < 0) {
                 if (this_type != null) {
                   this.types.push(this_type);
@@ -393,7 +393,7 @@ export class TopicsComponent implements OnInit {
           // Prepares data for sortable table
 
           // cscs and year
-          for (var project in this.filteredProjectsList) {
+          for (const project in this.filteredProjectsList) {
             this.projectsList[project].csc_name =
               this.projectsList[project].csc["name"];
 
@@ -401,7 +401,7 @@ export class TopicsComponent implements OnInit {
             this.projectsList[project].subtopics_formatted = "";
             if (this.projectsList[project].subtopics != null) {
               this.projectsList[project].subtopics_formatted = "<ul>";
-              for (var st of this.projectsList[project].subtopics) {
+              for (const st of this.projectsList[project].subtopics) {
                 if (
                   this.isOnTopic(st) &&
                   this.projectsList[project].subtopics_formatted.indexOf(st) < 0

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, Input } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { LeafletMapModel } from "./map.model";
@@ -5,11 +6,11 @@ import * as L from "leaflet";
 import * as X2JS from "x2js";
 
 @Component({
-  selector: "sb-map",
+  selector: "app-leaflet-map",
   templateUrl: "./map.component.html",
   styleUrls: ["./map.component.scss"],
 })
-export class MapComponent {
+export class MapComponent implements OnInit {
   @Input() mapUrl: string;
   LAYER_OCM: any;
   LAYER_OSM: any;
@@ -29,7 +30,7 @@ export class MapComponent {
   layers: L.Layer[];
   layersControl: any;
   options: any;
-  render: boolean = false;
+  render = false;
   layersFromWMS: any = {};
   layersArray: any = [];
 
@@ -67,7 +68,7 @@ export class MapComponent {
       this.xmsCapabilities["WMS_Capabilities"].Capability.Layer.Layer &&
       this.xmsCapabilities["WMS_Capabilities"].Capability.Layer.Layer.length > 0
     ) {
-      for (var layer of this.xmsCapabilities["WMS_Capabilities"].Capability
+      for (const layer of this.xmsCapabilities["WMS_Capabilities"].Capability
         .Layer.Layer) {
         this.layersFromWMS[layer.Name] = {
           id: layer.Name,
@@ -94,7 +95,7 @@ export class MapComponent {
   }
 
   getWMSCapabilities(mapUrl) {
-    var x2js = new X2JS();
+    const x2js = new X2JS();
     return this.http
       .get(mapUrl, { responseType: "text" })
       .toPromise()
@@ -107,11 +108,11 @@ export class MapComponent {
             this.xmsCapabilities["WMS_Capabilities"].Capability &&
             this.xmsCapabilities["WMS_Capabilities"].Capability.Layer
           ) {
-            var thisLayer =
+            const thisLayer =
               this.xmsCapabilities["WMS_Capabilities"].Capability.Layer;
             if (thisLayer.Layer) {
-              for (var i = 0, l = thisLayer.Layer.length; i < l; i++) {
-                var wms_layer = thisLayer.Layer[i];
+              for (let i = 0, l = thisLayer.Layer.length; i < l; i++) {
+                const wms_layer = thisLayer.Layer[i];
                 if (wms_layer && wms_layer.EX_GeographicBoundingBox) {
                   this.wmsLayers[wms_layer.Name] =
                     this.parseWMSGeographicBoundingBox(
@@ -137,9 +138,9 @@ export class MapComponent {
   }
 
   defineModel() {
-    var overlayArray = [];
-    for (var key in this.layersFromWMS) {
-      if (this.layersFromWMS.hasOwnProperty(key)) {
+    const overlayArray = [];
+    for (const key in this.layersFromWMS) {
+      if (Object.prototype.hasOwnProperty.call(this.layersFromWMS, key)) {
         overlayArray.push(this.layersFromWMS[key]);
       }
     }
@@ -170,10 +171,10 @@ export class MapComponent {
 
   onApply() {
     this.mapInit();
-    let baseLayer = this.model.baseLayers.find((l) => {
+    const baseLayer = this.model.baseLayers.find((l) => {
       return l.id === this.model.baseLayer;
     });
-    let newLayers = this.model.overlayLayers
+    const newLayers = this.model.overlayLayers
       .filter((l) => {
         return l.enabled;
       })
@@ -182,9 +183,9 @@ export class MapComponent {
       });
     newLayers.unshift(baseLayer.layer);
     this.layers = newLayers;
-    var overlays = {};
-    for (var key in this.layersFromWMS) {
-      if (this.layersFromWMS.hasOwnProperty(key)) {
+    const overlays = {};
+    for (const key in this.layersFromWMS) {
+      if (Object.prototype.hasOwnProperty.call(this.layersFromWMS, key)) {
         overlays[key] = this.layersFromWMS[key].layer;
       }
     }

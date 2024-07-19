@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from "@angular/core";
 import { SciencebaseService } from "../sciencebase.service";
-import { Router, ActivatedRoute } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { environment } from "../../environments/environment";
 
 @Component({
@@ -26,8 +27,8 @@ export class ProjectResourceComponent implements OnInit {
     if (!this.currentResource.tags) {
       return null;
     }
-    var orgsString = "";
-    for (let tag of this.currentResource.tags) {
+    let orgsString = "";
+    for (const tag of this.currentResource.tags) {
       if (tag.type == "Organization") {
         orgsString = orgsString + tag.name + ", ";
       }
@@ -36,11 +37,11 @@ export class ProjectResourceComponent implements OnInit {
   }
 
   getResourceContacts() {
-    var contacts = {
+    const contacts = {
       authors: [],
     };
     if (this.currentResource.contacts) {
-      for (let contact of this.currentResource.contacts) {
+      for (const contact of this.currentResource.contacts) {
         if (contact.type == "Author") {
           contacts.authors.push(contact);
         }
@@ -50,11 +51,11 @@ export class ProjectResourceComponent implements OnInit {
   }
 
   getResourceDates() {
-    var dates = {
+    const dates = {
       publication: null,
     };
     if (this.currentResource.dates) {
-      for (let date of this.currentResource.dates) {
+      for (const date of this.currentResource.dates) {
         if (date.type == "Publication") {
           dates.publication = date;
         }

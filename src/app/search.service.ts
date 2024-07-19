@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { map } from "rxjs/operators";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable, BehaviorSubject } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 import { environment } from "../environments/environment";
 
 @Injectable()
@@ -11,7 +12,7 @@ export class SearchService {
   statuses: any = [];
   results: any = [];
   filteredResults: any = [];
-  filteredResultsCount: number = 0;
+  filteredResultsCount = 0;
   resultOrgs: any = [];
   resultFY: any = [];
   resultTypes: any = [];
@@ -38,12 +39,12 @@ export class SearchService {
   constructor(private http: HttpClient) {}
 
   getTopics() {
-    var topicsUrl = this.serviceURL + "/topics";
+    const topicsUrl = this.serviceURL + "/topics";
     return this.http.get<any[]>(topicsUrl);
   }
 
   getOrganizations() {
-    var organizationsUrl = this.serviceURL + "/organizations";
+    const organizationsUrl = this.serviceURL + "/organizations";
     return this.http.get<any[]>(organizationsUrl);
   }
 
@@ -53,8 +54,8 @@ export class SearchService {
 
   sortProjectsByKey(array, key) {
     return array.sort(function (a, b) {
-      var x = a[key].trim().replace(/['"]/g, "").toLowerCase();
-      var y = b[key].trim().replace(/['"]/g, "").toLowerCase();
+      const x = a[key].trim().replace(/['"]/g, "").toLowerCase();
+      const y = b[key].trim().replace(/['"]/g, "").toLowerCase();
       return x < y ? -1 : x > y ? 1 : 0;
     });
   }
@@ -92,13 +93,13 @@ export class SearchService {
   }
 
   setFilters() {
-    var tempOrgs = [];
-    var tempTypes = [];
-    var tempStatus = [];
-    var tempFY = [];
+    const tempOrgs = [];
+    const tempTypes = [];
+    const tempStatus = [];
+    const tempFY = [];
 
-    for (var item of this.filteredResults) {
-      for (var org in item.organizations) {
+    for (const item of this.filteredResults) {
+      for (const org in item.organizations) {
         if (
           tempOrgs.indexOf(item.organizations[org].trim()) < 0 &&
           item.organizations[org] != null
@@ -106,7 +107,7 @@ export class SearchService {
           tempOrgs.push(item.organizations[org].trim());
         }
       }
-      for (var type in item.types) {
+      for (const type in item.types) {
         if (
           tempTypes.indexOf(item.types[type]) < 0 &&
           item.types[type] != null
@@ -123,29 +124,29 @@ export class SearchService {
       this.updateResults(item);
     }
 
-    var value = 0;
+    let value = 0;
     tempOrgs.sort();
-    for (var org in tempOrgs) {
+    for (const org in tempOrgs) {
       this.resultOrgs.push({ value: value, label: tempOrgs[org] });
       value = value + 1;
     }
     value = 0;
     tempTypes.sort();
-    for (var type in tempTypes) {
+    for (const type in tempTypes) {
       this.resultTypes.push({ value: value, label: tempTypes[type] });
       value = value + 1;
     }
 
     value = 0;
     tempFY.sort();
-    for (var fy in tempFY) {
+    for (const fy in tempFY) {
       this.resultFY.push({ value: value, label: tempFY[fy] });
       value = value + 1;
     }
 
     value = 0;
     tempStatus.sort();
-    for (var status in tempStatus) {
+    for (const status in tempStatus) {
       this.resultStatus.push({ value: value, label: tempStatus[status] });
       value = value + 1;
     }
@@ -162,21 +163,21 @@ export class SearchService {
     // don't remove this behavior as it is being used in search.component.ts ngOnInit
     this.updateFilteredResultsCount(-1);
     this.filteredResults = [];
-    var tempOrgs = [];
-    var tempTypes = [];
-    var tempStatus = [];
-    var tempFY = [];
+    const tempOrgs = [];
+    const tempTypes = [];
+    const tempStatus = [];
+    const tempFY = [];
 
-    for (var item of this.results) {
-      var hasOrg = false;
-      var hasStatus = false;
-      var hasFY = false;
-      var hasType = false;
+    for (const item of this.results) {
+      let hasOrg = false;
+      let hasStatus = false;
+      let hasFY = false;
+      let hasType = false;
 
       if (this.orgFilter.length > 0) {
         if (item.organizations != null) {
-          for (var orgf of this.orgFilter) {
-            for (var org in item.organizations) {
+          for (const orgf of this.orgFilter) {
+            for (const org in item.organizations) {
               if (
                 item.organizations[org].trim() ==
                 this.resultOrgs[orgf.value].label.trim()
@@ -193,7 +194,7 @@ export class SearchService {
 
       if (this.statusFilter.length > 0) {
         if (item.status != null) {
-          for (var sf of this.statusFilter) {
+          for (const sf of this.statusFilter) {
             if (item.status == this.resultStatus[sf.value].label) {
               hasStatus = true;
               break;
@@ -206,7 +207,7 @@ export class SearchService {
 
       if (this.fyFilter.length > 0) {
         if (item.fiscal_year != null) {
-          for (var fy of this.fyFilter) {
+          for (const fy of this.fyFilter) {
             if (item.fiscal_year == this.resultFY[fy.value].label) {
               hasFY = true;
               break;
@@ -219,8 +220,8 @@ export class SearchService {
 
       if (this.typeFilter.length > 0) {
         if (item.types != null) {
-          for (var ft of this.typeFilter) {
-            for (var type in item.types) {
+          for (const ft of this.typeFilter) {
+            for (const type in item.types) {
               if (item.types[type] == this.resultTypes[ft.value].label) {
                 hasType = true;
                 break;
@@ -237,29 +238,29 @@ export class SearchService {
       }
     }
 
-    var value = 0;
+    let value = 0;
     tempOrgs.sort();
-    for (var org in tempOrgs) {
+    for (const org in tempOrgs) {
       this.resultOrgs.push({ value: value, label: tempOrgs[org] });
       value = value + 1;
     }
     value = 0;
     tempTypes.sort();
-    for (var type in tempTypes) {
+    for (const type in tempTypes) {
       this.resultTypes.push({ value: value, label: tempTypes[type] });
       value = value + 1;
     }
 
     value = 0;
     tempFY.sort();
-    for (var fy of tempFY) {
+    for (const fy of tempFY) {
       this.resultFY.push({ value: value, label: fy });
       value = value + 1;
     }
 
     value = 0;
     tempStatus.sort();
-    for (var status in tempStatus) {
+    for (const status in tempStatus) {
       this.resultStatus.push({ value: value, label: tempStatus[status] });
       value = value + 1;
     }
@@ -308,21 +309,21 @@ export class SearchService {
   searchProjects(queryString) {
     this.updateTotalResults(-1);
     this.clearFilters();
-    var searchUrl = this.serviceURL + "/search" + queryString;
+    const searchUrl = this.serviceURL + "/search" + queryString;
     this.results = [];
     this.filteredResults = [];
     return this.http.get(searchUrl).pipe(
       map((res: Response) => {
         this.results = this.sortProjectsByKey(res, "title");
-        var tempOrgs = [];
-        var tempTypes = [];
-        var tempStatus = [];
-        var tempFY = [];
+        const tempOrgs = [];
+        const tempTypes = [];
+        const tempStatus = [];
+        const tempFY = [];
         this.updateTotalResults(Object.keys(this.results).length);
         this.updateFilteredResultsCount(Object.keys(this.results).length);
 
-        for (var item of this.results) {
-          for (var org in item.organizations) {
+        for (const item of this.results) {
+          for (const org in item.organizations) {
             if (
               tempOrgs.indexOf(item.organizations[org].trim()) < 0 &&
               item.organizations[org] != null
@@ -330,7 +331,7 @@ export class SearchService {
               tempOrgs.push(item.organizations[org].trim());
             }
           }
-          for (var type in item.types) {
+          for (const type in item.types) {
             if (
               tempTypes.indexOf(item.types[type]) < 0 &&
               item.types[type] != null
@@ -349,29 +350,29 @@ export class SearchService {
           }
           this.updateResults(item);
         }
-        var value = 0;
+        let value = 0;
         tempOrgs.sort();
-        for (var org in tempOrgs) {
+        for (const org in tempOrgs) {
           this.resultOrgs.push({ value: value, label: tempOrgs[org] });
           value = value + 1;
         }
         value = 0;
         tempTypes.sort();
-        for (var type in tempTypes) {
+        for (const type in tempTypes) {
           this.resultTypes.push({ value: value, label: tempTypes[type] });
           value = value + 1;
         }
 
         value = 0;
         tempFY.sort();
-        for (var fy in tempFY) {
+        for (const fy in tempFY) {
           this.resultFY.push({ value: value, label: tempFY[fy] });
           value = value + 1;
         }
 
         value = 0;
         tempStatus.sort();
-        for (var status in tempStatus) {
+        for (const status in tempStatus) {
           this.resultStatus.push({ value: value, label: tempStatus[status] });
           value = value + 1;
         }

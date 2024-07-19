@@ -1,27 +1,6 @@
 .project {
   min-height: 75vh;
 
-  .breadcrumbs {
-    margin: 0 0.75rem 1rem;
-
-    .home-icon * {
-      font-size: 20px;
-      color: #626466;
-      margin-right: 0.25rem;
-    }
-
-    a,
-    span.leaf {
-      font-size: 1.25rem;
-      margin: 0;
-    }
-
-    .trail {
-      display: inline-block;
-      margin: 0 1ex;
-    }
-  }
-
   .body {
     line-height: 1.65;
     margin-bottom: 2rem;

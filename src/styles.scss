@@ -26,3 +26,8 @@ body {
     font-weight: 600;
   }
 }
+
+// Required to have the modal on top of the modal backdrop for images and search results
+.modal {
+  z-index: 1580;
+}
