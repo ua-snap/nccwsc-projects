@@ -186,92 +186,67 @@ export class TopicsComponent implements OnInit {
 
   filterProjectsList() {
     this.filteredProjectsList = [];
-    for (const project in this.projectsList) {
+
+    for (const project of this.projectsList) {
       if (
-        this.current_subtopic.indexOf("All Subtopics") === -1 &&
-        this.projectsList[project].subtopics != null
-      ) {
-        let matched_subtopic = false;
-        for (const subtopic in this.projectsList[project].subtopics) {
-          for (const curr_subtopic in this.current_subtopic) {
-            if (
-              this.projectsList[project].subtopics[subtopic] ==
-              this.current_subtopic[curr_subtopic]
-            ) {
-              matched_subtopic = true;
-              break;
-            }
-          }
-        }
-        if (!matched_subtopic) {
-          continue;
-        }
-      }
-      let matchedType = false;
-      if (this.current_type != "All Types") {
-        for (const thisType in this.projectsList[project].types) {
-          matchedType = true;
-          if (
-            this.projectsList[project].types[thisType] !== this.current_type
-          ) {
-            matchedType = false;
-          } else {
-            break;
-          }
-        }
-        if (!matchedType) {
-          continue;
-        }
-      }
-      if (this.current_fy.indexOf("All Fiscal Years") === -1) {
-        let found = false;
-        for (const year in this.current_fy) {
-          if (
-            this.projectsList[project].fiscal_year === this.current_fy[year]
-          ) {
-            found = true;
-            break;
-          }
-        }
+        !this.isMatched(
+          project.subtopics || [],
+          this.current_subtopic,
+          "All Subtopics",
+        )
+      )
+        continue;
+      if (
+        !this.isMatched(project.types || [], [this.current_type], "All Types")
+      )
+        continue;
+      if (
+        !this.isMatched(
+          [project.fiscal_year],
+          this.current_fy,
+          "All Fiscal Years",
+        )
+      )
+        continue;
+      if (
+        !this.isMatched([project.status], this.current_status, "All Statuses")
+      )
+        continue;
+      if (
+        !this.isMatched(
+          [project.csc?.name || ""],
+          this.current_csc,
+          "All CASCs",
+        )
+      )
+        continue;
 
-        if (!found) {
-          continue;
-        }
-      }
-      if (this.current_status.indexOf("All Statuses") === -1) {
-        let found = false;
-        for (const status in this.current_status) {
-          if (
-            this.projectsList[project].status === this.current_status[status]
-          ) {
-            found = true;
-            break;
-          }
-        }
-
-        if (!found) {
-          continue;
-        }
-      }
-      if (this.current_csc.indexOf("All CASCs") === -1) {
-        let found = false;
-        for (const csc in this.current_csc) {
-          if (
-            this.projectsList[project].csc["name"] === this.current_csc[csc]
-          ) {
-            found = true;
-            break;
-          }
-        }
-
-        if (!found) {
-          continue;
-        }
-      }
-      this.filteredProjectsList.push(this.projectsList[project]);
+      this.filteredProjectsList.push(project);
     }
+
     this.updateUrl();
     this.dataSource.data = [...this.filteredProjectsList];
+  }
+
+  isMatched(projectFilters, currentFilter, all) {
+    if (currentFilter.indexOf(all) === -1) {
+      for (const attribute of projectFilters) {
+        if (currentFilter.includes(attribute)) {
+          return true;
+        }
+      }
+      return false;
+    }
+    return true;
+  }
+
+  showAllProjects() {
+    this.filteredProjectsList = this.projectsList;
+    this.current_subtopic = [];
+    this.current_fy = [];
+    this.current_status = [];
+    this.current_type = "Project";
+    this.current_csc = [];
   }
 
   isOnTopic(subtopic) {
