@@ -10,7 +10,7 @@
           <mat-checkbox
             class="casc-checkbox"
             (change)="changeCurrentTopic($event)"
-            [checked]="current_topic.indexOf(topic) != -1"
+            [checked]="current_topic.indexOf(topic) !== -1"
             [value]="topic"
             [id]="topic"
             [name]="topic"
@@ -23,7 +23,7 @@
         <div *ngFor="let fy of fiscal_years">
           <mat-checkbox
             (change)="changeCurrentFY($event)"
-            [checked]="current_fy.indexOf(fy) != -1"
+            [checked]="current_fy.indexOf(fy) !== -1"
             [value]="fy"
             >{{ fy }}</mat-checkbox
           >
@@ -34,7 +34,7 @@
         <div *ngFor="let status of statuses">
           <mat-checkbox
             (change)="changeCurrentStatus($event)"
-            [checked]="current_status.indexOf(status) != -1"
+            [checked]="current_status.indexOf(status) !== -1"
             [value]="status"
             >{{ status }}</mat-checkbox
           >
@@ -54,7 +54,7 @@
       </div>
       <div
         class="no_data"
-        *ngIf="filteredCscProjectsList.length == 0 && dataLoading == false"
+        *ngIf="filteredCscProjectsList.length === 0 && dataLoading === false"
       >
         <h4 class="no_data">
           No projects match all the search filters selected.

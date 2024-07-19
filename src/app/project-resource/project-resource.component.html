@@ -5,7 +5,7 @@
       <h1 class="page-title">Product / Resource</h1>
       <h2 class="title">{{ currentResource.title }}</h2>
 
-      <p *ngIf="resourceOrgs?.length != null">
+      <p *ngIf="resourceOrgs?.length !== null">
         <strong>Organization(s): </strong>
         {{ resourceOrgs }}
       </p>
@@ -18,7 +18,7 @@
         </ul>
       </div>
 
-      <p *ngIf="resourceDates?.publication != null">
+      <p *ngIf="resourceDates?.publication?.dateString">
         <strong>Publication Date: </strong>
         {{ resourceDates.publication.dateString }}
       </p>

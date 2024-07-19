@@ -18,7 +18,7 @@
               [routerLink]="[
                 '/project',
                 relationship.cscID,
-                relationship.relatedId,
+                relationship.relatedId
               ]"
               >{{ relationship.relatedTitle }}</a
             >
@@ -33,7 +33,7 @@
             [routerLink]="[
               '/project',
               projectJson.csc.id,
-              projectJson.main_project.relatedId,
+              projectJson.main_project.relatedId
             ]"
             >{{ projectJson.main_project.relatedTitle }}</a
           >
@@ -55,7 +55,7 @@
               <div class="pubTitle">{{ product.title }}</div>
               <div *ngIf="product.webLinks">
                 <ul *ngFor="let webLink of product.webLinks">
-                  <li *ngIf="webLink.title != 'Thumbnail'">
+                  <li *ngIf="webLink.title !== 'Thumbnail'">
                     <a href="{{ webLink.uri }}" target="_blank">{{
                       webLink.title
                     }}</a>
@@ -132,7 +132,7 @@
               <div *ngIf="data.webLinks?.length <= 0">
                 <div *ngIf="data.downloadLinkFiles?.length <= 0">
                   <ul>
-                    <li *ngIf="data.downloadLinkUri != null">
+                    <li *ngIf="data.downloadLinkUri !== null">
                       <a href="{{ sbURL }}/catalog/file/get/{{ data.id }}"
                         >Download</a
                       >
@@ -205,9 +205,15 @@
         <h2>Media</h2>
         <div class="media-cards">
           <div class="card" *ngFor="let image of projectJson.images">
-            <a (click)="openImage(imageModal, image)"
-              ><img class="card-img-top" src="{{ image.url }}"
-            /></a>
+            <a
+              (click)="openImage(imageModal, image)"
+              (keydown.enter)="openImage(imageModal, image)"
+              (keydown.space)="openImage(imageModal, image)"
+              tabindex="0"
+              role="button"
+            >
+              <img class="card-img-top" [src]="image.url" [alt]="image.title" />
+            </a>
             <div class="card-body">
               {{ image.title }}
             </div>
@@ -225,10 +231,10 @@
     </div>
     <div class="col-md-4">
       <div class="map">
-        <sb-map
+        <app-leaflet-map
           *ngIf="projectJson.map_url"
           [mapUrl]="projectJson.map_url"
-        ></sb-map>
+        ></app-leaflet-map>
       </div>
       <div class="information-sidebar">
         <div *ngIf="!projectJson.cscs || projectJson.cscs.length < 1">

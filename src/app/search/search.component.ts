@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { SearchService } from "../search.service";
 import { Subscription } from "rxjs";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
@@ -10,7 +11,7 @@ import { environment } from "../../environments/environment";
   templateUrl: "./search.component.html",
   styleUrls: ["./search.component.scss"],
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
   results = [];
   total_results: number;
   filteredResultsCount: number;
@@ -40,7 +41,7 @@ export class SearchComponent implements OnInit {
   }
 
   isProject(types) {
-    for (var type in types) {
+    for (const type in types) {
       if (types[type] == "Project") {
         return true;
       }
@@ -65,7 +66,7 @@ export class SearchComponent implements OnInit {
           return value;
       }
     } catch (error) {
-      console.error(`Could not parse value: ${value}`);
+      console.error(`Could not parse value: ${value}. Error: ${error}`);
       return value;
     }
   }
@@ -74,7 +75,7 @@ export class SearchComponent implements OnInit {
     this.filteredResultsSubscription =
       this.searchService.filteredResults$.subscribe((filteredResults) => {
         this.results = filteredResults;
-        for (let result of this.results) {
+        for (const result of this.results) {
           if (result.dates.start_date) {
             result.dates.start_date = SearchComponent.niceDate(
               result.dates.start_date,

@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from "@angular/core";
 import { SearchService } from "../search.service";
 import { Subscription } from "rxjs";
 
-declare var umami: any;
+declare const umami: any;
 
 @Component({
-  selector: "search-nav",
+  selector: "app-search-nav",
   templateUrl: "./search-nav.component.html",
   styleUrls: ["./search-nav.component.scss"],
 })
@@ -51,42 +52,42 @@ export class SearchNavComponent implements OnInit {
     this.subtopics = [];
   }
 
-  onQueryChange(query) {
+  onQueryChange() {
     this.showReset = true;
   }
 
   onTopicsChange(event) {
-    var topic = this.topics[event];
+    const topic = this.topics[event];
     this.subtopics = topic["subtopics"];
     this.showReset = true;
   }
 
-  onSubtopicsChange(event) {
+  onSubtopicsChange() {
     this.showReset = true;
   }
 
-  onOrgsChange(event) {
+  onOrgsChange() {
     this.showReset = true;
   }
 
-  onOrgSourceChange(orgSource) {
+  onOrgSourceChange() {
     this.searchService.updateOrgItems(this.filteredOrg);
     this.showResetFilters = true;
   }
 
-  onTypeSourceChange(typeSource) {
+  onTypeSourceChange() {
     this.sendAnalytics();
     this.searchService.updateTypeItems(this.filteredType);
     this.showResetFilters = true;
   }
 
-  onStatusSourceChange(statusSource) {
+  onStatusSourceChange() {
     this.sendAnalytics();
     this.searchService.updateStatusItems(this.filteredStatus);
     this.showResetFilters = true;
   }
 
-  onFYSourceChange(fySource) {
+  onFYSourceChange() {
     this.sendAnalytics();
     this.searchService.updateFYItems(this.filteredFY);
     this.showResetFilters = true;
@@ -112,7 +113,7 @@ export class SearchNavComponent implements OnInit {
   sendAnalytics() {
     // The CSV export script expects every event to have the full set of
     // field keys. So, initialize all fields with blank strings to start with.
-    let payload = {
+    const payload = {
       query: "",
       topic: "",
       subtopics: "",
@@ -143,35 +144,34 @@ export class SearchNavComponent implements OnInit {
     if (this.filteredStatus) {
       payload["status"] = this.combineLabels(this.filteredStatus);
     }
-    if (typeof umami !== "undefined") {
-      umami.track("Search Submission", payload);
-    }
+
+    umami?.track("Search Submission", payload);
   }
 
   onSubmit() {
     // Wipe previous query on new search
     this.searchService.wipeQuery();
 
-    var queryString = "";
-    var query = "?query=";
-    var subtopics = "&subtopics=";
+    let queryString = "";
+    let query = "?query=";
+    let subtopics = "&subtopics=";
     this.showReset = true;
     if (
       this.selectedSubtopics.length > 0 &&
       this.selectedSubtopics[0] != null
     ) {
-      for (var st of this.selectedSubtopics) {
+      for (const st of this.selectedSubtopics) {
         subtopics = subtopics + encodeURIComponent(st["label"]) + ",";
       }
       subtopics = subtopics.substring(0, subtopics.length - 1);
     }
-    var topic = "&topics=";
+    let topic = "&topics=";
     if (this.selectedTopic != null) {
       topic = topic + encodeURIComponent(this.selectedTopic["label"]);
     }
-    var organizations = "&organizations=";
+    let organizations = "&organizations=";
     if (this.selectedOrgs.length > 0 && this.selectedOrgs[0] != null) {
-      for (var org of this.selectedOrgs) {
+      for (const org of this.selectedOrgs) {
         organizations = organizations + encodeURIComponent(org.label) + ",";
       }
       organizations = organizations.substring(0, organizations.length - 1);
@@ -181,7 +181,7 @@ export class SearchNavComponent implements OnInit {
     }
 
     queryString = query + topic + subtopics + organizations;
-    this.searchService.searchProjects(queryString).subscribe((results) => {
+    this.searchService.searchProjects(queryString).subscribe(() => {
       this.updateFilters();
       this.sendAnalytics();
     });

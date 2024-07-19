@@ -5,9 +5,9 @@
     </span>
     Project Explorer Home</a
   >
-  <span class="trail" *ngIf="previousUrl && previousUrl != '#/'">/</span>
+  <span class="trail" *ngIf="previousUrl && previousUrl !== '#/'">/</span>
   <a
-    *ngIf="previousUrl && previousUrl != '#/' && !is_project()"
+    *ngIf="previousUrl && previousUrl !== '#/' && !is_project()"
     [href]="previousUrl"
     >{{ previousTitle }}</a
   >

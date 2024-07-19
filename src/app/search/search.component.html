@@ -1,9 +1,9 @@
 <div class="row clearfix">
   <div class="col-md-3">
-    <search-nav></search-nav>
+    <app-search-nav></app-search-nav>
   </div>
   <div class="col-md-9 results">
-    <div class="loading" *ngIf="total_results == -1">
+    <div class="loading" *ngIf="total_results === -1">
       <h4 class="loading">
         <img
           src="{{ approot }}assets/loading.gif"
@@ -15,7 +15,7 @@
       </h4>
     </div>
     <div
-      *ngIf="!noResult && results && results.length == 0 && total_results > -1"
+      *ngIf="!noResult && results && results.length === 0 && total_results > -1"
     >
       Enter search terms and filters using the controls, then click
       &ldquo;Search&rdquo; to get results.
@@ -27,14 +27,14 @@
       </p>
     </div>
 
-    <div *ngIf="filteredResultsCount == -1 && total_results > 0">
+    <div *ngIf="filteredResultsCount === -1 && total_results > 0">
       <h4>Search Results with Filter</h4>
       <p class="no_data">No items exist that match the current filters.</p>
     </div>
     <div *ngIf="results.length > 0">
       <h4>
         Search Results
-        <span *ngIf="total_results > 0 && filteredResultsCount != -1"
+        <span *ngIf="total_results > 0 && filteredResultsCount !== -1"
           >({{ filteredResultsCount }})</span
         >
       </h4>
@@ -53,7 +53,9 @@
                 <a
                   class="nonProject"
                   (click)="open(nonProject, result)"
+                  (keyup)="handleKeyUp($event)"
                   *ngIf="!isProject(result.types)"
+                  tabindex="0"
                   >{{ result.title }}</a
                 >
               </h4>
@@ -61,7 +63,8 @@
               <div class="badges">
                 <div
                   *ngIf="
-                    result.types?.length > 0 && result.types == 'Publication'
+                    result.types?.length > 0 &&
+                    result.types.includes('Publication')
                   "
                 >
                   <span class="badge badge-pill badge-publication"
@@ -69,18 +72,24 @@
                   >
                 </div>
                 <div
-                  *ngIf="result.types?.length > 0 && result.types == 'Project'"
+                  *ngIf="
+                    result.types?.length > 0 && result.types.includes('Project')
+                  "
                 >
                   <span class="badge badge-pill badge-project">Project</span>
                 </div>
-                <div *ngIf="result.types?.length > 0 && result.types == 'Data'">
+                <div
+                  *ngIf="
+                    result.types?.length > 0 && result.types.includes('Data')
+                  "
+                >
                   <span class="badge badge-pill badge-data">Data</span>
                 </div>
                 <div
                   *ngIf="
                     (result.types?.length > 0 &&
-                      result.types == 'Other Product') ||
-                    result.types == null
+                      result.types.includes('Other Data')) ||
+                    result.types === null
                   "
                 >
                   <span class="badge badge-pill badge-other">
@@ -146,8 +155,12 @@
                 *ngIf="result.summary"
                 class="summary_link"
                 (click)="result.isCollapsed = !result.isCollapsed"
+                (keydown.enter)="result.isCollapsed = !result.isCollapsed"
+                (keydown.space)="result.isCollapsed = !result.isCollapsed"
                 [attr.aria-expanded]="!result.isCollapsed"
                 aria-controls="collapseExample"
+                tabindex="0"
+                role="button"
                 >Summary</a
               >
               <div id="collapseExample" [ngbCollapse]="result.isCollapsed">
@@ -175,7 +188,7 @@
             class="modal-body underline badges"
             *ngIf="
               nonProjectItem.types?.length > 0 &&
-              nonProjectItem.types == 'Publication'
+              nonProjectItem.types.includes('Publication')
             "
           >
             <span class="badge badge-pill badge-publication">Publication</span>
@@ -183,7 +196,8 @@
           <div
             class="modal-body underline badges"
             *ngIf="
-              nonProjectItem.types?.length > 0 && nonProjectItem.types == 'Data'
+              nonProjectItem.types?.length > 0 &&
+              nonProjectItem.types.includes('Data')
             "
           >
             <span class="badge badge-pill badge-data">Data</span>
@@ -191,8 +205,9 @@
           <div
             class="modal-body underline badges"
             *ngIf="
-              nonProjectItem.types?.length > 0 &&
-              nonProjectItem.types == 'Other Product'
+              (nonProjectItem.types?.length > 0 &&
+                nonProjectItem.types.includes('Other Product')) ||
+              nonProjectItem.types === null
             "
           >
             <span class="badge badge-pill badge-other">Other Product</span>
