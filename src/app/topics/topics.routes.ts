@@ -1,4 +1,4 @@
-import { Routes, RouterModule } from "@angular/router";
+import { Routes } from "@angular/router";
 import { TopicsComponent } from "./topics.component";
 
 export const TopicsRoutes: Routes = [

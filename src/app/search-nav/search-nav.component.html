@@ -25,7 +25,7 @@
         <ng-select
           [multiple]="true"
           [items]="subtopics"
-          (change)="onSubtopicsChange($event.value)"
+          (change)="onSubtopicsChange()"
           [(ngModel)]="selectedSubtopics"
           [ngModelOptions]="{ standalone: true }"
           placeholder="Subtopics"
@@ -36,7 +36,7 @@
         <ng-select
           [multiple]="true"
           [items]="orgs"
-          (change)="onOrgsChange($event.value)"
+          (change)="onOrgsChange()"
           [(ngModel)]="selectedOrgs"
           [ngModelOptions]="{ standalone: true }"
           placeholder="CASCs  "
@@ -65,10 +65,10 @@
         #types
         [multiple]="true"
         [items]="resultTypes"
-        (change)="onTypeSourceChange($event.label)"
+        (change)="onTypeSourceChange()"
         [(ngModel)]="filteredType"
         [label]="Types"
-        (deselected)="onTypeSourceChange($event.label)"
+        (deselected)="onTypeSourceChange()"
         placeholder="Project Type"
       >
       </ng-select>
@@ -78,10 +78,10 @@
         #fy
         [multiple]="true"
         [items]="resultFY"
-        (change)="onFYSourceChange($event.label)"
+        (change)="onFYSourceChange()"
         [(ngModel)]="filteredFY"
         [label]="FiscalYears"
-        (deselected)="onFYSourceChange($event.label)"
+        (deselected)="onFYSourceChange()"
         placeholder="All Years"
       >
       </ng-select>
@@ -91,10 +91,10 @@
         #statuses
         [multiple]="true"
         [items]="resultStatus"
-        (change)="onStatusSourceChange($event.label)"
+        (change)="onStatusSourceChange()"
         [(ngModel)]="filteredStatus"
         [label]="Statuses"
-        (deselected)="onStatusSourceChange($event.label)"
+        (deselected)="onStatusSourceChange()"
         placeholder="All Statuses"
       >
       </ng-select>

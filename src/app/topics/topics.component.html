@@ -11,7 +11,7 @@
           <mat-checkbox
             type="checkbox"
             (change)="changeCurrentCASC($event)"
-            [checked]="current_csc.indexOf(csc) != -1"
+            [checked]="current_csc.indexOf(csc) !== -1"
             [value]="csc"
             [id]="csc"
             name="csc"
@@ -26,7 +26,7 @@
           <mat-checkbox
             type="checkbox"
             (change)="changeCurrentSubTopic($event)"
-            [checked]="current_subtopic.indexOf(subtopic) != -1"
+            [checked]="current_subtopic.indexOf(subtopic) !== -1"
             [value]="subtopic"
             [id]="subtopic"
             name="subtopic"
@@ -41,7 +41,7 @@
           <mat-checkbox
             type="checkbox"
             (change)="changeCurrentStatus($event)"
-            [checked]="current_status.indexOf(status) != -1"
+            [checked]="current_status.indexOf(status) !== -1"
             [value]="status"
             [id]="status"
             name="status"
@@ -56,7 +56,7 @@
           <mat-checkbox
             type="checkbox"
             (change)="changeCurrentYear($event)"
-            [checked]="current_fy.indexOf(fy) != -1"
+            [checked]="current_fy.indexOf(fy) !== -1"
             [value]="fy"
             [id]="fy"
             name="fy"
@@ -81,7 +81,7 @@
 
       <div
         class="no_data"
-        *ngIf="filteredProjectsList.length == 0 && dataLoading == false"
+        *ngIf="filteredProjectsList.length === 0 && dataLoading === false"
       >
         <h4 class="no_data">
           No projects match all the search filters selected.
@@ -159,14 +159,14 @@
             </a>
             <ul *ngIf="project.children?.length > 0">
               <li *ngFor="let childProject of project.children">
-                <span *ngIf="project.types == 'Project'">
+                <span *ngIf="project.types.includes('Project')">
                   <a
                     [routerLink]="['/project/', project.csc['id'], project.id]"
                   >
                     {{ project["title"] }}
                   </a>
                 </span>
-                <span *ngIf="project.types != 'Project'">
+                <span *ngIf="!project.types.includes('Project')">
                   <a [routerLink]="['/component/', project.id]">
                     {{ project["title"] }}
                   </a>

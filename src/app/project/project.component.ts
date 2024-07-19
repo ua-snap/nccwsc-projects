@@ -1,13 +1,10 @@
-import { Component, OnInit, ViewEncapsulation, LOCALE_ID } from "@angular/core";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { DatePipe } from "@angular/common";
 import { LocalJsonService } from "../local-json.service";
-import { Router, ActivatedRoute } from "@angular/router";
-import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
-import {
-  DomSanitizer,
-  SafeResourceUrl,
-  SafeUrl,
-} from "@angular/platform-browser";
+import { ActivatedRoute } from "@angular/router";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 import { environment } from "../../environments/environment";
 import { UrlService } from "../url.service";
 
@@ -74,7 +71,6 @@ export class ProjectComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private localJson: LocalJsonService,
-    private router: Router,
     private sanitizer: DomSanitizer,
     private modalService: NgbModal,
     private urlService: UrlService,
@@ -111,7 +107,7 @@ export class ProjectComponent implements OnInit {
           return value;
       }
     } catch (error) {
-      console.error(`Could not parse value: ${value}`);
+      console.error(`Could not parse value: ${value}. Error: ${error}`);
       return value;
     }
   }
@@ -132,7 +128,7 @@ export class ProjectComponent implements OnInit {
             this.projectJson.dates.end_date,
           );
           if (this.projectJson.images) {
-            for (var image in this.projectJson.images) {
+            for (const image in this.projectJson.images) {
               if (this.projectJson.images[image]["useForPreview"]) {
                 this.previewImage = this.projectJson.images[image];
                 this.trustedDashboardUrl =

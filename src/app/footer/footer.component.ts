@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, Inject } from "@angular/core";
 import { environment } from "../../environments/environment";
 import { DOCUMENT } from "@angular/common";
@@ -8,7 +9,7 @@ import { DOCUMENT } from "@angular/common";
   styleUrls: ["./footer.component.scss"],
 })
 export class FooterComponent implements OnInit {
-  currentVersion: string = "";
+  currentVersion = "";
   currentPage: string;
   constructor(@Inject(DOCUMENT) private document: any) {
     this.currentPage = this.document.location.href;

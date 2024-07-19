@@ -8,21 +8,15 @@ import {
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 
 import { AppComponent } from "./app.component";
-import { routing, appRoutingProviders } from "./app.routing";
-import {
-  NgbModule,
-  NgbActiveModal,
-  NgbDropdownModule,
-} from "@ng-bootstrap/ng-bootstrap";
+import { routing } from "./app.routing";
+import { NgbModule, NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
 import { LeafletModule } from "@asymmetrik/ngx-leaflet";
 import { NgSelectModule } from "@ng-select/ng-select";
-import { GoogleAnalyticsService } from "./google-analytics.service";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
 import { ProjectComponent } from "./project/project.component";
-import { ProjectsComponent } from "./projects/projects.component";
 import { SearchComponent } from "./search/search.component";
 import { CscsComponent } from "./cscs/cscs.component";
 import { TopicsComponent } from "./topics/topics.component";
@@ -46,7 +40,6 @@ import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
     HeaderComponent,
     FooterComponent,
     ProjectComponent,
-    ProjectsComponent,
     SearchComponent,
     CscsComponent,
     TopicsComponent,
@@ -72,7 +65,6 @@ import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
     BrowserAnimationsModule,
   ],
   providers: [
-    GoogleAnalyticsService,
     LocalJsonService,
     SciencebaseService,
     SearchService,

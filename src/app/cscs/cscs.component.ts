@@ -33,10 +33,7 @@ export class CscsComponent implements OnInit {
     { id: "wildlife-plants", name: "Wildlife and Plants" },
   ];
 
-  constructor(
-    private urlService: UrlService,
-    private el: ElementRef,
-  ) {}
+  constructor(private urlService: UrlService, private el: ElementRef) {}
 
   ngOnInit() {
     this.urlService.setPreviousTitle(null);
@@ -64,7 +61,7 @@ export class CscsComponent implements OnInit {
   }
 
   @HostListener("window:resize", ["$event"])
-  onResize(event) {
+  onResize() {
     this.imageResized();
   }
 }

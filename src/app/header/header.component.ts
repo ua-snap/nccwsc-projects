@@ -1,6 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
 import { environment } from "../../environments/environment";
 
 @Component({
@@ -13,13 +11,11 @@ export class HeaderComponent implements OnInit {
   isNavbarCollapsed = true;
   isCollapsed = true;
   baseURL: string;
-  constructor() {}
 
   fixLink(link) {
     if (link === environment.baseURL) {
       return link;
     }
-    const url_prefix = "";
     if (link.substr(0, environment.baseURL.length) === environment.baseURL) {
       if (
         link.substr(

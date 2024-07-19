@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { UrlService } from "../url.service";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 
@@ -9,9 +9,9 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 })
 export class BreadcrumbComponent implements OnInit {
   faHome = faHome;
-  previousUrl: string = "";
-  previousTitle: string = "";
-  currentTitle: string = "";
+  previousUrl = "";
+  previousTitle = "";
+  currentTitle = "";
 
   constructor(private urlService: UrlService) {}
 
