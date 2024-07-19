@@ -65,6 +65,10 @@
         class="csc-projects"
         *ngIf="!dataLoading && filteredCscProjectsList.length > 0"
       >
+        <p>
+          <strong>Total projects:</strong>
+          {{ getFilteredProjectsCount() }}
+        </p>
         <table
           mat-table
           [dataSource]="dataSource"
