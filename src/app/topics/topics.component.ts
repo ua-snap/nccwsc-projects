@@ -302,6 +302,10 @@ export class TopicsComponent implements OnInit {
     this.location.replaceState(url);
   }
 
+  getFilteredProjectsCount() {
+    return this.filteredProjectsList.length;
+  }
+
   ngOnInit() {
     this.sub = this.route.params.subscribe((params) => {
       this.topic = params["topic"];

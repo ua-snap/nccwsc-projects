@@ -90,6 +90,10 @@
       </div>
 
       <div *ngIf="!dataLoading && filteredProjectsList.length > 0">
+        <p>
+          <strong>Total projects:</strong>
+          {{ getFilteredProjectsCount() }}
+        </p>
         <table
           mat-table
           [dataSource]="dataSource"

@@ -231,6 +231,10 @@ export class CscComponent implements OnInit {
     this.location.replaceState(url);
   }
 
+  getFilteredProjectsCount() {
+    return this.filteredCscProjectsList.length;
+  }
+
   ngOnInit() {
     this.sub = this.route.params.subscribe((params) => {
       this.id = params["id"];
