@@ -7,6 +7,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 import { environment } from "../../environments/environment";
 import { UrlService } from "../url.service";
+import { Shared } from "../shared";
 
 @Component({
   selector: "app-project",
@@ -24,6 +25,8 @@ export class ProjectComponent implements OnInit {
   closeResult: string;
   trustedDashboardUrl: SafeUrl;
   sbURL = environment.sbmainURL;
+
+  shared: Shared;
 
   topic_names = {
     "Drought, Fire and Extreme Weather": "drought-fire-extremes",
@@ -121,10 +124,10 @@ export class ProjectComponent implements OnInit {
         .loadProject(this.cscId, this.projectId)
         .subscribe((data) => {
           this.projectJson = data;
-          this.projectJson.dates.start_date = ProjectComponent.niceDate(
+          this.projectJson.dates.start_date = this.shared.formatDate(
             this.projectJson.dates.start_date,
           );
-          this.projectJson.dates.end_date = ProjectComponent.niceDate(
+          this.projectJson.dates.end_date = this.shared.formatDate(
             this.projectJson.dates.end_date,
           );
           if (this.projectJson.images) {
