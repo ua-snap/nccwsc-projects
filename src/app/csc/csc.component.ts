@@ -262,6 +262,7 @@ export class CscComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe((params) => {
+      this.dataLoading = true;
       this.id = params["id"];
       if (params["topic"]) {
         this.current_topic = params["topic"].split("+");
@@ -278,6 +279,10 @@ export class CscComponent implements OnInit {
       } else {
         this.sbId = this.id;
       }
+
+      this.topics = [];
+      this.fiscal_years = [];
+      this.statuses = [];
 
       this.title = this.csc_ids[this.sbId];
       this.urlService.setPreviousTitle(this.title);
