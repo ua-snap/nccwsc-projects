@@ -8,9 +8,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "lint": "ng lint",
     "test": "ng test",
-    "e2e": "ng e2e",
     "build": "ng build"
   },
   "private": true,
