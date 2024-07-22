@@ -7,10 +7,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "lint": "ng lint",
-    "test": "ng test",
-    "e2e": "ng e2e",
+    "dev": "ng serve",
     "build": "ng build"
   },
   "private": true,
@@ -30,7 +27,6 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@ng-bootstrap/ng-bootstrap": "^17.0.0",
     "@ng-select/ng-select": "^13.4.1",
-    "@popperjs/core": "^2.11.8",
     "core-js": "^3.37.1",
     "jquery": "^3.7.1",
     "leaflet": "^1.9.4",
