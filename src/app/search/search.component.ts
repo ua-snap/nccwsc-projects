@@ -2,7 +2,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { SearchService } from "../search.service";
 import { Subscription } from "rxjs";
-import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { DatePipe } from "@angular/common";
 import { environment } from "../../environments/environment";
 
@@ -23,6 +23,13 @@ export class SearchComponent implements OnInit, OnDestroy {
   nonProjectItem: any;
   sbURL = environment.sbmainURL;
 
+  // Define date formats
+  MONTH_YEAR_FORMAT = "MM/yyyy";
+  FULL_DATE_FORMAT = "MM/dd/yyyy";
+
+  // Create an instance of DatePipe
+  datePipe = new DatePipe("en-US");
+
   constructor(
     private searchService: SearchService,
     private modalService: NgbModal,
@@ -30,14 +37,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   open(nonProject, item) {
     this.nonProjectItem = item;
-    this.modalService.open(nonProject, { size: "lg" }).result.then(
-      (result) => {
-        this.closeResult = `Closed with: ${result}`;
-      },
-      (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      },
-    );
+    this.modalService.open(nonProject, { size: "lg" });
   }
 
   isProject(types) {
@@ -49,20 +49,20 @@ export class SearchComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  /*
-  Takes a string of 'yyyy', 'yyyy-MM', or 'yyyy-MM-dd' and returns a formatted date, only using the values present:
-    1981 -> 1981
-  */
-  static niceDate(value) {
+  formatDate(value) {
     try {
-      switch (value.split("-").length) {
+      const segments = value.split("-");
+      switch (segments.length) {
         case 2:
-          /* the '-01' is a fix but the reason for why it's needed is unclear. */
-          return new DatePipe("en-US").transform(value + "-01", "MM/yyyy");
+          return (
+            this.datePipe.transform(`${value}-01`, this.MONTH_YEAR_FORMAT) ||
+            value
+          );
         case 3:
-          return new DatePipe("en-US").transform(value, "MM/dd/yyyy");
+          return this.datePipe.transform(value, this.FULL_DATE_FORMAT) || value;
         case 1:
         default:
+          // Return the year if it is the only value
           return value;
       }
     } catch (error) {
@@ -77,17 +77,13 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.results = filteredResults;
         for (const result of this.results) {
           if (result.dates.start_date) {
-            result.dates.start_date = SearchComponent.niceDate(
-              result.dates.start_date,
-            );
+            result.dates.start_date = this.formatDate(result.dates.start_date);
           }
           if (result.dates.end_date) {
-            result.dates.end_date = SearchComponent.niceDate(
-              result.dates.end_date,
-            );
+            result.dates.end_date = this.formatDate(result.dates.end_date);
           }
           if (result.dates.publication_date) {
-            result.dates.publication_date = SearchComponent.niceDate(
+            result.dates.publication_date = this.formatDate(
               result.dates.publication_date,
             );
           }
@@ -107,16 +103,6 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.total_results = totalItems;
       },
     );
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return "by pressing ESC";
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return "by clicking on a backdrop";
-    } else {
-      return `with: ${reason}`;
-    }
   }
 
   ngOnDestroy() {
