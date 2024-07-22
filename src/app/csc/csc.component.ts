@@ -26,6 +26,7 @@ export class CscComponent implements OnInit {
   @ViewChild(MatSort) sort = new MatSort();
 
   faSearch = faSearch;
+  csc = null;
   sub: any;
   id: any;
   sbId: any;
@@ -67,6 +68,21 @@ export class CscComponent implements OnInit {
     midwest: "5e2f3f59e4b0a79317d422af",
   };
 
+  csc_paths = {
+    "national-casc": "National CASC",
+    alaska: "Alaska CASC",
+    "north-central": "North Central CASC",
+    northeast: "Northeast CASC",
+    northwest: "Northwest CASC",
+    "pacific-islands": "Pacific Islands CASC",
+    "south-central": "South Central CASC",
+    southeast: "Southeast CASC",
+    southwest: "Southwest CASC",
+    midwest: "Midwest CASC",
+  };
+
+  csc_identifiers = Object.keys(this.csc_paths);
+
   displayedColumns: string[] = [
     "fiscal_year",
     "title",
@@ -85,6 +101,11 @@ export class CscComponent implements OnInit {
     private cdr: ChangeDetectorRef,
   ) {
     this.dataSource = new MatTableDataSource<any>();
+  }
+
+  onCascChange(event: any) {
+    const selectedCasc = event.target.value;
+    this.router.navigate(["/casc", selectedCasc]);
   }
 
   showAllProjects() {
@@ -251,41 +272,43 @@ export class CscComponent implements OnInit {
       if (params["status"]) {
         this.current_status = params["status"].split("+");
       }
-    });
-    if (this.id.length != 24) {
-      this.sbId = this.csc_english_ids[this.id];
-    } else {
-      this.sbId = this.id;
-    }
 
-    this.title = this.csc_ids[this.sbId];
-    this.urlService.setPreviousTitle(this.title);
-    this.urlService.setCurrentTitle(this.title);
-    this.localJson.loadCscProjects(this.sbId).subscribe((data) => {
-      this.cscProjectsList = data;
-      for (const project in this.cscProjectsList) {
-        for (const topic in this.cscProjectsList[project].topics) {
-          if (
-            this.topics.indexOf(this.cscProjectsList[project].topics[topic]) < 0
-          ) {
-            this.topics.push(this.cscProjectsList[project].topics[topic]);
+      if (this.id.length != 24) {
+        this.sbId = this.csc_english_ids[this.id];
+      } else {
+        this.sbId = this.id;
+      }
+
+      this.title = this.csc_ids[this.sbId];
+      this.urlService.setPreviousTitle(this.title);
+      this.urlService.setCurrentTitle(this.title);
+      this.localJson.loadCscProjects(this.sbId).subscribe((data) => {
+        this.cscProjectsList = data;
+        for (const project in this.cscProjectsList) {
+          for (const topic in this.cscProjectsList[project].topics) {
+            if (
+              this.topics.indexOf(this.cscProjectsList[project].topics[topic]) <
+              0
+            ) {
+              this.topics.push(this.cscProjectsList[project].topics[topic]);
+            }
           }
-        }
-        if (
-          this.fiscal_years.indexOf(this.cscProjectsList[project].fiscal_year) <
-          0
-        ) {
-          this.fiscal_years.push(this.cscProjectsList[project].fiscal_year);
-        }
-        if (this.statuses.indexOf(this.cscProjectsList[project].status) < 0) {
-          this.statuses.push(this.cscProjectsList[project].status);
-        }
+          if (
+            this.fiscal_years.indexOf(
+              this.cscProjectsList[project].fiscal_year,
+            ) < 0
+          ) {
+            this.fiscal_years.push(this.cscProjectsList[project].fiscal_year);
+          }
+          if (this.statuses.indexOf(this.cscProjectsList[project].status) < 0) {
+            this.statuses.push(this.cscProjectsList[project].status);
+          }
 
-        // Sort options
-        this.fiscal_years.sort().reverse();
-        this.topics.sort();
-        this.statuses.sort();
-        this.filteredCscProjectsList.push(this.cscProjectsList[project]);
+          // Sort options
+          this.fiscal_years.sort().reverse();
+          this.topics.sort();
+          this.statuses.sort();
+          this.filteredCscProjectsList.push(this.cscProjectsList[project]);
 
         // Principal investigators
         if (
@@ -302,23 +325,23 @@ export class CscComponent implements OnInit {
           this.cscProjectsList[project].investigators_formatted = "N/A";
         }
 
-        // Topics
-        if (this.cscProjectsList[project].topics != null) {
-          this.cscProjectsList[project].topics_formatted = "<ul>";
-          for (const t of this.cscProjectsList[project].topics) {
-            this.cscProjectsList[project].topics_formatted +=
-              "<li>" + t + "</li>";
+          // Topics
+          if (this.cscProjectsList[project].topics != null) {
+            this.cscProjectsList[project].topics_formatted = "<ul>";
+            for (const t of this.cscProjectsList[project].topics) {
+              this.cscProjectsList[project].topics_formatted +=
+                "<li>" + t + "</li>";
+            }
+            this.cscProjectsList[project].topics_formatted += "</ul>";
+          } else {
+            this.cscProjectsList[project].topics_formatted = "N/A";
           }
-          this.cscProjectsList[project].topics_formatted += "</ul>";
-        } else {
-          this.cscProjectsList[project].topics_formatted = "N/A";
-        }
 
-        // Status
-        if (!this.cscProjectsList[project].status) {
-          this.cscProjectsList[project].status = "N/A";
+          // Status
+          if (!this.cscProjectsList[project].status) {
+            this.cscProjectsList[project].status = "N/A";
+          }
         }
-      }
 
       this.filterProjectsList();
       this.dataLoading = false;

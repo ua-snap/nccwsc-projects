@@ -1,7 +1,14 @@
 <div class="container-fluid">
   <app-breadcrumb></app-breadcrumb>
 
-  <h2 class="table-title">Topic: {{ page_title }}</h2>
+  <h2>
+    Topic:
+    <select [(ngModel)]="topic" (change)="onTopicChange($event)">
+      <option *ngFor="let key of topicKeys" [value]="key">
+        {{ topic_names[key] }}
+      </option>
+    </select>
+  </h2>
 
   <div class="row topic">
     <div class="col-md-2">
@@ -99,7 +106,7 @@
             class="loading"
             alt="Loading Results"
             title="Loading Results"
-          />Loading {{ title }} ScienceBase projects&hellip;
+          />Loading {{ topic_names[topic] }} ScienceBase projects&hellip;
         </h4>
       </div>
 
