@@ -52,7 +52,7 @@
           />Loading {{ title }} ScienceBase projects&hellip;
         </h4>
       </div>
-      <div class="no_data" *ngIf="dataSource.data.length === 0 && !dataLoading">
+      <div class="no_data" *ngIf="!dataLoading && dataSource.data.length === 0">
         <h4 class="no_data">
           No projects match all the search filters selected.
         </h4>

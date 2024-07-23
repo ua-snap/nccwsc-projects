@@ -79,17 +79,14 @@
         </h4>
       </div>
 
-      <div
-        class="no_data"
-        *ngIf="filteredProjectsList.length === 0 && dataLoading === false"
-      >
+      <div class="no_data" *ngIf="!dataLoading && dataSource.data.length === 0">
         <h4 class="no_data">
           No projects match all the search filters selected.
         </h4>
         <p>Remove one or more filters to see matching projects.</p>
       </div>
 
-      <div *ngIf="!dataLoading && filteredProjectsList.length > 0">
+      <div *ngIf="!dataLoading && dataSource.data.length > 0">
         <p>Showing ({{ getFilteredProjectsCount() }}) matching projects.</p>
         <div class="search-bar-div">
           <div class="input-group mb-3 search-bar-wrapper">
