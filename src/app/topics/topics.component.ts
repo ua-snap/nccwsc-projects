@@ -14,6 +14,7 @@ import { Location } from "@angular/common";
 import { UrlService } from "../url.service";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatSort, Sort } from "@angular/material/sort";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-topics",
@@ -49,6 +50,7 @@ export class TopicsComponent implements OnInit {
   topics_url = environment.baseURL;
   project_url = environment.baseURL + "/project";
 
+  faSearch = faSearch;
   url: any;
   subtopics = [];
   fiscal_years = [];
@@ -64,6 +66,7 @@ export class TopicsComponent implements OnInit {
   projectsList = [];
   filteredProjectsList = [];
   dataLoading = true;
+  searchTerm = "";
 
   subtopicsFilter: string[] = null;
 
@@ -306,6 +309,11 @@ export class TopicsComponent implements OnInit {
     return this.filteredProjectsList.length;
   }
 
+  applyFilter() {
+    // This works in conjunction with the sidebar filters to filter the table
+    this.dataSource.filter = this.searchTerm.trim().toLowerCase();
+  }
+
   ngOnInit() {
     this.sub = this.route.params.subscribe((params) => {
       this.topic = params["topic"];
@@ -432,6 +440,16 @@ export class TopicsComponent implements OnInit {
         this.dataSource.sort = this.sort;
         // Sets the default sorting to the fiscal year column to show the downward arrow
         this.setInitialSort();
+
+        this.dataSource.filterPredicate = (data, filter) => {
+          return (
+            data.fiscal_year.toString().includes(filter) ||
+            data.title.toLowerCase().includes(filter) ||
+            data.csc_name.toLowerCase().includes(filter) ||
+            data.subtopics_formatted.toLowerCase().includes(filter) ||
+            data.status.toLowerCase().includes(filter)
+          );
+        };
       });
   }
   setInitialSort() {

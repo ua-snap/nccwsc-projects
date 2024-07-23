@@ -13,6 +13,7 @@ import { Location } from "@angular/common";
 import { UrlService } from "../url.service";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatSort, Sort } from "@angular/material/sort";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-csc",
@@ -24,6 +25,7 @@ export class CscComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatSort) sort = new MatSort();
 
+  faSearch = faSearch;
   sub: any;
   id: any;
   sbId: any;
@@ -38,6 +40,7 @@ export class CscComponent implements OnInit {
   current_status = ["All Statuses"];
   title = null;
   dataLoading = true;
+  searchTerm = "";
   csc_ids = {
     "5050cb0ee4b0be20bb30eac0": "National CASC",
     "4f831626e4b0e84f6086809b": "Alaska CASC",
@@ -235,6 +238,11 @@ export class CscComponent implements OnInit {
     return this.filteredCscProjectsList.length;
   }
 
+  applyFilter() {
+    // This works in conjunction with the sidebar filters to filter the table
+    this.dataSource.filter = this.searchTerm.trim().toLowerCase();
+  }
+
   ngOnInit() {
     this.sub = this.route.params.subscribe((params) => {
       this.id = params["id"];
@@ -323,6 +331,16 @@ export class CscComponent implements OnInit {
       this.dataSource.sort = this.sort;
       // Sets the default sorting to the fiscal year column to show the downward arrow
       this.setInitialSort();
+
+      this.dataSource.filterPredicate = (data, filter) => {
+        return (
+          data.fiscal_year.toString().includes(filter) ||
+          data.title.toLowerCase().includes(filter) ||
+          data.investigators_formatted.toLowerCase().includes(filter) ||
+          data.topics_formatted.toLowerCase().includes(filter) ||
+          data.status.toLowerCase().includes(filter)
+        );
+      };
     });
   }
   setInitialSort() {

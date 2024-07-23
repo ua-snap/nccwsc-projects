@@ -91,6 +91,22 @@
 
       <div *ngIf="!dataLoading && filteredProjectsList.length > 0">
         <p>Showing ({{ getFilteredProjectsCount() }}) matching projects.</p>
+        <div class="search-bar-div">
+          <div class="input-group mb-3 search-bar-wrapper">
+            <input
+              class="form-control search-bar"
+              type="text"
+              placeholder="Search by term"
+              [(ngModel)]="searchTerm"
+              (input)="applyFilter()"
+            />
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <fa-icon [icon]="faSearch"></fa-icon>
+              </span>
+            </div>
+          </div>
+        </div>
         <table
           mat-table
           [dataSource]="dataSource"
