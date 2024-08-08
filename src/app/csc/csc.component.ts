@@ -234,10 +234,6 @@ export class CscComponent implements OnInit {
     this.location.replaceState(url);
   }
 
-  getFilteredProjectsCount() {
-    return this.filteredCscProjectsList.length;
-  }
-
   applyFilter() {
     // This works in conjunction with the sidebar filters to filter the table
     this.dataSource.filter = this.searchTerm.trim().toLowerCase();

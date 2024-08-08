@@ -112,24 +112,18 @@ td.mat-mdc-cell ul {
   }
 }
 
+.inline {
+  display: inline-block;
+}
+
 .search-bar-div {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding-right: 20px;
-  margin-bottom: 10px;
+  float: right;
 }
 
 .search-bar-wrapper {
   max-width: 300px;
   width: 100%;
-}
-
-.search-bar {
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  font-size: 16px;
-  padding-right: 2.25rem;
+  margin-bottom: 0 !important;
 }
 
 .input-group-append .input-group-text {

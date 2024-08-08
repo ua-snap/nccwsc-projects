@@ -305,10 +305,6 @@ export class TopicsComponent implements OnInit {
     this.location.replaceState(url);
   }
 
-  getFilteredProjectsCount() {
-    return this.filteredProjectsList.length;
-  }
-
   applyFilter() {
     // This works in conjunction with the sidebar filters to filter the table
     this.dataSource.filter = this.searchTerm.trim().toLowerCase();
