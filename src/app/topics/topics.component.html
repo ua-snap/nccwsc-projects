@@ -90,10 +90,7 @@
       </div>
 
       <div *ngIf="!dataLoading && filteredProjectsList.length > 0">
-        <p>
-          <strong>Total projects:</strong>
-          {{ getFilteredProjectsCount() }}
-        </p>
+        <p>Showing ({{ getFilteredProjectsCount() }}) matching projects.</p>
         <table
           mat-table
           [dataSource]="dataSource"
