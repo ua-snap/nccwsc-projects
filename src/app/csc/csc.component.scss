@@ -9,7 +9,6 @@
   }
 }
 
-// This is so that the last item in the list doesn't have extra padding
-td.mat-mdc-cell ul li:not(:last-child) {
-  padding-bottom: 0.5rem;
+ul {
+  list-style-type: none;
 }
