@@ -291,12 +291,13 @@ export class CscComponent implements OnInit {
         if (
           this.cscProjectsList[project].contacts.principal_investigators != null
         ) {
-          this.cscProjectsList[project].investigators_formatted = "";
+          this.cscProjectsList[project].investigators_formatted = "<ul>";
           for (const pi of this.cscProjectsList[project].contacts
             .principal_investigators) {
             this.cscProjectsList[project].investigators_formatted +=
-              pi.name + "&nbsp;<i>(" + pi.organization + "</i>)<br>";
+              "<li>" + pi.name + "<i> (" + pi.organization + "</i>)</li>";
           }
+          this.cscProjectsList[project].investigators_formatted += "</ul>";
         } else {
           this.cscProjectsList[project].investigators_formatted = "N/A";
         }
