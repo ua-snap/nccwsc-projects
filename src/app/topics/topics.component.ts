@@ -32,16 +32,16 @@ export class TopicsComponent implements OnInit {
 
   topics = {
     "drought-fire-extremes": "588244b0e4b0b3d9add24391",
-    "science-tools": "5b6212e7e4b03f4cf7599b82",
     landscapes: "5882456be4b0b3d9add24395",
+    "science-tools": "5b6212e7e4b03f4cf7599b82",
     "indigenous-peoples": "588246dae4b0b3d9add243a1",
     "water-coasts-ice": "5882464ce4b0b3d9add2439a",
     "wildlife-plants": "58824220e4b0b3d9add2438b",
   };
   topic_names = {
     "drought-fire-extremes": "Drought, Fire and Extreme Weather",
-    "science-tools": "Science Tools for Managers",
     landscapes: "Landscapes",
+    "science-tools": "Science Tools for Managers",
     "indigenous-peoples": "Indigenous Peoples",
     "water-coasts-ice": "Water, Coasts and Ice",
     "wildlife-plants": "Wildlife and Plants",
@@ -92,6 +92,11 @@ export class TopicsComponent implements OnInit {
     "subtopics_formatted",
     "status",
   ];
+
+  onSelectClick() {
+    // Sets the selectedTopic to an empty string to use the default value when select is clicked
+    this.selectedTopic = "";
+  }
 
   onTopicChange(event: any) {
     this.selectedTopic = event.target.value;
@@ -350,7 +355,7 @@ export class TopicsComponent implements OnInit {
         .loadTopic(encodeURIComponent(this.topic_names[this.topic]))
         .subscribe((data) => {
           this.filtered_topic_keys = this.topicKeys.filter(
-            (key) => this.topic_names[key] !== this.topic,
+            (key) => this.topic_names[key] !== this.page_title,
           );
           this.projectsList = data;
           for (const project in this.projectsList) {
@@ -435,7 +440,7 @@ export class TopicsComponent implements OnInit {
           // Waits until the data is loaded to render the table
           this.cdr.detectChanges();
           // Sets selectedTopic to default
-          this.selectedTopic = "";
+          this.selectedTopic = "drought-fire-extremes";
           // Applies the sorting to the table after it is available in the DOM
           this.dataSource.sort = this.sort;
           // Sets the default sorting to the fiscal year column to show the downward arrow

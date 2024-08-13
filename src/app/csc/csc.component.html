@@ -4,7 +4,11 @@
     <h2>{{ title }} Projects</h2>
     <div>
       Switch to
-      <select [(ngModel)]="selectedCasc" (change)="onCascChange($event)">
+      <select
+        [(ngModel)]="selectedCasc"
+        (click)="onSelectClick()"
+        (change)="onCascChange($event)"
+      >
         <option default disabled value="">a different CASC</option>
         <option *ngFor="let key of filtered_csc_identifiers" [value]="key">
           {{ csc_paths[key] }}

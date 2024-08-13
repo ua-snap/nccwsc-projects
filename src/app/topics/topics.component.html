@@ -4,7 +4,11 @@
     <h2>Topic: {{ page_title }}</h2>
     <div>
       Switch to
-      <select [(ngModel)]="selectedTopic" (change)="onTopicChange($event)">
+      <select
+        [(ngModel)]="selectedTopic"
+        (click)="onSelectClick()"
+        (change)="onTopicChange($event)"
+      >
         <option default disabled value="">a different topic</option>
         <option *ngFor="let key of filtered_topic_keys" [value]="key">
           {{ topic_names[key] }}

@@ -105,6 +105,10 @@ export class CscComponent implements OnInit {
     this.dataSource = new MatTableDataSource<any>();
   }
 
+  onSelectClick() {
+    this.selectedCasc = "";
+  }
+
   onCascChange(event: any) {
     this.selectedCasc = event.target.value;
     this.router.navigate(["/casc", this.selectedCasc]);
@@ -359,7 +363,7 @@ export class CscComponent implements OnInit {
         // Waits until the data is loaded to render the table
         this.cdr.detectChanges();
         // Sets the selectedCasc to the default option
-        this.selectedCasc = "";
+        this.selectedCasc = "national-casc";
         // Applies the sorting to the table after it is available in the DOM
         this.dataSource.sort = this.sort;
         // Sets the default sorting to the fiscal year column to show the downward arrow
