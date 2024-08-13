@@ -9,7 +9,7 @@
         (click)="onSelectClick()"
         (change)="onCascChange($event)"
       >
-        <option default disabled value="">a different CASC</option>
+        <option default disabled value="">Choose a CASC</option>
         <option *ngFor="let key of filtered_csc_identifiers" [value]="key">
           {{ csc_paths[key] }}
         </option>

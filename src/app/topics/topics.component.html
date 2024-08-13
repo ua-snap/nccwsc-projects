@@ -9,7 +9,7 @@
         (click)="onSelectClick()"
         (change)="onTopicChange($event)"
       >
-        <option default disabled value="">a different topic</option>
+        <option default disabled value="">Choose a topic</option>
         <option *ngFor="let key of filtered_topic_keys" [value]="key">
           {{ topic_names[key] }}
         </option>
