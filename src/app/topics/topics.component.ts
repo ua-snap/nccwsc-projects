@@ -63,10 +63,12 @@ export class TopicsComponent implements OnInit {
   current_status = ["All Statuses"];
   current_csc = ["All CASCs"];
   topicKeys = Object.keys(this.topics);
+  filtered_topic_keys = [];
   projectsList = [];
   filteredProjectsList = [];
   dataLoading = true;
   searchTerm = "";
+  selectedTopic: any;
 
   subtopicsFilter: string[] = null;
 
@@ -92,9 +94,9 @@ export class TopicsComponent implements OnInit {
   ];
 
   onTopicChange(event: any) {
-    const selectedTopic = event.target.value;
+    this.selectedTopic = event.target.value;
 
-    this.router.navigate(["/topics", selectedTopic]);
+    this.router.navigate(["/topics", this.selectedTopic]);
   }
 
   changeCurrentCASC(event: any = null) {
@@ -347,6 +349,9 @@ export class TopicsComponent implements OnInit {
       this.localJson
         .loadTopic(encodeURIComponent(this.topic_names[this.topic]))
         .subscribe((data) => {
+          this.filtered_topic_keys = this.topicKeys.filter(
+            (key) => this.topic_names[key] !== this.topic,
+          );
           this.projectsList = data;
           for (const project in this.projectsList) {
             for (const subtopic in this.projectsList[project].topics) {
@@ -424,26 +429,29 @@ export class TopicsComponent implements OnInit {
             }
           }
 
-        this.current_type = "Project";
-        this.filterProjectsList();
-        this.dataLoading = false;
-        // Waits until the data is loaded to render the table
-        this.cdr.detectChanges();
-        // Applies the sorting to the table after it is available in the DOM
-        this.dataSource.sort = this.sort;
-        // Sets the default sorting to the fiscal year column to show the downward arrow
-        this.setInitialSort();
+          this.current_type = "Project";
+          this.filterProjectsList();
+          this.dataLoading = false;
+          // Waits until the data is loaded to render the table
+          this.cdr.detectChanges();
+          // Sets selectedTopic to default
+          this.selectedTopic = "";
+          // Applies the sorting to the table after it is available in the DOM
+          this.dataSource.sort = this.sort;
+          // Sets the default sorting to the fiscal year column to show the downward arrow
+          this.setInitialSort();
 
-        this.dataSource.filterPredicate = (data, filter) => {
-          return (
-            data.fiscal_year.toString().includes(filter) ||
-            data.title.toLowerCase().includes(filter) ||
-            data.csc_name.toLowerCase().includes(filter) ||
-            data.subtopics_formatted.toLowerCase().includes(filter) ||
-            data.status.toLowerCase().includes(filter)
-          );
-        };
-      });
+          this.dataSource.filterPredicate = (data, filter) => {
+            return (
+              data.fiscal_year.toString().includes(filter) ||
+              data.title.toLowerCase().includes(filter) ||
+              data.csc_name.toLowerCase().includes(filter) ||
+              data.subtopics_formatted.toLowerCase().includes(filter) ||
+              data.status.toLowerCase().includes(filter)
+            );
+          };
+        });
+    });
   }
 
   setInitialSort() {

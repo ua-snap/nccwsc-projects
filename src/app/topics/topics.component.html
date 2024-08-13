@@ -1,11 +1,12 @@
 <div class="container-fluid">
   <app-breadcrumb></app-breadcrumb>
   <div class="table-title">
-    <h2 class="table-title">Topic: {{ page_title }}</h2>
+    <h2>Topic: {{ page_title }}</h2>
     <div>
       Switch to
-      <select [(ngModel)]="topic" (change)="onTopicChange($event)">
-        <option *ngFor="let key of topicKeys" [value]="key">
+      <select [(ngModel)]="selectedTopic" (change)="onTopicChange($event)">
+        <option default disabled value="">a different topic</option>
+        <option *ngFor="let key of filtered_topic_keys" [value]="key">
           {{ topic_names[key] }}
         </option>
       </select>
