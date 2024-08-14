@@ -49,6 +49,7 @@ h2.table-title {
     .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background {
       background-color: #0075ff;
       color: #fff;
+      border: 1px solid #000;
     }
   }
 }
