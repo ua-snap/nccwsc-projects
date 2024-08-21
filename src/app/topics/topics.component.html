@@ -1,8 +1,21 @@
 <div class="container-fluid">
   <app-breadcrumb></app-breadcrumb>
-
-  <h2 class="table-title">Topic: {{ page_title }}</h2>
-
+  <div class="table-title">
+    <h2>Topic: {{ page_title }}</h2>
+    <div>
+      Switch to
+      <select
+        [(ngModel)]="selectedTopic"
+        (click)="onSelectClick()"
+        (change)="onTopicChange($event)"
+      >
+        <option default disabled value="">Choose a topic</option>
+        <option *ngFor="let key of filtered_topic_keys" [value]="key">
+          {{ topic_names[key] }}
+        </option>
+      </select>
+    </div>
+  </div>
   <div class="row topic">
     <div class="col-md-2">
       <div class="select-box">
@@ -99,7 +112,7 @@
             class="loading"
             alt="Loading Results"
             title="Loading Results"
-          />Loading {{ title }} ScienceBase projects&hellip;
+          />Loading {{ topic_names[topic] }} ScienceBase projects&hellip;
         </h4>
       </div>
 
