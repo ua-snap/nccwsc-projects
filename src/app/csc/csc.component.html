@@ -1,6 +1,21 @@
 <div class="container-fluid">
   <app-breadcrumb></app-breadcrumb>
-  <h2 class="table-title">{{ title }} Projects</h2>
+  <div class="table-title">
+    <h2>{{ title }} Projects</h2>
+    <div>
+      Switch to
+      <select
+        [(ngModel)]="selectedCasc"
+        (click)="onSelectClick()"
+        (change)="onCascChange($event)"
+      >
+        <option default disabled value="">Choose a CASC</option>
+        <option *ngFor="let key of filtered_csc_identifiers" [value]="key">
+          {{ csc_paths[key] }}
+        </option>
+      </select>
+    </div>
+  </div>
   <div class="row csc">
     <div class="col-md-2">
       <!-- Filter Section -->
