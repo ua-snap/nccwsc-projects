@@ -45,6 +45,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.shared = new Shared();
     this.filteredResultsSubscription =
       this.searchService.filteredResults$.subscribe((filteredResults) => {
         this.results = filteredResults;
