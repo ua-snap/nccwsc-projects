@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { DatePipe } from "@angular/common";
 import { LocalJsonService } from "../local-json.service";
 import { ActivatedRoute } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -93,29 +92,9 @@ export class ProjectComponent implements OnInit {
     }
     return true;
   }
-  /*
-  Takes a string of 'yyyy', 'yyyy-MM', or 'yyyy-MM-dd' and returns a formatted date, only using the values present:
-    1981 -> 1981
-  */
-  static niceDate(value) {
-    try {
-      switch (value.split("-").length) {
-        case 2:
-          /* the '-01' is a fix but the reason for why it's needed is unclear. */
-          return new DatePipe("en-US").transform(value + "-01", "MM/yyyy");
-        case 3:
-          return new DatePipe("en-US").transform(value, "MM/dd/yyyy");
-        case 1:
-        default:
-          return value;
-      }
-    } catch (error) {
-      console.error(`Could not parse value: ${value}. Error: ${error}`);
-      return value;
-    }
-  }
 
   ngOnInit() {
+    this.shared = new Shared();
     this.urlService.setCurrentTitle("Project");
     this.sub = this.route.params.subscribe((params) => {
       this.projectId = params["id"];
