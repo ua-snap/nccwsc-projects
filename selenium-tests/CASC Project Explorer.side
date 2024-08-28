@@ -2,7 +2,7 @@
   "id": "dd53e7f0-c9da-4358-9966-ae266c83efdd",
   "version": "2.0",
   "name": "CASC Project Explorer",
-  "url": "http://dev.cascprojects.org",
+  "url": "http://localhost:4200",
   "tests": [{
     "id": "19d7f08f-6051-47b1-b63e-96f7b5e0b108",
     "name": "Explore Projects by Alaska Region",
@@ -21,15 +21,21 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "30039687-7295-4319-8668-daa03f117577",
+      "id": "66d0ac27-3dad-4259-b9f8-4d347af9053c",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "css=area:nth-child(1)",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "2456552f-a8d7-488c-83af-97d76e01a6c6",
       "comment": "",
       "command": "click",
-      "target": "css=.col-md-4:nth-child(2) > .btn-primary",
+      "target": "css=area:nth-child(1)",
       "targets": [
-        ["css=.col-md-4:nth-child(2) > .btn-primary", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[2]/div[2]/button", "xpath:idRelative"],
-        ["xpath=//div[2]/div[2]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Alaska')]", "xpath:innerText"]
+        ["css=area:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div/div[2]/div/map/area", "xpath:idRelative"],
+        ["xpath=//area", "xpath:position"]
       ],
       "value": ""
     }, {
@@ -78,11 +84,11 @@
       "id": "231182f4-3b77-42ed-82d0-6f81c4578ec9",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
         ["xpath=//h1[contains(.,'Climate Vulnerability of Aquatic Species to Changing Stream Temperatures and Wildfire Across the Yukon and Kuskokwim River Basins, Alaska')]", "xpath:innerText"]
       ],
       "value": "30000"
@@ -90,8 +96,13 @@
       "id": "2b899d6f-b4cc-4fe8-8081-92556ddde909",
       "comment": "",
       "command": "assertText",
-      "target": "css=h1:nth-child(2)",
-      "targets": [],
+      "target": "css=.col-md-8 > h1",
+      "targets": [
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Climate Vulnerability of Aquatic Species to Changing Stream Temperatures and Wildfire Across the Yukon and Kuskokwim River Basins, Alaska')]", "xpath:innerText"]
+      ],
       "value": "Climate Vulnerability of Aquatic Species to Changing Stream Temperatures and Wildfire Across the Yukon and Kuskokwim River Basins, Alaska"
     }, {
       "id": "2fa00e8f-2ab3-4a71-8b83-a9b47a9a32cb",
@@ -130,25 +141,28 @@
       "id": "332f54c1-356a-4887-9906-6652873b37e1",
       "comment": "",
       "command": "click",
-      "target": "css=.col-md-4:nth-child(2) > .btn-info",
+      "target": "linkText=Landscapes",
       "targets": [
-        ["css=.col-md-4:nth-child(2) > .btn-info", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div[2]/button", "xpath:idRelative"],
-        ["xpath=//div[3]/div[2]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Landscapes')]", "xpath:innerText"]
+        ["linkText=Landscapes", "linkText"],
+        ["css=.col-md-3 .topics:nth-child(2) > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Landscapes')]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div/div/div/div[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#/topics/landscapes')]", "xpath:href"],
+        ["xpath=//div[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Landscapes')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
       "id": "ec1caff3-1df4-443b-b9e3-23bc337e163e",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "linkText=Public land manager decision-making under ecological transformation",
+      "target": "linkText=Understanding how biodiversity affects ecosystem functioning in cities",
       "targets": [
-        ["linkText=Public land manager decision-making under ecological transformation", "linkText"],
+        ["linkText=Understanding how biodiversity affects ecosystem functioning in cities", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Public land manager decision-making under ecological transformation')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[7]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f83509de4b0e84f60868124/60105308d34e162231fed0a5')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Understanding how biodiversity affects ecosystem functioning in cities')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/5050cb0ee4b0be20bb30eac0/66572d2dd34ef3137d35ed6f')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": "30000"
@@ -156,13 +170,13 @@
       "id": "ce6cd2b2-c609-4db6-baa8-6fb7500bf756",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "linkText=Public land manager decision-making under ecological transformation",
+      "target": "linkText=Understanding how biodiversity affects ecosystem functioning in cities",
       "targets": [
-        ["linkText=Public land manager decision-making under ecological transformation", "linkText"],
+        ["linkText=Understanding how biodiversity affects ecosystem functioning in cities", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Public land manager decision-making under ecological transformation')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[7]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f83509de4b0e84f60868124/60105308d34e162231fed0a5')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Understanding how biodiversity affects ecosystem functioning in cities')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/5050cb0ee4b0be20bb30eac0/66572d2dd34ef3137d35ed6f')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": ""
@@ -170,13 +184,13 @@
       "id": "af2b5439-2512-49d3-ae46-5f650a5c054f",
       "comment": "",
       "command": "click",
-      "target": "linkText=Public land manager decision-making under ecological transformation",
+      "target": "linkText=Understanding how biodiversity affects ecosystem functioning in cities",
       "targets": [
-        ["linkText=Public land manager decision-making under ecological transformation", "linkText"],
+        ["linkText=Understanding how biodiversity affects ecosystem functioning in cities", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Public land manager decision-making under ecological transformation')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[7]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f83509de4b0e84f60868124/60105308d34e162231fed0a5')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Understanding how biodiversity affects ecosystem functioning in cities')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/5050cb0ee4b0be20bb30eac0/66572d2dd34ef3137d35ed6f')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": ""
@@ -184,24 +198,24 @@
       "id": "dc7f66fd-dd0c-4092-8eac-47e7b3f37bc9",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Public land manager decision-making under ecological transformation')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Understanding how biodiversity affects ecosystem functioning in cities')]", "xpath:innerText"]
       ],
       "value": "30000"
     }, {
       "id": "f657b8b6-8e3b-4572-a2b9-aeefc7fc9f20",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Public land manager decision-making under ecological transformation')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Understanding how biodiversity affects ecosystem functioning in cities')]", "xpath:innerText"]
       ],
       "value": ""
     }]
@@ -226,32 +240,38 @@
       "id": "040b8d81-1953-49c0-bc7f-17177f83aa43",
       "comment": "",
       "command": "click",
-      "target": "css=.col-md-4:nth-child(3) > .btn-primary",
+      "target": "css=area:nth-child(7)",
       "targets": [
-        ["css=.col-md-4:nth-child(3) > .btn-primary", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[2]/div[3]/button", "xpath:idRelative"],
-        ["xpath=//div[3]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Midwest')]", "xpath:innerText"]
+        ["css=area:nth-child(7)", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div/div[2]/div/map/area[7]", "xpath:idRelative"],
+        ["xpath=//area[7]", "xpath:position"]
       ],
       "value": ""
     }, {
       "id": "bea7d92b-1c60-4b84-b3e0-6c842299f8e9",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "linkText=Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes",
-      "targets": [],
+      "target": "linkText=Relieving the Sting: Spatial Prioritization for Pollinator Conservation Under a Changing Climate",
+      "targets": [
+        ["linkText=Relieving the Sting: Spatial Prioritization for Pollinator Conservation Under a Changing Climate", "linkText"],
+        ["css=.card:nth-child(1) a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Relieving the Sting: Spatial Prioritization for Pollinator Conservation Under a Changing Climate')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/5e2f3f59e4b0a79317d422af/6674658bd34e68d163086bab')])[2]", "xpath:href"],
+        ["xpath=//h4/a", "xpath:position"]
+      ],
       "value": "30000"
     }, {
       "id": "9ea9e628-acc6-444e-beb5-d766526032fc",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "linkText=Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes",
+      "target": "linkText=Relieving the Sting: Spatial Prioritization for Pollinator Conservation Under a Changing Climate",
       "targets": [
-        ["linkText=Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes", "linkText"],
+        ["linkText=Relieving the Sting: Spatial Prioritization for Pollinator Conservation Under a Changing Climate", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[6]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/5e2f3f59e4b0a79317d422af/60ba6641d34e86b9388d8fd7')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Relieving the Sting: Spatial Prioritization for Pollinator Conservation Under a Changing Climate')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/5e2f3f59e4b0a79317d422af/6674658bd34e68d163086bab')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": ""
@@ -259,13 +279,13 @@
       "id": "7f311f8d-9a21-4244-a3e5-f0babd3a5b40",
       "comment": "",
       "command": "click",
-      "target": "linkText=Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes",
+      "target": "linkText=Relieving the Sting: Spatial Prioritization for Pollinator Conservation Under a Changing Climate",
       "targets": [
-        ["linkText=Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes", "linkText"],
+        ["linkText=Relieving the Sting: Spatial Prioritization for Pollinator Conservation Under a Changing Climate", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[6]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/5e2f3f59e4b0a79317d422af/60ba6641d34e86b9388d8fd7')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Relieving the Sting: Spatial Prioritization for Pollinator Conservation Under a Changing Climate')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/5e2f3f59e4b0a79317d422af/6674658bd34e68d163086bab')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": ""
@@ -273,26 +293,26 @@
       "id": "e6d87a29-8cd7-4821-8c7f-5c5fa411f8d1",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Relieving the Sting: Spatial Prioritization for Pollinator Conservation Under a Changing Climate')]", "xpath:innerText"]
       ],
       "value": "30000"
     }, {
       "id": "a550dbaf-6e7a-4dfb-8fcc-193467063ad8",
       "comment": "",
       "command": "assertText",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Relieving the Sting: Spatial Prioritization for Pollinator Conservation Under a Changing Climate')]", "xpath:innerText"]
       ],
-      "value": "Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes"
+      "value": "Relieving the Sting: Spatial Prioritization for Pollinator Conservation Under a Changing Climate"
     }]
   }, {
     "id": "badc32c5-5302-4819-aa4e-6ec65d06cca0",
@@ -315,25 +335,24 @@
       "id": "ad73d52c-326b-4b69-890a-fa426c430f6b",
       "comment": "",
       "command": "click",
-      "target": "css=.col-md-4:nth-child(4) > .btn-primary",
+      "target": "css=area:nth-child(3)",
       "targets": [
-        ["css=.col-md-4:nth-child(4) > .btn-primary", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[2]/div[4]/button", "xpath:idRelative"],
-        ["xpath=//div[4]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Northwest')]", "xpath:innerText"]
+        ["css=area:nth-child(3)", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div/div[2]/div/map/area[3]", "xpath:idRelative"],
+        ["xpath=//area[3]", "xpath:position"]
       ],
       "value": ""
     }, {
       "id": "6ba26fde-a1ed-4230-b580-3f3fa86164a1",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "linkText=Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries",
+      "target": "linkText=Post-fire Vegetation Transitions in Burned and Reburned Forests in the Western Cascades",
       "targets": [
-        ["linkText=Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries", "linkText"],
+        ["linkText=Post-fire Vegetation Transitions in Burned and Reburned Forests in the Western Cascades", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[6]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f8c64d2e4b0546c0c397b46/5f04d07782ce21d4c3f89d1c')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Post-fire Vegetation Transitions in Burned and Reburned Forests in the Western Cascades')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/4f8c64d2e4b0546c0c397b46/65b83c4dd34e18c6baf2b841')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": "30000"
@@ -341,13 +360,13 @@
       "id": "84f5d2d5-762a-4f89-9a81-7630fb953f09",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "linkText=Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries",
+      "target": "linkText=Post-fire Vegetation Transitions in Burned and Reburned Forests in the Western Cascades",
       "targets": [
-        ["linkText=Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries", "linkText"],
+        ["linkText=Post-fire Vegetation Transitions in Burned and Reburned Forests in the Western Cascades", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[6]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f8c64d2e4b0546c0c397b46/5f04d07782ce21d4c3f89d1c')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Post-fire Vegetation Transitions in Burned and Reburned Forests in the Western Cascades')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/4f8c64d2e4b0546c0c397b46/65b83c4dd34e18c6baf2b841')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": ""
@@ -355,13 +374,13 @@
       "id": "3fe03e47-463c-4560-b6ef-c391c8df012a",
       "comment": "",
       "command": "click",
-      "target": "linkText=Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries",
+      "target": "linkText=Post-fire Vegetation Transitions in Burned and Reburned Forests in the Western Cascades",
       "targets": [
-        ["linkText=Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries", "linkText"],
+        ["linkText=Post-fire Vegetation Transitions in Burned and Reburned Forests in the Western Cascades", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[6]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f8c64d2e4b0546c0c397b46/5f04d07782ce21d4c3f89d1c')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Post-fire Vegetation Transitions in Burned and Reburned Forests in the Western Cascades')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/4f8c64d2e4b0546c0c397b46/65b83c4dd34e18c6baf2b841')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": ""
@@ -369,26 +388,26 @@
       "id": "d21500b0-be05-4370-936b-2154a1528c12",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Post-fire Vegetation Transitions in Burned and Reburned Forests in the Western Cascades')]", "xpath:innerText"]
       ],
       "value": "30000"
     }, {
       "id": "ce5546ec-19fa-41b5-8a65-79eb8f852c71",
       "comment": "",
       "command": "assertText",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Post-fire Vegetation Transitions in Burned and Reburned Forests in the Western Cascades')]", "xpath:innerText"]
       ],
-      "value": "Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries"
+      "value": "Post-fire Vegetation Transitions in Burned and Reburned Forests in the Western Cascades"
     }]
   }, {
     "id": "d6320415-ff82-4730-9a80-49f7c39a8844",
@@ -411,25 +430,24 @@
       "id": "cded77e1-d8fb-4351-8dcc-c2f5736e592d",
       "comment": "",
       "command": "click",
-      "target": "css=.col-md-4:nth-child(5) > .btn-primary",
+      "target": "css=area:nth-child(5)",
       "targets": [
-        ["css=.col-md-4:nth-child(5) > .btn-primary", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[2]/div[5]/button", "xpath:idRelative"],
-        ["xpath=//div[5]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'North Central')]", "xpath:innerText"]
+        ["css=area:nth-child(5)", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div/div[2]/div/map/area[5]", "xpath:idRelative"],
+        ["xpath=//area[5]", "xpath:position"]
       ],
       "value": ""
     }, {
       "id": "60399198-7f97-4c8b-9b63-4853de42f236",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "linkText=Climate Science and Adaptation Planning Support for State Wildlife Action Plans (SWAPs) in the North Central Region",
+      "target": "linkText=Snowpack Futures: Developing Management Tools to Address Snow as a Water Resource and Hazard",
       "targets": [
-        ["linkText=Climate Science and Adaptation Planning Support for State Wildlife Action Plans (SWAPs) in the North Central Region", "linkText"],
+        ["linkText=Snowpack Futures: Developing Management Tools to Address Snow as a Water Resource and Hazard", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Climate Science and Adaptation Planning Support for State Wildlife Action Plans (SWAPs) in the North Central Region')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[6]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f83509de4b0e84f60868124/6009c26fd34e162231fb2334')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Snowpack Futures: Developing Management Tools to Address Snow as a Water Resource and Hazard')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/4f83509de4b0e84f60868124/6658a239d34ef3137d35f907')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": "30000"
@@ -437,13 +455,13 @@
       "id": "be3fe827-2a8f-46b8-8eca-4ee7a931a1b4",
       "comment": "",
       "command": "click",
-      "target": "linkText=Climate Science and Adaptation Planning Support for State Wildlife Action Plans (SWAPs) in the North Central Region",
+      "target": "linkText=Snowpack Futures: Developing Management Tools to Address Snow as a Water Resource and Hazard",
       "targets": [
-        ["linkText=Climate Science and Adaptation Planning Support for State Wildlife Action Plans (SWAPs) in the North Central Region", "linkText"],
+        ["linkText=Snowpack Futures: Developing Management Tools to Address Snow as a Water Resource and Hazard", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Climate Science and Adaptation Planning Support for State Wildlife Action Plans (SWAPs) in the North Central Region')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[6]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f83509de4b0e84f60868124/6009c26fd34e162231fb2334')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Snowpack Futures: Developing Management Tools to Address Snow as a Water Resource and Hazard')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/4f83509de4b0e84f60868124/6658a239d34ef3137d35f907')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": ""
@@ -451,26 +469,26 @@
       "id": "cf338061-5173-428a-a922-731f2bd93de7",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Climate Science and Adaptation Planning Support for State Wildlife Action Plans (SWAPs) in the North Central Region')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Snowpack Futures: Developing Management Tools to Address Snow as a Water Resource and Hazard')]", "xpath:innerText"]
       ],
       "value": "30000"
     }, {
       "id": "bb7735fd-fa4e-404a-9022-84764d88cf95",
       "comment": "",
       "command": "assertText",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Climate Science and Adaptation Planning Support for State Wildlife Action Plans (SWAPs) in the North Central Region')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Snowpack Futures: Developing Management Tools to Address Snow as a Water Resource and Hazard')]", "xpath:innerText"]
       ],
-      "value": "Climate Science and Adaptation Planning Support for State Wildlife Action Plans (SWAPs) in the North Central Region"
+      "value": "Snowpack Futures: Developing Management Tools to Address Snow as a Water Resource and Hazard"
     }]
   }, {
     "id": "6b8ef844-31a8-40ab-bf7b-669f71cf8266",
@@ -493,25 +511,24 @@
       "id": "3236379e-59e3-4a5d-ace5-eb37c1eeccb3",
       "comment": "",
       "command": "click",
-      "target": "css=.col-md-4:nth-child(6) > .btn-primary",
+      "target": "css=area:nth-child(9)",
       "targets": [
-        ["css=.col-md-4:nth-child(6) > .btn-primary", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[2]/div[6]/button", "xpath:idRelative"],
-        ["xpath=//div[6]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Northeast')]", "xpath:innerText"]
+        ["css=area:nth-child(9)", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div/div[2]/div/map/area[9]", "xpath:idRelative"],
+        ["xpath=//area[9]", "xpath:position"]
       ],
       "value": ""
     }, {
       "id": "737a05d1-e14a-478f-8017-ad4b3796e566",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "linkText=A Pilot Biodiversity Inventory and Monitoring Protocol in Support of Coastal Adaptation Projects in Tidal and Nearshore Subtidal Habitats of Boston Harbor Islands",
+      "target": "linkText=Impacts and Adaptation Strategies for Invasive Forest Insects and Diseases in the Northeast",
       "targets": [
-        ["linkText=A Pilot Biodiversity Inventory and Monitoring Protocol in Support of Coastal Adaptation Projects in Tidal and Nearshore Subtidal Habitats of Boston Harbor Islands", "linkText"],
+        ["linkText=Impacts and Adaptation Strategies for Invasive Forest Insects and Diseases in the Northeast", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'A Pilot Biodiversity Inventory and Monitoring Protocol in Support of Coastal Adaptation Projects in Tidal and Nearshore Subtidal Habitats of Boston Harbor Islands')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[6]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f8c648de4b0546c0c397b43/5f34504d82cee144fb32e39f')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Impacts and Adaptation Strategies for Invasive Forest Insects and Diseases in the Northeast')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/4f8c648de4b0546c0c397b43/64b1b3c9d34e70357a2a0769')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": "30000"
@@ -519,13 +536,13 @@
       "id": "edd6db09-8431-4815-9286-78609161a56a",
       "comment": "",
       "command": "click",
-      "target": "linkText=A Pilot Biodiversity Inventory and Monitoring Protocol in Support of Coastal Adaptation Projects in Tidal and Nearshore Subtidal Habitats of Boston Harbor Islands",
+      "target": "linkText=Impacts and Adaptation Strategies for Invasive Forest Insects and Diseases in the Northeast",
       "targets": [
-        ["linkText=A Pilot Biodiversity Inventory and Monitoring Protocol in Support of Coastal Adaptation Projects in Tidal and Nearshore Subtidal Habitats of Boston Harbor Islands", "linkText"],
+        ["linkText=Impacts and Adaptation Strategies for Invasive Forest Insects and Diseases in the Northeast", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'A Pilot Biodiversity Inventory and Monitoring Protocol in Support of Coastal Adaptation Projects in Tidal and Nearshore Subtidal Habitats of Boston Harbor Islands')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[6]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f8c648de4b0546c0c397b43/5f34504d82cee144fb32e39f')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Impacts and Adaptation Strategies for Invasive Forest Insects and Diseases in the Northeast')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/4f8c648de4b0546c0c397b43/64b1b3c9d34e70357a2a0769')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": ""
@@ -533,26 +550,26 @@
       "id": "d6b73a60-48a8-4bbd-999c-e129c0f4a32a",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'A Pilot Biodiversity Inventory and Monitoring Protocol in Support of Coastal Adaptation Projects in Tidal and Nearshore Subtidal Habitats of Boston Harbor Islands')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Impacts and Adaptation Strategies for Invasive Forest Insects and Diseases in the Northeast')]", "xpath:innerText"]
       ],
       "value": "30000"
     }, {
       "id": "1b44431d-fa70-4476-a1a6-b73692688dae",
       "comment": "",
       "command": "assertText",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'A Pilot Biodiversity Inventory and Monitoring Protocol in Support of Coastal Adaptation Projects in Tidal and Nearshore Subtidal Habitats of Boston Harbor Islands')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Impacts and Adaptation Strategies for Invasive Forest Insects and Diseases in the Northeast')]", "xpath:innerText"]
       ],
-      "value": "A Pilot Biodiversity Inventory and Monitoring Protocol in Support of Coastal Adaptation Projects in Tidal and Nearshore Subtidal Habitats of Boston Harbor Islands"
+      "value": "Impacts and Adaptation Strategies for Invasive Forest Insects and Diseases in the Northeast"
     }]
   }, {
     "id": "4869e228-123e-4d3e-b080-c02ead9246ea",
@@ -575,25 +592,24 @@
       "id": "2b0a32a2-79a0-466e-89cc-48aefc42e757",
       "comment": "",
       "command": "click",
-      "target": "css=.col-md-4:nth-child(7) > .btn-primary",
+      "target": "css=area:nth-child(2)",
       "targets": [
-        ["css=.col-md-4:nth-child(7) > .btn-primary", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[2]/div[7]/button", "xpath:idRelative"],
-        ["xpath=//div[7]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Pacific Islands')]", "xpath:innerText"]
+        ["css=area:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div/div[2]/div/map/area[2]", "xpath:idRelative"],
+        ["xpath=//area[2]", "xpath:position"]
       ],
       "value": ""
     }, {
       "id": "f0da493a-8e3e-4e69-837c-14487dbc2389",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "linkText=Connecting Ecosystems from Mountains to the Sea in a Changing Climate",
+      "target": "linkText=Improving the Availability and Accessibility of Climate Information for Users in Hawai‘i, American Sāmoa, and Guam",
       "targets": [
-        ["linkText=Connecting Ecosystems from Mountains to the Sea in a Changing Climate", "linkText"],
+        ["linkText=Improving the Availability and Accessibility of Climate Information for Users in Hawai‘i, American Sāmoa, and Guam", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Connecting Ecosystems from Mountains to the Sea in a Changing Climate')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[6]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f8c650ae4b0546c0c397b48/5f31671782ceae4cb3ca52be')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Improving the Availability and Accessibility of Climate Information for Users in Hawai‘i, American Sāmoa, and Guam')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/4f8c650ae4b0546c0c397b48/6542626bd34ee4b6e05bd20a')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": "30000"
@@ -601,13 +617,13 @@
       "id": "32e13e26-5601-424a-b441-34fe7a894cba",
       "comment": "",
       "command": "click",
-      "target": "linkText=Connecting Ecosystems from Mountains to the Sea in a Changing Climate",
+      "target": "linkText=Improving the Availability and Accessibility of Climate Information for Users in Hawai‘i, American Sāmoa, and Guam",
       "targets": [
-        ["linkText=Connecting Ecosystems from Mountains to the Sea in a Changing Climate", "linkText"],
+        ["linkText=Improving the Availability and Accessibility of Climate Information for Users in Hawai‘i, American Sāmoa, and Guam", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Connecting Ecosystems from Mountains to the Sea in a Changing Climate')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[6]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f8c650ae4b0546c0c397b48/5f31671782ceae4cb3ca52be')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Improving the Availability and Accessibility of Climate Information for Users in Hawai‘i, American Sāmoa, and Guam')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/4f8c650ae4b0546c0c397b48/6542626bd34ee4b6e05bd20a')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": ""
@@ -615,26 +631,26 @@
       "id": "f647ea47-8346-4b81-898d-9d23992cd492",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Connecting Ecosystems from Mountains to the Sea in a Changing Climate')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Improving the Availability and Accessibility of Climate Information for Users in Hawai‘i, American Sāmoa, and Guam')]", "xpath:innerText"]
       ],
       "value": "30000"
     }, {
       "id": "8101e8b0-d660-4e2e-9d5e-c9df43b96aa5",
       "comment": "",
       "command": "assertText",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Connecting Ecosystems from Mountains to the Sea in a Changing Climate')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Improving the Availability and Accessibility of Climate Information for Users in Hawai‘i, American Sāmoa, and Guam')]", "xpath:innerText"]
       ],
-      "value": "Connecting Ecosystems from Mountains to the Sea in a Changing Climate"
+      "value": "Improving the Availability and Accessibility of Climate Information for Users in Hawai‘i, American Sāmoa, and Guam"
     }]
   }, {
     "id": "636c3a81-f576-4623-be6d-f97cc0fb9bcd",
@@ -657,25 +673,24 @@
       "id": "9b6cded2-6a70-435a-96ad-c19a74c95af2",
       "comment": "",
       "command": "click",
-      "target": "css=.col-md-4:nth-child(8) > .btn",
+      "target": "css=area:nth-child(4)",
       "targets": [
-        ["css=.col-md-4:nth-child(8) > .btn", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[2]/div[8]/button", "xpath:idRelative"],
-        ["xpath=//div[8]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Southwest')]", "xpath:innerText"]
+        ["css=area:nth-child(4)", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div/div[2]/div/map/area[4]", "xpath:idRelative"],
+        ["xpath=//area[4]", "xpath:position"]
       ],
       "value": ""
     }, {
       "id": "a5eaf33b-b6bf-4a72-88d9-5c0805630c91",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "linkText=A Climate-Informed Adaptation and Post-Fire Strategy for the Southwestern Region",
+      "target": "linkText=From Refugia to Resilience: Wildfires, Changing Climate, and Landscape Transformation in the Southwestern U.S.",
       "targets": [
-        ["linkText=A Climate-Informed Adaptation and Post-Fire Strategy for the Southwestern Region", "linkText"],
+        ["linkText=From Refugia to Resilience: Wildfires, Changing Climate, and Landscape Transformation in the Southwestern U.S.", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'A Climate-Informed Adaptation and Post-Fire Strategy for the Southwestern Region')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[6]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f8c6580e4b0546c0c397b4e/5f3156aa82ceae4cb3ca50c9')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'From Refugia to Resilience: Wildfires, Changing Climate, and Landscape Transformation in the Southwestern U.S.')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/4f8c6580e4b0546c0c397b4e/6660a6c8d34e16b8573d149e')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": "30000"
@@ -683,13 +698,13 @@
       "id": "17943160-2246-454f-bd35-94ace059e252",
       "comment": "",
       "command": "click",
-      "target": "linkText=A Climate-Informed Adaptation and Post-Fire Strategy for the Southwestern Region",
+      "target": "linkText=From Refugia to Resilience: Wildfires, Changing Climate, and Landscape Transformation in the Southwestern U.S.",
       "targets": [
-        ["linkText=A Climate-Informed Adaptation and Post-Fire Strategy for the Southwestern Region", "linkText"],
+        ["linkText=From Refugia to Resilience: Wildfires, Changing Climate, and Landscape Transformation in the Southwestern U.S.", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'A Climate-Informed Adaptation and Post-Fire Strategy for the Southwestern Region')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[6]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f8c6580e4b0546c0c397b4e/5f3156aa82ceae4cb3ca50c9')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'From Refugia to Resilience: Wildfires, Changing Climate, and Landscape Transformation in the Southwestern U.S.')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/4f8c6580e4b0546c0c397b4e/6660a6c8d34e16b8573d149e')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": ""
@@ -697,26 +712,26 @@
       "id": "8e7289f2-6d9b-496b-bd1c-533d8d4cb032",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'A Climate-Informed Adaptation and Post-Fire Strategy for the Southwestern Region')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'From Refugia to Resilience: Wildfires, Changing Climate, and Landscape Transformation in the Southwestern U.S.')]", "xpath:innerText"]
       ],
       "value": "30000"
     }, {
       "id": "d130e641-2764-4f77-9349-7b8232e1517f",
       "comment": "",
       "command": "assertText",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'A Climate-Informed Adaptation and Post-Fire Strategy for the Southwestern Region')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'From Refugia to Resilience: Wildfires, Changing Climate, and Landscape Transformation in the Southwestern U.S.')]", "xpath:innerText"]
       ],
-      "value": "A Climate-Informed Adaptation and Post-Fire Strategy for the Southwestern Region"
+      "value": "From Refugia to Resilience: Wildfires, Changing Climate, and Landscape Transformation in the Southwestern U.S."
     }]
   }, {
     "id": "b8a5c951-1def-45cc-9039-4ef1115b8444",
@@ -739,25 +754,24 @@
       "id": "7a0724cf-6013-43e5-b072-fec3ebbd02b6",
       "comment": "",
       "command": "click",
-      "target": "css=.col-md-4:nth-child(9) > .btn",
+      "target": "css=area:nth-child(6)",
       "targets": [
-        ["css=.col-md-4:nth-child(9) > .btn", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[2]/div[9]/button", "xpath:idRelative"],
-        ["xpath=//div[9]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'South Central')]", "xpath:innerText"]
+        ["css=area:nth-child(6)", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div/div[2]/div/map/area[6]", "xpath:idRelative"],
+        ["xpath=//area[6]", "xpath:position"]
       ],
       "value": ""
     }, {
       "id": "802e75d9-41d0-43dc-8c09-172ef969fbb5",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "linkText=Estimating the Future Effects of Forest Disturbance on Snow Water Resources in a Changing Environment",
+      "target": "linkText=Coastal Wetland Dynamics and Impacts on Hurricane Flood Risk along the Texas Gulf Coast in a Changing Climate",
       "targets": [
-        ["linkText=Estimating the Future Effects of Forest Disturbance on Snow Water Resources in a Changing Environment", "linkText"],
+        ["linkText=Coastal Wetland Dynamics and Impacts on Hurricane Flood Risk along the Texas Gulf Coast in a Changing Climate", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Estimating the Future Effects of Forest Disturbance on Snow Water Resources in a Changing Environment')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[6]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f8c652fe4b0546c0c397b4a/6000c395d34e592d8671f605')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Coastal Wetland Dynamics and Impacts on Hurricane Flood Risk along the Texas Gulf Coast in a Changing Climate')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/4f8c652fe4b0546c0c397b4a/6616ef52d34e7eb9eb7d6e31')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": "30000"
@@ -765,13 +779,13 @@
       "id": "e560fe7e-e439-4f6b-9a42-88661ea44b3a",
       "comment": "",
       "command": "click",
-      "target": "linkText=Estimating the Future Effects of Forest Disturbance on Snow Water Resources in a Changing Environment",
+      "target": "linkText=Coastal Wetland Dynamics and Impacts on Hurricane Flood Risk along the Texas Gulf Coast in a Changing Climate",
       "targets": [
-        ["linkText=Estimating the Future Effects of Forest Disturbance on Snow Water Resources in a Changing Environment", "linkText"],
+        ["linkText=Coastal Wetland Dynamics and Impacts on Hurricane Flood Risk along the Texas Gulf Coast in a Changing Climate", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Estimating the Future Effects of Forest Disturbance on Snow Water Resources in a Changing Environment')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[6]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f8c652fe4b0546c0c397b4a/6000c395d34e592d8671f605')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Coastal Wetland Dynamics and Impacts on Hurricane Flood Risk along the Texas Gulf Coast in a Changing Climate')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/4f8c652fe4b0546c0c397b4a/6616ef52d34e7eb9eb7d6e31')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": ""
@@ -779,26 +793,26 @@
       "id": "3a8cfdb8-cb08-479f-af10-ab00d67a9d43",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
+        ["css=.col-md-8 > h1", "css:finder"],
         ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Estimating the Future Effects of Forest Disturbance on Snow Water Resources in a Changing Environment')]", "xpath:innerText"]
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Coastal Wetland Dynamics and Impacts on Hurricane Flood Risk along the Texas Gulf Coast in a Changing Climate')]", "xpath:innerText"]
       ],
       "value": "30000"
     }, {
       "id": "37ef3e17-39d1-42ae-891d-5bb6fc6dbf19",
       "comment": "",
       "command": "assertText",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
+        ["css=.col-md-8 > h1", "css:finder"],
         ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Estimating the Future Effects of Forest Disturbance on Snow Water Resources in a Changing Environment')]", "xpath:innerText"]
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Coastal Wetland Dynamics and Impacts on Hurricane Flood Risk along the Texas Gulf Coast in a Changing Climate')]", "xpath:innerText"]
       ],
-      "value": "Estimating the Future Effects of Forest Disturbance on Snow Water Resources in a Changing Environment"
+      "value": "Coastal Wetland Dynamics and Impacts on Hurricane Flood Risk along the Texas Gulf Coast in a Changing Climate"
     }]
   }, {
     "id": "570f2742-504d-4424-8ee5-47f1b87447ff",
@@ -821,25 +835,24 @@
       "id": "b7b2c8a0-bf27-4607-a5d4-dc4cc570e3c3",
       "comment": "",
       "command": "click",
-      "target": "css=.col-md-4:nth-child(10) > .btn",
+      "target": "css=area:nth-child(8)",
       "targets": [
-        ["css=.col-md-4:nth-child(10) > .btn", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[2]/div[10]/button", "xpath:idRelative"],
-        ["xpath=//div[10]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Southeast')]", "xpath:innerText"]
+        ["css=area:nth-child(8)", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div/div[2]/div/map/area[8]", "xpath:idRelative"],
+        ["xpath=//area[8]", "xpath:position"]
       ],
       "value": ""
     }, {
       "id": "0004d846-b72b-4c2a-88a7-421657b35488",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "linkText=An Assessment of Invasive Species Range Shifts in the Southeastern U.S. and Actions to Manage Them",
+      "target": "linkText=Improving Land Change Models for Climate Adaptation, Urban Development, and Conservation Action Across the US Caribbean",
       "targets": [
-        ["linkText=An Assessment of Invasive Species Range Shifts in the Southeastern U.S. and Actions to Manage Them", "linkText"],
+        ["linkText=Improving Land Change Models for Climate Adaptation, Urban Development, and Conservation Action Across the US Caribbean", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'An Assessment of Invasive Species Range Shifts in the Southeastern U.S. and Actions to Manage Them')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[6]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f8c6557e4b0546c0c397b4c/5f04d79682ce21d4c3f89d8c')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Improving Land Change Models for Climate Adaptation, Urban Development, and Conservation Action Across the US Caribbean')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/4f8c6557e4b0546c0c397b4c/6616ebe6d34e7eb9eb7d6d66')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": "30000"
@@ -847,13 +860,13 @@
       "id": "9f9ccb8c-1aad-48fa-9181-b52f7fc1bba3",
       "comment": "",
       "command": "click",
-      "target": "linkText=An Assessment of Invasive Species Range Shifts in the Southeastern U.S. and Actions to Manage Them",
+      "target": "linkText=Improving Land Change Models for Climate Adaptation, Urban Development, and Conservation Action Across the US Caribbean",
       "targets": [
-        ["linkText=An Assessment of Invasive Species Range Shifts in the Southeastern U.S. and Actions to Manage Them", "linkText"],
+        ["linkText=Improving Land Change Models for Climate Adaptation, Urban Development, and Conservation Action Across the US Caribbean", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'An Assessment of Invasive Species Range Shifts in the Southeastern U.S. and Actions to Manage Them')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[6]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f8c6557e4b0546c0c397b4c/5f04d79682ce21d4c3f89d8c')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Improving Land Change Models for Climate Adaptation, Urban Development, and Conservation Action Across the US Caribbean')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/4f8c6557e4b0546c0c397b4c/6616ebe6d34e7eb9eb7d6d66')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": ""
@@ -861,26 +874,26 @@
       "id": "46e0a318-301e-4671-b2bd-2aeedda3ecfc",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'An Assessment of Invasive Species Range Shifts in the Southeastern U.S. and Actions to Manage Them')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Improving Land Change Models for Climate Adaptation, Urban Development, and Conservation Action Across the US Caribbean')]", "xpath:innerText"]
       ],
       "value": "30000"
     }, {
       "id": "82564f98-3496-4774-b5f1-e7e934bbb927",
       "comment": "",
       "command": "assertText",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'An Assessment of Invasive Species Range Shifts in the Southeastern U.S. and Actions to Manage Them')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Improving Land Change Models for Climate Adaptation, Urban Development, and Conservation Action Across the US Caribbean')]", "xpath:innerText"]
       ],
-      "value": "An Assessment of Invasive Species Range Shifts in the Southeastern U.S. and Actions to Manage Them"
+      "value": "Improving Land Change Models for Climate Adaptation, Urban Development, and Conservation Action Across the US Caribbean"
     }]
   }, {
     "id": "55ae5ac3-0026-4587-83cc-31eb8d836a24",
@@ -903,25 +916,24 @@
       "id": "a5106d31-0ffc-4c39-8931-7fe98a0e7184",
       "comment": "",
       "command": "click",
-      "target": "css=.col-md-4:nth-child(11) > .btn",
+      "target": "css=area:nth-child(10)",
       "targets": [
-        ["css=.col-md-4:nth-child(11) > .btn", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[2]/div[11]/button", "xpath:idRelative"],
-        ["xpath=//div[11]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'National CASC')]", "xpath:innerText"]
+        ["css=area:nth-child(10)", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div/div[2]/div/map/area[10]", "xpath:idRelative"],
+        ["xpath=//area[10]", "xpath:position"]
       ],
       "value": ""
     }, {
       "id": "d7544966-18a8-4184-a340-677cd3b17138",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "linkText=A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy",
+      "target": "linkText=Understanding how biodiversity affects ecosystem functioning in cities",
       "targets": [
-        ["linkText=A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy", "linkText"],
+        ["linkText=Understanding how biodiversity affects ecosystem functioning in cities", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[6]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/5050cb0ee4b0be20bb30eac0/60146056d34e162231feedc3')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Understanding how biodiversity affects ecosystem functioning in cities')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/5050cb0ee4b0be20bb30eac0/66572d2dd34ef3137d35ed6f')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": "30000"
@@ -929,40 +941,38 @@
       "id": "f82379e2-09bc-42d4-b50c-296054694d74",
       "comment": "",
       "command": "click",
-      "target": "linkText=A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy",
+      "target": "linkText=Understanding how biodiversity affects ecosystem functioning in cities",
       "targets": [
-        ["linkText=A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy", "linkText"],
-        ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-csc/div/div[6]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/5050cb0ee4b0be20bb30eac0/60146056d34e162231feedc3')])[2]", "xpath:href"],
-        ["xpath=//h4/a", "xpath:position"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Understanding how biodiversity affects ecosystem functioning in cities')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
       "id": "288abb3e-0220-4ff0-84e6-860159a1a949",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
+        ["css=.col-md-8 > h1", "css:finder"],
         ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy')]", "xpath:innerText"]
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Understanding how biodiversity affects ecosystem functioning in cities')]", "xpath:innerText"]
       ],
       "value": "30000"
     }, {
       "id": "ef5009e2-f026-4c35-a47c-80db0d62fd47",
       "comment": "",
       "command": "assertText",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
+        ["css=.col-md-8 > h1", "css:finder"],
         ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy')]", "xpath:innerText"]
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Understanding how biodiversity affects ecosystem functioning in cities')]", "xpath:innerText"]
       ],
-      "value": "A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy"
+      "value": "Understanding how biodiversity affects ecosystem functioning in cities"
     }]
   }, {
     "id": "73e767b9-2fae-4471-a0c6-24abd1bc1643",
@@ -985,12 +995,15 @@
       "id": "8b820855-1aeb-4f2a-9b5e-abd5a076ae7c",
       "comment": "",
       "command": "click",
-      "target": "css=.col-md-4:nth-child(3) > .btn-info",
+      "target": "linkText=Drought, Fire and Extreme Weather",
       "targets": [
-        ["css=.col-md-4:nth-child(3) > .btn-info", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div[3]/button", "xpath:idRelative"],
-        ["xpath=//div[3]/div[3]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Drought, Fire and Extreme Weather')]", "xpath:innerText"]
+        ["linkText=Drought, Fire and Extreme Weather", "linkText"],
+        ["css=.col-md-3 .topics:nth-child(1) > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Drought, Fire and Extreme Weather')]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div/div/div/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#/topics/drought-fire-extremes')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'Drought, Fire and Extreme Weather')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
@@ -1025,11 +1038,11 @@
       "id": "c3951ec8-cf50-4531-add4-10b234a85c75",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
+        ["css=.col-md-8 > h1", "css:finder"],
         ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
         ["xpath=//h1[contains(.,'A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy')]", "xpath:innerText"]
       ],
       "value": "30000"
@@ -1037,11 +1050,11 @@
       "id": "0fd2995f-672c-45d2-ae00-5664410101a3",
       "comment": "",
       "command": "assertText",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
+        ["css=.col-md-8 > h1", "css:finder"],
         ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
         ["xpath=//h1[contains(.,'A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy')]", "xpath:innerText"]
       ],
       "value": "A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy"
@@ -1067,25 +1080,28 @@
       "id": "05323db3-2481-47dd-8a23-3644fbb096c5",
       "comment": "",
       "command": "click",
-      "target": "css=.col-md-4:nth-child(4) > .btn-info",
+      "target": "linkText=Wildlife and Plants",
       "targets": [
-        ["css=.col-md-4:nth-child(4) > .btn-info", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div[4]/button", "xpath:idRelative"],
-        ["xpath=//div[3]/div[4]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Wildlife and Plants')]", "xpath:innerText"]
+        ["linkText=Wildlife and Plants", "linkText"],
+        ["css=.col-md-3 .topics:nth-child(6) > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Wildlife and Plants')]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div/div/div/div[6]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#/topics/wildlife-plants')]", "xpath:href"],
+        ["xpath=//div[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Wildlife and Plants')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
       "id": "84d3668d-637f-4f0e-9460-4b9f79ac7e92",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "linkText=Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes",
+      "target": "linkText=Understanding how biodiversity affects ecosystem functioning in cities",
       "targets": [
-        ["linkText=Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes", "linkText"],
+        ["linkText=Understanding how biodiversity affects ecosystem functioning in cities", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[7]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/5e2f3f59e4b0a79317d422af/60ba6641d34e86b9388d8fd7')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Understanding how biodiversity affects ecosystem functioning in cities')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/5050cb0ee4b0be20bb30eac0/66572d2dd34ef3137d35ed6f')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": "30000"
@@ -1093,13 +1109,13 @@
       "id": "2741d7d6-910f-4ac5-aaf7-307c8a33f695",
       "comment": "",
       "command": "click",
-      "target": "linkText=Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes",
+      "target": "linkText=Understanding how biodiversity affects ecosystem functioning in cities",
       "targets": [
-        ["linkText=Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes", "linkText"],
+        ["linkText=Understanding how biodiversity affects ecosystem functioning in cities", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[7]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/5e2f3f59e4b0a79317d422af/60ba6641d34e86b9388d8fd7')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Understanding how biodiversity affects ecosystem functioning in cities')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/5050cb0ee4b0be20bb30eac0/66572d2dd34ef3137d35ed6f')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": ""
@@ -1107,26 +1123,26 @@
       "id": "4d0beb6f-8b5a-41df-a490-da160bcbe108",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Understanding how biodiversity affects ecosystem functioning in cities')]", "xpath:innerText"]
       ],
       "value": "30000"
     }, {
       "id": "1ac5c313-3d71-4313-8772-d0aeedc2d7a8",
       "comment": "",
       "command": "assertText",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Understanding how biodiversity affects ecosystem functioning in cities')]", "xpath:innerText"]
       ],
-      "value": "Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes"
+      "value": "Understanding how biodiversity affects ecosystem functioning in cities"
     }]
   }, {
     "id": "e917a235-a1e8-49c4-b5ee-af150c035d23",
@@ -1149,25 +1165,28 @@
       "id": "64447535-5876-4c2c-bd1a-60f11270ad17",
       "comment": "",
       "command": "click",
-      "target": "css=.col-md-4:nth-child(5) > .btn-info",
+      "target": "linkText=Water, Coasts and Ice",
       "targets": [
-        ["css=.col-md-4:nth-child(5) > .btn-info", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div[5]/button", "xpath:idRelative"],
-        ["xpath=//div[3]/div[5]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Water, Coasts and Ice')]", "xpath:innerText"]
+        ["linkText=Water, Coasts and Ice", "linkText"],
+        ["css=.col-md-3 .topics:nth-child(5) > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Water, Coasts and Ice')]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div/div/div/div[5]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#/topics/water-coasts-ice')]", "xpath:href"],
+        ["xpath=//div[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Water, Coasts and Ice')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
       "id": "c6497fcd-1d2f-4bf4-b993-728a808ae98e",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "linkText=Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes",
+      "target": "linkText=Republic of Marshall Islands Precipitation and Vegetation Monitoring",
       "targets": [
-        ["linkText=Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes", "linkText"],
+        ["linkText=Republic of Marshall Islands Precipitation and Vegetation Monitoring", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[7]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/5e2f3f59e4b0a79317d422af/60ba6641d34e86b9388d8fd7')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Republic of Marshall Islands Precipitation and Vegetation Monitoring')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/5050cb0ee4b0be20bb30eac0/6509d078d34eb6693be8f4a8')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": "30000"
@@ -1175,13 +1194,13 @@
       "id": "aed64b97-145e-4c38-9d61-850b456dc4ad",
       "comment": "",
       "command": "click",
-      "target": "linkText=Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes",
+      "target": "linkText=Republic of Marshall Islands Precipitation and Vegetation Monitoring",
       "targets": [
-        ["linkText=Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes", "linkText"],
+        ["linkText=Republic of Marshall Islands Precipitation and Vegetation Monitoring", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[7]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/5e2f3f59e4b0a79317d422af/60ba6641d34e86b9388d8fd7')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Republic of Marshall Islands Precipitation and Vegetation Monitoring')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/5050cb0ee4b0be20bb30eac0/6509d078d34eb6693be8f4a8')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": ""
@@ -1189,30 +1208,30 @@
       "id": "914daee7-a8bf-49b4-bb27-cda125bf5bb1",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Republic of Marshall Islands Precipitation and Vegetation Monitoring')]", "xpath:innerText"]
       ],
       "value": "30000"
     }, {
       "id": "f0c1f98f-b406-4697-b1da-80c16eef1573",
       "comment": "",
       "command": "assertText",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Republic of Marshall Islands Precipitation and Vegetation Monitoring')]", "xpath:innerText"]
       ],
-      "value": "Evaluating How Changing Climate and Water Clarity Can Affect Restoration of Native Coregonine Fish in Midwestern Lakes"
+      "value": "Republic of Marshall Islands Precipitation and Vegetation Monitoring"
     }]
   }, {
     "id": "92949174-f40f-49c2-a4f9-6b6ddc874fdf",
-    "name": "Explore Projects by Native Communities Topic",
+    "name": "Explore Projects by Indigenous Peoples Topic",
     "commands": [{
       "id": "459c1c8f-2944-43bb-bc1d-ebfd87201151",
       "comment": "",
@@ -1231,25 +1250,28 @@
       "id": "f9480b1c-a6a2-4eaf-86eb-6565d62b7389",
       "comment": "",
       "command": "click",
-      "target": "css=.col-md-4:nth-child(6) > .btn-info",
+      "target": "linkText=Indigenous Peoples",
       "targets": [
-        ["css=.col-md-4:nth-child(6) > .btn-info", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div[6]/button", "xpath:idRelative"],
-        ["xpath=//div[3]/div[6]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Native Communities')]", "xpath:innerText"]
+        ["linkText=Indigenous Peoples", "linkText"],
+        ["css=.col-md-3 .topics:nth-child(3) > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Indigenous Peoples')]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div/div/div/div[3]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#/topics/indigenous-peoples')]", "xpath:href"],
+        ["xpath=//div[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Indigenous Peoples')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
       "id": "fcf3643a-0d21-4c71-93d1-03095b524a4d",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "linkText=Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries",
+      "target": "linkText=Developing Adaptation Strategies for Recreational and Tribal Fisheries in the Upper Midwest",
       "targets": [
-        ["linkText=Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries", "linkText"],
+        ["linkText=Developing Adaptation Strategies for Recreational and Tribal Fisheries in the Upper Midwest", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[7]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f8c64d2e4b0546c0c397b46/5f04d07782ce21d4c3f89d1c')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Developing Adaptation Strategies for Recreational and Tribal Fisheries in the Upper Midwest')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/5050cb0ee4b0be20bb30eac0/5b4668fee4b060350a15c742')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": "30000"
@@ -1257,13 +1279,13 @@
       "id": "15302ced-2859-43fd-a4fd-de2a9093cf1a",
       "comment": "",
       "command": "click",
-      "target": "linkText=Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries",
+      "target": "linkText=Developing Adaptation Strategies for Recreational and Tribal Fisheries in the Upper Midwest",
       "targets": [
-        ["linkText=Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries", "linkText"],
+        ["linkText=Developing Adaptation Strategies for Recreational and Tribal Fisheries in the Upper Midwest", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[7]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f8c64d2e4b0546c0c397b46/5f04d07782ce21d4c3f89d1c')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'Developing Adaptation Strategies for Recreational and Tribal Fisheries in the Upper Midwest')])[2]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/5050cb0ee4b0be20bb30eac0/5b4668fee4b060350a15c742')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": ""
@@ -1271,26 +1293,26 @@
       "id": "e5b2fac1-b008-4a6d-bb68-1e4aee9ea361",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Developing Adaptation Strategies for Recreational and Tribal Fisheries in the Upper Midwest')]", "xpath:innerText"]
       ],
       "value": "30000"
     }, {
       "id": "f5d4c8a1-35c2-47ef-913a-50ba6e29d093",
       "comment": "",
       "command": "assertText",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Developing Adaptation Strategies for Recreational and Tribal Fisheries in the Upper Midwest')]", "xpath:innerText"]
       ],
-      "value": "Assessing the Benefits and Vulnerability of Current and Future Potential Ecosystem Services of the Nisqually River Delta and other Puget Sound Estuaries"
+      "value": "Developing Adaptation Strategies for Recreational and Tribal Fisheries in the Upper Midwest"
     }]
   }, {
     "id": "1f97af63-7a01-45c4-a676-4f48909fe4ee",
@@ -1313,25 +1335,28 @@
       "id": "5f1ca757-6863-4750-a963-e7376b866721",
       "comment": "",
       "command": "click",
-      "target": "css=.col-md-4:nth-child(7) > .btn-info",
+      "target": "linkText=Science Tools for Managers",
       "targets": [
-        ["css=.col-md-4:nth-child(7) > .btn-info", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div[7]/button", "xpath:idRelative"],
-        ["xpath=//div[3]/div[7]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Science Tools for Managers')]", "xpath:innerText"]
+        ["linkText=Science Tools for Managers", "linkText"],
+        ["css=.col-md-3 .topics:nth-child(4) > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Science Tools for Managers')]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div/div/div/div[4]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#/topics/science-tools')]", "xpath:href"],
+        ["xpath=//div[4]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Science Tools for Managers')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
       "id": "2736cc19-f4ca-4bbb-8155-5815815f8603",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "linkText=Climate Science and Adaptation Planning Support for State Wildlife Action Plans (SWAPs) in the North Central Region",
+      "target": "linkText=A Guide to Modeling Low Flows and Intermittent Streams in the Pacific Northwest",
       "targets": [
-        ["linkText=Climate Science and Adaptation Planning Support for State Wildlife Action Plans (SWAPs) in the North Central Region", "linkText"],
+        ["linkText=A Guide to Modeling Low Flows and Intermittent Streams in the Pacific Northwest", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Climate Science and Adaptation Planning Support for State Wildlife Action Plans (SWAPs) in the North Central Region')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[7]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f83509de4b0e84f60868124/6009c26fd34e162231fb2334')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'A Guide to Modeling Low Flows and Intermittent Streams in the Pacific Northwest')])[3]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/5050cb0ee4b0be20bb30eac0/63e2dc77d34e9fa19a9ba41f')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": "30000"
@@ -1339,13 +1364,13 @@
       "id": "c3f45a0f-bad0-4d5c-bd7c-4dab838401b0",
       "comment": "",
       "command": "click",
-      "target": "linkText=Climate Science and Adaptation Planning Support for State Wildlife Action Plans (SWAPs) in the North Central Region",
+      "target": "linkText=A Guide to Modeling Low Flows and Intermittent Streams in the Pacific Northwest",
       "targets": [
-        ["linkText=Climate Science and Adaptation Planning Support for State Wildlife Action Plans (SWAPs) in the North Central Region", "linkText"],
+        ["linkText=A Guide to Modeling Low Flows and Intermittent Streams in the Pacific Northwest", "linkText"],
         ["css=.card:nth-child(1) a", "css:finder"],
-        ["xpath=(//a[contains(text(),'Climate Science and Adaptation Planning Support for State Wildlife Action Plans (SWAPs) in the North Central Region')])[2]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[7]/div[2]/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '#/project/4f83509de4b0e84f60868124/6009c26fd34e162231fb2334')])[2]", "xpath:href"],
+        ["xpath=(//a[contains(text(),'A Guide to Modeling Low Flows and Intermittent Streams in the Pacific Northwest')])[3]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-topics/div/div[2]/div[3]/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#/project/5050cb0ee4b0be20bb30eac0/63e2dc77d34e9fa19a9ba41f')])[2]", "xpath:href"],
         ["xpath=//h4/a", "xpath:position"]
       ],
       "value": ""
@@ -1353,280 +1378,26 @@
       "id": "2f486206-f286-42a1-93f2-1c95365a4308",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Climate Science and Adaptation Planning Support for State Wildlife Action Plans (SWAPs) in the North Central Region')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'A Guide to Modeling Low Flows and Intermittent Streams in the Pacific Northwest')]", "xpath:innerText"]
       ],
       "value": "30000"
     }, {
       "id": "b699d7c0-4d55-44cd-b6fc-5dcaa0ec4fcd",
       "comment": "",
       "command": "assertText",
-      "target": "css=h1:nth-child(2)",
+      "target": "css=.col-md-8 > h1",
       "targets": [
-        ["css=h1:nth-child(2)", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div[2]/div/h1", "xpath:idRelative"],
-        ["xpath=//div/h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Climate Science and Adaptation Planning Support for State Wildlife Action Plans (SWAPs) in the North Central Region')]", "xpath:innerText"]
+        ["css=.col-md-8 > h1", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-project/div/div/div/h1", "xpath:idRelative"],
+        ["xpath=//app-project/div/div/div/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'A Guide to Modeling Low Flows and Intermittent Streams in the Pacific Northwest')]", "xpath:innerText"]
       ],
-      "value": "Climate Science and Adaptation Planning Support for State Wildlife Action Plans (SWAPs) in the North Central Region"
-    }]
-  }, {
-    "id": "62a06daf-cc1a-483b-b67b-0daf8e0f2589",
-    "name": "Advanced Search by Topic",
-    "commands": [{
-      "id": "1823c6bb-d2d8-4bcf-8995-a702492236d5",
-      "comment": "",
-      "command": "open",
-      "target": "/",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "c395cb64-a98b-4b23-8da1-1f6bdfe69f76",
-      "comment": "",
-      "command": "setWindowSize",
-      "target": "896x1097",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "b7b2a630-6ee1-4943-81bb-a3d4736f2673",
-      "comment": "",
-      "command": "click",
-      "target": "css=.btn-success",
-      "targets": [
-        ["css=.btn-success", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div/div[2]/button", "xpath:idRelative"],
-        ["xpath=//button", "xpath:position"],
-        ["xpath=//button[contains(.,'Advanced Search')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "f5bbe4b7-8675-42b3-9a72-0ceb18394d8f",
-      "comment": "",
-      "command": "waitForElementPresent",
-      "target": "css=.ng-select-single > .ng-select-container",
-      "targets": [
-        ["css=.ng-select-single > .ng-select-container", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-search/div/div/search-nav/div/div/form/div[2]/ng-select/div", "xpath:idRelative"],
-        ["xpath=//ng-select/div", "xpath:position"]
-      ],
-      "value": "30000"
-    }, {
-      "id": "f311ac55-be84-4fcb-876e-ec984f200220",
-      "comment": "",
-      "command": "type",
-      "target": "css=.ng-select-single input",
-      "targets": [
-        ["css=.ng-select-single input", "css:finder"],
-        ["xpath=(//input[@type='text'])[2]", "xpath:attributes"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-search/div/div/search-nav/div/div/form/div[2]/ng-select/div/div/div[2]/input", "xpath:idRelative"],
-        ["xpath=//div[2]/input", "xpath:position"]
-      ],
-      "value": "Drought, Fire and Extreme Weather"
-    }, {
-      "id": "5651186e-5fee-4c98-8fd9-0d16b7f6c563",
-      "comment": "",
-      "command": "sendKeys",
-      "target": "css=.ng-select-single input",
-      "targets": [
-        ["css=.ng-select-single input", "css:finder"],
-        ["xpath=(//input[@type='text'])[2]", "xpath:attributes"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-search/div/div/search-nav/div/div/form/div[2]/ng-select/div/div/div[2]/input", "xpath:idRelative"],
-        ["xpath=//div[2]/input", "xpath:position"]
-      ],
-      "value": "${KEY_ENTER}"
-    }, {
-      "id": "1360e13c-3152-48ce-9584-3a09ad255a72",
-      "comment": "",
-      "command": "click",
-      "target": "css=.btn-success",
-      "targets": [
-        ["css=.btn-success", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-search/div/div/search-nav/div/div/form/div[5]/button", "xpath:idRelative"],
-        ["xpath=//button", "xpath:position"],
-        ["xpath=//button[contains(.,'Search')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "2d4d97db-c0a0-4996-a0a2-d84ecf0fa61c",
-      "comment": "",
-      "command": "waitForElementPresent",
-      "target": "linkText=1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings",
-      "targets": [
-        ["linkText=1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings", "linkText"],
-        ["css=div:nth-child(1) > .card .nonProject", "css:finder"],
-        ["xpath=//a[contains(text(),'1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings')]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-search/div/div[2]/div/div/div/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=//a[contains(@href, '#/search')]", "xpath:href"],
-        ["xpath=//h4/a", "xpath:position"],
-        ["xpath=//a[contains(.,'1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings')]", "xpath:innerText"]
-      ],
-      "value": "30000"
-    }, {
-      "id": "799078d8-b3b5-428c-be00-95ab6aff4730",
-      "comment": "",
-      "command": "type",
-      "target": "xpath=(//input[@type='text'])[3]",
-      "targets": [
-        ["css=.ng-select-focused input", "css:finder"],
-        ["xpath=(//input[@type='text'])[3]", "xpath:attributes"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-search/div/div/search-nav/div/div/form/div[3]/ng-select/div/div/div[2]/input", "xpath:idRelative"],
-        ["xpath=//div[2]/input", "xpath:position"]
-      ],
-      "value": "Extreme Weather"
-    }, {
-      "id": "9db5c032-ae97-45e3-917a-1f4053ef22bd",
-      "comment": "",
-      "command": "sendKeys",
-      "target": "xpath=(//input[@type='text'])[3]",
-      "targets": [
-        ["css=.ng-select-focused input", "css:finder"],
-        ["xpath=(//input[@type='text'])[3]", "xpath:attributes"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-search/div/div/search-nav/div/div/form/div[3]/ng-select/div/div/div[2]/input", "xpath:idRelative"],
-        ["xpath=//div[2]/input", "xpath:position"]
-      ],
-      "value": "${KEY_ENTER}"
-    }, {
-      "id": "76461f9d-8b3b-4c6d-9208-777787fb5ed0",
-      "comment": "",
-      "command": "click",
-      "target": "css=.btn-success",
-      "targets": [
-        ["css=.btn-success", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-search/div/div/search-nav/div/div/form/div[5]/button", "xpath:idRelative"],
-        ["xpath=//button", "xpath:position"],
-        ["xpath=//button[contains(.,'Search')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "0ad3babd-01e3-49e8-a367-a3a0041d6121",
-      "comment": "",
-      "command": "waitForElementPresent",
-      "target": "linkText=A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy",
-      "targets": [
-        ["linkText=A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy", "linkText"],
-        ["css=div:nth-child(1) > .card > .card-block a", "css:finder"],
-        ["xpath=//a[contains(text(),'A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy')]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-search/div/div[2]/div/div/div/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=//a[contains(@href, '#/project/5050cb0ee4b0be20bb30eac0/60146056d34e162231feedc3')]", "xpath:href"],
-        ["xpath=//h4/a", "xpath:position"],
-        ["xpath=//a[contains(.,'A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy')]", "xpath:innerText"]
-      ],
-      "value": "30000"
-    }, {
-      "id": "d34c20ef-15c8-47a0-b347-e341e61301d0",
-      "comment": "",
-      "command": "assertText",
-      "target": "linkText=A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy",
-      "targets": [
-        ["linkText=A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy", "linkText"],
-        ["css=div:nth-child(1) > .card > .card-block a", "css:finder"],
-        ["xpath=//a[contains(text(),'A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy')]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-search/div/div[2]/div/div/div/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=//a[contains(@href, '#/project/5050cb0ee4b0be20bb30eac0/60146056d34e162231feedc3')]", "xpath:href"],
-        ["xpath=//h4/a", "xpath:position"],
-        ["xpath=//a[contains(.,'A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy')]", "xpath:innerText"]
-      ],
-      "value": "A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy"
-    }]
-  }, {
-    "id": "bea80eb7-e0cf-4889-806e-ccb2d2046bc5",
-    "name": "Advanced Search by CASC",
-    "commands": [{
-      "id": "4d78510a-3267-4dd5-a40a-66cb7459cd7a",
-      "comment": "",
-      "command": "open",
-      "target": "/",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "2aa9cbeb-03eb-4251-8e9f-2c843f2cd054",
-      "comment": "",
-      "command": "setWindowSize",
-      "target": "896x1097",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "b66f4d77-fc25-42b5-a372-4145b9aa9372",
-      "comment": "",
-      "command": "click",
-      "target": "css=.btn-success",
-      "targets": [
-        ["css=.btn-success", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div/div[2]/button", "xpath:idRelative"],
-        ["xpath=//button", "xpath:position"],
-        ["xpath=//button[contains(.,'Advanced Search')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "fc04025d-b8f8-4333-a84a-aecb7d4a566e",
-      "comment": "",
-      "command": "type",
-      "target": "css=.ng-select-focused input",
-      "targets": [
-        ["css=.ng-select-focused input", "css:finder"],
-        ["xpath=(//input[@type='text'])[4]", "xpath:attributes"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-search/div/div/search-nav/div/div/form/div[4]/ng-select/div/div/div[2]/input", "xpath:idRelative"],
-        ["xpath=//div[4]/ng-select/div/div/div[2]/input", "xpath:position"]
-      ],
-      "value": "National CASC"
-    }, {
-      "id": "74173320-a7de-4175-9565-605dfd6d676d",
-      "comment": "",
-      "command": "sendKeys",
-      "target": "css=.ng-select-focused input",
-      "targets": [
-        ["css=.ng-select-focused input", "css:finder"],
-        ["xpath=(//input[@type='text'])[4]", "xpath:attributes"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-search/div/div/search-nav/div/div/form/div[4]/ng-select/div/div/div[2]/input", "xpath:idRelative"],
-        ["xpath=//div[4]/ng-select/div/div/div[2]/input", "xpath:position"]
-      ],
-      "value": "${KEY_ENTER}"
-    }, {
-      "id": "aa802711-506d-4e0c-9499-b33c5e2dbd1b",
-      "comment": "",
-      "command": "click",
-      "target": "css=.btn-success",
-      "targets": [
-        ["css=.btn-success", "css:finder"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-search/div/div/search-nav/div/div/form/div[5]/button", "xpath:idRelative"],
-        ["xpath=//button", "xpath:position"],
-        ["xpath=//button[contains(.,'Search')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "2306c680-3907-43bb-b2ba-520c65ceb77f",
-      "comment": "",
-      "command": "waitForElementPresent",
-      "target": "linkText=2010 Yearly Report for Predicting Climate Change Threats to Key Estuarine Habitats and Ecosystem Services in the Pacific Northwest",
-      "targets": [
-        ["linkText=2010 Yearly Report for Predicting Climate Change Threats to Key Estuarine Habitats and Ecosystem Services in the Pacific Northwest", "linkText"],
-        ["css=div:nth-child(1) > .card .nonProject", "css:finder"],
-        ["xpath=//a[contains(text(),'2010 Yearly Report for Predicting Climate Change Threats to Key Estuarine Habitats and Ecosystem Services in the Pacific Northwest')]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-search/div/div[2]/div/div/div/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=//a[contains(@href, '#/search')]", "xpath:href"],
-        ["xpath=//h4/a", "xpath:position"],
-        ["xpath=//a[contains(.,'2010 Yearly Report for Predicting Climate Change Threats to Key Estuarine Habitats and Ecosystem Services in the Pacific Northwest')]", "xpath:innerText"]
-      ],
-      "value": "30000"
-    }, {
-      "id": "e5e426d7-b9e0-43ea-b7ff-32a25f4c4bc9",
-      "comment": "",
-      "command": "assertText",
-      "target": "linkText=2010 Yearly Report for Predicting Climate Change Threats to Key Estuarine Habitats and Ecosystem Services in the Pacific Northwest",
-      "targets": [
-        ["linkText=2010 Yearly Report for Predicting Climate Change Threats to Key Estuarine Habitats and Ecosystem Services in the Pacific Northwest", "linkText"],
-        ["css=div:nth-child(1) > .card .nonProject", "css:finder"],
-        ["xpath=//a[contains(text(),'2010 Yearly Report for Predicting Climate Change Threats to Key Estuarine Habitats and Ecosystem Services in the Pacific Northwest')]", "xpath:link"],
-        ["xpath=//div[@id='mainDisplayWrapper']/app-search/div/div[2]/div/div/div/div/div/h4/a", "xpath:idRelative"],
-        ["xpath=//a[contains(@href, '#/search')]", "xpath:href"],
-        ["xpath=//h4/a", "xpath:position"],
-        ["xpath=//a[contains(.,'2010 Yearly Report for Predicting Climate Change Threats to Key Estuarine Habitats and Ecosystem Services in the Pacific Northwest')]", "xpath:innerText"]
-      ],
-      "value": "2010 Yearly Report for Predicting Climate Change Threats to Key Estuarine Habitats and Ecosystem Services in the Pacific Northwest"
+      "value": "A Guide to Modeling Low Flows and Intermittent Streams in the Pacific Northwest"
     }]
   }, {
     "id": "5404ab8b-26a2-4746-a791-d05942163edb",
@@ -1766,6 +1537,548 @@
       ],
       "value": "1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings"
     }]
+  }, {
+    "id": "e2922e31-45f9-4591-83f1-ef470a6f587d",
+    "name": "Advanced Search by Topic and Subtopic",
+    "commands": [{
+      "id": "3e3bebcf-f3a6-44d8-86db-4bee1db80ecd",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8312bcca-a5b9-49f4-8389-0a606bcb1a1f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "896x1097",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0fede3a7-a7fc-4595-aeec-4aa02aa036b1",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "css=.ng-select-single > .ng-select-container",
+      "targets": [
+        ["css=.ng-select-single > .ng-select-container", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div/app-search-nav/div/div/form/div[2]/ng-select/div", "xpath:idRelative"],
+        ["xpath=//ng-select/div", "xpath:position"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "eb085470-de8c-4709-aaef-e00db69a5812",
+      "comment": "",
+      "command": "click",
+      "target": "//*[@id=\"mainDisplayWrapper\"]/app-cscs/div/div[3]/div/app-search/div/div[1]/app-search-nav/div/div[1]/form/div[2]/ng-select/div",
+      "targets": [
+        ["css=.ng-select-single input", "css:finder"],
+        ["xpath=(//input[@type='text'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div/app-search-nav/div/div/form/div[2]/ng-select/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7979e802-15bd-4b85-9a0a-6d5e8e2e6079",
+      "comment": "",
+      "command": "click",
+      "target": "//span[contains(text(), 'Drought, Fire and Extreme Weat')]",
+      "targets": [
+        ["css=#ae3f5bf15193-0 > .ng-option-label", "css:finder"],
+        ["xpath=//div[@id='ae3f5bf15193-0']/span", "xpath:idRelative"],
+        ["xpath=//div[2]/div/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Drought, Fire and Extreme Weather')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2fc5cce0-1f7b-4a31-8efd-0e295b1a35e3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-success",
+      "targets": [
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div/app-search-nav/div/div/form/div[5]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2c3e6c1d-24ff-4ab9-8312-c19e8cf23e4d",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "linkText=1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings",
+      "targets": [
+        ["linkText=1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings", "linkText"],
+        ["css=div:nth-child(1) > .card .nonProject", "css:finder"],
+        ["xpath=//a[contains(text(),'1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings')]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div[2]/div/div/div/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=//h4/a", "xpath:position"],
+        ["xpath=//a[contains(.,'1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings')]", "xpath:innerText"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "fa351f29-24a3-4823-89a9-0e137519cb1c",
+      "comment": "",
+      "command": "assertText",
+      "target": "linkText=1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings",
+      "targets": [
+        ["linkText=1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings", "linkText"],
+        ["css=div:nth-child(1) > .card .nonProject", "css:finder"],
+        ["xpath=//a[contains(text(),'1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings')]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-search/div/div[2]/div/div/div/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#/search')]", "xpath:href"],
+        ["xpath=//h4/a", "xpath:position"],
+        ["xpath=//a[contains(.,'1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings')]", "xpath:innerText"]
+      ],
+      "value": "1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings"
+    }, {
+      "id": "5da044da-030c-4e5a-af87-06d52561e867",
+      "comment": "",
+      "command": "click",
+      "target": "//*[@id=\"mainDisplayWrapper\"]/app-cscs/div/div[3]/div/app-search/div/div[1]/app-search-nav/div/div[1]/form/div[3]/ng-select/div",
+      "targets": [
+        ["css=.ng-select-focused input", "css:finder"],
+        ["xpath=(//input[@type='text'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div/app-search-nav/div/div/form/div[3]/ng-select/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1def103a-c9ed-4a13-9e61-1b14330e2d9f",
+      "comment": "",
+      "command": "click",
+      "target": "//span[contains(text(), 'Extreme Weather')]",
+      "targets": [
+        ["css=#af5f9ecab996-1 > .ng-option-label", "css:finder"],
+        ["xpath=//div[@id='af5f9ecab996-1']/span", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6d322a7c-f5da-43e9-ba91-6604361aec93",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-success",
+      "targets": [
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div/app-search-nav/div/div/form/div[5]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "096cb3d6-bc2c-40d2-93ed-95059815244a",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "linkText=21st Century High-Resolution Climate Projections for Guam and American Samoa",
+      "targets": [
+        ["css=div:nth-child(1) > .card .card-title", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div[2]/div/div/div/div/div/h4", "xpath:idRelative"],
+        ["xpath=//div/div/div/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'21st Century High-Resolution Climate Projections for Guam and American Samoa')]", "xpath:innerText"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "c0fb2913-1616-4a84-bea0-80677aac546b",
+      "comment": "",
+      "command": "assertText",
+      "target": "linkText=21st Century High-Resolution Climate Projections for Guam and American Samoa",
+      "targets": [
+        ["linkText=21st Century High-Resolution Climate Projections for Guam and American Samoa", "linkText"],
+        ["css=div:nth-child(1) > .card .card-title > a", "css:finder"],
+        ["xpath=//a[contains(text(),'21st Century High-Resolution Climate Projections for Guam and American Samoa')]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div[2]/div/div/div/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#/project/4f8c650ae4b0546c0c397b48/50118ddce4b0d78fd4e59ba3')]", "xpath:href"],
+        ["xpath=//h4/a", "xpath:position"],
+        ["xpath=//a[contains(.,'21st Century High-Resolution Climate Projections for Guam and American Samoa')]", "xpath:innerText"]
+      ],
+      "value": "21st Century High-Resolution Climate Projections for Guam and American Samoa"
+    }]
+  }, {
+    "id": "635683d7-81ce-4c27-ba78-da73be424401",
+    "name": "Advanced Search by CASCs",
+    "commands": [{
+      "id": "7020d4c0-c5aa-4e43-82d6-7cd22a472523",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b4481f08-55ea-42ca-bc5f-e61310b0917c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "896x1097",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "25ebb9c8-78bb-4564-b069-42a00fa358cc",
+      "comment": "",
+      "command": "click",
+      "target": "//*[@id=\"mainDisplayWrapper\"]/app-cscs/div/div[3]/div/app-search/div/div[1]/app-search-nav/div/div/form/div[4]/ng-select/div",
+      "targets": [
+        ["css=.ng-select-single input", "css:finder"],
+        ["xpath=(//input[@type='text'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div/app-search-nav/div/div/form/div[2]/ng-select/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fae11073-ccd2-4cd9-92a0-c19414af2873",
+      "comment": "",
+      "command": "click",
+      "target": "//span[contains(text(), 'National CASC')]",
+      "targets": [
+        ["css=#ae3f5bf15193-0 > .ng-option-label", "css:finder"],
+        ["xpath=//div[@id='ae3f5bf15193-0']/span", "xpath:idRelative"],
+        ["xpath=//div[2]/div/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Drought, Fire and Extreme Weather')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e3f8d266-61c2-431f-adb0-c400ad1e3f9f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-success",
+      "targets": [
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div/app-search-nav/div/div/form/div[5]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "666f63ba-8846-46b2-9860-c8dc9b832135",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "linkText=2010 Yearly Report for Predicting Climate Change Threats to Key Estuarine Habitats and Ecosystem Services in the Pacific Northwest",
+      "targets": [
+        ["linkText=2010 Yearly Report for Predicting Climate Change Threats to Key Estuarine Habitats and Ecosystem Services in the Pacific Northwest", "linkText"],
+        ["css=div:nth-child(1) > .card .nonProject", "css:finder"],
+        ["xpath=//a[contains(text(),'2010 Yearly Report for Predicting Climate Change Threats to Key Estuarine Habitats and Ecosystem Services in the Pacific Northwest')]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div[2]/div/div/div/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=//h4/a", "xpath:position"],
+        ["xpath=//a[contains(.,'2010 Yearly Report for Predicting Climate Change Threats to Key Estuarine Habitats and Ecosystem Services in the Pacific Northwest')]", "xpath:innerText"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "b60c5034-47a2-4ea3-a35d-7138479681ee",
+      "comment": "",
+      "command": "assertText",
+      "target": "linkText=2010 Yearly Report for Predicting Climate Change Threats to Key Estuarine Habitats and Ecosystem Services in the Pacific Northwest",
+      "targets": [
+        ["css=div:nth-child(1) > .card .card-title", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div[2]/div/div/div/div/div/h4", "xpath:idRelative"],
+        ["xpath=//div/div/div/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'2010 Yearly Report for Predicting Climate Change Threats to Key Estuarine Habitats and Ecosystem Services in the Pacific Northwest')]", "xpath:innerText"]
+      ],
+      "value": "2010 Yearly Report for Predicting Climate Change Threats to Key Estuarine Habitats and Ecosystem Services in the Pacific Northwest"
+    }]
+  }, {
+    "id": "e12f5563-ef2b-47cb-af13-e70ddb202ada",
+    "name": "Advanced Search by Subfilter",
+    "commands": [{
+      "id": "175552c0-4990-4e0a-9b23-b20e847c81b6",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b910868a-6d82-4798-b251-893554843961",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "896x1097",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2ef26ec4-40a2-4072-a669-e4d6fcb3ecfa",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "css=.ng-select-single > .ng-select-container",
+      "targets": [
+        ["css=.ng-select-single > .ng-select-container", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div/app-search-nav/div/div/form/div[2]/ng-select/div", "xpath:idRelative"],
+        ["xpath=//ng-select/div", "xpath:position"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "ef5b4e43-1306-45ce-a5e2-89e9ab6d5840",
+      "comment": "",
+      "command": "click",
+      "target": "//*[@id=\"mainDisplayWrapper\"]/app-cscs/div/div[3]/div/app-search/div/div[1]/app-search-nav/div/div[1]/form/div[2]/ng-select/div",
+      "targets": [
+        ["css=.ng-select-single input", "css:finder"],
+        ["xpath=(//input[@type='text'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div/app-search-nav/div/div/form/div[2]/ng-select/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fcc1b21b-1bfd-4743-885d-b14d2eb79841",
+      "comment": "",
+      "command": "click",
+      "target": "//span[contains(text(), 'Drought, Fire and Extreme Weat')]",
+      "targets": [
+        ["css=#ae3f5bf15193-0 > .ng-option-label", "css:finder"],
+        ["xpath=//div[@id='ae3f5bf15193-0']/span", "xpath:idRelative"],
+        ["xpath=//div[2]/div/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Drought, Fire and Extreme Weather')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e22aba3f-0503-4bd1-9d14-5e08deaa8ff2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-success",
+      "targets": [
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div/app-search-nav/div/div/form/div[5]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "84c8d25c-0923-46b2-9f5d-81c08e030516",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "linkText=1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings",
+      "targets": [
+        ["linkText=1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings", "linkText"],
+        ["css=div:nth-child(1) > .card .nonProject", "css:finder"],
+        ["xpath=//a[contains(text(),'1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings')]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div[2]/div/div/div/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=//h4/a", "xpath:position"],
+        ["xpath=//a[contains(.,'1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings')]", "xpath:innerText"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "a9dfa49a-254d-4892-b819-dd018ffa8f3c",
+      "comment": "",
+      "command": "assertText",
+      "target": "linkText=1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings",
+      "targets": [
+        ["linkText=1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings", "linkText"],
+        ["css=div:nth-child(1) > .card .nonProject", "css:finder"],
+        ["xpath=//a[contains(text(),'1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings')]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-search/div/div[2]/div/div/div/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#/search')]", "xpath:href"],
+        ["xpath=//h4/a", "xpath:position"],
+        ["xpath=//a[contains(.,'1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings')]", "xpath:innerText"]
+      ],
+      "value": "1200 Years of Upper Missouri River Streamflow Reconstructed from Tree Rings"
+    }, {
+      "id": "7ecd3d26-d541-42fd-8bd3-6b4199428272",
+      "comment": "",
+      "command": "click",
+      "target": "//*[@id=\"mainDisplayWrapper\"]/app-cscs/div/div[3]/div/app-search/div/div[1]/app-search-nav/div/div[1]/form/div[3]/ng-select/div",
+      "targets": [
+        ["css=.ng-select-focused input", "css:finder"],
+        ["xpath=(//input[@type='text'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div/app-search-nav/div/div/form/div[3]/ng-select/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bf277a8d-4c54-40aa-9efe-89078ced4581",
+      "comment": "",
+      "command": "click",
+      "target": "//span[contains(text(), 'Extreme Weather')]",
+      "targets": [
+        ["css=#af5f9ecab996-1 > .ng-option-label", "css:finder"],
+        ["xpath=//div[@id='af5f9ecab996-1']/span", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a01dacaf-d3ed-4cb0-90a0-6f6336e57b26",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-success",
+      "targets": [
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div/app-search-nav/div/div/form/div[5]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "fb085179-bdc4-49b7-a2fa-3e7961652933",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "linkText=21st Century High-Resolution Climate Projections for Guam and American Samoa",
+      "targets": [
+        ["css=div:nth-child(1) > .card .card-title", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div[2]/div/div/div/div/div/h4", "xpath:idRelative"],
+        ["xpath=//div/div/div/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'21st Century High-Resolution Climate Projections for Guam and American Samoa')]", "xpath:innerText"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "e986862b-ec67-4650-beb2-ed3ac143bbcd",
+      "comment": "",
+      "command": "assertText",
+      "target": "linkText=21st Century High-Resolution Climate Projections for Guam and American Samoa",
+      "targets": [
+        ["linkText=21st Century High-Resolution Climate Projections for Guam and American Samoa", "linkText"],
+        ["css=div:nth-child(1) > .card .card-title > a", "css:finder"],
+        ["xpath=//a[contains(text(),'21st Century High-Resolution Climate Projections for Guam and American Samoa')]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div[2]/div/div/div/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#/project/4f8c650ae4b0546c0c397b48/50118ddce4b0d78fd4e59ba3')]", "xpath:href"],
+        ["xpath=//h4/a", "xpath:position"],
+        ["xpath=//a[contains(.,'21st Century High-Resolution Climate Projections for Guam and American Samoa')]", "xpath:innerText"]
+      ],
+      "value": "21st Century High-Resolution Climate Projections for Guam and American Samoa"
+    }, {
+      "id": "e42e31cb-9540-4d52-9ee6-f9826e61b91c",
+      "comment": "",
+      "command": "click",
+      "target": "//*[@id=\"mainDisplayWrapper\"]/app-cscs/div/div[3]/div/app-search/div/div[1]/app-search-nav/div/div[2]/div[1]/ng-select/div",
+      "targets": [
+        ["css=.ng-select-focused input", "css:finder"],
+        ["xpath=(//input[@type='text'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div/app-search-nav/div/div/form/div[3]/ng-select/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b1119a82-610e-454e-a270-38201367d919",
+      "comment": "",
+      "command": "click",
+      "target": "//span[contains(text(), 'Project')]",
+      "targets": [
+        ["css=#af5f9ecab996-1 > .ng-option-label", "css:finder"],
+        ["xpath=//div[@id='af5f9ecab996-1']/span", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ef112b92-b5c3-4c7f-8382-bb2dc04ecd2b",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "linkText=A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy",
+      "targets": [
+        ["css=div:nth-child(1) > .card .card-title", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div[2]/div/div/div/div/div/h4", "xpath:idRelative"],
+        ["xpath=//div/div/div/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'21st Century High-Resolution Climate Projections for Guam and American Samoa')]", "xpath:innerText"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "52670dc0-6e44-4a9f-9a85-7559b6b5570d",
+      "comment": "",
+      "command": "assertText",
+      "target": "linkText=A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy",
+      "targets": [
+        ["linkText=21st Century High-Resolution Climate Projections for Guam and American Samoa", "linkText"],
+        ["css=div:nth-child(1) > .card .card-title > a", "css:finder"],
+        ["xpath=//a[contains(text(),'21st Century High-Resolution Climate Projections for Guam and American Samoa')]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div[2]/div/div/div/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#/project/4f8c650ae4b0546c0c397b48/50118ddce4b0d78fd4e59ba3')]", "xpath:href"],
+        ["xpath=//h4/a", "xpath:position"],
+        ["xpath=//a[contains(.,'21st Century High-Resolution Climate Projections for Guam and American Samoa')]", "xpath:innerText"]
+      ],
+      "value": "A Climate Risk Management Screening and Assessment Review for Madagascar’s Country Development Cooperation Strategy"
+    }, {
+      "id": "4656ce3f-30d3-4541-88dc-f768bae785e2",
+      "comment": "",
+      "command": "click",
+      "target": "//*[@id=\"mainDisplayWrapper\"]/app-cscs/div/div[3]/div/app-search/div/div[1]/app-search-nav/div/div[2]/div[2]/ng-select/div",
+      "targets": [
+        ["css=.ng-select-focused input", "css:finder"],
+        ["xpath=(//input[@type='text'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div/app-search-nav/div/div/form/div[3]/ng-select/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "54154eb1-f302-4bd0-8f69-5ac6eab4bd52",
+      "comment": "",
+      "command": "click",
+      "target": "//span[contains(text(), '2014')]",
+      "targets": [
+        ["css=#af5f9ecab996-1 > .ng-option-label", "css:finder"],
+        ["xpath=//div[@id='af5f9ecab996-1']/span", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "251207c7-2c07-4cee-91fc-75bc300e12a1",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "linkText=Changes to Watershed Vulnerability under Future Climates, Fire Regimes, and Population Pressures",
+      "targets": [
+        ["css=div:nth-child(1) > .card .card-title", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div[2]/div/div/div/div/div/h4", "xpath:idRelative"],
+        ["xpath=//div/div/div/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'21st Century High-Resolution Climate Projections for Guam and American Samoa')]", "xpath:innerText"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "9680b8ce-6087-4fd7-a771-ad892fa442cd",
+      "comment": "",
+      "command": "assertText",
+      "target": "linkText=Changes to Watershed Vulnerability under Future Climates, Fire Regimes, and Population Pressures",
+      "targets": [
+        ["linkText=21st Century High-Resolution Climate Projections for Guam and American Samoa", "linkText"],
+        ["css=div:nth-child(1) > .card .card-title > a", "css:finder"],
+        ["xpath=//a[contains(text(),'21st Century High-Resolution Climate Projections for Guam and American Samoa')]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div[2]/div/div/div/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#/project/4f8c650ae4b0546c0c397b48/50118ddce4b0d78fd4e59ba3')]", "xpath:href"],
+        ["xpath=//h4/a", "xpath:position"],
+        ["xpath=//a[contains(.,'21st Century High-Resolution Climate Projections for Guam and American Samoa')]", "xpath:innerText"]
+      ],
+      "value": "Changes to Watershed Vulnerability under Future Climates, Fire Regimes, and Population Pressures"
+    }, {
+      "id": "bc5d81e4-0bed-427d-881b-29307dc54b2c",
+      "comment": "",
+      "command": "click",
+      "target": "//*[@id=\"mainDisplayWrapper\"]/app-cscs/div/div[3]/div/app-search/div/div[1]/app-search-nav/div/div[2]/div[3]/ng-select/div",
+      "targets": [
+        ["css=.ng-select-focused input", "css:finder"],
+        ["xpath=(//input[@type='text'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div/app-search-nav/div/div/form/div[3]/ng-select/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7e4107da-cf20-438a-a8ff-a9b6167aec79",
+      "comment": "",
+      "command": "click",
+      "target": "//span[contains(text(), 'In Progress')]",
+      "targets": [
+        ["css=#af5f9ecab996-1 > .ng-option-label", "css:finder"],
+        ["xpath=//div[@id='af5f9ecab996-1']/span", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2892c52a-243d-4a02-ab05-3088508d3406",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "linkText=Ecological Drought Across the Country",
+      "targets": [
+        ["css=div:nth-child(1) > .card .card-title", "css:finder"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div[2]/div/div/div/div/div/h4", "xpath:idRelative"],
+        ["xpath=//div/div/div/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'21st Century High-Resolution Climate Projections for Guam and American Samoa')]", "xpath:innerText"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "d70deb8c-71b5-477a-a5d8-9ffd7c7e90d7",
+      "comment": "",
+      "command": "assertText",
+      "target": "linkText=Ecological Drought Across the Country",
+      "targets": [
+        ["linkText=21st Century High-Resolution Climate Projections for Guam and American Samoa", "linkText"],
+        ["css=div:nth-child(1) > .card .card-title > a", "css:finder"],
+        ["xpath=//a[contains(text(),'21st Century High-Resolution Climate Projections for Guam and American Samoa')]", "xpath:link"],
+        ["xpath=//div[@id='mainDisplayWrapper']/app-cscs/div/div[3]/div/app-search/div/div[2]/div/div/div/div/div/h4/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#/project/4f8c650ae4b0546c0c397b48/50118ddce4b0d78fd4e59ba3')]", "xpath:href"],
+        ["xpath=//h4/a", "xpath:position"],
+        ["xpath=//a[contains(.,'21st Century High-Resolution Climate Projections for Guam and American Samoa')]", "xpath:innerText"]
+      ],
+      "value": "Ecological Drought Across the Country"
+    }]
   }],
   "suites": [{
     "id": "312a0fbf-4a6f-461d-afba-708c2a1d6982",
@@ -1787,8 +2100,8 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["bea80eb7-e0cf-4889-806e-ccb2d2046bc5", "5404ab8b-26a2-4746-a791-d05942163edb", "62a06daf-cc1a-483b-b67b-0daf8e0f2589"]
+    "tests": ["5404ab8b-26a2-4746-a791-d05942163edb"]
   }],
-  "urls": ["http://dev.cascprojects.org/"],
+  "urls": ["http://dev.cascprojects.org/", "http://selenium.cascprojects.org/", "http://localhost:4200/"],
   "plugins": []
 }
