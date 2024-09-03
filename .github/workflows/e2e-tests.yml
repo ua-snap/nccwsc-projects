@@ -41,9 +41,6 @@ jobs:
           sleep 10 &&
           RESPONSE=$(curl -sSL http://localhost:4444/wd/hub/status)
           echo "Selenium server status response: $RESPONSE"
-          SELENIUM_IP=$(echo $RESPONSE | jq -r '.value.nodes[0].uri' | sed 's|http://||' | sed 's|:4444||')
-          echo "Selenium server IP: $SELENIUM_IP"
-          echo "SELENIUM_SERVER_IP=$SELENIUM_IP" >> $GITHUB_ENV
 
       - name: Run Selenium IDE tests
-        run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://$SELENIUM_SERVER_IP:4444
+        run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://localhost:4444
