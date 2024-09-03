@@ -39,8 +39,8 @@ jobs:
         id: get-ip
         run: |
           sleep 10 &&
-          RESPONSE=$(curl -sSL http://localhost:4444/wd/hub/status)
+          RESPONSE=$(curl -sSL http://127.0.0.1:4444/wd/hub/status)
           echo "Selenium server status response: $RESPONSE"
 
       - name: Run Selenium IDE tests
-        run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://localhost:4444
+        run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://127.0.0.1:4444/wd/hub
