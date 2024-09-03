@@ -32,11 +32,21 @@ jobs:
       - name: Install Selenium IDE Runner
         run: npm install -g selenium-side-runner
 
-      - name: Check Selenium server status
+      - name: Install jq for JSON parsing
+        run: sudo apt-get install -y jq
+
+      - name: Install Selenium IDE Runner
+        run: npm install -g selenium-side-runner
+
+      - name: Get Selenium server IP address
+        id: get-ip
         run: |
           sleep 10 &&
           RESPONSE=$(curl -sSL http://localhost:4444/wd/hub/status)
           echo "Selenium server status response: $RESPONSE"
+          SELENIUM_IP=$(echo $RESPONSE | jq -r '.value.nodes[0].uri' | sed 's|http://||' | sed 's|:4444||')
+          echo "Selenium server IP: $SELENIUM_IP"
+          echo "SELENIUM_SERVER_IP=$SELENIUM_IP" >> $GITHUB_ENV
 
       - name: Run Selenium IDE tests
         run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://localhost:4444
