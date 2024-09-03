@@ -29,9 +29,6 @@ jobs:
         with:
           node-version: "16"
 
-      - name: Install Selenium IDE Runner
-        run: npm install -g selenium-side-runner
-
       - name: Install jq for JSON parsing
         run: sudo apt-get install -y jq
 
@@ -49,4 +46,4 @@ jobs:
           echo "SELENIUM_SERVER_IP=$SELENIUM_IP" >> $GITHUB_ENV
 
       - name: Run Selenium IDE tests
-        run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://localhost:4444
+        run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://$SELENIUM_SERVER_IP:4444
