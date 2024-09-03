@@ -1,0 +1,28 @@
+name: Run Selenium tests using Github Actions
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  selenium-ide-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      - name: Install Selenium IDE Runner
+        run: npm install -g selenium-side-runner
+
+      - name: Run Selenium IDE tests
+        run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server https://localhost:4444
