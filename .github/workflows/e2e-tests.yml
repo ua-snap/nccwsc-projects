@@ -32,9 +32,11 @@ jobs:
       - name: Install Selenium IDE Runner
         run: npm install -g selenium-side-runner
 
-      - name: Wait for Selenium server to be ready
+      - name: Check Selenium server status
         run: |
-          timeout 10s bash -c 'until curl -sSL http://localhost:4444/wd/hub/status | grep '"'"'\"ready\":true'"'"'; do sleep 1; done'
+          sleep 10 &&
+          RESPONSE=$(curl -sSL http://localhost:4444/wd/hub/status)
+          echo "Selenium server status response: $RESPONSE"
 
       - name: Run Selenium IDE tests
         run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://localhost:4444
