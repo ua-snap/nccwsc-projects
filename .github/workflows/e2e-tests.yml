@@ -12,6 +12,14 @@ jobs:
   selenium-ide-tests:
     runs-on: ubuntu-latest
 
+    services:
+      selenium:
+        image: selenium/standalone-chrome:latest
+        options: >-
+          --shm-size 2g
+        ports:
+          - 4444:4444
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -24,5 +32,12 @@ jobs:
       - name: Install Selenium IDE Runner
         run: npm install -g selenium-side-runner
 
+      - name: Wait for Selenium to be ready
+        run: |
+          until curl -sSf http://localhost:4444/wd/hub/status | grep -q '"ready":true'; do
+            echo "Waiting for Selenium..."
+            sleep 2
+          done
+
       - name: Run Selenium IDE tests
-        run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server https://localhost:4444
+        run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://localhost:4444
