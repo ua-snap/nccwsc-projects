@@ -10,6 +10,8 @@ chromeCapabilities.set("chromeOptions", {
     "--disable-dev-shm-usage",
     "--disable-gpu",
     "--disable-software-rasterizer",
+    "--disable-setuid-sandbox",
+    "--remote-debugging-port=9222",
   ],
 });
 
