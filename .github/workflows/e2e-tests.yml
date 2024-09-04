@@ -42,7 +42,7 @@ jobs:
       - name: Detect Host IP
         id: detect-ip
         run: |
-          IP_ADDRESS=$(node -e "var ifaces=require('os').networkInterfaces(); Object.keys(ifaces).forEach(dev=>ifaces[dev].forEach(details=>{if(details.family==='IPv4' && !details.internal) console.log(details.address)}));")
+          IP_ADDRESS=$(node -e "var ifaces=require('os').networkInterfaces(); Object.keys(ifaces).forEach(dev=>ifaces[dev].forEach(details=>{if(details.family==='IPv4' && !details.internal && !details.address.startsWith('172.')) console.log(details.address)}));")
           echo "HOST_IP=$IP_ADDRESS" >> $GITHUB_ENV
 
       - name: Kill any process using port 4200
