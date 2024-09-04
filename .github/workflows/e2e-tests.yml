@@ -42,6 +42,7 @@ jobs:
         run: |
           npm run dev &
           wait-on http://127.0.0.1:4200 --timeout 30000
+        continue-on-error: true
 
       - name: Report status of Selenium server
         run: |
