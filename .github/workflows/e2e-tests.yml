@@ -29,15 +29,12 @@ jobs:
         with:
           node-version: "16"
 
-      - name: Install jq for JSON parsing
-        run: sudo apt-get install -y jq
-
       - name: Install Selenium IDE Runner
         run: npm install -g selenium-side-runner
 
-      - name: Wait for Selenium server to be ready
+      - name: Report status of Selenium server
         run: |
-          timeout 120s bash -c 'until curl -sSL http://localhost:4444/wd/hub/status | grep '"'"'\"ready\":true'"'"'; do sleep 5; done'
+          sleep 10 && curl -sSL http://127.0.0.1:4444/wd/hub/status
 
       - name: Run Selenium IDE tests
         run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://127.0.0.1:4444/wd/hub
