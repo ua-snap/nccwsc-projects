@@ -29,8 +29,18 @@ jobs:
         with:
           node-version: "16"
 
+      - name: Install CASC node modules
+        run: npm install
+
       - name: Install Selenium IDE Runner
         run: npm install -g selenium-side-runner
+
+      - name: Start CASC Project Explorer
+        run: npm run dev &
+
+      - name: Wait for CASC Project Explorer to be ready
+        run: |
+          sleep 15 && curl -sSL http://127.0.0.1:4200
 
       - name: Report status of Selenium server
         run: |
