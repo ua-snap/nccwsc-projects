@@ -36,7 +36,7 @@ jobs:
         run: npm install selenium-side-runner
 
       - name: Install wait-on
-        run: npm install wait-on
+        run: npm install -g wait-on
 
       - name: Start CASC Project Explorer
         run: |
