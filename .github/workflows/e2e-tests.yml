@@ -62,5 +62,9 @@ jobs:
         run: |
           curl -sSL http://localhost:4444/wd/hub/status
 
+      - name: Get me the header for the USGS API
+        run: |
+          curl -v https://my.usgs.gov/casc-service/search?query=&topics=Landscapes&subtopics=&organizations=
+
       - name: Run Selenium IDE tests
         run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://localhost:4444/wd/hub --base-url http://${{ env.HOST_IP }}:4200 --debug
