@@ -9,6 +9,7 @@ chromeCapabilities.set("chromeOptions", {
     "--no-sandbox",
     "--disable-dev-shm-usage",
     "--disable-gpu",
+    "--disable-software-rasterizer",
   ],
 });
 
