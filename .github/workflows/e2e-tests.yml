@@ -39,6 +39,12 @@ jobs:
       - name: Install wait-on
         run: npm install -g wait-on
 
+      - name: Detect Host IP
+        id: detect-ip
+        run: |
+          IP_ADDRESS=$(node -e "var ifaces=require('os').networkInterfaces(); Object.keys(ifaces).forEach(dev=>ifaces[dev].forEach(details=>{if(details.family==='IPv4' && !details.internal) console.log(details.address)}));")
+          echo "HOST_IP=$IP_ADDRESS" >> $GITHUB_ENV
+
       - name: Kill any process using port 4200
         run: sudo kill -9 $(sudo lsof -t -i:4200) || true
 
@@ -57,4 +63,4 @@ jobs:
           curl -sSL http://localhost:4444/wd/hub/status
 
       - name: Run Selenium IDE tests
-        run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://localhost:4444/wd/hub --base-url http://selenium:4200 --debug
+        run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://localhost:4444/wd/hub --base-url http://${{ env.HOST_IP }}:4200 --debug
