@@ -45,12 +45,12 @@ jobs:
       - name: Start CASC Project Explorer
         run: |
           npm run dev &
-          wait-on http://127.0.0.1:4200 --timeout 30000
+          wait-on http://localhost:4200 --timeout 30000
         continue-on-error: true
 
       - name: Check if CASC Project Explorer is running
         run: |
-          curl -sSL http://127.0.0.1:4200
+          curl -sSL http://localhost:4200
 
       - name: Report status of Selenium server
         run: |
