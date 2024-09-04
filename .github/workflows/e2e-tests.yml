@@ -44,7 +44,7 @@ jobs:
 
       - name: Start CASC Project Explorer
         run: |
-          npm run dev &
+          npm run dev -- --host 0.0.0.0 --port 4200 &
           wait-on http://localhost:4200 --timeout 30000
         continue-on-error: true
 
