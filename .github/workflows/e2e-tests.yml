@@ -17,9 +17,6 @@ jobs:
         image: selenium/standalone-chrome:latest
         options: >-
           --shm-size 2g
-        ports:
-          - 4200:4200
-          - 4444:4444
 
     steps:
       - name: Checkout code
@@ -33,28 +30,5 @@ jobs:
       - name: Install CASC node modules
         run: npm install
 
-      - name: Install Selenium IDE Runner
-        run: npm install -g selenium-side-runner
-
-      - name: Install wait-on
-        run: npm install -g wait-on
-
-      - name: Kill any process using port 4200
-        run: sudo kill -9 $(sudo lsof -t -i:4200) || true
-
-      - name: Start CASC Project Explorer
-        run: |
-          npm run dev -- --host 0.0.0.0 --port 4200 &
-          wait-on http://localhost:4200 --timeout 30000
-        continue-on-error: true
-
-      - name: Check if CASC Project Explorer is running
-        run: |
-          curl -sSL http://localhost:4200
-
-      - name: Report status of Selenium server
-        run: |
-          curl -sSL http://localhost:4444/wd/hub/status
-
-      - name: Run Selenium IDE tests
-        run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://localhost:4444/wd/hub --base-url http://localhost:4200 --debug
+      - name: Run Advanced Search test
+        run: npm run test-search

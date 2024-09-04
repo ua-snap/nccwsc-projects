@@ -8,7 +8,10 @@
   "scripts": {
     "ng": "ng",
     "dev": "ng serve",
-    "build": "ng build"
+    "build": "ng build",
+    "test-search": "npx mocha selenium-tests/advancedSearch.spec.mjs",
+    "test-region": "npx mocha selenium-tests/explorebyRegion.spec.mjs",
+    "test-topics": "npx mocha selenium-tests/explorebyTopic.spec.mjs"
   },
   "private": true,
   "dependencies": {
@@ -41,7 +44,10 @@
     "@types/leaflet": "1.9.12",
     "@types/node": "^20.14.10",
     "angular-eslint": "18.1.0",
+    "chai": "^4.3.7",
     "eslint": "^9.6.0",
+    "mocha": "^10.2.0",
+    "selenium-webdriver": "^4.8.0",
     "ts-node": "~10.9.2",
     "typescript": "~5.5.3",
     "typescript-eslint": "8.0.0-alpha.38"
