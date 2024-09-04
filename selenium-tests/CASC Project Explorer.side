@@ -2,7 +2,7 @@
   "id": "dd53e7f0-c9da-4358-9966-ae266c83efdd",
   "version": "2.0",
   "name": "CASC Project Explorer",
-  "url": "http://172.18.0.2:4200",
+  "url": "http://angular-app:4200",
   "tests": [{
     "id": "19d7f08f-6051-47b1-b63e-96f7b5e0b108",
     "name": "Explore Projects by Alaska Region",
