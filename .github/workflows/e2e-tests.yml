@@ -34,7 +34,7 @@ jobs:
 
       - name: Report status of Selenium server
         run: |
-          sleep 10 && curl -sSL http://127.0.0.1:4444/wd/hub/status
+          sleep 10 && curl -sSL http://172.18.0.2:4444/wd/hub/status
 
       - name: Run Selenium IDE tests
-        run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://127.0.0.1:4444/wd/hub
+        run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://172.18.0.2:4444/wd/hub
