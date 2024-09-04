@@ -35,18 +35,13 @@ jobs:
       - name: Install Selenium IDE Runner
         run: npm install selenium-side-runner
 
-      - name: Start CASC Project Explorer
-        run: npm run dev &
+      - name: Install wait-on
+        run: npm install wait-on
 
-      - name: Wait for CASC Project Explorer access
+      - name: Start CASC Project Explorer
         run: |
-          n=0
-          until [ $n -ge 12 ]
-          do
-            curl -sSL http://127.0.0.1:4200 && break
-            n=$((n+1))
-            sleep 10
-          done
+          npm run dev &
+          wait-on http://127.0.0.1:4200
 
       - name: Report status of Selenium server
         run: |
