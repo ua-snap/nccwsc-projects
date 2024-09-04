@@ -18,6 +18,7 @@ jobs:
         options: >-
           --shm-size 2g
         ports:
+          - 4200:4200
           - 4444:4444
 
     steps:
