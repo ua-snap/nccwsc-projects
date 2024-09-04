@@ -57,4 +57,4 @@ jobs:
           curl -sSL http://localhost:4444/wd/hub/status
 
       - name: Run Selenium IDE tests
-        run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://localhost:4444/wd/hub --base-url http://host.docker.internal:4200 --debug
+        run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://localhost:4444/wd/hub --base-url http://selenium:4200 --debug
