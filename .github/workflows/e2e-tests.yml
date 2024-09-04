@@ -38,9 +38,15 @@ jobs:
       - name: Start CASC Project Explorer
         run: npm run dev &
 
-      - name: Wait for CASC Project Explorer to be ready
+      - name: Wait for CASC Project Explorer access
         run: |
-          sleep 60 && curl -sSL http://127.0.0.1:4200
+          n=0
+          until [ $n -ge 12 ]
+          do
+            curl -sSL http://127.0.0.1:4200 && break
+            n=$((n+1))
+            sleep 10
+          done
 
       - name: Report status of Selenium server
         run: |
