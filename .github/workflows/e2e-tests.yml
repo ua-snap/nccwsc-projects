@@ -39,6 +39,9 @@ jobs:
       - name: Install wait-on
         run: npm install -g wait-on
 
+      - name: Kill any process using port 4200
+        run: sudo kill -9 $(sudo lsof -t -i:4200) || true
+
       - name: Start CASC Project Explorer
         run: |
           npm run dev &
