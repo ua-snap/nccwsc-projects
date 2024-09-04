@@ -2100,7 +2100,7 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["5404ab8b-26a2-4746-a791-d05942163edb"]
+    "tests": ["5404ab8b-26a2-4746-a791-d05942163edb", "635683d7-81ce-4c27-ba78-da73be424401", "e12f5563-ef2b-47cb-af13-e70ddb202ada", "e2922e31-45f9-4591-83f1-ef470a6f587d"]
   }],
   "urls": ["http://dev.cascprojects.org/", "http://selenium.cascprojects.org/", "http://localhost:4200/"],
   "plugins": []
