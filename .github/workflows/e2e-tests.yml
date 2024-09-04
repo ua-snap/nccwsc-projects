@@ -44,17 +44,9 @@ jobs:
 
       - name: Start CASC Project Explorer
         run: |
-          docker run --network host \
-            --name casc-project-explorer \
-            your-container-image
+          npm run dev -- --host 0.0.0.0 --port 4200 &
           wait-on http://localhost:4200 --timeout 30000
         continue-on-error: true
-
-      # - name: Start CASC Project Explorer
-      #   run: |
-      #     npm run dev -- --host 0.0.0.0 --port 4200 &
-      #     wait-on http://localhost:4200 --timeout 30000
-      #   continue-on-error: true
 
       - name: Check if CASC Project Explorer is running
         run: |
@@ -65,4 +57,4 @@ jobs:
           curl -sSL http://localhost:4444/wd/hub/status
 
       - name: Run Selenium IDE tests
-        run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://localhost:4444/wd/hub --base-url http://localhost:4200 --debug
+        run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://localhost:4444/wd/hub --base-url http://host.docker.internal:4200 --debug
