@@ -1,0 +1,70 @@
+name: Run Selenium tests using Github Actions
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  selenium-ide-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      selenium:
+        image: selenium/standalone-chrome:latest
+        options: >-
+          --shm-size 2g
+        ports:
+          - 4200:4200
+          - 4444:4444
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install CASC node modules
+        run: npm install
+
+      - name: Install Selenium IDE Runner
+        run: npm install -g selenium-side-runner
+
+      - name: Install wait-on
+        run: npm install -g wait-on
+
+      - name: Detect Host IP
+        id: detect-ip
+        run: |
+          IP_ADDRESS=$(node -e "var ifaces=require('os').networkInterfaces(); Object.keys(ifaces).forEach(dev=>ifaces[dev].forEach(details=>{if(details.family==='IPv4' && !details.internal && !details.address.startsWith('172.')) console.log(details.address)}));")
+          echo "HOST_IP=$IP_ADDRESS" >> $GITHUB_ENV
+
+      - name: Kill any process using port 4200
+        run: sudo kill -9 $(sudo lsof -t -i:4200) || true
+
+      - name: Start CASC Project Explorer
+        run: |
+          npm run test -- --host 0.0.0.0 --port 4200 &
+          wait-on http://localhost:4200 --timeout 30000
+        continue-on-error: true
+
+      - name: Check if CASC Project Explorer is running
+        run: |
+          curl -sSL http://localhost:4200
+
+      - name: Report status of Selenium server
+        run: |
+          curl -sSL http://localhost:4444/wd/hub/status
+
+      - name: Get me the header for the USGS API
+        run: |
+          curl -v https://my.usgs.gov/casc-service/search?query=&topics=Landscapes&subtopics=&organizations=
+
+      - name: Run Selenium IDE tests
+        run: selenium-side-runner ./selenium-tests/CASC\ Project\ Explorer.side --server http://localhost:4444/wd/hub --base-url http://${{ env.HOST_IP }}:4200 --debug
