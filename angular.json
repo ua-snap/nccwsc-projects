@@ -57,6 +57,14 @@
               ],
               "outputHashing": "all"
             },
+            "test": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.test.ts"
+                }
+              ]
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -74,8 +82,8 @@
             "production": {
               "buildTarget": "nccwsc-projects:build:production"
             },
-            "development": {
-              "buildTarget": "nccwsc-projects:build:development"
+            "test": {
+              "buildTarget": "nccwsc-projects:build:test"
             }
           },
           "defaultConfiguration": "development"

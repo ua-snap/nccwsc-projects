@@ -9,9 +9,7 @@
     "ng": "ng",
     "dev": "ng serve",
     "build": "ng build",
-    "test-search": "npx mocha selenium-tests/advancedSearch.spec.js",
-    "test-region": "npx mocha selenium-tests/explorebyRegion.spec.js",
-    "test-topics": "npx mocha selenium-tests/explorebyTopic.spec.js"
+    "test": "ng serve --configuration=test"
   },
   "private": true,
   "dependencies": {
