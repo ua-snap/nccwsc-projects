@@ -23,7 +23,6 @@
         <h3 class="select-title">Topic</h3>
         <div *ngFor="let topic of topics">
           <mat-checkbox
-            class="casc-checkbox"
             (change)="changeCurrentTopic($event)"
             [checked]="current_topic.indexOf(topic) !== -1"
             [value]="topic"
