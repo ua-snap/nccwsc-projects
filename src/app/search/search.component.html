@@ -3,7 +3,7 @@
     <app-search-nav></app-search-nav>
   </div>
   <div class="col-md-9 results">
-    <div class="loading" *ngIf="total_results === -1">
+    <div *ngIf="total_results === -1">
       <h4 class="loading">
         <img
           src="{{ approot }}assets/loading.gif"
@@ -11,7 +11,7 @@
           alt="Loading Results"
           title="Loading Results"
         />
-        Loading {{ title }} ScienceBase Projects.
+        Searching ScienceBase for matching projects&hellip;
       </h4>
     </div>
     <div
