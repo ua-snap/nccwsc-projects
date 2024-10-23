@@ -93,6 +93,17 @@ export class TopicsComponent implements OnInit {
     "status",
   ];
 
+  clearFilters() {
+    this.current_subtopic = ["All Subtopics"];
+    this.current_fy = ["All Fiscal Years"];
+    this.current_status = ["All Statuses"];
+    this.current_type = "Project";
+    this.current_csc = ["All CASCs"];
+    this.searchTerm = "";
+    this.applyFilter();
+    this.filterProjectsList();
+  }
+
   onSelectClick() {
     // Sets the selectedTopic to an empty string to use the default value when select is clicked
     this.selectedTopic = "";
@@ -100,7 +111,7 @@ export class TopicsComponent implements OnInit {
 
   onTopicChange(event: any) {
     this.selectedTopic = event.target.value;
-
+    this.clearFilters();
     this.router.navigate(["/topics", this.selectedTopic]);
   }
 
