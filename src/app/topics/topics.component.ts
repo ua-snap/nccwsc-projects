@@ -94,7 +94,6 @@ export class TopicsComponent implements OnInit {
   ];
 
   onSelectClick() {
-    // Sets the selectedTopic to an empty string to use the default value when select is clicked
     this.selectedTopic = "";
   }
 
@@ -415,7 +414,7 @@ export class TopicsComponent implements OnInit {
           // Waits until the data is loaded to render the table
           this.cdr.detectChanges();
           // Sets selectedTopic to default
-          this.selectedTopic = "drought-fire-extremes";
+          this.selectedTopic = "";
           // Applies the sorting to the table after it is available in the DOM
           this.dataSource.sort = this.sort;
           // Sets the default sorting to the fiscal year column to show the downward arrow
