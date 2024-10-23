@@ -391,6 +391,9 @@ export class TopicsComponent implements OnInit {
                 }
               }
             }
+            this.subtopics.sort();
+            this.fiscal_years.sort().reverse();
+            this.statuses.sort();
 
             this.filteredProjectsList.push(this.projectsList[project]);
 
