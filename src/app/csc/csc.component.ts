@@ -363,7 +363,7 @@ export class CscComponent implements OnInit {
         // Waits until the data is loaded to render the table
         this.cdr.detectChanges();
         // Sets the selectedCasc to the default option
-        this.selectedCasc = "national-casc";
+        this.selectedCasc = "";
         // Applies the sorting to the table after it is available in the DOM
         this.dataSource.sort = this.sort;
         // Sets the default sorting to the fiscal year column to show the downward arrow
