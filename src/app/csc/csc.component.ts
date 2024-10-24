@@ -105,12 +105,22 @@ export class CscComponent implements OnInit {
     this.dataSource = new MatTableDataSource<any>();
   }
 
+  clearFilters() {
+    this.current_topic = ["All Topics"];
+    this.current_fy = ["All Fiscal Years"];
+    this.current_status = ["All Statuses"];
+    this.searchTerm = "";
+    this.applyFilter();
+    this.filterProjectsList();
+  }
+
   onSelectClick() {
     this.selectedCasc = "";
   }
 
   onCascChange(event: any) {
     this.selectedCasc = event.target.value;
+    this.clearFilters();
     this.router.navigate(["/casc", this.selectedCasc]);
   }
 

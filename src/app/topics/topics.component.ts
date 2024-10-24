@@ -93,13 +93,24 @@ export class TopicsComponent implements OnInit {
     "status",
   ];
 
+  clearFilters() {
+    this.current_subtopic = ["All Subtopics"];
+    this.current_fy = ["All Fiscal Years"];
+    this.current_status = ["All Statuses"];
+    this.current_type = "Project";
+    this.current_csc = ["All CASCs"];
+    this.searchTerm = "";
+    this.applyFilter();
+    this.filterProjectsList();
+  }
+
   onSelectClick() {
     this.selectedTopic = "";
   }
 
   onTopicChange(event: any) {
     this.selectedTopic = event.target.value;
-
+    this.clearFilters();
     this.router.navigate(["/topics", this.selectedTopic]);
   }
 
@@ -379,6 +390,9 @@ export class TopicsComponent implements OnInit {
                 }
               }
             }
+            this.subtopics.sort();
+            this.fiscal_years.sort().reverse();
+            this.statuses.sort();
 
             this.filteredProjectsList.push(this.projectsList[project]);
 
