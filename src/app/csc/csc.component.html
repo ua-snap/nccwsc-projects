@@ -162,9 +162,9 @@
     <!-- Alternative card-based display for mobile -->
     <div
       class="d-lg-none col-xs-10"
-      *ngIf="!dataLoading && filteredCscProjectsList.length > 0"
+      *ngIf="!dataLoading && dataSource.filteredData.length > 0"
     >
-      <div class="card" *ngFor="let project of filteredCscProjectsList">
+      <div class="card" *ngFor="let project of dataSource.filteredData">
         <!--Card content-->
         <div class="card-block mobile">
           <!--Title-->

@@ -80,7 +80,7 @@ export class TopicsComponent implements OnInit {
     private location: Location,
     private aroute: ActivatedRoute,
     private urlService: UrlService,
-    private cdr: ChangeDetectorRef,
+    private cdr: ChangeDetectorRef
   ) {
     this.dataSource = new MatTableDataSource<any>();
   }
@@ -202,7 +202,7 @@ export class TopicsComponent implements OnInit {
         !this.isMatched(
           project.subtopics || [],
           this.current_subtopic,
-          "All Subtopics",
+          "All Subtopics"
         )
       )
         continue;
@@ -214,7 +214,7 @@ export class TopicsComponent implements OnInit {
         !this.isMatched(
           [project.fiscal_year],
           this.current_fy,
-          "All Fiscal Years",
+          "All Fiscal Years"
         )
       )
         continue;
@@ -226,7 +226,7 @@ export class TopicsComponent implements OnInit {
         !this.isMatched(
           [project.csc?.name || ""],
           this.current_csc,
-          "All CASCs",
+          "All CASCs"
         )
       )
         continue;
@@ -340,7 +340,7 @@ export class TopicsComponent implements OnInit {
         .loadTopic(encodeURIComponent(this.topic_names[this.topic]))
         .subscribe((data) => {
           this.filtered_topic_keys = this.topicKeys.filter(
-            (key) => this.topic_names[key] !== this.page_title,
+            (key) => this.topic_names[key] !== this.page_title
           );
           this.projectsList = data;
           for (const project in this.projectsList) {
@@ -351,19 +351,22 @@ export class TopicsComponent implements OnInit {
                     this.projectsList[project].subtopics[subtopic] ==
                       this.subtopicsFilter[topicSubtopic]["label"] &&
                     this.subtopics.indexOf(
-                      this.projectsList[project].subtopics[subtopic],
+                      this.projectsList[project].subtopics[subtopic]
                     ) < 0
                   ) {
                     this.subtopics.push(
-                      this.projectsList[project].subtopics[subtopic],
+                      this.projectsList[project].subtopics[subtopic]
                     );
                   }
                 }
               }
             }
+            if (this.projectsList[project].fiscal_year == null) {
+              this.projectsList[project].fiscal_year = "N/A";
+            }
             if (
               this.fiscal_years.indexOf(
-                this.projectsList[project].fiscal_year,
+                this.projectsList[project].fiscal_year
               ) < 0
             ) {
               if (this.projectsList[project].fiscal_year != null) {
