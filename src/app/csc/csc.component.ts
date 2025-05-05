@@ -100,7 +100,7 @@ export class CscComponent implements OnInit {
     private location: Location,
     private aroute: ActivatedRoute,
     private urlService: UrlService,
-    private cdr: ChangeDetectorRef,
+    private cdr: ChangeDetectorRef
   ) {
     this.dataSource = new MatTableDataSource<any>();
   }
@@ -305,7 +305,7 @@ export class CscComponent implements OnInit {
       this.urlService.setCurrentTitle(this.title);
       this.localJson.loadCscProjects(this.sbId).subscribe((data) => {
         this.filtered_csc_identifiers = this.csc_identifiers.filter(
-          (key) => this.csc_paths[key] !== this.title,
+          (key) => this.csc_paths[key] !== this.title
         );
         this.cscProjectsList = data;
         for (const project in this.cscProjectsList) {
@@ -317,9 +317,12 @@ export class CscComponent implements OnInit {
               this.topics.push(this.cscProjectsList[project].topics[topic]);
             }
           }
+          if (this.cscProjectsList[project].fiscal_year == null) {
+            this.cscProjectsList[project].fiscal_year = "N/A";
+          }
           if (
             this.fiscal_years.indexOf(
-              this.cscProjectsList[project].fiscal_year,
+              this.cscProjectsList[project].fiscal_year
             ) < 0
           ) {
             this.fiscal_years.push(this.cscProjectsList[project].fiscal_year);
