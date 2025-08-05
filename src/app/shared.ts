@@ -8,28 +8,21 @@ export class Shared {
   // Create an instance of DatePipe
   datePipe = new DatePipe("en-US");
 
-  formatDate(value, format?: string) {
+  formatDate(value) {
     try {
       const segments = value.split("-");
       switch (segments.length) {
         case 2:
           return (
-            this.datePipe.transform(
-              `${value}-01`,
-              format || this.MONTH_YEAR_FORMAT,
-            ) || value
-          );
-        case 3:
-          return (
-            this.datePipe.transform(value, format || this.FULL_DATE_FORMAT) ||
+            this.datePipe.transform(`${value}-01`, this.MONTH_YEAR_FORMAT) ||
             value
           );
+        case 3:
+          return this.datePipe.transform(value, this.FULL_DATE_FORMAT) || value;
         case 4:
           return (
-            this.datePipe.transform(
-              new Date(value),
-              format || this.FULL_DATE_FORMAT,
-            ) || value
+            this.datePipe.transform(new Date(value), this.FULL_DATE_FORMAT) ||
+            value
           );
         case 1:
         default:
