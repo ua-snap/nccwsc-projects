@@ -11,4 +11,5 @@ export const environment = {
   sbmainURL: "https://www.sciencebase.gov",
   projectsPath: "/projects/#",
   urlPrefix: "/casc/",
+  siteSlow: false, // Set to true to show the slow site alert
 };
