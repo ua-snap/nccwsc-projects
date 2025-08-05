@@ -109,6 +109,9 @@ export class ProjectComponent implements OnInit {
           this.projectJson.dates.end_date = this.shared.formatDate(
             this.projectJson.dates.end_date,
           );
+          this.projectJson.dates.updated = this.shared.formatDate(
+            this.projectJson.dates.updated,
+          );
           if (this.projectJson.images) {
             for (const image in this.projectJson.images) {
               if (this.projectJson.images[image]["useForPreview"]) {
