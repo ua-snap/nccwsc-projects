@@ -357,6 +357,13 @@
           </p>
         </div>
 
+        <div *ngIf="projectJson.dates.updated">
+          <p class="single">
+            <strong>Last Updated: </strong>
+            {{ projectJson.dates.updated }}
+          </p>
+        </div>
+
         <div *ngIf="projectJson.status">
           <p class="single">
             <strong>Status: </strong> {{ projectJson.status }}
