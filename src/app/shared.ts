@@ -18,12 +18,8 @@ export class Shared {
             value
           );
         case 3:
-          return this.datePipe.transform(value, this.FULL_DATE_FORMAT) || value;
         case 4:
-          return (
-            this.datePipe.transform(new Date(value), this.FULL_DATE_FORMAT) ||
-            value
-          );
+          return this.datePipe.transform(value, this.FULL_DATE_FORMAT) || value;
         case 1:
         default:
           // Return the year if it is the only value
