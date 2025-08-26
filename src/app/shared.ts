@@ -18,6 +18,7 @@ export class Shared {
             value
           );
         case 3:
+        case 4:
           return this.datePipe.transform(value, this.FULL_DATE_FORMAT) || value;
         case 1:
         default:
