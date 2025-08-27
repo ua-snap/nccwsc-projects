@@ -4,6 +4,10 @@
     <div class="col-md-8">
       <h1>{{ projectJson.title }}</h1>
 
+      <div *ngIf="projectJson.dates.updated" class="last-updated">
+        Last updated: {{ projectJson.dates.updated }}
+      </div>
+
       <div class="body" [innerHTML]="projectJson.body"></div>
 
       <div
@@ -354,13 +358,6 @@
           <p class="single">
             <strong>End Date: </strong>
             {{ projectJson.dates.end_date }}
-          </p>
-        </div>
-
-        <div *ngIf="projectJson.dates.updated">
-          <p class="single">
-            <strong>Last Updated: </strong>
-            {{ projectJson.dates.updated }}
           </p>
         </div>
 
