@@ -33,6 +33,7 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
+import { WarningComponent } from "./warning/warning.component";
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
     CscComponent,
     ProjectResourceComponent,
     BreadcrumbComponent,
+    WarningComponent,
   ],
   bootstrap: [AppComponent],
   imports: [

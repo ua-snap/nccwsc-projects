@@ -1,17 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Routes, RouterModule } from "@angular/router";
-import { CscsRoutes } from "./cscs/cscs.routes";
-import { CscRoutes } from "./csc/csc.routes";
-import { TopicsRoutes } from "./topics/topics.routes";
-import { ProjectRoutes } from "./project/project.routes";
-import { ProjectResourceRoutes } from "./project-resource/project-resource.routes";
+import { WarningComponent } from "./warning/warning.component";
 
 const appRoutes: Routes = [
-  ...CscsRoutes,
-  ...CscRoutes,
-  ...TopicsRoutes,
-  ...ProjectRoutes,
-  ...ProjectResourceRoutes,
+  { path: "", component: WarningComponent },
+  { path: "**", component: WarningComponent },
 ];
 
 export const appRoutingProviders: any[] = [];
