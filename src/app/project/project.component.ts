@@ -7,6 +7,7 @@ import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 import { environment } from "../../environments/environment";
 import { UrlService } from "../url.service";
 import { Shared } from "../shared";
+import { SUBTOPIC_ROUTE_BY_LABEL, TOPIC_SLUG_BY_LABEL } from "../taxonomy";
 
 @Component({
   selector: "app-project",
@@ -27,48 +28,9 @@ export class ProjectComponent implements OnInit {
 
   shared: Shared;
 
-  topic_names = {
-    "Drought, Fire and Extreme Weather": "drought-fire-extremes",
-    "Science Tools for Managers": "science-tools",
-    Landscapes: "landscapes",
-    "Indigenous Peoples": "indigenous-peoples",
-    "Water, Coasts and Ice": "water-coasts-ice",
-    "Wildlife and Plants": "wildlife-plants",
-  };
+  topic_names = TOPIC_SLUG_BY_LABEL;
 
-  subtopic_names = {
-    Arctic: "landscapes;subtopic=Arctic",
-    Forests: "landscapes;subtopic=Forests",
-    "Grasslands and Plains": "landscapes;subtopic=Grasslands%20and%20Plains",
-    "Other Landscapes": "landscapes;subtopic=Other%20Landscapes",
-    Drought: "drought-fire-extremes;subtopic=Drought",
-    "Extreme Weather": "drought-fire-extremes;subtopic=Extreme%20Weather",
-    Fire: "drought-fire-extremes;subtopic=Fire",
-    Birds: "wildlife-plants;subtopic=Birds",
-    Fish: "wildlife-plants;subtopic=Fish",
-    Mammals: "wildlife-plants;subtopic=Mammals",
-    "Other Wildlife": "wildlife-plants;subtopic=Other%20Wildlife",
-    Plants: "wildlife-plants;subtopic=Plants",
-    "Coral Reefs": "water-coasts-ice;subtopic=Coral%20Reefs",
-    "Glaciers and Permafrost":
-      "water-coasts-ice;subtopic=Glaciers%20and%20Permafrost",
-    "Other Water": "water-coasts-ice;subtopic=Other%20Water",
-    "Rivers, Streams and Lakes":
-      "water-coasts-ice;subtopic=Rivers,%20Streams%20and%20Lakes",
-    "Sea-Level Rise and Coasts":
-      "water-coasts-ice;subtopic=Sea-Level%20Rise%20and%20Coasts",
-    Wetlands: "water-coasts-ice;subtopic=Wetlands",
-    "Alaska Natives and Corporations":
-      "indigenous-peoples;subtopic=Alaska%20Natives%20and%20Corporations",
-    "Pacific Islander Indigenous Communities":
-      "indigenous-peoples;subtopic=Pacific%20Islander%20Indigenous%20Communities",
-    "Tribes and Tribal Organizations":
-      "indigenous-peoples;subtopic=Tribes%20and%20Tribal%20Organizations",
-    "Data Visualization & Tools":
-      "science-tools;subtopic=Data%20Visualization%20&%20Tools",
-    "Social Science": "science-tools;subtopic=Social%20Science",
-    "State of the Science": "science-tools;subtopic=State%20of%20the%20Science",
-  };
+  subtopic_names = SUBTOPIC_ROUTE_BY_LABEL;
 
   constructor(
     private route: ActivatedRoute,
