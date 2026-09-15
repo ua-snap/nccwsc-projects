@@ -66,14 +66,6 @@
                   </li>
                 </ul>
               </div>
-              <div *ngIf="product.files">
-                <ul *ngFor="let file of product.files">
-                  <li *ngIf="!file.name.includes('metadata')">
-                    {{ file.name }}
-                    <a href="{{ file.url }}" target="_blank">Download</a>
-                  </li>
-                </ul>
-              </div>
             </li>
           </ul>
           <ul *ngFor="let other of projectJson.other_approved">
@@ -86,14 +78,6 @@
                   <li>
                     {{ webLink.title }}
                     <a href="{{ webLink.uri }}" target="_blank">External URL</a>
-                  </li>
-                </ul>
-              </div>
-              <div *ngIf="other.files">
-                <ul *ngFor="let file of other.files">
-                  <li>
-                    {{ file.name }}
-                    <a href="{{ file.url }}" target="_blank">Download</a>
                   </li>
                 </ul>
               </div>
