@@ -22,7 +22,7 @@
               [routerLink]="[
                 '/project',
                 relationship.cscID,
-                relationship.relatedId
+                relationship.relatedId,
               ]"
               >{{ relationship.relatedTitle }}</a
             >
@@ -37,7 +37,7 @@
             [routerLink]="[
               '/project',
               projectJson.csc.id,
-              projectJson.main_project.relatedId
+              projectJson.main_project.relatedId,
             ]"
             >{{ projectJson.main_project.relatedTitle }}</a
           >
@@ -223,14 +223,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="sb-link">
-        ScienceBase Link:
-        <a
-          href="{{ sbURL }}/catalog/item/{{ projectJson.id }}"
-          title="{{ projectJson.title }} ScienceBase Record"
-          >{{ sbURL }}/catalog/item/{{ projectJson.id }}</a
-        >
       </div>
     </div>
     <div class="col-md-4">
