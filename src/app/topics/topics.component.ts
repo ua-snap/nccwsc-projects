@@ -247,6 +247,17 @@ export class TopicsComponent implements OnInit {
     return this.subtopicsFilter.includes(subtopic);
   }
 
+  // Alphabetical, except "Other..." subtopics are pushed to the bottom.
+  // Requested via issue #244
+  compareSubtopics(a: string, b: string): number {
+    const aIsOther = a.toLowerCase().startsWith("other");
+    const bIsOther = b.toLowerCase().startsWith("other");
+    if (aIsOther !== bIsOther) {
+      return aIsOther ? 1 : -1;
+    }
+    return a.localeCompare(b);
+  }
+
   //TODO: put this code in a utility function/service
   updateUrl() {
     const params: any = {};
@@ -365,7 +376,7 @@ export class TopicsComponent implements OnInit {
                 }
               }
             }
-            this.subtopics.sort();
+            this.subtopics.sort(this.compareSubtopics);
             this.fiscal_years.sort().reverse();
             this.statuses.sort();
 
