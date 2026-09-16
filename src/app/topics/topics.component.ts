@@ -342,7 +342,10 @@ export class TopicsComponent implements OnInit {
                 this.projectsList[project].fiscal_year,
               ) < 0
             ) {
-              if (this.projectsList[project].fiscal_year != null) {
+              if (
+                this.projectsList[project].fiscal_year != null &&
+                this.projectsList[project].fiscal_year != "N/A"
+              ) {
                 this.fiscal_years.push(this.projectsList[project].fiscal_year);
               }
             }

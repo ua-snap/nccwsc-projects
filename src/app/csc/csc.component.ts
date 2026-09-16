@@ -322,6 +322,7 @@ export class CscComponent implements OnInit {
             this.cscProjectsList[project].fiscal_year = "N/A";
           }
           if (
+            this.cscProjectsList[project].fiscal_year != "N/A" &&
             this.fiscal_years.indexOf(
               this.cscProjectsList[project].fiscal_year,
             ) < 0
