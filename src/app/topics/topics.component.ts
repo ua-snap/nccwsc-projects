@@ -40,6 +40,7 @@ export class TopicsComponent implements OnInit {
   subtopics = [];
   fiscal_years = [];
   statuses = [];
+  displayableStatuses = ["Completed", "In Progress"];
   cscs = [];
   types = ["Project"];
   current_subtopic = ["All Subtopics"];
@@ -347,8 +348,9 @@ export class TopicsComponent implements OnInit {
             }
             if (this.statuses.indexOf(this.projectsList[project].status) < 0) {
               if (
-                this.projectsList[project].status != null &&
-                this.projectsList[project].status != "N/A"
+                this.displayableStatuses.includes(
+                  this.projectsList[project].status,
+                )
               ) {
                 this.statuses.push(this.projectsList[project].status);
               }

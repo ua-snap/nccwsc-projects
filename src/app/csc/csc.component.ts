@@ -36,6 +36,7 @@ export class CscComponent implements OnInit {
   topics = [];
   fiscal_years = [];
   statuses = [];
+  displayableStatuses = ["Completed", "In Progress"];
   current_topic = ["All Topics"];
   current_fy = ["All Fiscal Years"];
   current_status = ["All Statuses"];
@@ -100,7 +101,7 @@ export class CscComponent implements OnInit {
     private location: Location,
     private aroute: ActivatedRoute,
     private urlService: UrlService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
   ) {
     this.dataSource = new MatTableDataSource<any>();
   }
@@ -305,7 +306,7 @@ export class CscComponent implements OnInit {
       this.urlService.setCurrentTitle(this.title);
       this.localJson.loadCscProjects(this.sbId).subscribe((data) => {
         this.filtered_csc_identifiers = this.csc_identifiers.filter(
-          (key) => this.csc_paths[key] !== this.title
+          (key) => this.csc_paths[key] !== this.title,
         );
         this.cscProjectsList = data;
         for (const project in this.cscProjectsList) {
@@ -322,12 +323,17 @@ export class CscComponent implements OnInit {
           }
           if (
             this.fiscal_years.indexOf(
-              this.cscProjectsList[project].fiscal_year
+              this.cscProjectsList[project].fiscal_year,
             ) < 0
           ) {
             this.fiscal_years.push(this.cscProjectsList[project].fiscal_year);
           }
-          if (this.statuses.indexOf(this.cscProjectsList[project].status) < 0) {
+          if (
+            this.displayableStatuses.includes(
+              this.cscProjectsList[project].status,
+            ) &&
+            this.statuses.indexOf(this.cscProjectsList[project].status) < 0
+          ) {
             this.statuses.push(this.cscProjectsList[project].status);
           }
 
