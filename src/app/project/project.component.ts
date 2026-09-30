@@ -55,6 +55,17 @@ export class ProjectComponent implements OnInit {
     return true;
   }
 
+  doiUrl(doi) {
+    if (!doi) {
+      return null;
+    }
+    const trimmed = String(doi).trim();
+    if (/^https?:\/\//i.test(trimmed)) {
+      return trimmed;
+    }
+    return `https://doi.org/${trimmed.replace(/^doi:\s*/i, "")}`;
+  }
+
   ngOnInit() {
     this.shared = new Shared();
     this.urlService.setCurrentTitle("Project");

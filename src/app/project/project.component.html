@@ -114,7 +114,16 @@
         <h2>Project Data</h2>
         <ul *ngFor="let data of projectJson.approved_data">
           <li>
-            <div class="pubTitle">{{ data.title }}</div>
+            <div class="pubTitle">
+              <a
+                *ngIf="doiUrl(data.doi) as dataDoiUrl; else dataTitleOnly"
+                [href]="dataDoiUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                >{{ data.title }}</a
+              >
+              <ng-template #dataTitleOnly>{{ data.title }}</ng-template>
+            </div>
             <div *ngIf="data.webLinks">
               <ul *ngFor="let webLink of data.webLinks">
                 <li>
@@ -131,61 +140,11 @@
                 </li>
               </ul>
             </div>
-            <!--This prints download link if its not provided in the object-->
-            <div *ngIf="data.files?.length <= 0">
-              <div *ngIf="data.webLinks?.length <= 0">
-                <div *ngIf="data.downloadLinkFiles?.length <= 0">
-                  <ul>
-                    <li *ngIf="data.downloadLinkUri !== null">
-                      <a href="{{ sbURL }}/catalog/file/get/{{ data.id }}"
-                        >Download</a
-                      >
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
 
             <div *ngIf="data.children">
               <ul *ngFor="let child of data.children">
                 <li>
                   {{ child.title }}
-                  <div *ngIf="child.downloadLinkUri" class="project_files">
-                    <ul>
-                      <li>
-                        <a href="{{ child.downloadLinkUri }}" target="_blank"
-                          >Download Files (zip)</a
-                        >
-                        <ul *ngFor="let file of child.downloadLinkFiles">
-                          <li>{{ file.name }}</li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div *ngIf="child.webLinks">
-                    <ul *ngFor="let webLink of child.webLinks">
-                      <li>
-                        {{ webLink.title }}
-                        <a href="{{ webLink.uri }}" target="_blank"
-                          >External URL</a
-                        >
-                      </li>
-                    </ul>
-                  </div>
-
-                  <!--This prints download link if its not provided in the object-->
-                  <div *ngIf="child.files?.length <= 0">
-                    <div *ngIf="child.webLinks?.length <= 0">
-                      <ul>
-                        <li>
-                          <a href="{{ sbURL }}/catalog/file/get/{{ child.id }}"
-                            >Download</a
-                          >
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
                 </li>
               </ul>
             </div>
