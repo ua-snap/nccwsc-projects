@@ -12,6 +12,7 @@ import * as X2JS from "x2js";
 })
 export class MapComponent implements OnInit {
   @Input() mapUrl: string;
+  @Input() spatial: any;
   LAYER_OCM: any;
   LAYER_OSM: any;
   model: any;
@@ -30,9 +31,12 @@ export class MapComponent implements OnInit {
   layers: L.Layer[];
   layersControl: any;
   options: any;
+  fitBoundsOptions: any = { padding: [20, 20], maxZoom: 12 };
   render = false;
   layersFromWMS: any = {};
   layersArray: any = [];
+  boundingBoxLayer: L.Rectangle;
+  boundingBoxBounds: any;
 
   defineBaseLayers() {
     this.LAYER_OCM = {
@@ -94,6 +98,45 @@ export class MapComponent implements OnInit {
     ];
   }
 
+  defineBoundingBox() {
+    const box = this.spatial && this.spatial.boundingBox;
+    if (
+      !box ||
+      [box.minX, box.maxX, box.minY, box.maxY].some(
+        (v) => typeof v !== "number" || isNaN(v),
+      )
+    ) {
+      return;
+    }
+    // Degenerate (point-like) extents get a small buffer so the rectangle stays visible.
+    const padding = 0.01;
+    const minY = box.minY === box.maxY ? box.minY - padding : box.minY;
+    const maxY = box.minY === box.maxY ? box.maxY + padding : box.maxY;
+    const minX = box.minX === box.maxX ? box.minX - padding : box.minX;
+    const maxX = box.minX === box.maxX ? box.maxX + padding : box.maxX;
+
+    this.boundingBoxBounds = [
+      [minY, minX], // SW
+      [maxY, maxX], // NE
+    ];
+    this.boundingBoxLayer = L.rectangle(
+      L.latLngBounds(this.boundingBoxBounds),
+      {
+        color: "#1f6feb",
+        weight: 2,
+        fillOpacity: 0.1,
+      },
+    );
+    this.fitBounds = this.boundingBoxBounds;
+  }
+
+  renderBoundingBoxOnly() {
+    this.defineBaseLayers();
+    this.defineModel();
+    this.onApply();
+    this.render = true;
+  }
+
   getWMSCapabilities(mapUrl) {
     const x2js = new X2JS();
     return this.http
@@ -123,7 +166,7 @@ export class MapComponent implements OnInit {
                 }
               }
             }
-            if (thisLayer.EX_GeographicBoundingBox) {
+            if (thisLayer.EX_GeographicBoundingBox && !this.boundingBoxBounds) {
               this.fitBounds = this.parseWMSGeographicBoundingBox(
                 thisLayer.EX_GeographicBoundingBox,
               );
@@ -156,13 +199,19 @@ export class MapComponent implements OnInit {
       zoom: 3,
       center: L.latLng([39.8282, -98.5795]),
       fitBounds: this.fitBounds,
+      fitBoundsOptions: this.fitBoundsOptions,
     };
   }
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.getWMSCapabilities(this.mapUrl);
+    this.defineBoundingBox();
+    if (this.mapUrl) {
+      this.getWMSCapabilities(this.mapUrl);
+    } else if (this.boundingBoxLayer) {
+      this.renderBoundingBoxOnly();
+    }
   }
 
   private handleError(error: any): Promise<any> {
@@ -182,6 +231,9 @@ export class MapComponent implements OnInit {
         return l.layer;
       });
     newLayers.unshift(baseLayer.layer);
+    if (this.boundingBoxLayer) {
+      newLayers.push(this.boundingBoxLayer);
+    }
     this.layers = newLayers;
     const overlays = {};
     for (const key in this.layersFromWMS) {

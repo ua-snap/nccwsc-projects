@@ -228,8 +228,8 @@
     <div class="col-md-4">
       <div class="map">
         <app-leaflet-map
-          *ngIf="projectJson.map_url"
-          [mapUrl]="projectJson.map_url"
+          *ngIf="projectJson.spatial?.boundingBox"
+          [spatial]="projectJson.spatial"
         ></app-leaflet-map>
       </div>
       <div class="information-sidebar">
