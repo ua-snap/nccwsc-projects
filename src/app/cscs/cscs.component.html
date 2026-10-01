@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row large-screen">
     <div class="col-md-3 search-group">
-      <h3>Search by topic</h3>
+      <h3>Search by Topic</h3>
       <div class="topics-wrapper">
         <div class="topics" *ngFor="let topic of topic_ids">
           <a class="btn btn-light" [routerLink]="['/topics/', topic.id]">{{
@@ -106,7 +106,7 @@
   </div>
   <div class="row small-screen">
     <div class="col-md-12 search-group">
-      <h3>Search by topic</h3>
+      <h3>Search by Topic</h3>
       <div class="topics-wrapper">
         <div class="topics" *ngFor="let topic of topic_ids">
           <a class="btn btn-light" [routerLink]="['/topics/', topic.id]">{{
@@ -116,7 +116,7 @@
       </div>
     </div>
     <div class="col-md-12 search-group">
-      <h3>Search by region</h3>
+      <h3>Search by Region</h3>
       <div class="regions">
         <a class="btn btn-light" href="#/casc/national-casc">National</a>
         <a class="btn btn-light" href="#/casc/alaska">Alaska</a>
@@ -135,7 +135,7 @@
   </div>
   <div class="row">
     <div class="col-12 search-group">
-      <h3>Search the entire project database</h3>
+      <h3>Search by Keyword</h3>
       <app-search></app-search>
     </div>
   </div>

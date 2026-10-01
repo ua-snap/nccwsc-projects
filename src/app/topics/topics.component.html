@@ -16,23 +16,9 @@
       </select>
     </div>
   </div>
+
   <div class="row topic">
     <div class="col-md-2">
-      <div class="select-box">
-        <h3 class="select-title">CASC</h3>
-        <div *ngFor="let csc of cscs">
-          <mat-checkbox
-            type="checkbox"
-            (change)="changeCurrentCASC($event)"
-            [checked]="current_csc.indexOf(csc) !== -1"
-            [value]="csc"
-            [id]="csc"
-            name="csc"
-          >
-            {{ csc.replace(" CASC", "") }}</mat-checkbox
-          >
-        </div>
-      </div>
       <div class="select-box">
         <h3 class="select-title">Subtopic</h3>
         <div *ngFor="let subtopic of subtopics">
@@ -45,6 +31,21 @@
             name="subtopic"
           >
             {{ subtopic }}</mat-checkbox
+          >
+        </div>
+      </div>
+      <div class="select-box">
+        <h3 class="select-title">CASC</h3>
+        <div *ngFor="let csc of cscs">
+          <mat-checkbox
+            type="checkbox"
+            (change)="changeCurrentCASC($event)"
+            [checked]="current_csc.indexOf(csc) !== -1"
+            [value]="csc"
+            [id]="csc"
+            name="csc"
+          >
+            {{ csc.replace(" CASC", "") }}</mat-checkbox
           >
         </div>
       </div>

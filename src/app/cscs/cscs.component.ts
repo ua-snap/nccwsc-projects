@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, HostListener } from "@angular/core";
 import { UrlService } from "../url.service";
+import { HOME_TOPIC_LINKS } from "../taxonomy";
 import * as $ from "jquery";
 import "../../assets/jquery.maphilight.js";
 
@@ -24,16 +25,12 @@ export class CscsComponent implements OnInit {
     { id: "national-casc", name: "National CASC" },
   ];
 
-  topic_ids = [
-    { id: "drought-fire-extremes", name: "Drought, Fire and Extreme Weather" },
-    { id: "landscapes", name: "Landscapes" },
-    { id: "indigenous-peoples", name: "Indigenous Peoples" },
-    { id: "science-tools", name: "Science Tools for Managers" },
-    { id: "water-coasts-ice", name: "Water, Coasts and Ice" },
-    { id: "wildlife-plants", name: "Wildlife and Plants" },
-  ];
+  topic_ids = HOME_TOPIC_LINKS;
 
-  constructor(private urlService: UrlService, private el: ElementRef) {}
+  constructor(
+    private urlService: UrlService,
+    private el: ElementRef,
+  ) {}
 
   ngOnInit() {
     this.urlService.setPreviousTitle(null);

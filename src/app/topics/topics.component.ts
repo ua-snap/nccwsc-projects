@@ -7,7 +7,6 @@ import {
   ChangeDetectorRef,
 } from "@angular/core";
 import { LocalJsonService } from "../local-json.service";
-import { SearchService } from "../search.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { environment } from "../../environments/environment";
 import { Location } from "@angular/common";
@@ -15,6 +14,7 @@ import { UrlService } from "../url.service";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatSort, Sort } from "@angular/material/sort";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { TAXONOMY_TOPICS, TOPIC_LABEL_BY_SLUG } from "../taxonomy";
 
 @Component({
   selector: "app-topics",
@@ -30,22 +30,7 @@ export class TopicsComponent implements OnInit {
   topic = null;
   page_title = null;
 
-  topics = {
-    "drought-fire-extremes": "588244b0e4b0b3d9add24391",
-    landscapes: "5882456be4b0b3d9add24395",
-    "science-tools": "5b6212e7e4b03f4cf7599b82",
-    "indigenous-peoples": "588246dae4b0b3d9add243a1",
-    "water-coasts-ice": "5882464ce4b0b3d9add2439a",
-    "wildlife-plants": "58824220e4b0b3d9add2438b",
-  };
-  topic_names = {
-    "drought-fire-extremes": "Drought, Fire and Extreme Weather",
-    landscapes: "Landscapes",
-    "science-tools": "Science Tools for Managers",
-    "indigenous-peoples": "Indigenous Peoples",
-    "water-coasts-ice": "Water, Coasts and Ice",
-    "wildlife-plants": "Wildlife and Plants",
-  };
+  topic_names = TOPIC_LABEL_BY_SLUG;
 
   topics_url = environment.baseURL;
   project_url = environment.baseURL + "/project";
@@ -55,6 +40,7 @@ export class TopicsComponent implements OnInit {
   subtopics = [];
   fiscal_years = [];
   statuses = [];
+  displayableStatuses = ["Completed", "In Progress"];
   cscs = [];
   types = ["Project"];
   current_subtopic = ["All Subtopics"];
@@ -62,7 +48,7 @@ export class TopicsComponent implements OnInit {
   current_fy = ["All Fiscal Years"];
   current_status = ["All Statuses"];
   current_csc = ["All CASCs"];
-  topicKeys = Object.keys(this.topics);
+  topicKeys = TAXONOMY_TOPICS.map((topicDefinition) => topicDefinition.slug);
   filtered_topic_keys = [];
   projectsList = [];
   filteredProjectsList = [];
@@ -70,17 +56,16 @@ export class TopicsComponent implements OnInit {
   searchTerm = "";
   selectedTopic: any;
 
-  subtopicsFilter: string[] = null;
+  subtopicsFilter: string[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private localJson: LocalJsonService,
-    private searchService: SearchService,
     private router: Router,
     private location: Location,
     private aroute: ActivatedRoute,
     private urlService: UrlService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
   ) {
     this.dataSource = new MatTableDataSource<any>();
   }
@@ -202,7 +187,7 @@ export class TopicsComponent implements OnInit {
         !this.isMatched(
           project.subtopics || [],
           this.current_subtopic,
-          "All Subtopics"
+          "All Subtopics",
         )
       )
         continue;
@@ -214,7 +199,7 @@ export class TopicsComponent implements OnInit {
         !this.isMatched(
           [project.fiscal_year],
           this.current_fy,
-          "All Fiscal Years"
+          "All Fiscal Years",
         )
       )
         continue;
@@ -226,7 +211,7 @@ export class TopicsComponent implements OnInit {
         !this.isMatched(
           [project.csc?.name || ""],
           this.current_csc,
-          "All CASCs"
+          "All CASCs",
         )
       )
         continue;
@@ -260,12 +245,18 @@ export class TopicsComponent implements OnInit {
   }
 
   isOnTopic(subtopic) {
-    for (const topicSubtopic in this.subtopicsFilter) {
-      if (subtopic == this.subtopicsFilter[topicSubtopic]["label"]) {
-        return true;
-      }
+    return this.subtopicsFilter.includes(subtopic);
+  }
+
+  // Alphabetical, except "Other..." subtopics are pushed to the bottom.
+  // Requested via issue #244
+  compareSubtopics(a: string, b: string): number {
+    const aIsOther = a.toLowerCase().startsWith("other");
+    const bIsOther = b.toLowerCase().startsWith("other");
+    if (aIsOther !== bIsOther) {
+      return aIsOther ? 1 : -1;
     }
-    return false;
+    return a.localeCompare(b);
   }
 
   //TODO: put this code in a utility function/service
@@ -320,16 +311,12 @@ export class TopicsComponent implements OnInit {
       }
 
       this.page_title = this.topic_names[this.topic];
+      const taxonomyTopic = TAXONOMY_TOPICS.find(
+        (topicDefinition) => topicDefinition.slug === this.topic,
+      );
+      this.subtopicsFilter = taxonomyTopic?.subtopics || [];
       this.urlService.setPreviousTitle(this.page_title);
       this.urlService.setCurrentTitle(this.page_title);
-
-      this.searchService.getTopics().subscribe((topics) => {
-        for (const topic in topics) {
-          if (topics[topic].label == this.page_title) {
-            this.subtopicsFilter = topics[topic].subtopics;
-          }
-        }
-      });
 
       this.subtopics = [];
       this.fiscal_years = [];
@@ -340,25 +327,22 @@ export class TopicsComponent implements OnInit {
         .loadTopic(encodeURIComponent(this.topic_names[this.topic]))
         .subscribe((data) => {
           this.filtered_topic_keys = this.topicKeys.filter(
-            (key) => this.topic_names[key] !== this.page_title
+            (key) => key !== this.topic,
           );
           this.projectsList = data;
           for (const project in this.projectsList) {
             for (const subtopic in this.projectsList[project].topics) {
-              if (this.subtopicsFilter != null) {
-                for (const topicSubtopic in this.subtopicsFilter) {
-                  if (
-                    this.projectsList[project].subtopics[subtopic] ==
-                      this.subtopicsFilter[topicSubtopic]["label"] &&
-                    this.subtopics.indexOf(
-                      this.projectsList[project].subtopics[subtopic]
-                    ) < 0
-                  ) {
-                    this.subtopics.push(
-                      this.projectsList[project].subtopics[subtopic]
-                    );
-                  }
-                }
+              if (
+                this.subtopicsFilter.includes(
+                  this.projectsList[project].subtopics[subtopic],
+                ) &&
+                this.subtopics.indexOf(
+                  this.projectsList[project].subtopics[subtopic],
+                ) < 0
+              ) {
+                this.subtopics.push(
+                  this.projectsList[project].subtopics[subtopic],
+                );
               }
             }
             if (this.projectsList[project].fiscal_year == null) {
@@ -366,17 +350,21 @@ export class TopicsComponent implements OnInit {
             }
             if (
               this.fiscal_years.indexOf(
-                this.projectsList[project].fiscal_year
+                this.projectsList[project].fiscal_year,
               ) < 0
             ) {
-              if (this.projectsList[project].fiscal_year != null) {
+              if (
+                this.projectsList[project].fiscal_year != null &&
+                this.projectsList[project].fiscal_year != "N/A"
+              ) {
                 this.fiscal_years.push(this.projectsList[project].fiscal_year);
               }
             }
             if (this.statuses.indexOf(this.projectsList[project].status) < 0) {
               if (
-                this.projectsList[project].status != null &&
-                this.projectsList[project].status != "N/A"
+                this.displayableStatuses.includes(
+                  this.projectsList[project].status,
+                )
               ) {
                 this.statuses.push(this.projectsList[project].status);
               }
@@ -393,7 +381,7 @@ export class TopicsComponent implements OnInit {
                 }
               }
             }
-            this.subtopics.sort();
+            this.subtopics.sort(this.compareSubtopics);
             this.fiscal_years.sort().reverse();
             this.statuses.sort();
 

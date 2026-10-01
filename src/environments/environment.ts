@@ -7,7 +7,7 @@ export const environment = {
   version: "4.3.1-dev",
   production: false,
   baseURL: "https://my.usgs.gov/casc",
-  serviceURL: "https://my.usgs.gov/casc-service",
+  serviceURL: "https://api.cascprojects.org",
   sbmainURL: "https://www.sciencebase.gov",
   projectsPath: "/projects/#",
   urlPrefix: "/casc/",

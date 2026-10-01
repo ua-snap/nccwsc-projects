@@ -2,6 +2,7 @@
 import { Component, OnInit } from "@angular/core";
 import { SearchService } from "../search.service";
 import { Subscription } from "rxjs";
+import { TOPIC_SELECT_OPTIONS } from "../taxonomy";
 
 declare const umami: any;
 
@@ -190,17 +191,8 @@ export class SearchNavComponent implements OnInit {
   ngOnInit() {
     this.resetQuery();
 
-    this.searchService.getTopics().subscribe((topics) => {
-      this.topics = [];
-      topics.forEach((topic) => {
-        this.topics[topic.value] = {
-          value: topic.value,
-          label: topic.label,
-          subtopics: topic.subtopics,
-        };
-      });
-      this.topicsLoaded = true;
-    });
+    this.topics = TOPIC_SELECT_OPTIONS;
+    this.topicsLoaded = true;
 
     this.searchService.getOrganizations().subscribe((organizations) => {
       this.orgs = organizations;
