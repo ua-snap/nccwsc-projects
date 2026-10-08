@@ -51,6 +51,7 @@ export const TAXONOMY_TOPICS: TaxonomyTopicDefinition[] = [
       "Forests",
       "Grasslands",
       "Permafrost",
+      "Shrubland and Desert",
       "Other Landscapes",
     ],
   },
