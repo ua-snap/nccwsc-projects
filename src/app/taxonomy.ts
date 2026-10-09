@@ -46,7 +46,6 @@ export const TAXONOMY_TOPICS: TaxonomyTopicDefinition[] = [
     label: "Landscapes",
     subtopics: [
       "Alpine and Montane",
-      "Arid and Semi-Arid",
       "Coasts",
       "Forests",
       "Grasslands",
