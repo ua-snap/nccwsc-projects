@@ -132,14 +132,6 @@
                 </li>
               </ul>
             </div>
-            <div *ngIf="data.files">
-              <ul *ngFor="let file of data.files">
-                <li>
-                  {{ file.name }}
-                  <a href="{{ file.url }}" target="_blank">Download</a>
-                </li>
-              </ul>
-            </div>
 
             <div *ngIf="data.children">
               <ul *ngFor="let child of data.children">
